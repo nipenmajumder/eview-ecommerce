@@ -3,10 +3,9 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
 use App\Models\AboutUs;
 use Carbon\Carbon;
-use Image;
+use Illuminate\Http\Request;
 
 class AboutUsController extends Controller
 {
@@ -15,31 +14,46 @@ class AboutUsController extends Controller
         $this->middleware('auth:admin');
     }
     // update
-    public function update(){
-        $data=AboutUs::select(['details','id'])->first();
-        return view('backend.about-us.update',compact('data'));
+    public function update()
+    {
+        $data = AboutUs::select(['details', 'id'])->where('keyword', 'about_us')->first();
+        return view('backend.about-us.update', compact('data'));
     }
     // update Store
-    public function updateSubmit(Request $request){
+    public function updateSubmit(Request $request)
+    {
         $this->validate($request, [
-            'details'=>'required',
+            'details' => 'required',
         ]);
-        $update=AboutUs::where('id',$request->id)->update([
-            'details'=>$request->details,
-            'updated_at'=>Carbon::now()->toDateTimeString(),
+        $update = AboutUs::where('id', $request->id)->update([
+            'details'    => $request->details,
+            'updated_at' => Carbon::now()->toDateTimeString(),
         ]);
-        if($update){
-            $notification = array(
-                'messege' => 'Update success!',
-                'alert-type' => 'success'
-              );
+        if ($update) {
+            $notification = [
+                'messege'    => 'Update success!',
+                'alert-type' => 'success',
+            ];
             return redirect()->back()->with($notification);
-        }else{
-            $notification = array(
-                'messege' => 'Update Faild!',
-                'alert-type' => 'error'
-              );
+        } else {
+            $notification = [
+                'messege'    => 'Update Faild!',
+                'alert-type' => 'error',
+            ];
             return redirect()->back()->with($notification);
         }
     }
+
+    public function privacyPolicy()
+    {
+        $data = AboutUs::select(['details', 'id'])->where('keyword', 'privacy_policy')->first();
+        return view('backend.about-us.privacy_policy', compact('data'));
+    }
+
+    public function termsCondition()
+    {
+        $data = AboutUs::select(['details', 'id'])->where('keyword', 'terms_condition')->first();
+        return view('backend.about-us.terms_conditions', compact('data'));
+    }
+
 }

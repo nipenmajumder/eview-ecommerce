@@ -11,8 +11,7 @@ use Illuminate\Support\Facades\Route;
 | routes are loaded by the RouteServiceProvider within a group which
 | contains the "web" middleware group. Now create something great!
 |
-*/
-
+ */
 
 // Auth::routes();
 // facebook Login
@@ -23,17 +22,17 @@ Route::get('auth/google', [App\Http\Controllers\GoogleSocialiteController::class
 Route::get('callback/google', [App\Http\Controllers\GoogleSocialiteController::class, 'handleCallback']);
 // Front Section routes
 Route::get('/', [App\Http\Controllers\Frontend\FrontendController::class, 'home'])->name('home.index');
+// basic pages
+Route::get('/about-us', [App\Http\Controllers\Frontend\FrontendController::class, 'aboutUs']);
+Route::get('/privacy-policy', [App\Http\Controllers\Frontend\FrontendController::class, 'privacyPolicy']);
+Route::get('/terms-conditions', [App\Http\Controllers\Frontend\FrontendController::class, 'termsCondition']);
 // product details
 Route::get('/products/{slug}/{id}', [App\Http\Controllers\Frontend\FrontendController::class, 'productDetails']);
+// product shop routes
+Route::get('/shop', [App\Http\Controllers\Frontend\ProductShopController::class, 'index'])->name('shop');
 
 Route::get('/get/shop/type/{shop_id}', [App\Http\Controllers\Api\ApiController::class, 'getShop']);
 Route::get('/get/product/details/{product_id}', [App\Http\Controllers\Api\ApiController::class, 'getProductdetails']);
-
-
-
-
-
-
 
 Route::get('/register', [App\Http\Controllers\Frontend\LoginController::class, 'register'])->name('register');
 Route::post('/register', [App\Http\Controllers\Frontend\LoginController::class, 'registerStore'])->name('register');
@@ -50,11 +49,10 @@ Route::post('/forget-password', [App\Http\Controllers\Frontend\LoginController::
 Route::get('forget-password/verify/{id}/{verify_id}', [App\Http\Controllers\Frontend\LoginController::class, 'forgetCodeVerify']);
 Route::post('forget-password/verify/store', [App\Http\Controllers\Frontend\LoginController::class, 'forgetCodeVerifyStore']);
 
-
 // customer Dashboard
 Route::get('/logout', [App\Http\Controllers\Frontend\CustomerDashboardController::class, 'logout'])->name('logout');
 Route::get('/dashboard', [App\Http\Controllers\Frontend\CustomerDashboardController::class, 'dashboard'])->name('customer.dashboard');
-// 
+//
 Route::get('/profile', [App\Http\Controllers\Frontend\CustomerDashboardController::class, 'profile'])->name('customer.profile');
 Route::post('/profile', [App\Http\Controllers\Frontend\CustomerDashboardController::class, 'profileUpdate'])->name('customer.profile');
 
@@ -76,16 +74,6 @@ Route::get('vendor/shop/delete/{id}', [App\Http\Controllers\Frontend\ShopControl
 // add product
 Route::get('/vendor/product', [App\Http\Controllers\Frontend\ProductController::class, 'index'])->name('vendor.product');
 Route::post('/vendor/product', [App\Http\Controllers\Frontend\ProductController::class, 'store'])->name('vendor.product');
-
-
-
-
-
-
-
-
-
-
 
 // api controller
 Route::get('/get/subcategory/all/{cate_id}', [App\Http\Controllers\Api\ApiController::class, 'getSubcategory']);
@@ -135,6 +123,11 @@ Route::get('/admin/slider/delete/{id}', [App\Http\Controllers\Admin\SliderContro
 Route::get('/admin/about-us/update', [App\Http\Controllers\Admin\AboutUsController::class, 'update'])->name('admin.about-us.update');
 Route::post('/admin/about-us/update', [App\Http\Controllers\Admin\AboutUsController::class, 'updateSubmit'])->name('admin.about-us.update');
 
+// privacy policy
+Route::get('/admin/privacy-policy/update', [App\Http\Controllers\Admin\AboutUsController::class, 'privacyPolicy'])->name('admin.privacy-policy.update');
+// terms and conditions
+Route::get('/admin/terms-conditions/update', [App\Http\Controllers\Admin\AboutUsController::class, 'termsCondition'])->name('admin.terms-conditions.update');
+
 // category
 Route::get('/admin/category/create', [App\Http\Controllers\Admin\CategoryController::class, 'create'])->name('admin.category.create');
 Route::post('/admin/category/create', [App\Http\Controllers\Admin\CategoryController::class, 'store'])->name('admin.category.create');
@@ -144,7 +137,6 @@ Route::get('/admin/category/active/{id}', [App\Http\Controllers\Admin\CategoryCo
 Route::get('/admin/category/deactive/{id}', [App\Http\Controllers\Admin\CategoryController::class, 'deactive']);
 Route::get('/admin/category/edit/{id}', [App\Http\Controllers\Admin\CategoryController::class, 'edit']);
 Route::get('/admin/category/delete/{id}', [App\Http\Controllers\Admin\CategoryController::class, 'delete']);
-
 
 // Sub category
 Route::get('/admin/subcategory/create', [App\Http\Controllers\Admin\SubCategoryController::class, 'create'])->name('admin.subcategory.create');
@@ -194,3 +186,13 @@ Route::get('/admin/brand/active/{id}', [App\Http\Controllers\Admin\BrandControll
 Route::get('/admin/brand/deactive/{id}', [App\Http\Controllers\Admin\BrandController::class, 'deactive']);
 Route::get('/admin/brand/edit/{id}', [App\Http\Controllers\Admin\BrandController::class, 'edit']);
 Route::get('/admin/brand/delete/{id}', [App\Http\Controllers\Admin\BrandController::class, 'delete']);
+
+//blog routes
+Route::get('/admin/blog/create', [App\Http\Controllers\Admin\BlogController::class, 'create'])->name('admin.blog.create');
+Route::get('/admin/blog/edit/{id}', [App\Http\Controllers\Admin\BlogController::class, 'edit'])->name('admin.blog.edit');
+Route::get('/admin/blog/index', [App\Http\Controllers\Admin\BlogController::class, 'index'])->name('admin.blog.index');
+Route::post('/admin/blog/store', [App\Http\Controllers\Admin\BlogController::class, 'store'])->name('admin.blog.store');
+Route::post('/admin/blog/update/{id}', [App\Http\Controllers\Admin\BlogController::class, 'update'])->name('admin.blog.update');
+Route::get('/admin/blog/active/{id}', [App\Http\Controllers\Admin\BlogController::class, 'active']);
+Route::get('/admin/blog/deactive/{id}', [App\Http\Controllers\Admin\BlogController::class, 'deactive']);
+Route::get('/admin/blog/delete/{id}', [App\Http\Controllers\Admin\BlogController::class, 'delete']);
