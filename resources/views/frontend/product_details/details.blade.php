@@ -30,29 +30,29 @@
                 <div class="col-lg-6">
                     <div class="product-slick">
 
-                   @php
+                        @php
                         $thunmbnailImg = array($data->image);
                         $gal_img=json_decode($data->gallary_image);
                         $img = array_merge($thunmbnailImg, $gal_img);
-                       
-                   @endphp
-                     @foreach($img as $dimage)
+
+                        @endphp
+                        @foreach($img as $dimage)
                         <div>
                             <img src="{{ asset('uploads/products/'.$dimage) }}" alt=""
                                 class="img-fluid blur-up lazyload image_zoom_cls-0">
                         </div>
-                    @endforeach
-                       
+                        @endforeach
+
                     </div>
                     <div class="row">
                         <div class="col-12 p-0">
                             <div class="slider-nav">
-                            @foreach($img as $dimage)
+                                @foreach($img as $dimage)
                                 <div>
                                     <img src="{{ asset('uploads/products/'.$dimage) }}" alt=""
                                         class="img-fluid blur-up lazyload">
                                 </div>
-                            @endforeach
+                                @endforeach
                             </div>
                         </div>
                     </div>
@@ -62,12 +62,14 @@
                         <div class="product-count">
                             <ul>
                                 <li>
-                                    <img src="{{ asset('frontend') }}/assets/images/fire.gif" class="img-fluid" alt="image">
+                                    <img src="{{ asset('frontend') }}/assets/images/fire.gif" class="img-fluid"
+                                        alt="image">
                                     <span class="p-counter">37</span>
                                     <span class="lang">orders in last 24 hours</span>
                                 </li>
                                 <li>
-                                    <img src="{{ asset('frontend') }}/assets/images/person.gif" class="img-fluid user_img" alt="image">
+                                    <img src="{{ asset('frontend') }}/assets/images/person.gif"
+                                        class="img-fluid user_img" alt="image">
                                     <span class="p-counter">44</span>
                                     <span class="lang">active view this</span>
                                 </li>
@@ -84,19 +86,19 @@
                             <span class="badge badge-grey-color">#1 Best seller</span>
                             <span class="label-text">in {{ $data->Category->name}}</span>
                         </div>
-                        <h3 class="price-detail">৳ {{ $data->product_price }} 
+                        <h3 class="price-detail">৳ {{ $data->product_price }}
                             <!-- <del>$459.00</del>
                             <span>55% off</span> -->
                         </h3>
-                        
+
                         <!-- <ul class="color-variant">
                             <li class="bg-light0 active"></li>
                             <li class="bg-light1"></li>
                             <li class="bg-light2"></li>
                         </ul> -->
-                        
+
                         <div id="selectSize" class="addeffect-section product-description border-product">
-                        @if($data->product_size !=NULL)
+                            @if($data->product_size !=NULL)
                             <h6 class="product-title size-text">select size <span><a href="" data-bs-toggle="modal"
                                         data-bs-target="#sizemodal">size
                                         chart</a></span></h6>
@@ -110,19 +112,20 @@
                                             <button type="button" class="btn-close" data-bs-dismiss="modal"
                                                 aria-label="Close"><span aria-hidden="true">&times;</span></button>
                                         </div>
-                                        <div class="modal-body"><img src="{{ asset('frontend') }}/assets/images/size-chart.jpg" alt=""
+                                        <div class="modal-body"><img
+                                                src="{{ asset('frontend') }}/assets/images/size-chart.jpg" alt=""
                                                 class="img-fluid blur-up lazyload"></div>
                                     </div>
                                 </div>
                             </div>
-                           
+
                             <h6 class="error-message">please select size</h6>
                             <div class="size-box">
                                 <ul>
                                     @foreach(explode(',',$data->product_size) as $size)
                                     <li><a href="javascript:void(0)">{{ $size }}</a></li>
                                     @endforeach
-                            
+
                                 </ul>
                             </div>
                             @endif
@@ -145,7 +148,8 @@
                         <div class="product-count">
                             <ul>
                                 <li>
-                                    <img src="{{ asset('frontend')}}/assets/images/icon/truck.png" class="img-fluid" alt="image">
+                                    <img src="{{ asset('frontend')}}/assets/images/icon/truck.png" class="img-fluid"
+                                        alt="image">
                                     <!-- <span class="lang">Free shipping for orders above ৳500 USD</span> -->
                                 </li>
                             </ul>
@@ -162,9 +166,10 @@
 
                                 <li>Qty: {{ $data->product_qty }}</li>
                                 <li>Brand: {{ $data->product_brand }}</li>
-                                @if($data->product_weight !=NULL)  <li>Weight: {{ $data->product_weight }}</li>@endif
+                                @if($data->product_weight !=NULL) <li>Weight: {{ $data->product_weight }}</li>@endif
                                 @if($data->style !=NULL) <li>Style: {{ $data->style }}</li>@endif
-                                @if($data->product_materials !=NULL) <li>Materials: {{ $data->product_materials }}</li>@endif
+                                @if($data->product_materials !=NULL) <li>Materials: {{ $data->product_materials }}</li>
+                                @endif
                             </ul>
                         </div>
                         <div class="border-product">
@@ -211,15 +216,13 @@
                                 class="icofont icofont-contacts"></i>Video</a>
                         <div class="material-border"></div>
                     </li>
-                    <li class="nav-item"><a class="nav-link" id="review-top-tab" data-bs-toggle="tab"
-                            href="#top-review" role="tab" aria-selected="false"><i
-                                class="icofont icofont-contacts"></i>Write Review</a>
+                    <li class="nav-item"><a class="nav-link" id="review-top-tab" data-bs-toggle="tab" href="#top-review"
+                            role="tab" aria-selected="false"><i class="icofont icofont-contacts"></i>Write Review</a>
                         <div class="material-border"></div>
                     </li>
                 </ul>
                 <div class="tab-content nav-material" id="top-tabContent">
-                    <div class="tab-pane fade show active" id="top-home" role="tabpanel"
-                        aria-labelledby="top-home-tab">
+                    <div class="tab-pane fade show active" id="top-home" role="tabpanel" aria-labelledby="top-home-tab">
                         <div class="product-tab-discription">
                             {!! $data->product_details !!}
                         </div>
@@ -321,17 +324,18 @@
             </div>
         </div>
         <div class="row search-product">
+            @foreach($related_products as $key => $product)
             <div class="col-xl-2 col-md-4 col-6">
                 <div class="product-box">
                     <div class="img-wrapper">
                         <div class="front">
-                            <a href="#"><img src="{{ asset('frontend') }}/assets/images/pro3/33.jpg"
+                            <a href="#"><img src="{{ asset('uploads/products/'.$product->image) }}"
                                     class="img-fluid blur-up lazyload bg-img" alt=""></a>
                         </div>
-                        <div class="back">
-                            <a href="#"><img src="{{ asset('frontend') }}/assets/images/pro3/34.jpg"
+                        {{-- <div class="back">
+                            <a href="#"><img src="{{ asset('uploads/products/'.$product->image) }}"
                                     class="img-fluid blur-up lazyload bg-img" alt=""></a>
-                        </div>
+                        </div> --}}
                         <div class="cart-info cart-wrap">
                             <button data-bs-toggle="modal" data-bs-target="#addtocart" title="Add to cart"><i
                                     class="ti-shopping-cart"></i></button> <a href="javascript:void(0)"
@@ -345,192 +349,18 @@
                         <div class="rating"><i class="fa fa-star"></i> <i class="fa fa-star"></i> <i
                                 class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i></div>
                         <a href="product-page(no-sidebar).html">
-                            <h6>Slim Fit Cotton Shirt</h6>
+                            <h6>{{ $product->product_name }}</h6>
                         </a>
-                        <h4>$500.00</h4>
-                        <ul class="color-variant">
+                        <h4>{{ $product->product_price }}</h4>
+                        {{-- <ul class="color-variant">
                             <li class="bg-light0"></li>
                             <li class="bg-light1"></li>
                             <li class="bg-light2"></li>
-                        </ul>
+                        </ul> --}}
                     </div>
                 </div>
             </div>
-            <div class="col-xl-2 col-md-4 col-6">
-                <div class="product-box">
-                    <div class="img-wrapper">
-                        <div class="front">
-                            <a href="#"><img src="{{ asset('frontend') }}/assets/images/pro3/1.jpg"
-                                    class="img-fluid blur-up lazyload bg-img" alt=""></a>
-                        </div>
-                        <div class="back">
-                            <a href="#"><img src="{{ asset('frontend') }}/assets/images/pro3/2.jpg"
-                                    class="img-fluid blur-up lazyload bg-img" alt=""></a>
-                        </div>
-                        <div class="cart-info cart-wrap">
-                            <button data-bs-toggle="modal" data-bs-target="#addtocart" title="Add to cart"><i
-                                    class="ti-shopping-cart"></i></button> <a href="javascript:void(0)"
-                                title="Add to Wishlist"><i class="ti-heart" aria-hidden="true"></i></a> <a href="#"
-                                data-bs-toggle="modal" data-bs-target="#quick-view" title="Quick View"><i
-                                    class="ti-search" aria-hidden="true"></i></a> <a href="compare.html"
-                                title="Compare"><i class="ti-reload" aria-hidden="true"></i></a>
-                        </div>
-                    </div>
-                    <div class="product-detail">
-                        <div class="rating"><i class="fa fa-star"></i> <i class="fa fa-star"></i> <i
-                                class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i></div>
-                        <a href="product-page(no-sidebar).html">
-                            <h6>Slim Fit Cotton Shirt</h6>
-                        </a>
-                        <h4>$500.00</h4>
-                        <ul class="color-variant">
-                            <li class="bg-light0"></li>
-                            <li class="bg-light1"></li>
-                            <li class="bg-light2"></li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-            <div class="col-xl-2 col-md-4 col-6">
-                <div class="product-box">
-                    <div class="img-wrapper">
-                        <div class="front">
-                            <a href="#"><img src="{{ asset('frontend') }}/assets/images/pro3/27.jpg"
-                                    class="img-fluid blur-up lazyload bg-img" alt=""></a>
-                        </div>
-                        <div class="back">
-                            <a href="#"><img src="{{ asset('frontend') }}/assets/images/pro3/28.jpg"
-                                    class="img-fluid blur-up lazyload bg-img" alt=""></a>
-                        </div>
-                        <div class="cart-info cart-wrap">
-                            <button data-bs-toggle="modal" data-bs-target="#addtocart" title="Add to cart"><i
-                                    class="ti-shopping-cart"></i></button> <a href="javascript:void(0)"
-                                title="Add to Wishlist"><i class="ti-heart" aria-hidden="true"></i></a> <a href="#"
-                                data-bs-toggle="modal" data-bs-target="#quick-view" title="Quick View"><i
-                                    class="ti-search" aria-hidden="true"></i></a> <a href="compare.html"
-                                title="Compare"><i class="ti-reload" aria-hidden="true"></i></a>
-                        </div>
-                    </div>
-                    <div class="product-detail">
-                        <div class="rating"><i class="fa fa-star"></i> <i class="fa fa-star"></i> <i
-                                class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i></div>
-                        <a href="product-page(no-sidebar).html">
-                            <h6>Slim Fit Cotton Shirt</h6>
-                        </a>
-                        <h4>$500.00</h4>
-                        <ul class="color-variant">
-                            <li class="bg-light0"></li>
-                            <li class="bg-light1"></li>
-                            <li class="bg-light2"></li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-            <div class="col-xl-2 col-md-4 col-6">
-                <div class="product-box">
-                    <div class="img-wrapper">
-                        <div class="front">
-                            <a href="#"><img src="{{ asset('frontend') }}/assets/images/pro3/35.jpg"
-                                    class="img-fluid blur-up lazyload bg-img" alt=""></a>
-                        </div>
-                        <div class="back">
-                            <a href="#"><img src="{{ asset('frontend') }}/assets/images/pro3/36.jpg"
-                                    class="img-fluid blur-up lazyload bg-img" alt=""></a>
-                        </div>
-                        <div class="cart-info cart-wrap">
-                            <button data-bs-toggle="modal" data-bs-target="#addtocart" title="Add to cart"><i
-                                    class="ti-shopping-cart"></i></button> <a href="javascript:void(0)"
-                                title="Add to Wishlist"><i class="ti-heart" aria-hidden="true"></i></a> <a href="#"
-                                data-bs-toggle="modal" data-bs-target="#quick-view" title="Quick View"><i
-                                    class="ti-search" aria-hidden="true"></i></a> <a href="compare.html"
-                                title="Compare"><i class="ti-reload" aria-hidden="true"></i></a>
-                        </div>
-                    </div>
-                    <div class="product-detail">
-                        <div class="rating"><i class="fa fa-star"></i> <i class="fa fa-star"></i> <i
-                                class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i></div>
-                        <a href="product-page(no-sidebar).html">
-                            <h6>Slim Fit Cotton Shirt</h6>
-                        </a>
-                        <h4>$500.00</h4>
-                        <ul class="color-variant">
-                            <li class="bg-light0"></li>
-                            <li class="bg-light1"></li>
-                            <li class="bg-light2"></li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-            <div class="col-xl-2 col-md-4 col-6">
-                <div class="product-box">
-                    <div class="img-wrapper">
-                        <div class="front">
-                            <a href="#"><img src="{{ asset('frontend') }}/assets/images/pro3/2.jpg"
-                                    class="img-fluid blur-up lazyload bg-img" alt=""></a>
-                        </div>
-                        <div class="back">
-                            <a href="#"><img src="{{ asset('frontend') }}/assets/images/pro3/1.jpg"
-                                    class="img-fluid blur-up lazyload bg-img" alt=""></a>
-                        </div>
-                        <div class="cart-info cart-wrap">
-                            <button data-bs-toggle="modal" data-bs-target="#addtocart" title="Add to cart"><i
-                                    class="ti-shopping-cart"></i></button> <a href="javascript:void(0)"
-                                title="Add to Wishlist"><i class="ti-heart" aria-hidden="true"></i></a> <a href="#"
-                                data-bs-toggle="modal" data-bs-target="#quick-view" title="Quick View"><i
-                                    class="ti-search" aria-hidden="true"></i></a> <a href="compare.html"
-                                title="Compare"><i class="ti-reload" aria-hidden="true"></i></a>
-                        </div>
-                    </div>
-                    <div class="product-detail">
-                        <div class="rating"><i class="fa fa-star"></i> <i class="fa fa-star"></i> <i
-                                class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i></div>
-                        <a href="product-page(no-sidebar).html">
-                            <h6>Slim Fit Cotton Shirt</h6>
-                        </a>
-                        <h4>$500.00</h4>
-                        <ul class="color-variant">
-                            <li class="bg-light0"></li>
-                            <li class="bg-light1"></li>
-                            <li class="bg-light2"></li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-            <div class="col-xl-2 col-md-4 col-6">
-                <div class="product-box">
-                    <div class="img-wrapper">
-                        <div class="front">
-                            <a href="#"><img src="{{ asset('frontend') }}/assets/images/pro3/28.jpg"
-                                    class="img-fluid blur-up lazyload bg-img" alt=""></a>
-                        </div>
-                        <div class="back">
-                            <a href="#"><img src="{{ asset('frontend') }}/assets/images/pro3/27.jpg"
-                                    class="img-fluid blur-up lazyload bg-img" alt=""></a>
-                        </div>
-                        <div class="cart-info cart-wrap">
-                            <button data-bs-toggle="modal" data-bs-target="#addtocart" title="Add to cart"><i
-                                    class="ti-shopping-cart"></i></button> <a href="javascript:void(0)"
-                                title="Add to Wishlist"><i class="ti-heart" aria-hidden="true"></i></a> <a href="#"
-                                data-bs-toggle="modal" data-bs-target="#quick-view" title="Quick View"><i
-                                    class="ti-search" aria-hidden="true"></i></a> <a href="compare.html"
-                                title="Compare"><i class="ti-reload" aria-hidden="true"></i></a>
-                        </div>
-                    </div>
-                    <div class="product-detail">
-                        <div class="rating"><i class="fa fa-star"></i> <i class="fa fa-star"></i> <i
-                                class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i></div>
-                        <a href="product-page(no-sidebar).html">
-                            <h6>Slim Fit Cotton Shirt</h6>
-                        </a>
-                        <h4>$500.00</h4>
-                        <ul class="color-variant">
-                            <li class="bg-light0"></li>
-                            <li class="bg-light1"></li>
-                            <li class="bg-light2"></li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
+            @endforeach
         </div>
     </div>
 </section>
