@@ -24,10 +24,12 @@ class UpdateBlogRequest extends FormRequest
     public function rules()
     {
         return [
-            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:10240',
-            'title' => 'required',
-            'des'   => 'required',
-            'tag'   => 'required',
+            'image'     => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:10240',
+            'title'     => 'required',
+            'des'       => 'required',
+            'tag'       => 'required',
+            "short_des" => 'required',
+
         ];
     }
 }

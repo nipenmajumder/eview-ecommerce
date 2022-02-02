@@ -12,4 +12,9 @@ class SubCategory extends Model
     {
         return $this->belongsTo('App\Models\Category', 'category', 'id');
     }
+
+    public function reSubCategory()
+    {
+        return $this->hasMany(ResubCategory::class, 'sub_category');
+    }
 }

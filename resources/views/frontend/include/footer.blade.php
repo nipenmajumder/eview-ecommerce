@@ -1,3 +1,4 @@
+{{-- {{ dd($companyInformation) }} --}}
 <footer class="dark-footer footer-style-1 footer-theme-color">
     <section class="section-b-space darken-layout">
         <div class="container">
@@ -7,15 +8,15 @@
                         <h4>about</h4>
                     </div>
                     <div class="footer-contant">
-                        <div class="footer-logo"><img src="{{ asset('frontend/assets') }}/images/icon/logo/f11.png"
+                        <div class="footer-logo"><img src="{{ asset('uploads/logo/'.$companyInformation->logo) }}"
                                 alt=""></div>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
-                            ut labore</p>
+                        <p>{{ $companyInformation->company_motto ?? 'N/A' }}</p>
                         <ul class="contact-list">
-                            <li><i class="fa fa-map-marker"></i>Multikart Demo Store, Demo store India 345-659
+                            <li><i class="fa fa-map-marker"></i>{{ $companyInformation->company_address ?? 'N/A' }}
                             </li>
-                            <li><i class="fa fa-phone"></i>Call Us: {{ $companyInformation->mobile }}</li>
-                            <li><i class="fa fa-envelope-o"></i>Email Us: <a href="#">{{ $companyInformation->email
+                            <li><i class="fa fa-phone"></i>Call Us: {{ $companyInformation->mobile ?? 'N/A' }}</li>
+                            <li><i class="fa fa-envelope-o"></i>Email Us: <a href="#">{{ $companyInformation->email ??
+                                    'N/A'
                                     }}</a></li>
                         </ul>
                     </div>
@@ -46,6 +47,7 @@
                                 <li><a href="{{ url('/about-us') }}">about us</a></li>
                                 <li><a href="{{ url('/privacy-policy') }}">privacy policy</a></li>
                                 <li><a href="{{ url('/terms-conditions') }}">terms-conditions</a></li>
+                                <li><a href="{{ route('blogs') }}">Blogs</a></li>
                             </ul>
                         </div>
                     </div>
@@ -56,9 +58,7 @@
                             <h4>follow us</h4>
                         </div>
                         <div class="footer-contant">
-                            <p class="mb-cls-content">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-                                do eiusmod tempor incididunt
-                                ut labore</p>
+                            <p class="mb-cls-content">{{ $companyInformation->company_address ?? 'N/A' }}</p>
                             <form class="form-inline">
                                 <div class="form-group me-sm-3 mb-2">
                                     <label for="inputPassword2" class="sr-only">Password</label>
@@ -69,11 +69,14 @@
                             </form>
                             <div class="footer-social">
                                 <ul>
-                                    <li><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
-                                    <li><a href="#"><i class="fa fa-google-plus" aria-hidden="true"></i></a></li>
-                                    <li><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
-                                    <li><a href="#"><i class="fa fa-instagram" aria-hidden="true"></i></a></li>
-                                    <li><a href="#"><i class="fa fa-rss" aria-hidden="true"></i></a></li>
+                                    <li><a href="{{ $icon->facebook ?? '#' }}"><i class="fa fa-facebook"
+                                                aria-hidden="true"></i></a></li>
+                                    <li><a href="{{ $icon->youtube ?? '#' }}"><i class="fa fa-youtube"></i></a></li>
+                                    <li><a href="{{ $icon->twitter ?? '#' }}"><i class="fa fa-twitter"
+                                                aria-hidden="true"></i></a></li>
+                                    <li><a href="{{ $icon->linkend ?? '#' }}"><i class="fa fa-linkedin"></i> </a></li>
+                                    <li><a href="{{ $icon->skype ?? '#' }}"><i class="fa fa-skype"
+                                                aria-hidden="true"></i></a></li>
                                 </ul>
                             </div>
                         </div>

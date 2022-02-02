@@ -141,10 +141,22 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="product-buttons"><a href="javascript:void(0)" id="cartEffect"
-                                class="btn btn-solid hover-solid btn-animation"><i class="fa fa-shopping-cart me-1"
-                                    aria-hidden="true"></i> add to cart</a> <a href="#" class="btn btn-solid"><i
-                                    class="fa fa-bookmark fz-16 me-2" aria-hidden="true"></i>wishlist</a></div>
+                        <form id="cartsection">
+                            <div class="product-buttons">
+                                <input type="hidden" name="id" value="{{$data->id}}">
+                                <input type="hidden" name="name" value="{{$data->product_name}}">
+                                <input type="hidden" name="product_sku" value="{{$data->product_sku}}">
+                                <input type="hidden" name="image" value="{{$data->image}}">
+                                <input type="hidden" name="discount_price" value="">
+                                <input type="hidden" name="discount_title" value="">
+                                <input type="hidden" name="price" value="{{$data->product_price}}">
+                                <input type="hidden" name="product_quantity" value="1">
+                                <a id="cart" class="btn btn-solid hover-solid btn-animation">
+                                    <i class="fa fa-shopping-cart me-1" aria-hidden="true"></i> add to cart</a>
+                                <a class="btn btn-solid"><i class="fa fa-bookmark fz-16 me-2"
+                                        aria-hidden="true"></i>wishlist</a>
+                            </div>
+                        </form>
                         <div class="product-count">
                             <ul>
                                 <li>
@@ -168,7 +180,8 @@
                                 <li>Brand: {{ $data->product_brand }}</li>
                                 @if($data->product_weight !=NULL) <li>Weight: {{ $data->product_weight }}</li>@endif
                                 @if($data->style !=NULL) <li>Style: {{ $data->style }}</li>@endif
-                                @if($data->product_materials !=NULL) <li>Materials: {{ $data->product_materials }}</li>
+                                @if($data->product_materials !=NULL) <li>Materials: {{ $data->product_materials }}
+                                </li>
                                 @endif
                             </ul>
                         </div>
@@ -365,4 +378,56 @@
     </div>
 </section>
 <!-- product section end -->
+<script>
+    $(document).ready(function(){
+          $("#cart").click(function(){
+              var str = $( "#cartsection" ).serialize();
+             console.log(str);
+              $.ajax({
+                  url : '{{url('/addtocart')}}',
+                  type : 'get',
+                  data : $( "#cartsection" ).serialize(),
+                  success: function(data) {
+                     if(data.success){
+                    //   cartupload();
+                    //   cartquantity();
+                      Swal.fire({
+                          toast: true,
+                          icon: 'success',
+                          title: ''+ data.success +'',
+                          position: 'top',
+                          showConfirmButton: false,
+                          timer: 3000,
+                          timerProgressBar: true,
+                          didOpen: (toast) => {
+                          toast.addEventListener('mouseenter', Swal.stopTimer)
+                          toast.addEventListener('mouseleave', Swal.resumeTimer)
+                          }
+                      })
+                     }else{
+                    //   cartupload();
+                    //   cartquantity();
+                      Swal.fire({
+                          toast: true,
+                          icon: 'error',
+                          title: 'Add to cart failed',
+                          position: 'top',
+                          showConfirmButton: false,
+                          timer: 3000,
+                          timerProgressBar: true,
+                          didOpen: (toast) => {
+                          toast.addEventListener('mouseenter', Swal.stopTimer)
+                          toast.addEventListener('mouseleave', Swal.resumeTimer)
+                          }
+                      })
+                     }
+                 
+                           
+                  }
+              })
+              // 
+          });
+
+    });
+</script>
 @endsection

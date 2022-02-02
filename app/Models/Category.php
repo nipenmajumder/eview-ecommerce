@@ -12,4 +12,13 @@ class Category extends Model
     {
         return $this->hasMany('App\Models\Product');
     }
+
+    public function subCategory()
+    {
+        return $this->hasMany(SubCategory::class, 'category');
+    }
+    public function scopeActive($query)
+    {
+        return $query->where('is_active', 1);
+    }
 }

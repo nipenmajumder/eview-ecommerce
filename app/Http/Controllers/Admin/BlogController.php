@@ -52,7 +52,7 @@ class BlogController extends Controller
         // dd($requested_data);
         $model = new Blog();
         if ($request->hasFile('image')) {
-            $image_upload = Image::make($request->file('image'))->resize(873, 420);
+            $image_upload = Image::make($request->file('image'))->resize(391, 236);
             $name         = 'blog_' . time() . '_' . Str::random(10) . '.' . "webp";
             $image_upload->save('uploads/blog/' . $name);
             $requested_data = Arr::set($requested_data, 'image', $name);
@@ -169,7 +169,7 @@ class BlogController extends Controller
             if (File::exists('uploads/blog/' . $model->image)) {
                 File::delete('uploads/blog/' . $model->image);
             }
-            $image_upload = Image::make($request->file('image'))->resize(873, 420);
+            $image_upload = Image::make($request->file('image'))->resize(391, 236);
             $name         = 'blog_' . time() . '_' . Str::random(10) . '.' . "webp";
             $image_upload->save('uploads/blog/' . $name);
             $requested_data = Arr::set($requested_data, 'image', $name);
@@ -179,8 +179,8 @@ class BlogController extends Controller
         // unique slug
         $now_slug = Str::slug($request->title);
         $count    = Blog::where('title', $request->title)->count();
-        if ($count >= 1) {
-            $slug           = "{$now_slug}-" . ($count + 1);
+        if ($count) {
+            $slug           = "{$now_slug}-" . ($count);
             $requested_data = Arr::set($requested_data, 'slug', $slug);
         } else {
             $requested_data = Arr::set($requested_data, 'slug', $now_slug);
