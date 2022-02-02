@@ -30,6 +30,20 @@ Route::get('/terms-conditions', [App\Http\Controllers\Frontend\FrontendControlle
 Route::get('/products/{slug}/{id}', [App\Http\Controllers\Frontend\FrontendController::class, 'productDetails']);
 // product shop routes
 Route::get('/shop', [App\Http\Controllers\Frontend\ProductShopController::class, 'index'])->name('shop');
+Route::get('/category-wish-shop', [App\Http\Controllers\Frontend\ProductShopController::class, 'categoryWishProduct']);
+//cart related routes
+Route::get('/addtocart', [App\Http\Controllers\Frontend\CartController::class, 'addToCart']);
+Route::get('/getcart', [App\Http\Controllers\Frontend\CartController::class, 'getCartItem']);
+Route::get('/main/getcart/page', [App\Http\Controllers\Frontend\CartController::class, 'getMainCartItem']);
+Route::get('/getcartQuantity', [App\Http\Controllers\Frontend\CartController::class, 'getCartQuantity']);
+Route::get('/deletecart/item/{rowId}', [App\Http\Controllers\Frontend\CartController::class, 'removeFrommainCart']);
+Route::get('/products/cart', [App\Http\Controllers\Frontend\CartController::class, 'cart']);
+Route::get('/increase/item/{rowId}', [App\Http\Controllers\Frontend\CartController::class, 'qtyIncrease']);
+Route::get('/increaseByOne/item/{rowId}', [App\Http\Controllers\Frontend\CartController::class, 'qtyIncreaseByOne']);
+Route::get('/decreaseByOne/item/{rowId}', [App\Http\Controllers\Frontend\CartController::class, 'qtyDecreaseByOne']);
+// blog routes
+Route::get('/blogs', [App\Http\Controllers\Frontend\BlogController::class, 'index'])->name('blogs');
+Route::get('/blogs-view/{slug}', [App\Http\Controllers\Frontend\BlogController::class, 'show'])->name('blogs-view');
 
 Route::get('/get/shop/type/{shop_id}', [App\Http\Controllers\Api\ApiController::class, 'getShop']);
 Route::get('/get/product/details/{product_id}', [App\Http\Controllers\Api\ApiController::class, 'getProductdetails']);

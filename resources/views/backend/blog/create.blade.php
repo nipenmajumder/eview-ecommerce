@@ -203,7 +203,20 @@
                                                 <!--end::Hint-->
                                             </div>
                                         </div>
-
+                                        <div class="row mb-10">
+                                            <label class="col-lg-3 col-form-label text-lg-end">Blog Short
+                                                Description:</label>
+                                            <div class="col-lg-9 col-xl-9">
+                                                <div
+                                                    class="form-check form-check-custom form-check-solid form-switch mb-2">
+                                                    <input type="text" name="short_des"
+                                                        class="form-control form-control-solid">
+                                                </div>
+                                                @error('short_des')
+                                                <div class="validation">{{ $message }}</div>
+                                                @enderror
+                                            </div>
+                                        </div>
                                         <div class="row mb-10">
                                             <label class="col-lg-3 col-form-label text-lg-end">Blog Description:</label>
                                             <div class="col-lg-9 col-xl-9">

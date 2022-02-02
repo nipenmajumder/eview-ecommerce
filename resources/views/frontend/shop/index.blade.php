@@ -8,14 +8,14 @@
         <div class="row">
             <div class="col-sm-6">
                 <div class="page-title">
-                    <h2>collection</h2>
+                    <h2>Shop</h2>
                 </div>
             </div>
             <div class="col-sm-6">
                 <nav aria-label="breadcrumb" class="theme-breadcrumb">
                     <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="index.html">home</a></li>
-                        <li class="breadcrumb-item active" aria-current="page">collection</li>
+                        <li class="breadcrumb-item"><a href="{{ url('/') }}">home</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">Shop</li>
                     </ol>
                 </nav>
             </div>
@@ -37,29 +37,29 @@
                         <div class="collection-mobile-back"><span class="filter-back"><i class="fa fa-angle-left"
                                     aria-hidden="true"></i> back</span></div>
                         <div class="collection-collapse-block open">
+                            <h3 class="collapse-block-title">Category</h3>
+                            <div class="collection-collapse-block-content">
+                                <div class="collection-brand-filter">
+                                    @foreach ($category_data ?? [] as $category)
+                                    <div class="form-check collection-filter-checkbox">
+                                        <input type="checkbox" class="form-check-input" id="zara">
+                                        <label class="form-check-label" for="zara">{{ $category->name }}</label>
+                                    </div>
+                                    @endforeach
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="collection-collapse-block open">
                             <h3 class="collapse-block-title">brand</h3>
                             <div class="collection-collapse-block-content">
                                 <div class="collection-brand-filter">
+                                    @foreach ($brands ?? [] as $brand)
                                     <div class="form-check collection-filter-checkbox">
                                         <input type="checkbox" class="form-check-input" id="zara">
-                                        <label class="form-check-label" for="zara">zara</label>
+                                        <label class="form-check-label" for="zara">{{ $brand->name }}</label>
                                     </div>
-                                    <div class="form-check collection-filter-checkbox">
-                                        <input type="checkbox" class="form-check-input" id="vera-moda">
-                                        <label class="form-check-label" for="vera-moda">vera-moda</label>
-                                    </div>
-                                    <div class="form-check collection-filter-checkbox">
-                                        <input type="checkbox" class="form-check-input" id="forever-21">
-                                        <label class="form-check-label" for="forever-21">forever-21</label>
-                                    </div>
-                                    <div class="form-check collection-filter-checkbox">
-                                        <input type="checkbox" class="form-check-input" id="roadster">
-                                        <label class="form-check-label" for="roadster">roadster</label>
-                                    </div>
-                                    <div class="form-check collection-filter-checkbox">
-                                        <input type="checkbox" class="form-check-input" id="only">
-                                        <label class="form-check-label" for="only">only</label>
-                                    </div>
+                                    @endforeach
                                 </div>
                             </div>
                         </div>
