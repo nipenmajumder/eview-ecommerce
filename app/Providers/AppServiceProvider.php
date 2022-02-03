@@ -21,6 +21,7 @@ class AppServiceProvider extends ServiceProvider
         $maincate           = Category::with('subCategory', 'subCategory.reSubCategory')->where('is_deleted', 0)->where('is_active', 1)->get();
         $companyInformation = CompanyInformation::first();
         $icon               = Social::select(['facebook', 'twitter', 'linkend', 'youtube', 'skype', 'google_plus', 'feed'])->first();
+
         view()->share('companyInformation', $companyInformation);
         view()->share('maincate', $maincate);
         view()->share('icon', $icon);

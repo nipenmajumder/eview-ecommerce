@@ -10,10 +10,11 @@ class CartController extends Controller
 {
     public function addToCart(Request $request)
     {
-        //  return $request;
+        dd($request->all());
         Cart::add($request->id, $request->name, $request->product_quantity, $request->price, [
             $request->image,
             $request->product_sku,
+            $request->shop_id,
         ]);
         return response()->json([
             'success' => $request->name . ' ' . 'Added to Cart',
@@ -22,7 +23,6 @@ class CartController extends Controller
 
     public function getCartItem()
     {
-
         $cartData = Cart::content();
         //return $cartData;
         return view('frontend.cart.ajaxCart', compact('cartData'));
@@ -32,6 +32,14 @@ class CartController extends Controller
 
         $cartCount = Cart::count();
         return response()->json($cartCount);
+    }
+
+    public function getCartData()
+    {
+
+        $cartContent = Cart::content();
+        // return view('frontend.include.header', \compact('cartContent'));
+        // return response()->json($cartContent);
     }
 
     public function removeFromCart($rowId)

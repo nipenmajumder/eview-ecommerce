@@ -30,7 +30,8 @@ class FrontendController extends Controller
     // product details
     public function productDetails($slug, $id)
     {
-        $data             = Product::where('id', $id)->with('Category', 'SubCategory_id')->where('is_active', 1)->first();
+        $data = Product::where('id', $id)->with('Category', 'SubCategory_id')->where('is_active', 1)->first();
+        // dd($data);
         $related_products = Product::where('category_id', $data->category_id)->where('is_active', 1)->where('id', '!=', $data->id)
             ->select('product_name', 'product_price', 'image')
             ->limit(6)->orderBy('id', 'DESC')->get();

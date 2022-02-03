@@ -34,6 +34,7 @@ Route::get('/category-wish-shop', [App\Http\Controllers\Frontend\ProductShopCont
 //cart related routes
 Route::get('/addtocart', [App\Http\Controllers\Frontend\CartController::class, 'addToCart']);
 Route::get('/getcart', [App\Http\Controllers\Frontend\CartController::class, 'getCartItem']);
+Route::get('/getcartData', [App\Http\Controllers\Frontend\CartController::class, 'getcartData']);
 Route::get('/main/getcart/page', [App\Http\Controllers\Frontend\CartController::class, 'getMainCartItem']);
 Route::get('/getcartQuantity', [App\Http\Controllers\Frontend\CartController::class, 'getCartQuantity']);
 Route::get('/deletecart/item/{rowId}', [App\Http\Controllers\Frontend\CartController::class, 'removeFrommainCart']);
@@ -41,6 +42,13 @@ Route::get('/products/cart', [App\Http\Controllers\Frontend\CartController::clas
 Route::get('/increase/item/{rowId}', [App\Http\Controllers\Frontend\CartController::class, 'qtyIncrease']);
 Route::get('/increaseByOne/item/{rowId}', [App\Http\Controllers\Frontend\CartController::class, 'qtyIncreaseByOne']);
 Route::get('/decreaseByOne/item/{rowId}', [App\Http\Controllers\Frontend\CartController::class, 'qtyDecreaseByOne']);
+//checkout
+Route::get('/products/checkout', [App\Http\Controllers\Frontend\CheckoutController::class, 'checkout']);
+Route::get('/main/checkout/page', [App\Http\Controllers\Frontend\CheckoutController::class, 'getCheckoutCartItem']);
+Route::post('/checkout/save', [App\Http\Controllers\Frontend\CheckoutController::class, 'save'])->name('checkout.save');
+Route::get('/checkout/payment/{order_id}', [App\Http\Controllers\Frontend\CheckoutController::class, 'paymentMethods']);
+Route::post('/pay', [App\Http\Controllers\Frontend\CheckoutController::class, 'pay'])->name('pay');
+
 // blog routes
 Route::get('/blogs', [App\Http\Controllers\Frontend\BlogController::class, 'index'])->name('blogs');
 Route::get('/blogs-view/{slug}', [App\Http\Controllers\Frontend\BlogController::class, 'show'])->name('blogs-view');
