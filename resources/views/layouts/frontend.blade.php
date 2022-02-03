@@ -518,6 +518,192 @@
         });
     });
     </script>
+    <script>
+        function cartupload(){
+            $.ajax({
+                url : '{{url('/getcart')}}',
+                type : 'get',
+                success: function(data) {
+                    $("#cart_section").html(data);
+                }
+            })
+        }
+        cartupload();
+    </script>
+    <script>
+        $(document).ready(function(){
+          $(".cart").click(function(){
+              var str = $( "#cartsection" ).serialize();
+             console.log(str);
+              $.ajax({
+                  url : '{{url('/addtocart')}}',
+                  type : 'get',
+                  data : $( "#cartsection" ).serialize(),
+                  success: function(data) {
+                     if(data.success){
+                      cartupload();
+                      cartquantity();
+                      Swal.fire({
+                          toast: true,
+                          icon: 'success',
+                          title: ''+ data.success +'',
+                          position: 'top',
+                          showConfirmButton: false,
+                          timer: 3000,
+                          timerProgressBar: true,
+                          didOpen: (toast) => {
+                          toast.addEventListener('mouseenter', Swal.stopTimer)
+                          toast.addEventListener('mouseleave', Swal.resumeTimer)
+                          }
+                      })
+                     }else{
+                      cartupload();
+                      cartquantity();
+                      Swal.fire({
+                          toast: true,
+                          icon: 'error',
+                          title: 'Add to cart failed',
+                          position: 'top',
+                          showConfirmButton: false,
+                          timer: 3000,
+                          timerProgressBar: true,
+                          didOpen: (toast) => {
+                          toast.addEventListener('mouseenter', Swal.stopTimer)
+                          toast.addEventListener('mouseleave', Swal.resumeTimer)
+                          }
+                      })
+                     }
+                 
+                           
+                  }
+              })
+              // 
+          });
+    
+    });
+    </script>
+    <script>
+        function deletedata(el){
+        var rowId=el.id;
+        $.ajax({
+                url: "{{  url('/deletecart/item/') }}/" + rowId,
+                type : 'get',
+                success: function(data) {
+                    mainuploadspro();
+                    cartquantity();
+                    cartupload();
+                    mainCheckoutCart();
+                    Swal.fire({
+                        toast: true,
+                        icon: 'success',
+                        title: ''+ data.success +'',
+                        position: 'top',
+                        showConfirmButton: false,
+                        timer: 3000,
+                        timerProgressBar: true,
+                        didOpen: (toast) => {
+                        toast.addEventListener('mouseenter', Swal.stopTimer)
+                        toast.addEventListener('mouseleave', Swal.resumeTimer)
+                        }
+                    });
+                    
+                
+                }
+            });
+        mainuploadspro();
+    }
+    </script>
+    <script>
+        function cartData(){
+            $.ajax({
+                url : '{{url('/getcartData')}}',
+                type : 'get',
+                 dataType:'json',
+                success: function(data) {
+                    $("#cart_quantity").html(data);
+                }
+            })
+        }
+        cartquantity();
+    </script>
+    <script>
+        function cartquantity(){
+            $.ajax({
+                url : '{{url('/getcartQuantity')}}',
+                type : 'get',
+                 dataType:'json',
+                success: function(data) {
+                    $("#cart_quantity").html(data);
+                }
+            })
+        }
+        cartquantity();
+    </script>
+
+
+
+    <script>
+        function mainuploadspro(){
+            $.ajax({
+                url : '{{url('/main/getcart/page')}}',
+                type : 'get',
+                success: function(data) {
+                    // console.log(data);
+                        $("#maincart_page").html(data);
+                }
+            });
+        }
+        mainuploadspro();
+    </script>
+
+    <script>
+        function mainCheckoutCart(){
+            $.ajax({
+                url : '{{url('/main/checkout/page')}}',
+                type : 'get',
+                success: function(data) {
+                    // console.log(data);
+                        $("#checout_cart").html(data);
+                }
+            });
+        }
+        mainCheckoutCart();
+    </script>
+
+
+    <script>
+        function cartqtyupdate(el){
+            var rowId=el.id;
+            var qty=el.value;
+            $.ajax({
+                    url: "{{  url('/increase/item/') }}/" + rowId,
+                    type : 'get',
+                    data :   { 'qty' : qty},
+                    success: function(data) {
+                        mainuploadspro();
+                        cartquantity();
+                        cartupload();
+                        mainCheckoutCart();
+                        Swal.fire({
+                            toast: true,
+                            icon: 'success',
+                            title: ''+ data.success +'',
+                            position: 'top',
+                            showConfirmButton: false,
+                            timer: 3000,
+                            timerProgressBar: true,
+                            didOpen: (toast) => {
+                            toast.addEventListener('mouseenter', Swal.stopTimer)
+                            toast.addEventListener('mouseleave', Swal.resumeTimer)
+                            }
+                        });
+                        
+                    
+                    }
+                });
+            mainuploadspro();
+        }
+    </script>
     <script src="{{ asset('frontend/assets') }}/js/slick.js"></script>
     <script src="{{ asset('frontend/assets') }}/js/slick-animation.min.js"></script>
     <!-- menu js-->
@@ -598,134 +784,15 @@
     <script src="{{asset('backend')}}/assets/plugins/ckeditor/ckeditor.js"></script>
     <script src="{{asset('backend')}}/assets/plugins/ckeditor/ckeditor-active.js"></script>
     <script src="{{ asset('frontend/assets') }}/js/theme-setting.js"></script>
-    <script src="{{ asset('frontend/assets') }}/js/script.js"></script>
+
     <script src="{{ asset('frontend/assets') }}/js/color-setting.js"></script>
-    <script src="{{ asset('frontend/assets') }}/js/custom-slick-animated.js"></script>
+
     <script src="{{asset('frontend')}}/assets/js/izitost.js"></script>
     <script src="{{ asset('https://unpkg.com/sweetalert/dist/sweetalert.min.js')}}"></script>
     <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    {{-- <script>
-        function cartquantity(){
-            $.ajax({
-                url : '{{url('/getcartQuantity')}}',
-                type : 'get',
-                 dataType:'json',
-                success: function(data) {
-                    $("#cart_quantity").html(data);
-                }
-            })
-        }
-        cartquantity();
-    </script> --}}
 
-    {{-- <script>
-        function cartupload(){
-            $.ajax({
-                url : '{{url('/getcart')}}',
-                type : 'get',
-                success: function(data) {
-                    $("#cart_section").html(data);
-                }
-            })
-        }
-        cartupload();
-    </script> --}}
-
-    {{-- <script>
-        function mainuploadspro(){
-            $.ajax({
-                url : '{{url('/main/getcart/page')}}',
-                type : 'get',
-                success: function(data) {
-                    // console.log(data);
-                        $("#maincart_page").html(data);
-                }
-            });
-        }
-        mainuploadspro();
-    </script> --}}
-
-    {{-- <script>
-        function mainCheckoutCart(){
-            $.ajax({
-                url : '{{url('/main/checkout/page')}}',
-                type : 'get',
-                success: function(data) {
-                    // console.log(data);
-                        $("#checout_cart").html(data);
-                }
-            });
-        }
-        mainCheckoutCart();
-    </script> --}}
-    {{-- <script>
-        function deletedata(el){
-            var rowId=el.id;
-            $.ajax({
-                    url: "{{  url('/deletecart/item/') }}/" + rowId,
-                    type : 'get',
-                    success: function(data) {
-                        mainuploadspro();
-                        cartquantity();
-                        cartupload();
-                        mainCheckoutCart();
-                        Swal.fire({
-                            toast: true,
-                            icon: 'success',
-                            title: ''+ data.success +'',
-                            position: 'top',
-                            showConfirmButton: false,
-                            timer: 3000,
-                            timerProgressBar: true,
-                            didOpen: (toast) => {
-                            toast.addEventListener('mouseenter', Swal.stopTimer)
-                            toast.addEventListener('mouseleave', Swal.resumeTimer)
-                            }
-                        });
-                        
-                    
-                    }
-                });
-            // mainuploadspro();
-        }
-    </script> --}}
-
-    {{-- <script>
-        function cartqtyupdate(el){
-            var rowId=el.id;
-            var qty=el.value;
-            
-            $.ajax({
-                    url: "{{  url('/increase/item/') }}/" + rowId,
-                    type : 'get',
-                    data :   { 'qty' : qty},
-                    success: function(data) {
-                        mainuploadspro();
-                        cartquantity();
-                        cartupload();
-                        mainCheckoutCart();
-                        Swal.fire({
-                            toast: true,
-                            icon: 'success',
-                            title: ''+ data.success +'',
-                            position: 'top',
-                            showConfirmButton: false,
-                            timer: 3000,
-                            timerProgressBar: true,
-                            didOpen: (toast) => {
-                            toast.addEventListener('mouseenter', Swal.stopTimer)
-                            toast.addEventListener('mouseleave', Swal.resumeTimer)
-                            }
-                        });
-                        
-                    
-                    }
-                });
-            // mainuploadspro();
-        }
-    </script> --}}
 
     <script>
         $(document).ready(function() {
@@ -808,6 +875,8 @@
     <script>
         $(document).ready(function() {     $('.select2-multi').select2();  }); 
     </script>
+    <script src="{{ asset('frontend/assets') }}/js/custom-slick-animated.js"></script>
+    <script src="{{ asset('frontend/assets') }}/js/script.js"></script>
 
 </body>
 
