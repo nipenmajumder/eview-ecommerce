@@ -1,3 +1,4 @@
+{{-- {{ dd(Cart::content()) }} --}}
 @extends('layouts.frontend')
 @section('title', 'Checkout')
 @section('content')
@@ -53,21 +54,23 @@
                                 </div>
                                 <div class="form-group col-md-6 col-sm-6 col-xs-12">
                                     <div class="field-label">Country</div>
-                                    <input type="text" name="country_name" value="{{ $country->name}}" placeholder="">
+                                    <input type="text" name="country_name" value="{{ $country!=null ? $country : ''}}"
+                                        placeholder="">
                                 </div>
                                 <div class="form-group col-md-6 col-sm-6 col-xs-12">
                                     <div class="field-label">City</div>
-                                    <input type="text" name="city_name" value="{{ $user->city}}" placeholder="">
+                                    <input type="text" name="city_name" value="{{ $user->city??''}}" placeholder="">
                                 </div>
                                 <div class="form-group col-md-6 col-sm-6 col-xs-12">
                                     <div class="field-label">Zip Code</div>
-                                    <input type="text" name="shipping_zip" value="{{ $user->zip_code}}" placeholder="">
+                                    <input type="text" name="shipping_zip" value="{{ $user->zip_code??''}}"
+                                        placeholder="">
                                 </div>
 
                                 <div class="form-group col-md-12 col-sm-12 col-xs-12">
                                     <div class="field-label">Address</div>
                                     <textarea name="shipping_address" class="form-control" cols="30"
-                                        rows="4">{{ $user->main_address}}</textarea>
+                                        rows="4">{{ $user->main_address??''}}</textarea>
                                 </div>
 
                             </div>

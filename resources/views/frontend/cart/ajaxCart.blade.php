@@ -7,7 +7,8 @@
         <div class="media">
             @foreach($cartItem->options as $key => $image)
             @if($key==0)
-            <a href="#"><img alt="" class="me-3" src="{{asset('uploads/products/'.$image)}}"></a>
+            <a href="#"><img alt="" class="me-3" src="{{asset('uploads/products/'.$image)}}"
+                    style="max-height: 90px; max-width: 90px"></a>
             @endif
             @endforeach
             <div class="media-body">
