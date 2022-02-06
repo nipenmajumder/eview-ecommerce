@@ -151,6 +151,7 @@
                                 <input type="hidden" name="discount_title" value="">
                                 <input type="hidden" name="price" value="{{$data->product_price}}">
                                 <input type="hidden" name="shop_id" value="{{$data->shop_id}}">
+                                <input type="hidden" name="product_sku" value="{{$data->product_sku}}">
                                 <input type="hidden" name="product_quantity" value="1">
                                 <a class="btn btn-solid hover-solid btn-animation cart">
                                     <i class="fa fa-shopping-cart me-1" aria-hidden="true"></i> add to cart</a>

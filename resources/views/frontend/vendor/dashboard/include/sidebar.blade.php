@@ -4,7 +4,7 @@
             <img src="{{ asset('frontend') }}/assets/images/logos/17.png" alt="" class="img-fluid">
         </div>
         @php
-            $main_company=App\Models\VendorCompany::where('user_id',Auth::user()->id)->first();
+        $main_company=App\Models\VendorCompany::where('user_id',Auth::user()->id)->first();
         @endphp
         <div class="profile-detail">
             @if($main_company)
@@ -20,14 +20,15 @@
         <ul class="nav nav-tabs" id="top-tab" role="tablist">
             <li class="nav-item"><a data-bs-toggle="tab" class="nav-link active" href="#dashboard">dashboard</a></li>
             <li class="nav-item"><a class="nav-link" href="{{ url('/vendor/shop') }}">All Shop</a>
-            <li class="nav-item"><a  class="nav-link" href="{{ url('/vendor/product') }}">All products</a></li>
-            <li class="nav-item"><a data-bs-toggle="tab" class="nav-link" href="#orders">orders</a>
+            <li class="nav-item"><a class="nav-link" href="{{ url('/vendor/product') }}">All products</a></li>
+            <li class="nav-item"><a class="nav-link" href="{{ route('vendor.order') }}">orders</a>
             </li>
-            <li class="nav-item"><a data-bs-toggle="tab" class="nav-link"href="#profile">profile</a>
+            <li class="nav-item"><a data-bs-toggle="tab" class="nav-link" href="#profile">profile</a>
             </li>
             <li class="nav-item"><a data-bs-toggle="tab" class="nav-link" href="#settings">settings</a>
             </li>
-            <li class="nav-item"><a class="nav-link" data-toggle="modal" data-bs-target="#logout" href="{{ url('logout') }}">logout</a>
+            <li class="nav-item"><a class="nav-link" data-toggle="modal" data-bs-target="#logout"
+                    href="{{ url('logout') }}">logout</a>
             </li>
         </ul>
     </div>

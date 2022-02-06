@@ -74,6 +74,10 @@ Route::post('forget-password/verify/store', [App\Http\Controllers\Frontend\Login
 // customer Dashboard
 Route::get('/logout', [App\Http\Controllers\Frontend\CustomerDashboardController::class, 'logout'])->name('logout');
 Route::get('/dashboard', [App\Http\Controllers\Frontend\CustomerDashboardController::class, 'dashboard'])->name('customer.dashboard');
+Route::get('/dashboard/order', [App\Http\Controllers\Frontend\CustomerDashboardController::class, 'customerOrder'])->name('customer.order');
+Route::get('/dashboard/order/view/{id}', [App\Http\Controllers\Frontend\CustomerDashboardController::class, 'customerOrderView'])->name('customer.order-view');
+
+Route::get('/dashboard/order/invoice/{id}', [App\Http\Controllers\Frontend\CustomerDashboardController::class, 'printInvoice'])->name('customer.order-invoice');
 //
 Route::get('/profile', [App\Http\Controllers\Frontend\CustomerDashboardController::class, 'profile'])->name('customer.profile');
 Route::post('/profile', [App\Http\Controllers\Frontend\CustomerDashboardController::class, 'profileUpdate'])->name('customer.profile');
@@ -86,6 +90,8 @@ Route::get('/vendor', [App\Http\Controllers\Frontend\VendorController::class, 'c
 Route::post('/vendor', [App\Http\Controllers\Frontend\VendorController::class, 'store'])->name('vendor.create');
 
 Route::get('/vendor/dashboard', [App\Http\Controllers\Frontend\VendorController::class, 'vendorDashboard'])->name('vendor.dashboard');
+Route::get('/vendor/order', [App\Http\Controllers\Frontend\VendorController::class, 'orderList'])->name('vendor.order');
+
 // shop
 Route::get('/vendor/shop', [App\Http\Controllers\Frontend\ShopController::class, 'index'])->name('vendor.shop');
 Route::post('/vendor/shop', [App\Http\Controllers\Frontend\ShopController::class, 'store'])->name('vendor.shop');

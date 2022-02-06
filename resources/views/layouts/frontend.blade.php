@@ -8,6 +8,7 @@
     <meta name="description" content="multikart">
     <meta name="keywords" content="multikart">
     <meta name="author" content="multikart">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <link rel="icon" href="{{ asset('frontend/assets') }}/images/favicon/22.png" type="image/x-icon">
     <link rel="shortcut icon" href="{{ asset('frontend/assets') }}/images/favicon/22.png" type="image/x-icon">
     <title>Multikart - Multi-purpopse E-commerce Html Template</title>

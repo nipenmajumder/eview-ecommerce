@@ -22,17 +22,13 @@ class CheckoutController extends Controller
     public function checkout()
     {
         $user    = User::where('id', Auth::user()->id)->where('is_verified', 1)->first();
-        $country = DB::table('country')->where('id', auth()->user()->country)->first();
-
-        // return $user;
-        // dd($user);
+        $country = DB::table('country')->where('id', auth()->user()->country)->first() ?? null;
         return view("frontend.checkout.checkout", compact('user', 'country'));
     }
 
     public function getCheckoutCartItem()
     {
         $cartData = Cart::content();
-        //return $cartData;
         return view('frontend.checkout.checkoutAjax', compact('cartData'));
     }
 
@@ -59,10 +55,10 @@ class CheckoutController extends Controller
             'shipping_phone'   => $request->shipping_phone,
             'shipping_email'   => $request->shipping_email,
             'shipping_zip'     => $request->shipping_zip,
-            'division'         => $request->division,
-            'district'         => $request->district,
+            'country_name'     => $request->country_name,
+            'city_name'        => $request->city_name,
             'shipping_address' => $request->shipping_address,
-            'billing_id'       => $request->billing_id,
+            'customer_id'      => $request->customer_id,
             'total_item'       => $request->total_item,
             'total_qty'        => $request->total_qty,
             'delivery_charge'  => $request->delivery_charge,
@@ -79,6 +75,7 @@ class CheckoutController extends Controller
         $cartData = Cart::content();
         // $array = array();
         foreach ($cartData as $item) {
+
             $products[] = [
                 'id'           => $item->id,
                 'product_name' => $item->name,
@@ -88,6 +85,7 @@ class CheckoutController extends Controller
                 'subtotal'     => $item->subtotal,
             ];
         }
+        dd($products);
         $update = Order::where('id', $insert)->update([
             'products' => json_encode($products),
         ]);
@@ -101,8 +99,9 @@ class CheckoutController extends Controller
         // return $order_id;
         $data    = Order::where('order_id', $order_id)->first();
         $product = json_decode($data->products);
+        $country = DB::table('country')->where('id', auth()->user()->country)->first();
 
-        return view("frontend.checkout.paymentMethod", compact('data', 'product'));
+        return view("frontend.checkout.paymentMethod", compact('data', 'product', 'country'));
     }
     public function pay(Request $request)
     {

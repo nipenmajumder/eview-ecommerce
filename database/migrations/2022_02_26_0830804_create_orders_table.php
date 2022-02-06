@@ -26,6 +26,7 @@ class CreateOrdersTable extends Migration
             $table->string('shipping_zip')->nullable();
             $table->string('shipping_address')->nullable();
             $table->longText('products')->nullable();
+            $table->longText('company_id')->nullable();
             $table->integer('total_qty')->nullable();
             $table->integer('total_item')->nullable();
             $table->double('total_amount')->nullable();

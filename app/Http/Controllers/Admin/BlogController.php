@@ -53,7 +53,7 @@ class BlogController extends Controller
         $model = new Blog();
         if ($request->hasFile('image')) {
             $image_upload = Image::make($request->file('image'))->resize(391, 236);
-            $name         = 'blog_' . time() . '_' . Str::random(10) . '.' . "webp";
+            $name         = 'blog_' . time() . '_' . Str::random(10) . '.' . "jpg";
             $image_upload->save('uploads/blog/' . $name);
             $requested_data = Arr::set($requested_data, 'image', $name);
         } else {
@@ -170,7 +170,7 @@ class BlogController extends Controller
                 File::delete('uploads/blog/' . $model->image);
             }
             $image_upload = Image::make($request->file('image'))->resize(391, 236);
-            $name         = 'blog_' . time() . '_' . Str::random(10) . '.' . "webp";
+            $name         = 'blog_' . time() . '_' . Str::random(10) . '.' . "jpg";
             $image_upload->save('uploads/blog/' . $name);
             $requested_data = Arr::set($requested_data, 'image', $name);
         } else {
