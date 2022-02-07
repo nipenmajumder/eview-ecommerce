@@ -24,7 +24,10 @@ class FrontendController extends Controller
             ->with(['product' => function ($query) {
                 $query->where('is_deleted', 0)->where('is_active', 1)->orderBy('id', 'DESC');
             }])->limit(4)->get();
-        return view('frontend.home.index', compact('allSlider', 'allProduct', 'allelevenproduct', 'allSpecialproduct', 'alltweentyproduct', 'topSaleCategory'));
+
+
+        $mainfivecategory=Category::where('is_deleted', 0)->where('is_active', 1)->orderby('id','DESC')->get();
+        return view('frontend.home.index', compact('mainfivecategory','allSlider', 'allProduct', 'allelevenproduct', 'allSpecialproduct', 'alltweentyproduct', 'topSaleCategory'));
 
     }
     // product details
