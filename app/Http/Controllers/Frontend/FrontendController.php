@@ -14,31 +14,26 @@ class FrontendController extends Controller
     public function home()
     {
 
-        $allSlider         = Slider::select(['image'])->where('is_active', 1)->get();
-        $allProduct        = Product::where('is_deleted', 0)->where('is_active', 1)->orderBy('id', 'DESC')->limit(10)->get();
-        $allelevenproduct  = Product::where('have_a_discount', 1)->where('is_active', 1)->where('offer', '11_offer')->where('is_deleted', 0)->orderBy('id', 'DESC')->limit(10)->get();
-        $allSpecialproduct = Product::where('have_a_discount', 1)->where('is_active', 1)->where('offer', 'special_offer')->where('is_deleted', 0)->orderBy('id', 'DESC')->get();
-        $alltweentyproduct = Product::where('have_a_discount', 1)->where('is_active', 1)->where('offer', '22_offer')->where('is_deleted', 0)->orderBy('id', 'DESC')->get();
-
-        $topSaleCategory = Category::where('is_deleted', 0)->where('is_active', 1)
+        $allSlider         = Slider::select(['image'])->isActive()->get();
+        $allProduct        = Product::isDeleted()->isActive()->orderBy('id', 'DESC')->limit(10)->get();
+        $newProducts       = Product::isDeleted()->isActive()->orderBy('id', 'DESC')->limit(12)->get();
+        $allelevenproduct  = Product::haveDiscount()->offer11()->isDeleted()->isActive()->orderBy('id', 'DESC')->limit(10)->get();
+        $allSpecialproduct = Product::haveDiscount()->specialOffer()->isDeleted()->isActive()->orderBy('id', 'DESC')->get();
+        $alltweentyproduct = Product::haveDiscount()->offer22()->isDeleted()->isActive()->orderBy('id', 'DESC')->get();
+        $topSaleCategory   = Category::isDeleted()->isActive()
             ->with(['product' => function ($query) {
-                $query->where('is_deleted', 0)->where('is_active', 1)->orderBy('id', 'DESC');
+                $query->isDeleted()->isActive()->orderBy('id', 'DESC');
             }])->limit(4)->get();
-
-
-        $mainfivecategory=Category::where('is_deleted', 0)->where('is_active', 1)->orderby('id','DESC')->get();
-        return view('frontend.home.index', compact('mainfivecategory','allSlider', 'allProduct', 'allelevenproduct', 'allSpecialproduct', 'alltweentyproduct', 'topSaleCategory'));
-
+        $mainfivecategory = Category::isDeleted()->isActive()->orderBy('id', 'DESC')->get();
+        return view('frontend.home.index', compact('mainfivecategory', 'allSlider', 'allProduct', 'allelevenproduct', 'allSpecialproduct', 'alltweentyproduct', 'topSaleCategory', 'newProducts'));
     }
     // product details
     public function productDetails($slug, $id)
     {
-        $data = Product::where('id', $id)->with('Category', 'SubCategory_id')->where('is_active', 1)->first();
-        // dd($data);
-        $related_products = Product::where('category_id', $data->category_id)->where('is_active', 1)->where('id', '!=', $data->id)
+        $data             = Product::isID($id)->with('Category', 'SubCategory_id')->isActive()->first();
+        $related_products = Product::where('category_id', $data->category_id)->isActive()->notID($data->id)
             ->select('product_name', 'product_price', 'image')
             ->limit(6)->orderBy('id', 'DESC')->get();
-        // dd($related_products);
         return view('frontend.product_details.details', compact('data', 'related_products'));
     }
     public function aboutUs()

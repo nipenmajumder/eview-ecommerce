@@ -67,29 +67,33 @@ class CheckoutController extends Controller
             'products'         => json_encode($request->products),
             'created_at'       => Carbon::now()->toDateTimeString(),
         ]);
-
         $update = Order::where('id', $insert)->update([
             'invoice_id' => $insert . rand(111, 99999),
         ]);
-
-        $cartData = Cart::content();
-        // $array = array();
+        $cartData     = Cart::content();
+        $company_data = [];
         foreach ($cartData as $item) {
-
             $products[] = [
                 'id'           => $item->id,
                 'product_name' => $item->name,
-                'sku'          => $item->option,
+                'sku'          => $item->options[1],
+                'shop_id'      => $item->options[2],
                 'qty'          => $item->qty,
                 'price'        => $item->price,
                 'subtotal'     => $item->subtotal,
             ];
-        }
-        dd($products);
-        $update = Order::where('id', $insert)->update([
-            'products' => json_encode($products),
-        ]);
 
+            $company_id = $item->options[2];
+            array_push($company_data, $company_id);
+        }
+        // dd($company_data);
+        $update = Order::where('id', $insert)->update([
+            'products'   => json_encode($products),
+            'company_id' => \json_encode($company_data),
+        ]);
+        // dd($update);
+        // $da = Order::where('id', $insert)->first();
+        // dd($da);
         Cart::destroy();
         return redirect('/checkout/payment/' . $orderId);
     }

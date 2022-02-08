@@ -18,7 +18,13 @@ class AppServiceProvider extends ServiceProvider
 
     public function boot()
     {
-        $maincate           = Category::with('subCategory', 'subCategory.reSubCategory')->where('is_deleted', 0)->where('is_active', 1)->get();
+        $maincate = Category::with(['subCategory',
+            'subCategory.reSubCategory',
+            'subCategory.reSubCategory.reReSubCategory',
+            'subCategory.reSubCategory.reReSubCategory.reReReSubCategory',
+        ])->isActive()->isDeleted()->get();
+        // dd($maincate);
+
         $companyInformation = CompanyInformation::first();
         $icon               = Social::select(['facebook', 'twitter', 'linkend', 'youtube', 'skype', 'google_plus', 'feed'])->first();
 

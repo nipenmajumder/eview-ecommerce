@@ -8,13 +8,54 @@ use Illuminate\Database\Eloquent\Model;
 class Product extends Model
 {
     use HasFactory;
+
+    public function scopeIsActive($query)
+    {
+        return $query->where('is_active', 1);
+    }
+
+    public function scopeIsDeleted($query)
+    {
+        return $query->where('is_deleted', 0);
+    }
+
+    public function scopeNotID($query, $id)
+    {
+        return $query->where('id', '!=', $id);
+    }
+
+    public function scopeIsID($query, $id)
+    {
+        return $query->where('id', $id);
+    }
+
+    public function scopeOffer11($query)
+    {
+        return $query->where('offer', '11_offer');
+    }
+
+    public function scopeOffer22($query)
+    {
+        return $query->where('offer', '22_offer');
+    }
+
+    public function scopeSpecialOffer($query)
+    {
+        return $query->where('offer', 'special_offer');
+    }
+    public function scopeHaveDiscount($query)
+    {
+        return $query->where('have_a_discount', 1);
+    }
+
     public function Category()
     {
         return $this->belongsTo('App\Models\Category', 'category_id', 'id');
     }
+
     public function SubCategory_id()
     {
         return $this->belongsTo('App\Models\SubCategory', 'subcategory_id', 'id');
     }
-    
+
 }
