@@ -8,6 +8,16 @@ use Illuminate\Database\Eloquent\Model;
 class Category extends Model
 {
     use HasFactory;
+
+    public function scopeIsActive($query)
+    {
+        return $query->where('is_active', 1);
+    }
+
+    public function scopeIsDeleted($query)
+    {
+        return $query->where('is_deleted', 0);
+    }
     public function Product()
     {
         return $this->hasMany('App\Models\Product');
@@ -15,10 +25,12 @@ class Category extends Model
 
     public function subCategory()
     {
-        return $this->hasMany(SubCategory::class, 'category');
+        return $this->hasMany('App\Models\SubCategory', 'category');
     }
-    public function scopeActive($query)
+
+    public function reSubCategory()
     {
-        return $query->where('is_active', 1);
+        return $this->hasMany('App\Models\ResubCategory', 'category');
     }
+
 }

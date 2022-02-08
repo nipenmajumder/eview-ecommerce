@@ -16,4 +16,8 @@ class ResubCategory extends Model
     {
         return $this->belongsTo('App\Models\SubCategory', 'sub_category', 'id');
     }
+    public function reReSubCategory()
+    {
+        return $this->hasMany('App\Models\ReReSubCategory', 'category', 'id');
+    }
 }

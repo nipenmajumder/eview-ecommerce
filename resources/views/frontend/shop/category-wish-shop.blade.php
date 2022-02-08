@@ -13,8 +13,11 @@
                     $title = $category_data->name;
                     }elseif($childCategory!=null){
                     $title = $childCategory->name;
+                    }elseif($reReSubCategory!=null){
+                    $title = $reReSubCategory->name;
+                    }elseif($reReReSubCategory!=null){
+                    $title = $reReReSubCategory->name;
                     }else{
-                    $title = $subChildCategory->name;
                     }
                     @endphp
                     <h2>{{ $title }}</h2>

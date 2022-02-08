@@ -20,4 +20,15 @@ class ReReSubCategory extends Model
     {
         return $this->belongsTo('App\Models\ReSubCategory', 're_sub_category', 'id');
     }
+
+    public function reReSubCategory()
+    {
+        return $this->hasMany('App\Models\ReReSubCategory', 'category', 'id');
+    }
+
+    public function reReReSubCategory()
+    {
+        return $this->hasMany('App\Models\ReReReSubCategory', 'category', 'id');
+    }
+
 }
