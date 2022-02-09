@@ -8,26 +8,15 @@
         <div class="row">
             <div class="col-sm-6">
                 <div class="page-title">
-                    @php
-                    if($category_data!=null){
-                    $title = $category_data->name;
-                    }elseif($childCategory!=null){
-                    $title = $childCategory->name;
-                    }elseif($reReSubCategory!=null){
-                    $title = $reReSubCategory->name;
-                    }elseif($reReReSubCategory!=null){
-                    $title = $reReReSubCategory->name;
-                    }else{
-                    }
-                    @endphp
-                    <h2>{{ $title }}</h2>
+
+                    <h2>{{ $reReReReSubCategory->name }}</h2>
                 </div>
             </div>
             <div class="col-sm-6">
                 <nav aria-label="breadcrumb" class="theme-breadcrumb">
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="{{ url('/') }}">home</a></li>
-                        <li class="breadcrumb-item active" aria-current="page">{{ $title }}</li>
+                        <li class="breadcrumb-item active" aria-current="page">{{ $reReReReSubCategory->name }}</li>
                     </ol>
                 </nav>
             </div>
@@ -48,39 +37,6 @@
                         <div class="collection-mobile-back"><span class="filter-back"><i class="fa fa-angle-left"
                                     aria-hidden="true"></i> back</span></div>
                         <!--sub category filter start -->
-                        @if($category_data!=null)
-                        <div class="collection-collapse-block open">
-                            <h3 class="collapse-block-title">Sub Category</h3>
-                            <div class="collection-collapse-block-content">
-                                <div class="collection-brand-filter">
-                                    @foreach ($category_data->subCategory as $sub_category)
-                                    <div class="form-check collection-filter-checkbox">
-                                        <input type="checkbox" class="form-check-input" id="zara">
-                                        <label class="form-check-label" for="zara">{{ $sub_category->name }}</label>
-
-                                    </div>
-                                    @endforeach
-                                </div>
-                            </div>
-                        </div>
-                        @endif
-                        <!--sub category filter start -->
-                        @if($childCategory!=null)
-                        <div class="collection-collapse-block open">
-                            <h3 class="collapse-block-title">Re Sub Category</h3>
-                            <div class="collection-collapse-block-content">
-                                <div class="collection-brand-filter">
-                                    @foreach ($childCategory->reSubCategory as $re_sub_category)
-                                    <div class="form-check collection-filter-checkbox">
-                                        <input type="checkbox" class="form-check-input" id="zara">
-                                        <label class="form-check-label" for="zara">{{ $re_sub_category->name }}</label>
-
-                                    </div>
-                                    @endforeach
-                                </div>
-                            </div>
-                        </div>
-                        @endif
                         <!-- brand filter start -->
 
                         <div class="collection-collapse-block open">
@@ -93,8 +49,6 @@
                                         <label class="form-check-label" for="zara">{{ $brand->name }}</label>
                                     </div>
                                     @endforeach
-
-
                                 </div>
                             </div>
                         </div>

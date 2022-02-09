@@ -23,6 +23,7 @@ class CheckoutController extends Controller
     {
         $user    = User::where('id', Auth::user()->id)->where('is_verified', 1)->first();
         $country = DB::table('country')->where('id', auth()->user()->country)->first() ?? null;
+        // dd($country);
         return view("frontend.checkout.checkout", compact('user', 'country'));
     }
 
@@ -76,6 +77,7 @@ class CheckoutController extends Controller
             $products[] = [
                 'id'           => $item->id,
                 'product_name' => $item->name,
+                'image'        => $item->options[1],
                 'sku'          => $item->options[1],
                 'shop_id'      => $item->options[2],
                 'qty'          => $item->qty,

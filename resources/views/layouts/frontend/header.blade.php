@@ -144,77 +144,63 @@
                                 <div class="sidebar-back text-start d-xl-none d-block"><i class="fa fa-angle-left pe-2"
                                         aria-hidden="true"></i> Back</div>
                             </div>
-
                             <ul id="sub-menu" class="sm pixelstrap sm-vertical">
-                                {{-- <li> <a href="#">snacks</a>
-                                    <ul>
-                                        <li> <a href="#">more..</a>
-                                            <ul>
-                                                <li> <a href="#">accessories</a>
-                                                    <ul>
-                                                        <li> <a href="#">more...</a>
-                                                            <ul>
-                                                                <li><a href="#">accessory gift sets</a></li>
-                                                            </ul>
-                                                        </li>
-                                                    </ul>
-                                                </li>
-
-                                            </ul>
-                                        </li>
-                                    </ul>
-                                </li> --}}
                                 <!-- first foreach -->
-                                @foreach ($maincate as $category)
-                                <li> <a href="{{ url('/category-wish-shop?category='.$category->id) }}">{{
+                                @forelse ($maincate as $category)
+                                <li> <a href="{{ url('/category/'.$category->id) }}">{{
                                         $category->name
                                         }}</a>
+                                    <!-- 2nd foreach -->
+                                    @if($category->subCategory->count() > 0)
                                     <ul>
-                                        <!-- 2nd foreach -->
-
-                                        @foreach ($category->subCategory ?? [] as $sub_category)
-                                        <li><a
-                                                href="{{ url('/category-wish-shop?child_category='.$sub_category->id) }}">{{
+                                        @forelse ($category->subCategory as $sub_category)
+                                        <li><a href="{{ url('/sub-category/'.$sub_category->id) }}">{{
                                                 $sub_category->name }}</a>
+                                            <!-- 3rd foreach -->
+                                            @if($sub_category->reSubCategory->count() > 0)
                                             <ul>
-                                                <!-- 3rd foreach -->
-
-                                                @foreach ($sub_category->reSubCategory ?? [] as
+                                                @forelse ($sub_category->reSubCategory as
                                                 $sub_child_category)
-                                                <li><a
-                                                        href="{{ url('/category-wish-shop?sub_child_category='.$sub_child_category->id) }}">{{
+                                                <li><a href="{{ url('/re-sub-category/'.$sub_child_category->id) }}">{{
                                                         $sub_child_category->name }}</a>
+                                                    <!-- 4th foreach -->
+                                                    @if($sub_child_category->reReSubCategory->count() > 0)
                                                     <ul>
-                                                        <!-- 4th foreach -->
-                                                        @foreach ($sub_child_category->reReSubCategory ?? [] as
+                                                        @forelse ($sub_child_category->reReSubCategory ?? [] as
                                                         $re_re_sub_category)
-                                                        <li>
-                                                        </li>
                                                         <li> <a
-                                                                href="{{ url('/category-wish-shop?re_re_sub_category='.$re_re_sub_category->id) }}">{{
+                                                                href="{{ url('/re-re-sub-category/'.$re_re_sub_category->id) }}">{{
                                                                 $re_re_sub_category->name }}</a>
+                                                            <!-- 5th foreach -->
+                                                            @if($re_re_sub_category->reReReSubCategory->count() >0)
                                                             <ul>
-                                                                <!-- 5th foreach -->
                                                                 @foreach ($re_re_sub_category->reReReSubCategory ??[] as
                                                                 $re_re_re_sub_category)
                                                                 <li><a
-                                                                        href="{{ url('/category-wish-shop?re_re_re_sub_category='.$re_re_re_sub_category->id) }}">{{
+                                                                        href="{{ url('/re-re-re-sub-category/'.$re_re_re_sub_category->id) }}">{{
                                                                         $re_re_re_sub_category->name }}</a>
                                                                 </li>
                                                                 @endforeach
-
                                                             </ul>
+                                                            @endif
                                                         </li>
-                                                        @endforeach
+                                                        @empty
+                                                        @endforelse
                                                     </ul>
+                                                    @endif
                                                 </li>
-                                                @endforeach
+                                                @empty
+                                                @endforelse
                                             </ul>
+                                            @endif
                                         </li>
-                                        @endforeach
+                                        @empty
+                                        @endforelse
                                     </ul>
+                                    @endif
                                 </li>
-                                @endforeach
+                                @empty
+                                @endforelse
                             </ul>
                         </nav>
                     </div>
@@ -230,7 +216,6 @@
                                 </li>
                                 <li><a href="{{ url('/') }}">Home</a></li>
                                 <li><a href="{{ url('/shop') }}">Shop</a></li>
-
                                 <li> <a href="#">snacks</a>
                                     <ul>
                                         <li> <a href="#">more..</a>
@@ -244,12 +229,10 @@
                                                         </li>
                                                     </ul>
                                                 </li>
-
                                             </ul>
                                         </li>
                                     </ul>
                                 </li>
-
                             </ul>
                         </nav>
                     </div>
