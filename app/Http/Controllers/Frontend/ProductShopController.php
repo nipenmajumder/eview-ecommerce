@@ -26,55 +26,41 @@ class ProductShopController extends Controller
         $brands        = Brand::active()->orderBy('id', 'DESC')->get();
         return view('frontend.shop.index', compact('products', 'brands', 'category_data'));
     }
-
-    public function categoryWishProduct(Request $request)
+    public function categoryWishProduct($id)
     {
-        $products          = Product::query()->orderBy('id', 'DESC')->where('is_active', 1);
-        $brands            = Brand::active()->orderBy('id', 'DESC')->get();
-        $category_data     = null;
-        $childCategory     = null;
-        $subChildCategory  = null;
-        $reReSubCategory   = null;
-        $reReReSubCategory = null;
-        //category
-        if ($request->category != null) {
-            $category_data = Category::with('subCategory', 'subCategory.reSubCategory')->where('id', $request->category)->first();
+        $products = Product::query()->orderBy('id', 'DESC')->where('is_active', 1)->where("category_id", $id)->paginate(4);
+        $brands   = Brand::active()->orderBy('id', 'DESC')->get();
+        $category = Category::with('subCategory')->where('id', $id)->first();
+        return view('frontend.shop.category-shop', \compact('products', 'brands', 'category'));
+    }
 
-            if ($category_data) {
-                $products = $products->where("category_id", $category_data->id)->paginate(4);
-            }
-        }
-        //sub category
-        else if ($request->child_category != null) {
-            $childCategory = SubCategory::with('reSubCategory')->where('id', $request->child_category)->first();
-            if ($childCategory) {
-                $products = $products->where('subcategory_id', $childCategory->id)->paginate(4);
-            }
-        }
-        //re sub category
-        elseif ($request->sub_child_category != null) {
-            $subChildCategory = ResubCategory::where('id', $request->sub_child_category)->first();
-            if ($subChildCategory) {
-                $products = $products->where('resubcategory_id', $subChildCategory->id)->paginate(4);
-            }
-        }
-        // re re sub category
-        elseif ($request->re_re_sub_category != null) {
-            $reReSubCategory = ReReSubCategory::where('id', $request->re_re_sub_category)->first();
-            if ($reReSubCategory) {
-                $products = $products->where('child_resubcategory', $reReSubCategory->id)->paginate(4);
-            }
-        }
-        // re re re sub category
-        elseif ($request->re_re_re_sub_category != null) {
-            $reReReSubCategory = ReReReSubCategory::where('id', $request->re_re_re_sub_category)->first();
-            if ($reReReSubCategory) {
-                $products = $products->where('grand_childresubcategory_id', $reReReSubCategory->id)->paginate(4);
-            }
-        } else {
-            //
-        }
-        return view('frontend.shop.category-wish-shop', compact('products', 'brands', 'category_data', 'childCategory', 'subChildCategory', 'reReSubCategory', 'reReReSubCategory'));
+    public function subCategoryWishProduct($id)
+    {
+        $products    = Product::query()->orderBy('id', 'DESC')->where('is_active', 1)->where("subcategory_id", $id)->paginate(4);
+        $brands      = Brand::active()->orderBy('id', 'DESC')->get();
+        $subCategory = SubCategory::with('reSubCategory')->where('id', $id)->first();
+        return view('frontend.shop.sub-category-shop', \compact('products', 'brands', 'subCategory'));
+    }
+    public function reSubCategoryWishProduct($id)
+    {
+        $products      = Product::query()->orderBy('id', 'DESC')->where('is_active', 1)->where("resubcategory_id", $id)->paginate(4);
+        $brands        = Brand::active()->orderBy('id', 'DESC')->get();
+        $reSubCategory = ResubCategory::with('reReSubCategory')->where('id', $id)->first();
+        return view('frontend.shop.re-sub-category-shop', \compact('products', 'brands', 'reSubCategory'));
+    }
+    public function reReSubCategoryWishProduct($id)
+    {
+        $products          = Product::query()->orderBy('id', 'DESC')->where('is_active', 1)->where("child_resubcategory", $id)->paginate(4);
+        $brands            = Brand::active()->orderBy('id', 'DESC')->get();
+        $reReReSubCategory = ReReSubCategory::with('reReReSubCategory')->where('id', $id)->first();
+        return view('frontend.shop.re-re-sub-category-shop', \compact('products', 'brands', 'reReReSubCategory'));
+    }
+    public function reReReSubCategoryWishProduct($id)
+    {
+        $products            = Product::query()->orderBy('id', 'DESC')->where('is_active', 1)->where("grand_childresubcategory_id", $id)->paginate(4);
+        $brands              = Brand::active()->orderBy('id', 'DESC')->get();
+        $reReReReSubCategory = ReReReSubCategory::where('id', $id)->first();
+        return view('frontend.shop.re-re-re-sub-category-shop', \compact('products', 'brands', 'reReReReSubCategory'));
     }
 
     /**

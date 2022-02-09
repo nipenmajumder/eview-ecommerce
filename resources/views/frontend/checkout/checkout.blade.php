@@ -54,8 +54,8 @@
                                 </div>
                                 <div class="form-group col-md-6 col-sm-6 col-xs-12">
                                     <div class="field-label">Country</div>
-                                    <input type="text" name="country_name" value="{{ $country!=null ? $country : ''}}"
-                                        placeholder="">
+                                    <input type="text" name="country_name"
+                                        value="{{ $country!=null ? $country->name : ''}}" placeholder="">
                                 </div>
                                 <div class="form-group col-md-6 col-sm-6 col-xs-12">
                                     <div class="field-label">City</div>

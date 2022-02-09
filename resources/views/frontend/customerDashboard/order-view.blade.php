@@ -66,7 +66,8 @@
                                         <tbody>
                                             @foreach ($product as $key => $obj)
                                             @php $product_image =
-                                            App\Models\Product::where('id',$obj->id)->select(['image','product_sku'])->first();@endphp
+                                            App\Models\Product::where('id',$obj->id)->first();@endphp
+                                            {{-- {{ dd($product_image) }} --}}
                                             <tr>
                                                 <th scope="row">{{$key+1}}</th>
                                                 <td><img src="{{asset('uploads/products/'.$product_image->image)}}"

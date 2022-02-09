@@ -4,13 +4,14 @@ namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
 use App\Models\Order;
+use App\Models\Shop;
 use App\Models\User;
 use App\Models\VendorCompany;
-use Auth;
 use Carbon\Carbon;
-use DB;
 use Illuminate\Http\Request;
-use Image;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
+use Intervention\Image\Facades\Image;
 
 class VendorController extends Controller
 {
@@ -21,7 +22,16 @@ class VendorController extends Controller
     // vendor order list
     public function orderList()
     {
-        $orders = Order::where('customer_id', Auth::user()->id)->get();
+        // dd(auth()->user());
+        $shop           = Shop::where('user_id', auth()->user()->id)->first();
+        $shop_single_id = [$shop->id];
+        // dd($shop_single_id);
+        $collect_data = collect(Order::get());
+        $get          = $collect_data->contains('company_id', $shop->id);
+
+        dd($get);
+        // $orders = Order::where()get();
+
         return view('frontend.vendor.dashboard.order', compact('orders'));
     }
     //

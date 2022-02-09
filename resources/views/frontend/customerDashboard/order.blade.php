@@ -64,7 +64,7 @@
                                         <tbody>
                                             @forelse ($orders as $key => $order)
                                             <tr>
-                                                <th scope="row">{{ $key+1 }}</th>
+                                                <td scope="row">{{ $key+1 }}</td>
                                                 <td>{{ $order->order_id }}</td>
                                                 <td>{{ $order->created_at }}</td>
                                                 <td>{{ $order->total_amount + 70 }}</td>

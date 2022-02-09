@@ -23,6 +23,7 @@ class AppServiceProvider extends ServiceProvider
             'subCategory.reSubCategory.reReSubCategory',
             'subCategory.reSubCategory.reReSubCategory.reReReSubCategory',
         ])->isActive()->isDeleted()->get();
+
         // dd($maincate);
 
         $companyInformation = CompanyInformation::first();

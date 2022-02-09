@@ -23,6 +23,14 @@
     <link rel="stylesheet" type="text/css" href="{{asset('frontend')}}/assets/css/vendors/bootstrap.css">
     <link href="{{asset('backend')}}/assets/css/bootstrap-tagsinput.css" rel="stylesheet" type="text/css" />
     <link rel="stylesheet" type="text/css" href="{{asset('frontend')}}/assets/css/style.css">
+    <link rel="stylesheet" href="{{ asset('frontend/assets/css/custom_style.css') }}">
+    <script>
+        $ (document).ready (function () {
+	$ (".modal a").not (".dropdown-toggle").on ("click", function () {
+		$ (".modal").modal ("hide");
+	});
+});
+    </script>
 </head>
 
 <body class="theme-color-5">
@@ -31,9 +39,72 @@
     @yield('content')
     @include('layouts.frontend.footer')
     {{-- @include('layouts.frontend.modal') --}}
-    <div class="tap-top">
-        <div><i class="fa fa-angle-double-up"></i></div>
+
+    <div class="theme-settings">
+        <ul>
+            <li class="demo-li">
+                <a href="javascript:void(0)" onclick="openSetting()">
+                    <div class="setting-sidebar" id="setting-icon">
+                        <i class="ti-shopping-cart"></i>
+                    </div>
+                </a>
+            </li>
+
+        </ul>
     </div>
+    <div class="scroll-setting-box">
+        <div id="setting_box" class="setting-box" style="max-width: 380px">
+            <a href="javascript:void(0)" class="overlay" onclick="closeSetting()"></a>
+            <div class="setting_box_body">
+                <div onclick="closeSetting()">
+                    <div class="text-start" style="max-height: 0px ; margin-left: 20px; margin-top:10px">
+                        <h5><i class="ti-close pe-2" aria-hidden="true"></i>My Cart</h5>
+
+                    </div>
+                </div>
+                <div class="setting-body" style="width: 300px">
+
+                    <div class="setting-contant">
+                        <table class="table table-borderless mb-0">
+                            <thead>
+                                <tr>
+                                    {{-- <th scope="col"></th>
+                                    <th scope="col">Order ID</th>
+                                    <th scope="col">Date Purchased</th>
+                                    <th scope="col">Total</th>
+                                    <th scope="col">Status</th>
+                                    <th scope="col">View</th> --}}
+                                </tr>
+                            </thead>
+                            <tbody>
+
+                                <tr>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+
+                            </tbody>
+                        </table>
+                        <div class="cart-list-product">
+
+
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <div id="fb-root"></div>
+
+
+
+
     <script src="{{asset('frontend')}}/assets/js/jquery-3.3.1.min.js"></script>
 
     <script>
