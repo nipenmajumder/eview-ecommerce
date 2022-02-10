@@ -28,7 +28,7 @@ class ProductController extends Controller
     }
     // 
     public function store(Request $request){
-      
+     
        $proname = $request->product_name;
        $slug = preg_replace('/[^A-Za-z0-9-]+/', '-', $proname);
 
@@ -117,8 +117,16 @@ class ProductController extends Controller
             return redirect()->back()->with($notification);
         }
 
+    }
 
+    public function edit($id){
+        
+        $edit=Product::where('id',$id)->first();
 
+        $allCategory=Category::where('is_deleted',0)->where('is_active',1)->get();
+        $allshop=Shop::where('user_id',Auth::user()->id)->where('is_deleted',0)->where('is_active',1)->get();
+        $allbrand=Brand::where('is_deleted',0)->where('is_active',1)->get();
+        return view('frontend.vendor.product.ajaxupdate',compact('allCategory','allshop','allbrand','edit'));
     }
    
 }

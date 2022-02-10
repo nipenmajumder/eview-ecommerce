@@ -106,6 +106,7 @@ Route::get('vendor/shop/delete/{id}', [App\Http\Controllers\Frontend\ShopControl
 // add product
 Route::get('/vendor/product', [App\Http\Controllers\Frontend\ProductController::class, 'index'])->name('vendor.product');
 Route::post('/vendor/product', [App\Http\Controllers\Frontend\ProductController::class, 'store'])->name('vendor.product');
+Route::get('/vendor/get/shop/edit/{id}', [App\Http\Controllers\Frontend\ProductController::class, 'edit']);
 
 // api controller
 Route::get('/get/subcategory/all/{cate_id}', [App\Http\Controllers\Api\ApiController::class, 'getSubcategory']);

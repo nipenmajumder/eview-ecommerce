@@ -36,7 +36,7 @@
     <!-- Theme css -->
     <link rel="stylesheet" href="{{asset('frontend/assets')}}/css/izitost.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <link rel="stylesheet" type="text/css" href="{{ asset('frontend/assets') }}/css/asif.css">
+
     <link href="{{asset('backend')}}/assets/css/bootstrap-tagsinput.css" rel="stylesheet" type="text/css" />
     <link rel="stylesheet" type="text/css" href="{{ asset('frontend/assets') }}/css/style.css">
 
@@ -404,11 +404,7 @@
                             <div class="product-right">
                                 <h2 id="product_name"></h2>
                                 <h3 id="product_price"></h3>
-                                <!-- <ul class="color-variant">
-                                    <li class="bg-light0"></li>
-                                    <li class="bg-light1"></li>
-                                    <li class="bg-light2"></li>
-                                </ul> -->
+                                
                                 <div class="border-product">
                                     <h6 class="product-title">Product Info</h6>
                                     <p id="brand"></p>
@@ -418,12 +414,7 @@
                                 </div>
                                 <div class="product-description border-product">
                                     <div class="size-box">
-                                        <!-- <ul>
-                                            <li class="active"><a href="javascript:void(0)">s</a></li>
-                                            <li><a href="javascript:void(0)">m</a></li>
-                                            <li><a href="javascript:void(0)">l</a></li>
-                                            <li><a href="javascript:void(0)">xl</a></li>
-                                        </ul> -->
+                                        
                                     </div>
                                     <h6 class="product-title">quantity</h6>
                                     <div class="qty-box">
