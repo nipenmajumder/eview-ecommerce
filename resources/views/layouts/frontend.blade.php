@@ -24,13 +24,56 @@
     <link href="{{asset('backend')}}/assets/css/bootstrap-tagsinput.css" rel="stylesheet" type="text/css" />
     <link rel="stylesheet" type="text/css" href="{{asset('frontend')}}/assets/css/style.css">
     <link rel="stylesheet" href="{{ asset('frontend/assets/css/custom_style.css') }}">
-    <script>
-        $ (document).ready (function () {
-	$ (".modal a").not (".dropdown-toggle").on ("click", function () {
-		$ (".modal").modal ("hide");
-	});
-});
-    </script>
+    <style>
+        .product-cart-list {
+            background: #fff none repeat scroll 0 0;
+            border-radius: 5px;
+            box-shadow: 0 2px 8px 0 rgb(0 0 0 / 6%);
+            margin-bottom: 16px;
+            overflow: hidden;
+            padding: 12px;
+            position: relative;
+            margin-top: 10px;
+        }
+
+        .size span {
+            font-size: 11px
+        }
+
+        .color span {
+            font-size: 11px
+        }
+
+        .product-deta {
+            margin-right: 70px
+        }
+
+        .gift-card:focus {
+            box-shadow: none
+        }
+
+        .pay-button {
+            color: #fff
+        }
+
+        .pay-button:hover {
+            color: #fff
+        }
+
+        .pay-button:focus {
+            color: #fff;
+            box-shadow: none
+        }
+
+        .text-grey {
+            color: #a39f9f
+        }
+
+        .qty i {
+            font-size: 11px
+        }
+    </style>
+
 </head>
 
 <body class="theme-color-5">
@@ -40,6 +83,8 @@
     @include('layouts.frontend.footer')
     {{-- @include('layouts.frontend.modal') --}}
 
+
+    <!--=================== flying Shopping Cart ===================-->
     <div class="theme-settings">
         <ul>
             <li class="demo-li">
@@ -48,53 +93,31 @@
                         <i class="ti-shopping-cart"></i>
                     </div>
                 </a>
-            </li>
 
+            </li>
         </ul>
     </div>
+
     <div class="scroll-setting-box">
-        <div id="setting_box" class="setting-box" style="max-width: 380px">
-            <a href="javascript:void(0)" class="overlay" onclick="closeSetting()"></a>
-            <div class="setting_box_body">
-                <div onclick="closeSetting()">
-                    <div class="text-start" style="max-height: 0px ; margin-left: 20px; margin-top:10px">
-                        <h5><i class="ti-close pe-2" aria-hidden="true"></i>My Cart</h5>
+        <div id="setting_box" class="setting-box" style="max-width: 280px">
 
-                    </div>
-                </div>
-                <div class="setting-body" style="width: 300px">
-
-                    <div class="setting-contant">
-                        <table class="table table-borderless mb-0">
-                            <thead>
-                                <tr>
-                                    {{-- <th scope="col"></th>
-                                    <th scope="col">Order ID</th>
-                                    <th scope="col">Date Purchased</th>
-                                    <th scope="col">Total</th>
-                                    <th scope="col">Status</th>
-                                    <th scope="col">View</th> --}}
-                                </tr>
-                            </thead>
-                            <tbody>
-
-                                <tr>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                </tr>
-
-                            </tbody>
-                        </table>
-                        <div class="cart-list-product">
-
-
-
+            <div class="cart-sidebar">
+                <div class="container">
+                    <div class="d-flex justify-content-center row">
+                        <div class="col-md-8" onclick="closeSetting()">
+                            <div class="p-2 mt-1" style="display: flex">
+                                <i class="ti-close pe-2" aria-hidden="true" class="overlay"
+                                    onclick="closeSetting()"></i>
+                                <h4>Shopping cart</h4>
+                            </div>
+                        </div>
+                        <div class="flying_cart">
 
                         </div>
                     </div>
                 </div>
             </div>
+
         </div>
     </div>
 
@@ -106,7 +129,13 @@
 
 
     <script src="{{asset('frontend')}}/assets/js/jquery-3.3.1.min.js"></script>
-
+    <script>
+        $ (document).ready (function () {
+	$ (".modal a").not (".dropdown-toggle").on ("click", function () {
+		$ (".modal").modal ("hide");
+	    });
+        });
+    </script>
     <script>
         $(document).ready(function(){
         $(".productdetails").click(function(){
@@ -174,6 +203,21 @@
             })
         }
         cartupload();
+        flyingcartupload();
+    </script>
+    <script>
+        function flyingcartupload(){
+            $.ajax({
+                url : '{{url('/getflyingcart')}}',
+                type : 'get',
+                success: function(data) {
+                    $(".flying_cart").html(data);
+                }
+            })
+        }
+        cartupload();
+
+        flyingcartupload();
     </script>
     <script>
         $(document).ready(function(){
@@ -188,6 +232,7 @@
                      if(data.success){
                       cartupload();
                       cartquantity();
+                      flyingcartupload();
                       Swal.fire({
                           toast: true,
                           icon: 'success',
@@ -203,6 +248,7 @@
                       })
                      }else{
                       cartupload();
+                      flyingcartupload();
                       cartquantity();
                       Swal.fire({
                           toast: true,
@@ -237,6 +283,7 @@
                     mainuploadspro();
                     cartquantity();
                     cartupload();
+                    flyingcartupload();
                     mainCheckoutCart();
                     Swal.fire({
                         toast: true,
@@ -270,6 +317,9 @@
             })
         }
         cartquantity();
+        flyingcartupload();
+
+
     </script>
     <script>
         function cartquantity(){
@@ -283,6 +333,8 @@
             })
         }
         cartquantity();
+        flyingcartupload();
+
     </script>
     <script>
         function mainuploadspro(){
@@ -322,6 +374,7 @@
                         mainuploadspro();
                         cartquantity();
                         cartupload();
+                        flyingcartupload();
                         mainCheckoutCart();
                         Swal.fire({
                             toast: true,

@@ -38,6 +38,7 @@ Route::get('/re-re-re-sub-category/{id}', [App\Http\Controllers\Frontend\Product
 //cart related routes
 Route::get('/addtocart', [App\Http\Controllers\Frontend\CartController::class, 'addToCart']);
 Route::get('/getcart', [App\Http\Controllers\Frontend\CartController::class, 'getCartItem']);
+Route::get('/getflyingcart', [App\Http\Controllers\Frontend\CartController::class, 'getFlyingCartItem']);
 Route::get('/getcartData', [App\Http\Controllers\Frontend\CartController::class, 'getcartData']);
 Route::get('/main/getcart/page', [App\Http\Controllers\Frontend\CartController::class, 'getMainCartItem']);
 Route::get('/getcartQuantity', [App\Http\Controllers\Frontend\CartController::class, 'getCartQuantity']);

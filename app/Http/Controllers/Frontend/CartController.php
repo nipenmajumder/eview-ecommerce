@@ -20,6 +20,12 @@ class CartController extends Controller
         ]);
     }
 
+    public function getFlyingCartItem()
+    {
+        $flyingCartData = Cart::content();
+        //return $cartData;
+        return view('frontend.cart.flying-cart', compact('flyingCartData'));
+    }
     public function getCartItem()
     {
         $cartData = Cart::content();

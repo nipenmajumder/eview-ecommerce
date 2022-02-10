@@ -18848,7 +18848,7 @@ body.dark {
 .setting-box {
   position: fixed;
   height: 100vh;
-  overflow-y: auto;
+  /* overflow-y: auto; */
   width: 660px;
   right: -660px;
   background-color: white;
