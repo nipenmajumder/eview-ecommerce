@@ -8,6 +8,17 @@ use Illuminate\Database\Eloquent\Model;
 class ReReSubCategory extends Model
 {
     use HasFactory;
+
+    public function scopeIsActive($query)
+    {
+        return $query->where('is_active', 1);
+    }
+
+    public function scopeIsDeleted($query)
+    {
+        return $query->where('is_deleted', 0);
+    }
+
     public function Category_id()
     {
         return $this->belongsTo('App\Models\Category', 'category', 'id');

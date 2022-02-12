@@ -21,111 +21,55 @@ class ProductShopController extends Controller
      */
     public function index(Request $request)
     {
-        $products      = Product::query()->orderBy('id', 'DESC')->where('is_active', 1)->paginate(4);
-        $category_data = Category::isActive()->get();
-        $brands        = Brand::active()->orderBy('id', 'DESC')->get();
+        $products      = Product::query()->orderBy('id', 'DESC')->isActive()->isDeleted()->paginate(4);
+        $category_data = Category::orderBy('id', 'DESC')->isActive()->isDeleted()->get();
+        $brands        = Brand::orderBy('id', 'DESC')->isActive()->isDeleted()->get();
         return view('frontend.shop.index', compact('products', 'brands', 'category_data'));
     }
     public function categoryWishProduct($id)
     {
-        $products = Product::query()->orderBy('id', 'DESC')->where('is_active', 1)->where("category_id", $id)->paginate(4);
-        $brands   = Brand::active()->orderBy('id', 'DESC')->get();
-        $category = Category::with('subCategory')->where('id', $id)->first();
+        $products = Product::query()->orderBy('id', 'DESC')->isActive()->isDeleted()->where("category_id", $id)->paginate(4);
+        $brands   = Brand::orderBy('id', 'DESC')->isActive()->isDeleted()->get();
+        $category = Category::with('subCategory')->orderBy('id', 'DESC')->isActive()->isDeleted()->where('id', $id)->first();
         return view('frontend.shop.category-shop', \compact('products', 'brands', 'category'));
     }
 
     public function subCategoryWishProduct($id)
     {
-        $products    = Product::query()->orderBy('id', 'DESC')->where('is_active', 1)->where("subcategory_id", $id)->paginate(4);
-        $brands      = Brand::active()->orderBy('id', 'DESC')->get();
-        $subCategory = SubCategory::with('reSubCategory')->where('id', $id)->first();
+        $products    = Product::query()->orderBy('id', 'DESC')->isActive()->isDeleted()->where("subcategory_id", $id)->paginate(4);
+        $brands      = Brand::orderBy('id', 'DESC')->isActive()->isDeleted()->get();
+        $subCategory = SubCategory::with('reSubCategory')->orderBy('id', 'DESC')->isActive()->isDeleted()->where('id', $id)->first();
         return view('frontend.shop.sub-category-shop', \compact('products', 'brands', 'subCategory'));
     }
     public function reSubCategoryWishProduct($id)
     {
-        $products      = Product::query()->orderBy('id', 'DESC')->where('is_active', 1)->where("resubcategory_id", $id)->paginate(4);
-        $brands        = Brand::active()->orderBy('id', 'DESC')->get();
-        $reSubCategory = ResubCategory::with('reReSubCategory')->where('id', $id)->first();
+        $products      = Product::query()->orderBy('id', 'DESC')->isActive()->isDeleted()->where("resubcategory_id", $id)->paginate(4);
+        $brands        = Brand::orderBy('id', 'DESC')->isActive()->isDeleted()->get();
+        $reSubCategory = ResubCategory::with('reReSubCategory')->orderBy('id', 'DESC')->isActive()->isDeleted()->where('id', $id)->first();
+        dd($reSubCategory);
         return view('frontend.shop.re-sub-category-shop', \compact('products', 'brands', 'reSubCategory'));
     }
     public function reReSubCategoryWishProduct($id)
     {
-        $products          = Product::query()->orderBy('id', 'DESC')->where('is_active', 1)->where("child_resubcategory", $id)->paginate(4);
-        $brands            = Brand::active()->orderBy('id', 'DESC')->get();
-        $reReReSubCategory = ReReSubCategory::with('reReReSubCategory')->where('id', $id)->first();
+        $products          = Product::query()->orderBy('id', 'DESC')->isActive()->isDeleted()->where("child_resubcategory", $id)->paginate(4);
+        $brands            = Brand::orderBy('id', 'DESC')->isActive()->isDeleted()->get();
+        $reReReSubCategory = ReReSubCategory::with('reReReSubCategory')->orderBy('id', 'DESC')->isActive()->isDeleted()->where('id', $id)->first();
         return view('frontend.shop.re-re-sub-category-shop', \compact('products', 'brands', 'reReReSubCategory'));
     }
     public function reReReSubCategoryWishProduct($id)
     {
-        $products            = Product::query()->orderBy('id', 'DESC')->where('is_active', 1)->where("grand_childresubcategory_id", $id)->paginate(4);
-        $brands              = Brand::active()->orderBy('id', 'DESC')->get();
-        $reReReReSubCategory = ReReReSubCategory::where('id', $id)->first();
+        $products            = Product::query()->orderBy('id', 'DESC')->isActive()->isDeleted()->where("grand_childresubcategory_id", $id)->paginate(4);
+        $brands              = Brand::orderBy('id', 'DESC')->isActive()->isDeleted()->get();
+        $reReReReSubCategory = ReReReSubCategory::orderBy('id', 'DESC')->isActive()->isDeleted()->where('id', $id)->first();
         return view('frontend.shop.re-re-re-sub-category-shop', \compact('products', 'brands', 'reReReReSubCategory'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
+    public function searchProduct(Request $request)
     {
-        //
-    }
+        // dd($request->q);
+        $products    = Product::isActive()->isDeleted()->orderBy('id', 'DESC')->search($request->q)->paginate(4);
+        $search_name = $request->q;
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
+        return view('frontend.shop.product_search', compact('products', 'search_name'));
     }
 }

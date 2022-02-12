@@ -29,12 +29,15 @@ Route::get('/terms-conditions', [App\Http\Controllers\Frontend\FrontendControlle
 // product details
 Route::get('/products/{slug}/{id}', [App\Http\Controllers\Frontend\FrontendController::class, 'productDetails']);
 // product shop routes
+Route::get('/product-search', [App\Http\Controllers\Frontend\ProductShopController::class, 'searchProduct']);
 Route::get('/shop', [App\Http\Controllers\Frontend\ProductShopController::class, 'index'])->name('shop');
 Route::get('/category/{id}', [App\Http\Controllers\Frontend\ProductShopController::class, 'categoryWishProduct']);
 Route::get('/sub-category/{id}', [App\Http\Controllers\Frontend\ProductShopController::class, 'subCategoryWishProduct']);
 Route::get('/re-sub-category/{id}', [App\Http\Controllers\Frontend\ProductShopController::class, 'reSubCategoryWishProduct']);
 Route::get('/re-re-sub-category/{id}', [App\Http\Controllers\Frontend\ProductShopController::class, 'reReSubCategoryWishProduct']);
 Route::get('/re-re-re-sub-category/{id}', [App\Http\Controllers\Frontend\ProductShopController::class, 'reReReSubCategoryWishProduct']);
+
+Route::get('/filterproduct', [App\Http\Controllers\Frontend\FilterProductController::class, 'filter']);
 //cart related routes
 Route::get('/addtocart', [App\Http\Controllers\Frontend\CartController::class, 'addToCart']);
 Route::get('/getcart', [App\Http\Controllers\Frontend\CartController::class, 'getCartItem']);

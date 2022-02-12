@@ -20,10 +20,12 @@
     <link rel="stylesheet" type="text/css" href="{{asset('frontend')}}/assets/css/vendors/slick-theme.css">
     <link rel="stylesheet" type="text/css" href="{{asset('frontend')}}/assets/css/vendors/animate.css">
     <link rel="stylesheet" type="text/css" href="{{asset('frontend')}}/assets/css/vendors/themify-icons.css">
+    <link rel="stylesheet" type="text/css" href="{{asset('frontend')}}/assets/css/vendors/price-range.css">
     <link rel="stylesheet" type="text/css" href="{{asset('frontend')}}/assets/css/vendors/bootstrap.css">
     <link href="{{asset('backend')}}/assets/css/bootstrap-tagsinput.css" rel="stylesheet" type="text/css" />
     <link rel="stylesheet" type="text/css" href="{{asset('frontend')}}/assets/css/style.css">
     <link rel="stylesheet" href="{{ asset('frontend/assets/css/custom_style.css') }}">
+    <!-- custom flying cart -->
     <style>
         .product-cart-list {
             background: #fff none repeat scroll 0 0;
@@ -73,6 +75,56 @@
             font-size: 11px
         }
     </style>
+    <!-- price range picker -->
+    <style>
+        .price-range-slider {
+            width: 100%;
+            float: left;
+            padding: 10px 20px;
+
+            .range-value {
+                margin: 0;
+
+                input {
+                    width: 100%;
+                    background: none;
+                    color: #000;
+                    font-size: 16px;
+                    font-weight: initial;
+                    box-shadow: none;
+                    border: none;
+                    margin: 20px 0 20px 0;
+                }
+            }
+
+            .range-bar {
+                border: none;
+                background: #000;
+                height: 3px;
+                width: 96%;
+                margin-left: 8px;
+
+                .ui-slider-range {
+                    background: #06b9c0;
+                }
+
+                .ui-slider-handle {
+                    border: none;
+                    border-radius: 25px;
+                    background: #fff;
+                    border: 2px solid #06b9c0;
+                    height: 17px;
+                    width: 17px;
+                    top: -0.52em;
+                    cursor: pointer;
+                }
+
+                .ui-slider-handle+span {
+                    background: #06b9c0;
+                }
+            }
+        }
+    </style>
 
 </head>
 
@@ -99,7 +151,7 @@
     </div>
 
     <div class="scroll-setting-box">
-        <div id="setting_box" class="setting-box" style="max-width: 280px">
+        <div id="setting_box" class="setting-box" style="max-width: 280px;">
 
             <div class="cart-sidebar">
                 <div class="container">
@@ -129,6 +181,8 @@
 
 
     <script src="{{asset('frontend')}}/assets/js/jquery-3.3.1.min.js"></script>
+    <script src="{{asset('frontend')}}/assets/js/bootstrap.bundle.min.js"></script>
+
     <script>
         $ (document).ready (function () {
 	$ (".modal a").not (".dropdown-toggle").on ("click", function () {
@@ -136,6 +190,71 @@
 	    });
         });
     </script>
+    <script>
+        function openSetting() {
+    document.getElementById("setting_box").classList.add('open-setting');
+    document.getElementById("setting-icon").classList.add('open-icon');
+    }
+
+    function closeSetting() {
+    document.getElementById("setting_box").classList.remove('open-setting');
+    document.getElementById("setting-icon").classList.remove('open-icon');
+    }
+    </script>
+    {{-- <script src="{{asset('frontend')}}/assets/js/custom_js/cart.js"></script> --}}
+
+    <!--=================== add to cart from datalist  =============-->
+    <script>
+        function addtocart(el){
+            var id = el.id;
+            var str = $( "#cartsection-"+id+"" ).serialize();
+            $.ajax({
+                url : '{{url('/addtocart')}}',
+                type : 'get',
+                data : $( "#cartsection-"+id+"" ).serialize(),
+                success: function(data) {
+                    if(data.success){
+                    cartupload();
+                    cartquantity();
+                    flyingcartupload();
+                   
+                    Swal.fire({
+                        toast: true,
+                        icon: 'success',
+                        title: ''+ data.success +'',
+                        position: 'top',
+                        showConfirmButton: false,
+                        timer: 3000,
+                        timerProgressBar: true,
+                        didOpen: (toast) => {
+                        toast.addEventListener('mouseenter', Swal.stopTimer)
+                        toast.addEventListener('mouseleave', Swal.resumeTimer)
+                        }
+                    })
+                    }else{
+                    cartupload();
+                    cartquantity();
+                    flyingcartupload();
+
+                    Swal.fire({
+                        toast: true,
+                        icon: 'error',
+                        title: 'Add to cart failed',
+                        position: 'top',
+                        showConfirmButton: false,
+                        timer: 3000,
+                        timerProgressBar: true,
+                        didOpen: (toast) => {
+                        toast.addEventListener('mouseenter', Swal.stopTimer)
+                        toast.addEventListener('mouseleave', Swal.resumeTimer)
+                        }
+                    })
+                    }       
+                }
+            })
+        }
+    </script>
+    <!--========== product details page single product ============= -->
     <script>
         $(document).ready(function(){
         $(".productdetails").click(function(){
@@ -192,6 +311,8 @@
         });
     });
     </script>
+    <!--========== get cart data  ============= -->
+
     <script>
         function cartupload(){
             $.ajax({
@@ -203,8 +324,10 @@
             })
         }
         cartupload();
-        flyingcartupload();
+        // flyingcartupload();
     </script>
+    <!--========== get flying cart data  ============= -->
+
     <script>
         function flyingcartupload(){
             $.ajax({
@@ -219,6 +342,8 @@
 
         flyingcartupload();
     </script>
+    <!--========== get single add to cart data  ============= -->
+
     <script>
         $(document).ready(function(){
           $(".cart").click(function(){
@@ -273,6 +398,8 @@
     
     });
     </script>
+    <!--========== delete cart data data  ============= -->
+
     <script>
         function deletedata(el){
         var rowId=el.id;
@@ -305,6 +432,8 @@
         mainuploadspro();
     }
     </script>
+    <!--========== get  cart data  ============= -->
+
     <script>
         function cartData(){
             $.ajax({
@@ -316,11 +445,13 @@
                 }
             })
         }
-        cartquantity();
+        // cartquantity();
         flyingcartupload();
 
 
     </script>
+    <!--========== get  cart quantity data  ============= -->
+
     <script>
         function cartquantity(){
             $.ajax({
@@ -336,6 +467,8 @@
         flyingcartupload();
 
     </script>
+    <!--========== main cart page data  ============= -->
+
     <script>
         function mainuploadspro(){
             $.ajax({
@@ -349,6 +482,8 @@
         }
         mainuploadspro();
     </script>
+    <!--========== main checkout page data  ============= -->
+
     <script>
         function mainCheckoutCart(){
             $.ajax({
@@ -362,6 +497,8 @@
         }
         mainCheckoutCart();
     </script>
+    <!--========== main cart quantity update  ============= -->
+
     <script>
         function cartqtyupdate(el){
             var rowId=el.id;
@@ -397,19 +534,20 @@
         }
     </script>
     <script src="{{asset('frontend')}}/assets/js/menu.js"></script>
+    {{-- <script src="{{asset('frontend')}}/assets/js/price-range.js"></script> --}}
     <script src="{{asset('frontend')}}/assets/js/lazysizes.min.js"></script>
     <script src="{{asset('frontend')}}/assets/js/slick.js"></script>
-    <script src="{{asset('frontend')}}/assets/js/bootstrap.bundle.min.js"></script>
     <script src="{{asset('frontend')}}/assets/js/feather.min.js "></script>
     <script src="{{asset('frontend')}}/assets/js/jquery.vide.min.js"></script>
     <script src="{{asset('frontend')}}/assets/js/bootstrap-notify.min.js"></script>
-    <script src="{{asset('frontend')}}/assets/js/theme-setting.js"></script>
+    {{-- <script src="{{asset('frontend')}}/assets/js/theme-setting.js"></script> --}}
     <script src="{{asset('frontend')}}/assets/js/script.js"></script>
     <script src="{{asset('backend')}}/assets/js/spartan-multi-image-picker.js"></script>
     <script src="{{asset('backend')}}/assets/plugins/Bootstrap-4-Tag-Input-Plugin-jQuery/tagsinput.js"></script>
     <script>
         $("input[data-role=tagsinput], select[multiple][data-role=tagsinput]").tagsinput();
     </script>
+    @yield('js')
     <script>
         $(document).ready(function() {
 
@@ -466,11 +604,11 @@
 
 		});
     </script>
-    <script src="{{asset('backend')}}/assets/plugins/ckeditor/ckeditor.js"></script>
-    <script src="{{asset('backend')}}/assets/plugins/ckeditor/ckeditor-active.js"></script>
-    <script src="{{ asset('frontend/assets') }}/js/theme-setting.js"></script>
+    {{-- <script src="{{asset('backend')}}/assets/plugins/ckeditor/ckeditor.js"></script>
+    <script src="{{asset('backend')}}/assets/plugins/ckeditor/ckeditor-active.js"></script> --}}
+    {{-- <script src="{{ asset('frontend/assets') }}/js/theme-setting.js"></script> --}}
 
-    <script src="{{ asset('frontend/assets') }}/js/color-setting.js"></script>
+    {{-- <script src="{{ asset('frontend/assets') }}/js/color-setting.js"></script> --}}
 
     <script src="{{asset('frontend')}}/assets/js/izitost.js"></script>
     <script src="{{ asset('https://unpkg.com/sweetalert/dist/sweetalert.min.js')}}"></script>
