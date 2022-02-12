@@ -9,6 +9,12 @@ class Product extends Model
 {
     use HasFactory;
 
+    public function scopeSearch($query, $search)
+    {
+        return $query->where('product_name', 'LIKE', $search . '%');
+
+    }
+
     public function scopeIsActive($query)
     {
         return $query->where('is_active', 1);

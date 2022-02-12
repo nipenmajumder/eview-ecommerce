@@ -58,11 +58,11 @@
                         </div>
                     </div>
                     <div>
-                        <form class="form_search" role="form">
-                            <input id="query search-autocomplete" type="search"
+                        <form class="form_search" role="form" method="get" action="{{ url('/product-search') }}">
+                            <input id="query search-autocomplete" name="q" type="search"
                                 placeholder="Search any Device or Gadgets..." class="nav-search nav-search-field"
                                 aria-expanded="true">
-                            <button type="submit" name="nav-submit-button" class="btn-search">
+                            <button type="submit" class="btn-search">
                                 <i class="ti-search"></i>
                             </button>
                         </form>
@@ -84,9 +84,8 @@
                                                             <div class="col-xl-12">
                                                                 <form>
                                                                     <div class="form-group">
-                                                                        <input type="text" class="form-control"
-                                                                            id="exampleInputPassword1"
-                                                                            placeholder="Search a Product">
+                                                                        <input type="search" class="form-control"
+                                                                            placeholder="Search a Product" name="">
                                                                     </div>
                                                                     <button type="submit" class="btn btn-primary"><i
                                                                             class="fa fa-search"></i></button>
