@@ -8,7 +8,6 @@
         <div class="row">
             <div class="col-sm-6">
                 <div class="page-title">
-
                     <h2>{{ $category->name }}</h2>
                 </div>
             </div>
@@ -75,6 +74,35 @@
                                 </div>
                             </div>
                         </div>
+                        <div class="collection-collapse-block open">
+                            <h3 class="collapse-block-title">Price</h3>
+                            <div class="collection-collapse-block-content">
+                                <div class="collection-brand-filter mt-3 mb-2 ">
+                                    <div class="custom-control custom-radio mt-2">
+                                        <input type="radio" class="custom-control-input common_selector price"
+                                            name="price" id="p-1" value="1">
+                                        <label class="custom-control-label" for="p-1">৳10 to ৳100</label>
+                                    </div>
+                                    <div class="custom-control custom-radio mt-2">
+                                        <input type="radio" class="custom-control-input common_selector price"
+                                            name="price" id="p-2" value="2">
+                                        <label class="custom-control-label" for="p-2">৳101 to ৳500</label>
+                                    </div>
+                                    <div class="custom-control custom-radio mt-2">
+                                        <input type="radio" class="custom-control-input common_selector price"
+                                            name="price" id="p-3" value="3">
+                                        <label class="custom-control-label" for="p-3">৳501 to ৳1000</label>
+                                    </div>
+                                    <div class="custom-control custom-radio mt-2">
+                                        <input type="radio" class="custom-control-input common_selector price"
+                                            name="price" id="p-4" value="4">
+                                        <label class="custom-control-label" for="p-4">৳501 to ৳1000</label>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                        {{--
                         <!-- color filter start here -->
                         <div class="collection-collapse-block open">
                             <h3 class="collapse-block-title">colors</h3>
@@ -130,13 +158,13 @@
 
                                 </div>
                             </div>
-                        </div>
+                        </div> --}}
                     </div>
                     <!-- silde-bar colleps block end here -->
                     <!-- side-bar single product slider start -->
                     <div class="theme-card">
                         <h5 class="title-border">new product</h5>
-                        <div class="offer-slider slide-1">
+                        {{-- <div class="offer-slider slide-1">
                             <div>
                                 <div class="media">
                                     <a href=""><img class="img-fluid blur-up lazyload"
@@ -213,7 +241,7 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </div> --}}
                     </div>
                     <!-- side-bar single product slider end -->
                     <!-- side-bar banner start here -->
@@ -240,7 +268,7 @@
                                             <div class="col-12">
                                                 <div class="product-filter-content">
                                                     <div class="search-count">
-                                                        <h5>Showing Products 1-24 of 10 Result</h5>
+                                                        <h5>Showing {{ $category->name }} Products </h5>
                                                     </div>
                                                     <div class="collection-view">
                                                         <ul>
@@ -248,33 +276,12 @@
                                                             <li><i class="fa fa-list-ul list-layout-view"></i></li>
                                                         </ul>
                                                     </div>
-                                                    <div class="collection-grid-view">
-                                                        <ul>
-                                                            <li><img src="../assets/images/icon/2.png" alt=""
-                                                                    class="product-2-layout-view"></li>
-                                                            <li><img src="../assets/images/icon/3.png" alt=""
-                                                                    class="product-3-layout-view"></li>
-                                                            <li><img src="../assets/images/icon/4.png" alt=""
-                                                                    class="product-4-layout-view"></li>
-                                                            <li><img src="../assets/images/icon/6.png" alt=""
-                                                                    class="product-6-layout-view"></li>
-                                                        </ul>
-                                                    </div>
-                                                    <div class="product-page-per-view">
-                                                        <select>
-                                                            <option value="High to low">24 Products Par Page
-                                                            </option>
-                                                            <option value="Low to High">50 Products Par Page
-                                                            </option>
-                                                            <option value="Low to High">100 Products Par Page
-                                                            </option>
-                                                        </select>
-                                                    </div>
                                                     <div class="product-page-filter">
-                                                        <select>
-                                                            <option value="High to low">Sorting items</option>
-                                                            <option value="Low to High">50 Products</option>
-                                                            <option value="Low to High">100 Products</option>
+                                                        <select class="common_selector" name="sortBy" id="sortBy">
+                                                            <option selected value="">Select</option>
+                                                            <option value="1">Price (Low to High)</option>
+                                                            <option value="2">Price (High to Low)</option>
+                                                            <option value="3">Name (A to Z)</option>
                                                         </select>
                                                     </div>
                                                 </div>
@@ -397,15 +404,14 @@
 <script>
     $(document).ready(function(){   
         function filter_data()
-        {   
+        {
             var category = $('#category').val();
             var brand = get_filter('brand');
             var subcategory = get_filter('subcategory');
             var price = get_filter('price');
             var sortingval = get_sort();
-
            $.ajax({
-                url : '{{url('/filterproduct')}}',
+                url : '{{url('/filter-category-shop')}}',
                 type : 'get',
                 data : {category:category,brand:brand,subcategory:subcategory,price:price,sortingval:sortingval},
                 success: function(products) {
@@ -448,21 +454,4 @@
         }
     });
 </script>
-<!-- custom rang slider -->
-<script>
-    $(function() {
-$( "#slider-range" ).slider({
-  range: true,
-  min: 130,
-  max: 500,
-  values: [ 130, 250 ],
-  slide: function( event, ui ) {
-    $( "#amount" ).val( "$" + ui.values[ 0 ] + " - $" + ui.values[ 1 ] );
-  }
-});
-$( "#amount" ).val( "$" + $( "#slider-range" ).slider( "values", 0 ) +
-  " - $" + $( "#slider-range" ).slider( "values", 1 ) );
-});
-</script>
-<!-- section End -->
 @endsection

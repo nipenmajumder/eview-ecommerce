@@ -15,7 +15,7 @@ class SubCategory extends Model
 
     public function reSubCategory()
     {
-        return $this->hasMany(ResubCategory::class, 'sub_category');
+        return $this->hasMany(ResubCategory::class, 'sub_category')->where('is_active', 1)->where('is_deleted', 0);
     }
 
     public function scopeIsActive($query)

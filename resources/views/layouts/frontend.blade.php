@@ -1,3 +1,4 @@
+{{-- {{ dd($companyInformation) }} --}}
 <!DOCTYPE html>
 <html lang="en">
 
@@ -8,8 +9,8 @@
     <meta name="description" content="multikart">
     <meta name="keywords" content="multikart">
     <meta name="author" content="multikart">
-    <link rel="icon" href="{{asset('frontend')}}/assets/images/favicon/5.png" type="image/x-icon">
-    <link rel="shortcut icon" href="{{asset('frontend')}}/assets/images/favicon/5.png" type="image/x-icon">
+    <link rel="icon" href="{{ asset('uploads/logo/'.$companyInformation->favicon) }}" type="image/x-icon">
+    <link rel="shortcut icon" href="{{ asset('uploads/logo/'.$companyInformation->favicon) }}" type="image/x-icon">
     <title>{{ $companyInformation->company_name }} | @yield('title')</title>
     <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,900" rel="stylesheet">
@@ -75,57 +76,6 @@
             font-size: 11px
         }
     </style>
-    <!-- price range picker -->
-    <style>
-        .price-range-slider {
-            width: 100%;
-            float: left;
-            padding: 10px 20px;
-
-            .range-value {
-                margin: 0;
-
-                input {
-                    width: 100%;
-                    background: none;
-                    color: #000;
-                    font-size: 16px;
-                    font-weight: initial;
-                    box-shadow: none;
-                    border: none;
-                    margin: 20px 0 20px 0;
-                }
-            }
-
-            .range-bar {
-                border: none;
-                background: #000;
-                height: 3px;
-                width: 96%;
-                margin-left: 8px;
-
-                .ui-slider-range {
-                    background: #06b9c0;
-                }
-
-                .ui-slider-handle {
-                    border: none;
-                    border-radius: 25px;
-                    background: #fff;
-                    border: 2px solid #06b9c0;
-                    height: 17px;
-                    width: 17px;
-                    top: -0.52em;
-                    cursor: pointer;
-                }
-
-                .ui-slider-handle+span {
-                    background: #06b9c0;
-                }
-            }
-        }
-    </style>
-
 </head>
 
 <body class="theme-color-5">
@@ -134,6 +84,60 @@
     @yield('content')
     @include('layouts.frontend.footer')
     {{-- @include('layouts.frontend.modal') --}}
+
+    <!--=================== product quick view modal ===================-->
+    <div class="modal fade bd-example-modal-lg theme-modal" id="quick-view" tabindex="-1" role="dialog"
+        aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+            <div class="modal-content quick-view-modal">
+                <div class="modal-body">
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"><span
+                            aria-hidden="true">&times;</span></button>
+                    <div class="row">
+                        <div class="col-lg-6 col-xs-12">
+                            <div class="quick-view-img" id="product_image">
+
+                            </div>
+                        </div>
+                        <div class="col-lg-6 rtl-text">
+                            <div class="product-right">
+                                <h2 id="product_name"></h2>
+                                <h3 id="product_price"></h3>
+
+                                <div class="border-product">
+                                    <h6 class="product-title">Product Info</h6>
+                                    <p id="brand"></p>
+                                    <p id="product_weight"></p>
+                                    <p id="style"></p>
+                                    <p id="product_materials"></p>
+                                </div>
+                                <div class="product-description border-product">
+                                    <div class="size-box">
+
+                                    </div>
+                                    <h6 class="product-title">quantity</h6>
+                                    <div class="qty-box">
+                                        <div class="input-group"><span class="input-group-prepend"><button type="button"
+                                                    class="btn quantity-left-minus" data-type="minus" data-field=""><i
+                                                        class="ti-angle-left"></i></button> </span>
+                                            <input type="text" name="quantity" class="form-control input-number"
+                                                value="1"> <span class="input-group-prepend"><button type="button"
+                                                    class="btn quantity-right-plus" data-type="plus" data-field=""><i
+                                                        class="ti-angle-right"></i></button></span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="product-buttons" id="product_button">
+                                    <a href="#" class="btn btn-solid">add to cart</a>
+                                    <a href="#" class="btn btn-solid">view detail</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
 
     <!--=================== flying Shopping Cart ===================-->
@@ -181,80 +185,8 @@
 
 
     <script src="{{asset('frontend')}}/assets/js/jquery-3.3.1.min.js"></script>
-    <script src="{{asset('frontend')}}/assets/js/bootstrap.bundle.min.js"></script>
-
-    <script>
-        $ (document).ready (function () {
-	$ (".modal a").not (".dropdown-toggle").on ("click", function () {
-		$ (".modal").modal ("hide");
-	    });
-        });
-    </script>
-    <script>
-        function openSetting() {
-    document.getElementById("setting_box").classList.add('open-setting');
-    document.getElementById("setting-icon").classList.add('open-icon');
-    }
-
-    function closeSetting() {
-    document.getElementById("setting_box").classList.remove('open-setting');
-    document.getElementById("setting-icon").classList.remove('open-icon');
-    }
-    </script>
-    {{-- <script src="{{asset('frontend')}}/assets/js/custom_js/cart.js"></script> --}}
-
-    <!--=================== add to cart from datalist  =============-->
-    <script>
-        function addtocart(el){
-            var id = el.id;
-            var str = $( "#cartsection-"+id+"" ).serialize();
-            $.ajax({
-                url : '{{url('/addtocart')}}',
-                type : 'get',
-                data : $( "#cartsection-"+id+"" ).serialize(),
-                success: function(data) {
-                    if(data.success){
-                    cartupload();
-                    cartquantity();
-                    flyingcartupload();
-                   
-                    Swal.fire({
-                        toast: true,
-                        icon: 'success',
-                        title: ''+ data.success +'',
-                        position: 'top',
-                        showConfirmButton: false,
-                        timer: 3000,
-                        timerProgressBar: true,
-                        didOpen: (toast) => {
-                        toast.addEventListener('mouseenter', Swal.stopTimer)
-                        toast.addEventListener('mouseleave', Swal.resumeTimer)
-                        }
-                    })
-                    }else{
-                    cartupload();
-                    cartquantity();
-                    flyingcartupload();
-
-                    Swal.fire({
-                        toast: true,
-                        icon: 'error',
-                        title: 'Add to cart failed',
-                        position: 'top',
-                        showConfirmButton: false,
-                        timer: 3000,
-                        timerProgressBar: true,
-                        didOpen: (toast) => {
-                        toast.addEventListener('mouseenter', Swal.stopTimer)
-                        toast.addEventListener('mouseleave', Swal.resumeTimer)
-                        }
-                    })
-                    }       
-                }
-            })
-        }
-    </script>
-    <!--========== product details page single product ============= -->
+    <script src="{{ asset('frontend/assets') }}/js/jquery-3.3.1.min.js"></script>
+    <!--=================== product quick view  =============-->
     <script>
         $(document).ready(function(){
         $(".productdetails").click(function(){
@@ -310,6 +242,78 @@
 
         });
     });
+    </script>
+    <script src="{{asset('frontend')}}/assets/js/bootstrap.bundle.min.js"></script>
+
+    <!--=================== normal modal close/open  =============-->
+    <script>
+        $ (document).ready (function () {
+	    $ (".modal a").not (".dropdown-toggle").on ("click", function () {
+		$ (".modal").modal ("hide");
+	    });
+        });
+    </script>
+    <!--=================== flying modal close/open  =============-->
+    <script>
+        function openSetting() {
+        document.getElementById("setting_box").classList.add('open-setting');
+        document.getElementById("setting-icon").classList.add('open-icon');
+        }
+        function closeSetting() {
+        document.getElementById("setting_box").classList.remove('open-setting');
+        document.getElementById("setting-icon").classList.remove('open-icon');
+        }
+    </script>
+    <!--=================== add to cart from datalist  =============-->
+    <script>
+        function addtocart(el){
+            var id = el.id;
+            var str = $( "#cartsection-"+id+"" ).serialize();
+            $.ajax({
+                url : '{{url('/addtocart')}}',
+                type : 'get',
+                data : $( "#cartsection-"+id+"" ).serialize(),
+                success: function(data) {
+                    if(data.success){
+                    cartupload();
+                    cartquantity();
+                    flyingcartupload();
+                   
+                    Swal.fire({
+                        toast: true,
+                        icon: 'success',
+                        title: ''+ data.success +'',
+                        position: 'top',
+                        showConfirmButton: false,
+                        timer: 3000,
+                        timerProgressBar: true,
+                        didOpen: (toast) => {
+                        toast.addEventListener('mouseenter', Swal.stopTimer)
+                        toast.addEventListener('mouseleave', Swal.resumeTimer)
+                        }
+                    })
+                    }else{
+                    cartupload();
+                    cartquantity();
+                    flyingcartupload();
+
+                    Swal.fire({
+                        toast: true,
+                        icon: 'error',
+                        title: 'Add to cart failed',
+                        position: 'top',
+                        showConfirmButton: false,
+                        timer: 3000,
+                        timerProgressBar: true,
+                        didOpen: (toast) => {
+                        toast.addEventListener('mouseenter', Swal.stopTimer)
+                        toast.addEventListener('mouseleave', Swal.resumeTimer)
+                        }
+                    })
+                    }       
+                }
+            })
+        }
     </script>
     <!--========== get cart data  ============= -->
 
@@ -534,13 +538,11 @@
         }
     </script>
     <script src="{{asset('frontend')}}/assets/js/menu.js"></script>
-    {{-- <script src="{{asset('frontend')}}/assets/js/price-range.js"></script> --}}
     <script src="{{asset('frontend')}}/assets/js/lazysizes.min.js"></script>
     <script src="{{asset('frontend')}}/assets/js/slick.js"></script>
     <script src="{{asset('frontend')}}/assets/js/feather.min.js "></script>
     <script src="{{asset('frontend')}}/assets/js/jquery.vide.min.js"></script>
     <script src="{{asset('frontend')}}/assets/js/bootstrap-notify.min.js"></script>
-    {{-- <script src="{{asset('frontend')}}/assets/js/theme-setting.js"></script> --}}
     <script src="{{asset('frontend')}}/assets/js/script.js"></script>
     <script src="{{asset('backend')}}/assets/js/spartan-multi-image-picker.js"></script>
     <script src="{{asset('backend')}}/assets/plugins/Bootstrap-4-Tag-Input-Plugin-jQuery/tagsinput.js"></script>
@@ -548,6 +550,7 @@
         $("input[data-role=tagsinput], select[multiple][data-role=tagsinput]").tagsinput();
     </script>
     @yield('js')
+    <!--========== image selector  ============= -->
     <script>
         $(document).ready(function() {
 
@@ -616,6 +619,7 @@
     <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
+    <!--==========  summernote  ============= -->
 
     <script>
         $(document).ready(function() {
@@ -624,6 +628,8 @@
         });
     });
     </script>
+    <!--==========  delete using swal  ============= -->
+
     <script>
         $(document).on("click", "#delete", function(e) {
         e.preventDefault();
@@ -644,6 +650,7 @@
             });
     });
     </script>
+
     <script>
         @if(Session::has('messege'))
     var type = "{{Session::get('alert-type','info')}}"
@@ -681,18 +688,14 @@
         setTimeout(function () {
             $('#exampleModal').modal('show');
         }, 2500);
-    });
-    function openSearch() {
-        document.getElementById("search-overlay").style.display = "block";
-    }
-
-    function closeSearch() {
-        document.getElementById("search-overlay").style.display = "none";
-    }
-
+        });
+        function openSearch() {
+            document.getElementById("search-overlay").style.display = "block";
+        }
+        function closeSearch() {
+            document.getElementById("search-overlay").style.display = "none";
+        }
     </script>
-
-
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.5/css/select2.min.css" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.5/js/select2.min.js"></script>
     <script>

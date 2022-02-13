@@ -39,7 +39,7 @@ class ReReSubCategory extends Model
 
     public function reReReSubCategory()
     {
-        return $this->hasMany('App\Models\ReReReSubCategory', 'category', 'id');
+        return $this->hasMany('App\Models\ReReReSubCategory', 'category', 'id')->where('is_active', 1)->where('is_deleted', 0);
     }
 
 }

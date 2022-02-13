@@ -25,12 +25,6 @@ class Category extends Model
 
     public function subCategory()
     {
-        return $this->hasMany('App\Models\SubCategory', 'category');
+        return $this->hasMany('App\Models\SubCategory', 'category')->where('is_active', 1)->where('is_deleted', 0);
     }
-
-    public function reSubCategory()
-    {
-        return $this->hasMany('App\Models\ResubCategory', 'category');
-    }
-
 }
