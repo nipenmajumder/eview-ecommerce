@@ -40,7 +40,8 @@
                                         <div class="counter-box">
                                             <img src="{{ asset('frontend') }}/assets/images/icon/dashboard/order.png" class="img-fluid">
                                             <div>
-                                                <h3>25</h3>
+
+                                                <h3>{{$countproduct}}</h3>
                                                 <h5>total products</h5>
                                             </div>
                                         </div>
