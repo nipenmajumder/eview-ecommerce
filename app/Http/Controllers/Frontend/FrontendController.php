@@ -20,10 +20,14 @@ class FrontendController extends Controller
         $allelevenproduct  = Product::haveDiscount()->offer11()->isDeleted()->isActive()->orderBy('id', 'DESC')->limit(10)->get();
         $allSpecialproduct = Product::haveDiscount()->specialOffer()->isDeleted()->isActive()->orderBy('id', 'DESC')->get();
         $alltweentyproduct = Product::haveDiscount()->offer22()->isDeleted()->isActive()->orderBy('id', 'DESC')->get();
-        $topSaleCategory   = Category::isDeleted()->isActive()
-            ->with(['product' => function ($query) {
-                $query->isDeleted()->isActive()->orderBy('id', 'DESC');
-            }])->limit(4)->get();
+        // $topSaleCategory   = Category::isDeleted()->isActive()
+        //     ->with(['product' => function ($query) {
+        //         $query->isDeleted()->isActive()->orderBy('id', 'DESC');
+        //     }])->limit(5)->get();
+        $topSaleCategory = Category::isDeleted()->isActive()->with('product')->limit(5)->get()->map(function ($category) {
+            $category->setRelation('product', $category->product->take(6));
+            return $category;
+        });
         $mainfivecategory = Category::isDeleted()->isActive()->orderBy('id', 'DESC')->get();
         return view('frontend.home.index', compact('mainfivecategory', 'allSlider', 'allProduct', 'allelevenproduct', 'allSpecialproduct', 'alltweentyproduct', 'topSaleCategory', 'newProducts'));
     }

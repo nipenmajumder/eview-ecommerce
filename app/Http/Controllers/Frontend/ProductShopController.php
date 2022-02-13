@@ -24,7 +24,7 @@ class ProductShopController extends Controller
         $products      = Product::query()->orderBy('id', 'DESC')->isActive()->isDeleted()->paginate(4);
         $category_data = Category::orderBy('id', 'DESC')->isActive()->isDeleted()->get();
         $brands        = Brand::orderBy('id', 'DESC')->isActive()->isDeleted()->get();
-        return view('frontend.shop.index', compact('products', 'brands', 'category_data'));
+        return view('frontend.shop.shop', compact('products', 'brands', 'category_data'));
     }
     public function categoryWishProduct($id)
     {
@@ -46,7 +46,6 @@ class ProductShopController extends Controller
         $products      = Product::query()->orderBy('id', 'DESC')->isActive()->isDeleted()->where("resubcategory_id", $id)->paginate(4);
         $brands        = Brand::orderBy('id', 'DESC')->isActive()->isDeleted()->get();
         $reSubCategory = ResubCategory::with('reReSubCategory')->orderBy('id', 'DESC')->isActive()->isDeleted()->where('id', $id)->first();
-        dd($reSubCategory);
         return view('frontend.shop.re-sub-category-shop', \compact('products', 'brands', 'reSubCategory'));
     }
     public function reReSubCategoryWishProduct($id)
@@ -66,10 +65,8 @@ class ProductShopController extends Controller
 
     public function searchProduct(Request $request)
     {
-        // dd($request->q);
         $products    = Product::isActive()->isDeleted()->orderBy('id', 'DESC')->search($request->q)->paginate(4);
         $search_name = $request->q;
-
         return view('frontend.shop.product_search', compact('products', 'search_name'));
     }
 }

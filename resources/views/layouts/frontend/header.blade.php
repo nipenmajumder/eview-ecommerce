@@ -162,31 +162,7 @@
                                                 $sub_child_category)
                                                 <li><a href="{{ url('/re-sub-category/'.$sub_child_category->id) }}">{{
                                                         $sub_child_category->name }}</a>
-                                                    <!-- 4th foreach -->
-                                                    @if($sub_child_category->reReSubCategory->count() > 0)
-                                                    <ul>
-                                                        @forelse ($sub_child_category->reReSubCategory ?? [] as
-                                                        $re_re_sub_category)
-                                                        <li> <a
-                                                                href="{{ url('/re-re-sub-category/'.$re_re_sub_category->id) }}">{{
-                                                                $re_re_sub_category->name }}</a>
-                                                            <!-- 5th foreach -->
-                                                            @if($re_re_sub_category->reReReSubCategory->count() >0)
-                                                            <ul>
-                                                                @foreach ($re_re_sub_category->reReReSubCategory ??[] as
-                                                                $re_re_re_sub_category)
-                                                                <li><a
-                                                                        href="{{ url('/re-re-re-sub-category/'.$re_re_re_sub_category->id) }}">{{
-                                                                        $re_re_re_sub_category->name }}</a>
-                                                                </li>
-                                                                @endforeach
-                                                            </ul>
-                                                            @endif
-                                                        </li>
-                                                        @empty
-                                                        @endforelse
-                                                    </ul>
-                                                    @endif
+
                                                 </li>
                                                 @empty
                                                 @endforelse

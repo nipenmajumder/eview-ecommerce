@@ -42,13 +42,18 @@
                                 <div class="collection-brand-filter">
                                     @foreach ($category_data ?? [] as $category)
                                     <div class="form-check collection-filter-checkbox">
-                                        <input type="checkbox" class="form-check-input" id="zara">
-                                        <label class="form-check-label" for="zara">{{ $category->name }}</label>
+                                        <input type="checkbox" class="form-check-input category common_selector"
+                                            name="category" id="{{ $category->id }}" value="{{ $category->id }}">
+                                        <label class="form-check-label" for="{{ $category->id }}">{{ $category->name
+                                            }}</label>
                                     </div>
                                     @endforeach
                                 </div>
                             </div>
                         </div>
+
+
+                        <!-- brand filter start -->
 
                         <div class="collection-collapse-block open">
                             <h3 class="collapse-block-title">brand</h3>
@@ -56,61 +61,38 @@
                                 <div class="collection-brand-filter">
                                     @foreach ($brands ?? [] as $brand)
                                     <div class="form-check collection-filter-checkbox">
-                                        <input type="checkbox" class="form-check-input" id="zara">
-                                        <label class="form-check-label" for="zara">{{ $brand->name }}</label>
+                                        <input type="checkbox" class="form-check-input brand common_selector"
+                                            name="brand" id="b-{{ $brand->id }}" value="{{ $brand->id }}">
+                                        <label class="form-check-label" for="b-{{ $brand->id }}">{{ $brand->name
+                                            }}</label>
                                     </div>
                                     @endforeach
                                 </div>
                             </div>
                         </div>
-                        <!-- color filter start here -->
                         <div class="collection-collapse-block open">
-                            <h3 class="collapse-block-title">colors</h3>
+                            <h3 class="collapse-block-title">Price</h3>
                             <div class="collection-collapse-block-content">
-                                <div class="color-selector">
-                                    <ul>
-                                        <li class="color-1 active"></li>
-                                        <li class="color-2"></li>
-                                        <li class="color-3"></li>
-                                        <li class="color-4"></li>
-                                        <li class="color-5"></li>
-                                        <li class="color-6"></li>
-                                        <li class="color-7"></li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- size filter start here -->
-                        <div class="collection-collapse-block border-0 open">
-                            <h3 class="collapse-block-title">size</h3>
-                            <div class="collection-collapse-block-content">
-                                <div class="collection-brand-filter">
-                                    <div class="form-check collection-filter-checkbox">
-                                        <input type="checkbox" class="form-check-input" id="hundred">
-                                        <label class="form-check-label" for="hundred">s</label>
+                                <div class="collection-brand-filter mt-3 mb-2 ">
+                                    <div class="custom-control custom-radio mt-2">
+                                        <input type="radio" class="custom-control-input common_selector price"
+                                            name="price" id="p-1" value="1">
+                                        <label class="custom-control-label" for="p-1">৳10 to ৳100</label>
                                     </div>
-                                    <div class="form-check collection-filter-checkbox">
-                                        <input type="checkbox" class="form-check-input" id="twohundred">
-                                        <label class="form-check-label" for="twohundred">m</label>
+                                    <div class="custom-control custom-radio mt-2">
+                                        <input type="radio" class="custom-control-input common_selector price"
+                                            name="price" id="p-2" value="2">
+                                        <label class="custom-control-label" for="p-2">৳101 to ৳500</label>
                                     </div>
-                                    <div class="form-check collection-filter-checkbox">
-                                        <input type="checkbox" class="form-check-input" id="threehundred">
-                                        <label class="form-check-label" for="threehundred">l</label>
+                                    <div class="custom-control custom-radio mt-2">
+                                        <input type="radio" class="custom-control-input common_selector price"
+                                            name="price" id="p-3" value="3">
+                                        <label class="custom-control-label" for="p-3">৳501 to ৳1000</label>
                                     </div>
-                                    <div class="form-check collection-filter-checkbox">
-                                        <input type="checkbox" class="form-check-input" id="fourhundred">
-                                        <label class="form-check-label" for="fourhundred">xl</label>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- price filter start here -->
-                        <div class="collection-collapse-block border-0 open">
-                            <h3 class="collapse-block-title">price</h3>
-                            <div class="collection-collapse-block-content">
-                                <div class="wrapper mt-3">
-                                    <div class="range-slider">
-                                        <input type="text" class="js-range-slider" value="" />
+                                    <div class="custom-control custom-radio mt-2">
+                                        <input type="radio" class="custom-control-input common_selector price"
+                                            name="price" id="p-4" value="4">
+                                        <label class="custom-control-label" for="p-4">৳501 to ৳1000</label>
                                     </div>
                                 </div>
                             </div>
@@ -120,7 +102,7 @@
                     <!-- side-bar single product slider start -->
                     <div class="theme-card">
                         <h5 class="title-border">new product</h5>
-                        <div class="offer-slider slide-1">
+                        {{-- <div class="offer-slider slide-1">
                             <div>
                                 <div class="media">
                                     <a href=""><img class="img-fluid blur-up lazyload"
@@ -197,7 +179,7 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </div> --}}
                     </div>
                     <!-- side-bar single product slider end -->
                     <!-- side-bar banner start here -->
@@ -224,7 +206,7 @@
                                             <div class="col-12">
                                                 <div class="product-filter-content">
                                                     <div class="search-count">
-                                                        <h5>Showing Products 1-24 of 10 Result</h5>
+                                                        <h5>Showing All Products </h5>
                                                     </div>
                                                     <div class="collection-view">
                                                         <ul>
@@ -232,40 +214,19 @@
                                                             <li><i class="fa fa-list-ul list-layout-view"></i></li>
                                                         </ul>
                                                     </div>
-                                                    <div class="collection-grid-view">
-                                                        <ul>
-                                                            <li><img src="../assets/images/icon/2.png" alt=""
-                                                                    class="product-2-layout-view"></li>
-                                                            <li><img src="../assets/images/icon/3.png" alt=""
-                                                                    class="product-3-layout-view"></li>
-                                                            <li><img src="../assets/images/icon/4.png" alt=""
-                                                                    class="product-4-layout-view"></li>
-                                                            <li><img src="../assets/images/icon/6.png" alt=""
-                                                                    class="product-6-layout-view"></li>
-                                                        </ul>
-                                                    </div>
-                                                    <div class="product-page-per-view">
-                                                        <select>
-                                                            <option value="High to low">24 Products Par Page
-                                                            </option>
-                                                            <option value="Low to High">50 Products Par Page
-                                                            </option>
-                                                            <option value="Low to High">100 Products Par Page
-                                                            </option>
-                                                        </select>
-                                                    </div>
                                                     <div class="product-page-filter">
-                                                        <select>
-                                                            <option value="High to low">Sorting items</option>
-                                                            <option value="Low to High">50 Products</option>
-                                                            <option value="Low to High">100 Products</option>
+                                                        <select class="common_selector" name="sortBy" id="sortBy">
+                                                            <option selected value="">Select</option>
+                                                            <option value="1">Price (Low to High)</option>
+                                                            <option value="2">Price (High to Low)</option>
+                                                            <option value="3">Name (A to Z)</option>
                                                         </select>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="product-wrapper-grid">
+                                    <div class="product-wrapper-grid" id="defultData">
                                         <div class="row margin-res">
                                             @foreach ($products as $product)
                                             <div class="col-xl-3 col-6 col-grid-box">
@@ -323,41 +284,15 @@
                                             </div>
                                             @endforeach
                                         </div>
-                                    </div>
-                                    <div class="product-pagination">
-                                        <div class="theme-paggination-block">
-                                            <div class="row">
-                                                {{ $products->links() }}
-                                                {{-- <div class="col-xl-6 col-md-6 col-sm-12">
-                                                    <nav aria-label="Page navigation">
-                                                        <ul class="pagination">
-                                                            <li class="page-item"><a class="page-link" href="#"
-                                                                    aria-label="Previous"><span aria-hidden="true"><i
-                                                                            class="fa fa-chevron-left"
-                                                                            aria-hidden="true"></i></span> <span
-                                                                        class="sr-only">Previous</span></a></li>
-                                                            <li class="page-item active"><a class="page-link"
-                                                                    href="#">1</a></li>
-                                                            <li class="page-item"><a class="page-link" href="#">2</a>
-                                                            </li>
-                                                            <li class="page-item"><a class="page-link" href="#">3</a>
-                                                            </li>
-                                                            <li class="page-item"><a class="page-link" href="#"
-                                                                    aria-label="Next"><span aria-hidden="true"><i
-                                                                            class="fa fa-chevron-right"
-                                                                            aria-hidden="true"></i></span> <span
-                                                                        class="sr-only">Next</span></a></li>
-                                                        </ul>
-                                                    </nav>
+                                        <div class="product-pagination">
+                                            <div class="theme-paggination-block">
+                                                <div class="row">
+                                                    {{ $products->links() }}
                                                 </div>
-                                                <div class="col-xl-6 col-md-6 col-sm-12">
-                                                    <div class="product-search-count-bottom">
-                                                        <h5>Showing Products 1-24 of 10 Result</h5>
-                                                    </div>
-                                                </div> --}}
                                             </div>
                                         </div>
                                     </div>
+                                    <div class="product-wrapper-grid" id="filterData"></div>
                                 </div>
                             </div>
                         </div>
@@ -368,4 +303,64 @@
     </div>
 </section>
 
+@endsection
+@section('js')
+<script>
+    function onClickCategory(){
+        // alert('hi');
+    }
+</script>
+<script>
+    $(document).ready(function(){   
+        function filter_data()
+        {
+            // var category = $('#category').val();
+            var brand = get_filter('brand');
+            var category = get_filter('category');
+            var price = get_filter('price');
+            var sortingval = get_sort();
+           $.ajax({
+                url : '{{url('/filter-shop')}}',
+                type : 'get',
+                data : {category:category,brand:brand,price:price,sortingval:sortingval},
+                success: function(products) {
+                    if(products){
+                        $('#defultData').hide();
+                        $('#filterData').html(products);
+                    }else{
+                        $('#defultData').show();
+                        $('#filterData').hide();
+                    }
+                }
+            })
+        }
+        
+        function get_filter(class_name)
+        {
+            var filter = [];
+            $('.'+class_name+':checked').each(function(){
+                filter.push($(this).val());
+            });
+            return filter;
+        }
+        
+        $('.common_selector').click(function(){
+            filter_data();
+        });
+       
+        $('.common_selector').on('change' ,function(){
+            get_sort();
+            filter_data();
+        });
+
+        function get_sort()
+        {
+            var sortBy = [];
+            $.each($("#sortBy option:selected"), function(){            
+                sortBy.push($(this).val());
+            });
+            return sortBy;
+        }
+    });
+</script>
 @endsection
