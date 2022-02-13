@@ -277,26 +277,7 @@
                                             <select name="resubcategory" id="resubcategory" class="form-control form-control-solid">
                                             <option selected disabled>--select--</option>
                                             </select>
-                                        </div>
-                                        <div class="fv-row mb-10">
-                                            <label class="d-flex align-items-center fs-5 fw-bold mb-2">
-                                                <span class="">Child ReSubCategory</span>
-                                                <i class="fas fa-exclamation-circle ms-2 fs-7" data-bs-toggle="tooltip" title="Specify your unique app name"></i>
-                                            </label>
-                                            <select name="childresubcategory" id="childresubcategory" class="form-control form-control-solid">
-                                            <option selected disabled>--select--</option>
-                                            </select>
-                                        </div>
-                                        <div class="fv-row mb-10">
-                                            <label class="d-flex align-items-center fs-5 fw-bold mb-2">
-                                                <span class="">Grand Child ReSubCategory</span>
-                                                <i class="fas fa-exclamation-circle ms-2 fs-7" data-bs-toggle="tooltip" title="Specify your unique app name"></i>
-                                            </label>
-                                            <select name="grandchildresubcategory" id="grandchildresubcategory" class="form-control form-control-solid">
-                                            <option selected disabled>--select--</option>
-                                            </select>
-                                        </div>
-                                                        
+                                        </div>     
                                         <div class="fv-row mb-10">
                                             <label class="d-flex align-items-center fs-5 fw-bold mb-2">
                                                 <span class="required">Brand (Optional)</span>
@@ -346,88 +327,6 @@
                                                     <i class="fas fa-exclamation-circle ms-2 fs-7" data-bs-toggle="tooltip" title="Specify your unique app name"></i>
                                                 </label>
                                                 <input type="text" class="form-control  form-control-solid" name="product_style" placeholder="Enter Weight" value="" />
-                                            </div>
-                                            <div class="fv-row mb-10" id="age_group_optional">
-                                                <label class="d-flex align-items-center fs-5 fw-bold mb-2">
-                                                    <span class="required">Age Group (Optional)</span>
-                                                    <i class="fas fa-exclamation-circle ms-2 fs-7" data-bs-toggle="tooltip" title="Specify your unique app name"></i>
-                                                </label>
-                                                <select name="age_group" class="form-control form-control-solid" data-control="select2" data-hide-search="true">
-                                                    <option value="all_age">All Age</option>
-                                                    <option value="Under_18">Under 18 </option>
-                                                    <option value="Upto_18">Upto 18 </option>
-                                                </select>
-                                            </div>
-                                            <div class="fv-row mb-10" id="gender_optional">
-                                                <!-- fav end -->
-                                                <label class="d-flex align-items-center fs-5 fw-bold mb-2">
-                                                <span class="required">Gender</span>
-                                                <i class="fas fa-exclamation-circle ms-2 fs-7" data-bs-toggle="tooltip" title="Specify your unique app name"></i>
-                                                </label>
-                                                <div class="mb-0">
-                                                    <label class="d-flex flex-stack mb-5 cursor-pointer">
-                                                        <!--begin:Label-->
-                                                        <span class="d-flex align-items-center me-2">
-                                                            <!--begin::Icon-->
-                                                            <span class="symbol symbol-50px me-6">
-                                                                <span class="symbol-label">
-                                                                    <!--begin::Svg Icon | path: icons/duotone/Interface/Doughnut.svg-->
-                                                                    <span class="svg-icon svg-icon-1 svg-icon-gray-600">
-                                                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-                                                                            <path opacity="0.25" d="M1 5C1 3.89543 1.89543 3 3 3H21C22.1046 3 23 3.89543 23 5V19C23 20.1046 22.1046 21 21 21H3C1.89543 21 1 20.1046 1 19V5Z" fill="#12131A"></path>
-                                                                            <path fill-rule="evenodd" clip-rule="evenodd" d="M20.8682 17.5035C21.1422 17.9831 20.9756 18.5939 20.4961 18.8679C20.0166 19.1419 19.4058 18.9753 19.1317 18.4958L15.8834 12.8113C15.6612 12.4223 15.2073 12.2286 14.7727 12.3373L9.71238 13.6024C8.40847 13.9283 7.04688 13.3473 6.38005 12.1803L3.13174 6.49582C2.85773 6.0163 3.02433 5.40545 3.50385 5.13144C3.98337 4.85743 4.59422 5.02403 4.86823 5.50354L8.11653 11.1881C8.33881 11.5771 8.79268 11.7707 9.22731 11.6621L14.2876 10.397C15.5915 10.071 16.9531 10.6521 17.6199 11.819L20.8682 17.5035Z" fill="#12131A"></path>
-                                                                        </svg>
-                                                                    </span>
-                                                                    <!--end::Svg Icon-->
-                                                                </span>
-                                                            </span>
-                                                            <!--end::Icon-->
-                                                            <!--begin::Description-->
-                                                            <span class="d-flex flex-column">
-                                                                <span class="fw-bolder text-gray-800 text-hover-primary fs-5">Male</span>
-                                                            </span>
-                                                            <!--end:Description-->
-                                                        </span>
-                                                        <!--end:Label-->
-                                                        <!--begin:Input-->
-                                                        <span class="form-check form-check-custom form-check-solid">
-                                                            <input class="form-check-input" type="radio" checked="checked" name="gender" value="male">
-                                                        </span>
-                                                        <!--end:Input-->
-                                                    </label>
-                                                    <!--end::Option-->
-                                                    <!--begin:Option-->
-                                                    <label class="d-flex flex-stack mb-0 cursor-pointer">
-                                                        <!--begin:Label-->
-                                                        <span class="d-flex align-items-center me-2">
-                                                            <!--begin::Icon-->
-                                                            <span class="symbol symbol-50px me-6">
-                                                                <span class="symbol-label">
-                                                                    <!--begin::Svg Icon | path: icons/duotone/Interface/Line-03-Down.svg-->
-                                                                    <span class="svg-icon svg-icon-1 svg-icon-gray-600">
-                                                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-                                                                            <path opacity="0.25" d="M1 5C1 3.89543 1.89543 3 3 3H21C22.1046 3 23 3.89543 23 5V19C23 20.1046 22.1046 21 21 21H3C1.89543 21 1 20.1046 1 19V5Z" fill="#12131A"></path>
-                                                                            <path fill-rule="evenodd" clip-rule="evenodd" d="M20.8682 17.5035C21.1422 17.9831 20.9756 18.5939 20.4961 18.8679C20.0166 19.1419 19.4058 18.9753 19.1317 18.4958L15.8834 12.8113C15.6612 12.4223 15.2073 12.2286 14.7727 12.3373L9.71238 13.6024C8.40847 13.9283 7.04688 13.3473 6.38005 12.1803L3.13174 6.49582C2.85773 6.0163 3.02433 5.40545 3.50385 5.13144C3.98337 4.85743 4.59422 5.02403 4.86823 5.50354L8.11653 11.1881C8.33881 11.5771 8.79268 11.7707 9.22731 11.6621L14.2876 10.397C15.5915 10.071 16.9531 10.6521 17.6199 11.819L20.8682 17.5035Z" fill="#12131A"></path>
-                                                                        </svg>
-                                                                    </span>
-                                                                    <!--end::Svg Icon-->
-                                                                </span>
-                                                            </span>
-                                                            <!--end::Icon-->
-                                                            <!--begin::Description-->
-                                                            <span class="d-flex flex-column">
-                                                                <span class="fw-bolder text-gray-800 text-hover-primary fs-5">Female</span>
-                                                            </span>
-                                                            <!--end:Description-->
-                                                        </span>
-                                                        <!--end:Label-->
-                                                        <!--begin:Input-->
-                                                        <span class="form-check form-check-custom form-check-solid">
-                                                            <input class="form-check-input" type="radio" name="gender" value="female">
-                                                        <div class="fv-plugins-message-container invalid-feedback"></div></span>
-                                                        <!--end:Input-->
-                                                    </label>
-                                                </div>
                                             </div>
                                             <div class="fv-row mb-10">
                                                 <label class="d-flex align-items-center fs-5 fw-bold mb-2">
@@ -724,9 +623,9 @@
 </div>
 <!-- start  -->
 <script>
-    $(document).ready(function(){
+       $(document).ready(function(){
        $(".editshop").click(function(){
-           alert("ok");
+         
             var id=$(this).data("id");
             if (id) {
                 $.ajax({

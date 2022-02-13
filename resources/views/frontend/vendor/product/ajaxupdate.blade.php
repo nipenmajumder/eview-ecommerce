@@ -93,7 +93,7 @@
                     <!--begin::Content-->
                     <div class="flex-row-fluid py-lg-5 px-lg-15">
                         <!--begin::Form-->
-                        <form class="form" method="post" novalidate="novalidate" id="kt_modal_create_app_form" action="{{ route('vendor.product') }}" enctype="multipart/form-data">
+                        <form class="form" method="post" novalidate="novalidate" id="kt_modal_create_app_form" action="{{ route('update.vendor.product') }}" enctype="multipart/form-data">
                             @csrf
                             <!--begin::Step 1-->
                             <div class="basic current" id="basic2" data-kt-stepper-element="content">
@@ -170,25 +170,7 @@
                                         <option selected disabled>--select--</option>
                                         </select>
                                     </div>
-                                    <div class="fv-row mb-10">
-                                        <label class="d-flex align-items-center fs-5 fw-bold mb-2">
-                                            <span class="">Child ReSubCategory</span>
-                                            <i class="fas fa-exclamation-circle ms-2 fs-7" data-bs-toggle="tooltip" title="Specify your unique app name"></i>
-                                        </label>
-                                        <select name="childresubcategory" id="childresubcategory" class="form-control form-control-solid">
-                                        <option selected disabled>--select--</option>
-                                        </select>
-                                    </div>
-                                    <div class="fv-row mb-10">
-                                        <label class="d-flex align-items-center fs-5 fw-bold mb-2">
-                                            <span class="">Grand Child ReSubCategory</span>
-                                            <i class="fas fa-exclamation-circle ms-2 fs-7" data-bs-toggle="tooltip" title="Specify your unique app name"></i>
-                                        </label>
-                                        <select name="grandchildresubcategory" id="grandchildresubcategory" class="form-control form-control-solid">
-                                        <option selected disabled>--select--</option>
-                                        </select>
-                                    </div>
-                                                    
+                                       
                                     <div class="fv-row mb-10">
                                         <label class="d-flex align-items-center fs-5 fw-bold mb-2">
                                             <span class="required">Brand (Optional)</span>
@@ -209,7 +191,7 @@
                                             <span class="required">Details</span>
                                             <i class="fas fa-exclamation-circle ms-2 fs-7" data-bs-toggle="tooltip" title="Specify your unique app name"></i>
                                         </label>
-                                        <textarea id="editor1" class="form-control form-control-solid" name="product_details">{!! $edit->product_details !!}</textarea>
+                                        <textarea id="summernote" class="form-control form-control-solid" name="product_details">{!! $edit->product_details !!}</textarea>
                                     </div>
                                 </div>
                             </div>
@@ -238,88 +220,6 @@
                                                 <i class="fas fa-exclamation-circle ms-2 fs-7" data-bs-toggle="tooltip" title="Specify your unique app name"></i>
                                             </label>
                                             <input type="text" class="form-control  form-control-solid" name="product_style" placeholder="Enter Style" value="{{ $edit->product_style }}" />
-                                        </div>
-                                        <div class="fv-row mb-10 age_group_optional" id="">
-                                            <label class="d-flex align-items-center fs-5 fw-bold mb-2">
-                                                <span class="required">Age Group (Optional)</span>
-                                                <i class="fas fa-exclamation-circle ms-2 fs-7" data-bs-toggle="tooltip" title="Specify your unique app name"></i>
-                                            </label>
-                                            <select name="age_group" class="form-control form-control-solid" data-control="select2" data-hide-search="true">
-                                                <option value="all_age" @if($edit->age_group=='all_age') selected @endif>All Age</option>
-                                                <option value="Under_18" @if($edit->age_group=='Under_18') selected @endif>Under 18 </option>
-                                                <option value="Upto_18" @if($edit->age_group=='Upto_18') selected @endif>Upto 18 </option>
-                                            </select>
-                                        </div>
-                                        <div class="fv-row mb-10 gender_optional" id="">
-                                            <!-- fav end -->
-                                            <label class="d-flex align-items-center fs-5 fw-bold mb-2">
-                                            <span class="required">Gender</span>
-                                            <i class="fas fa-exclamation-circle ms-2 fs-7" data-bs-toggle="tooltip" title="Specify your unique app name"></i>
-                                            </label>
-                                            <div class="mb-0">
-                                                <label class="d-flex flex-stack mb-5 cursor-pointer">
-                                                    <!--begin:Label-->
-                                                    <span class="d-flex align-items-center me-2">
-                                                        <!--begin::Icon-->
-                                                        <span class="symbol symbol-50px me-6">
-                                                            <span class="symbol-label">
-                                                                <!--begin::Svg Icon | path: icons/duotone/Interface/Doughnut.svg-->
-                                                                <span class="svg-icon svg-icon-1 svg-icon-gray-600">
-                                                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-                                                                        <path opacity="0.25" d="M1 5C1 3.89543 1.89543 3 3 3H21C22.1046 3 23 3.89543 23 5V19C23 20.1046 22.1046 21 21 21H3C1.89543 21 1 20.1046 1 19V5Z" fill="#12131A"></path>
-                                                                        <path fill-rule="evenodd" clip-rule="evenodd" d="M20.8682 17.5035C21.1422 17.9831 20.9756 18.5939 20.4961 18.8679C20.0166 19.1419 19.4058 18.9753 19.1317 18.4958L15.8834 12.8113C15.6612 12.4223 15.2073 12.2286 14.7727 12.3373L9.71238 13.6024C8.40847 13.9283 7.04688 13.3473 6.38005 12.1803L3.13174 6.49582C2.85773 6.0163 3.02433 5.40545 3.50385 5.13144C3.98337 4.85743 4.59422 5.02403 4.86823 5.50354L8.11653 11.1881C8.33881 11.5771 8.79268 11.7707 9.22731 11.6621L14.2876 10.397C15.5915 10.071 16.9531 10.6521 17.6199 11.819L20.8682 17.5035Z" fill="#12131A"></path>
-                                                                    </svg>
-                                                                </span>
-                                                                <!--end::Svg Icon-->
-                                                            </span>
-                                                        </span>
-                                                        <!--end::Icon-->
-                                                        <!--begin::Description-->
-                                                        <span class="d-flex flex-column">
-                                                            <span class="fw-bolder text-gray-800 text-hover-primary fs-5">Male</span>
-                                                        </span>
-                                                        <!--end:Description-->
-                                                    </span>
-                                                    <!--end:Label-->
-                                                    <!--begin:Input-->
-                                                    <span class="form-check form-check-custom form-check-solid">
-                                                        <input class="form-check-input" type="radio"  name="gender" value="male" @if($edit->gender=='male') checked="checked" @endif>
-                                                    </span>
-                                                    <!--end:Input-->
-                                                </label>
-                                                <!--end::Option-->
-                                                <!--begin:Option-->
-                                                <label class="d-flex flex-stack mb-0 cursor-pointer">
-                                                    <!--begin:Label-->
-                                                    <span class="d-flex align-items-center me-2">
-                                                        <!--begin::Icon-->
-                                                        <span class="symbol symbol-50px me-6">
-                                                            <span class="symbol-label">
-                                                                <!--begin::Svg Icon | path: icons/duotone/Interface/Line-03-Down.svg-->
-                                                                <span class="svg-icon svg-icon-1 svg-icon-gray-600">
-                                                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-                                                                        <path opacity="0.25" d="M1 5C1 3.89543 1.89543 3 3 3H21C22.1046 3 23 3.89543 23 5V19C23 20.1046 22.1046 21 21 21H3C1.89543 21 1 20.1046 1 19V5Z" fill="#12131A"></path>
-                                                                        <path fill-rule="evenodd" clip-rule="evenodd" d="M20.8682 17.5035C21.1422 17.9831 20.9756 18.5939 20.4961 18.8679C20.0166 19.1419 19.4058 18.9753 19.1317 18.4958L15.8834 12.8113C15.6612 12.4223 15.2073 12.2286 14.7727 12.3373L9.71238 13.6024C8.40847 13.9283 7.04688 13.3473 6.38005 12.1803L3.13174 6.49582C2.85773 6.0163 3.02433 5.40545 3.50385 5.13144C3.98337 4.85743 4.59422 5.02403 4.86823 5.50354L8.11653 11.1881C8.33881 11.5771 8.79268 11.7707 9.22731 11.6621L14.2876 10.397C15.5915 10.071 16.9531 10.6521 17.6199 11.819L20.8682 17.5035Z" fill="#12131A"></path>
-                                                                    </svg>
-                                                                </span>
-                                                                <!--end::Svg Icon-->
-                                                            </span>
-                                                        </span>
-                                                        <!--end::Icon-->
-                                                        <!--begin::Description-->
-                                                        <span class="d-flex flex-column">
-                                                            <span class="fw-bolder text-gray-800 text-hover-primary fs-5">Female</span>
-                                                        </span>
-                                                        <!--end:Description-->
-                                                    </span>
-                                                    <!--end:Label-->
-                                                    <!--begin:Input-->
-                                                    <span class="form-check form-check-custom form-check-solid">
-                                                        <input class="form-check-input" type="radio" name="gender" value="female" @if($edit->gender=='female') checked @endif>
-                                                    <div class="fv-plugins-message-container invalid-feedback"></div></span>
-                                                    <!--end:Input-->
-                                                </label>
-                                            </div>
                                         </div>
                                         <div class="fv-row mb-10">
                                             <label class="d-flex align-items-center fs-5 fw-bold mb-2">
@@ -356,12 +256,12 @@
                                 <div class="w-100">
                                     <div class="fv-row mb-10"> 
                                         <label class="form-check form-switch form-check-custom form-check-solid">
-                                            <input class="form-check-input have_a_discount" name="have_a_discount" type="checkbox" value="1" @if($edit->have_a_discount==1) checked @endif>
+                                            <input class="form-check-input have_a_discount" name="have_a_discount" type="checkbox" value="1" @if($edit->have_a_discount !=NULL) checked @endif>
                                             <span class="form-check-label fw-bold text-gray-400">Have A Discount</span>
                                         </label>
                                         <br>
                                     </div>
-                                     <div class="fv-row mb-10 discount_price" @if($edit->have_a_discount==1)  style="display:none" @endif>
+                                     <div class="fv-row mb-10 discount_price" @if($edit->have_a_discount==NULL)  style="display:none" @endif>
                                             <!-- fav end -->
                                         <label class="d-flex align-items-center fs-5 fw-bold mb-2">
                                             <span class="required">Offer</span>
@@ -567,7 +467,27 @@
                                         </label>
                                         <div class="row mb-10">
                                             <div class="col-lg-12 col-xl-12">
-                                                <div id="thumbnail_img"></div>
+                                               
+                                                <!-- image start -->
+                                                <div id="editimage"  class="col-xl-12 col-md-12 col-sm-12 col-xs-12 spartan_item_wrapper" data-spartanindexrow="0" style="margin-bottom : 20px; ">
+                                                    <div style="position: relative;">
+                                                        <div class="spartan_item_loader" data-spartanindexloader="0" style="position: absolute; width: 100%; height: 450px; background: rgba(255,255,255, 0.7); z-index: 22; text-align: center; align-items: center; margin: auto; justify-content: center; flex-direction: column; display : none; font-size : 1.7em; color: #CECECE"><i class="fas fa-sync fa-spin"></i></div>
+                                                        <label class="file_upload" style="width: 100%; height: 450px; border: 2px dashed #ddd; border-radius: 3px; cursor: pointer; text-align: center; overflow: hidden; padding: 5px; margin-top: 5px; margin-bottom : 5px; position : relative; display: flex; align-items: center; margin: auto; justify-content: center; flex-direction: column;">
+                                                            <a href="javascript:void(0)" data-spartanindexremove="0" style="right: 3px; top: 3px; background: rgb(237, 60, 32); border-radius: 3px; width: 30px; height: 30px; line-height: 30px; text-align: center; text-decoration: none; color: rgb(255, 255, 255); position: absolute !important;" class="spartan_remove_row">
+
+                                                                <i class="fas fa-times" onclick="editimageremove(this)"></i> </a>
+                                                            <img style="width: 100%; margin: 0px auto; vertical-align: middle; display: ;" data-spartanindexi="0" src="{{asset('uploads/products/'.$edit->image)}}">
+                                                            <input class="form-control spartan_image_input" accept="image/*" data-spartanindexinput="0" style="display : none" name="thumbnail_img" type="file">
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                                <div id="thumbnail_img" style="display: none;"></div>
+                                               
+
+                                                <!-- image end -->
+
+
+
                                             </div>
                                         </div>
                                         <label class="d-flex align-items-center fs-5 fw-bold mb-4">
@@ -576,7 +496,27 @@
                                         </label>
                                         <div class="row mb-10">
                                             <div class="col-xl-12 col-lg-12 row">
-                                                <div class="input-images"></div>
+                                            <div class="input-images">
+                                                        <div class="image-uploader has-files">
+                                                            <input type="file" id="images" name="images[]" multiple="multiple">
+                                                            <div class="uploaded">
+                                                            @if(is_array(json_decode($edit->gallary_image)))
+                                                                @foreach (json_decode($edit->gallary_image) as $key => $photo)
+                                                                <div class="uploaded-image" data-index="{{++$key}}">
+                                                                    <img src="{{asset('uploads/products/'.$photo) }}">
+                                                                    <input type="hidden" name="previous_photos[]" value="{{ $photo }}">
+                                                                    <button type="button" class="delete-image" onclick="delete_row_photos(this)"><i  class="material-icons">clear</i></button>
+                                                                </div>
+                                                                @endforeach
+                                                            @endif
+                                                            
+                                                            </div>
+                                                            <div class="upload-text">
+                                                                <i class="material-icons">cloud_upload</i>
+                                                                <span>Drag &amp; Drop files here or click to browse</span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
                                             </div>
                                         </div>
                                     </div>
@@ -598,11 +538,37 @@
             </div>
         </div>
 
+
+<link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
+<script>
+    $(document).ready(function() {
+    $('#summernote').summernote({
+        height: 300,  
+    });
+});
+</script>
+<script>
+    function delete_row_photos(em) {
+  
+    $(em).closest('.uploaded-image').remove();
+    
+
+}
+
+</script>
 <script type="text/javascript" src="{{asset('backend')}}/assets/js/image-uploader.min.js"></script>
 <script>
-$('.input-images').imageUploader();
+    $('.input-images').imageUploader();
 </script>
 
+<script>
+    function editimageremove(em) {
+      
+        $("#editimage").hide();
+        $("#thumbnail_img").show();
+    }
+</script>
 
 <script>
     function loadshop(){

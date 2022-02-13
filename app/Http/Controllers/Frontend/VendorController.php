@@ -6,12 +6,14 @@ use App\Http\Controllers\Controller;
 use App\Models\Order;
 use App\Models\Shop;
 use App\Models\User;
+use App\Models\Product;
 use App\Models\VendorCompany;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Intervention\Image\Facades\Image;
+
 
 class VendorController extends Controller
 {
@@ -99,6 +101,7 @@ class VendorController extends Controller
     // vendor dashboard
     public function vendorDashboard()
     {
-        return view('frontend.vendor.dashboard.vendor_dashboard');
+        $countproduct=Product::where('user_id',Auth::user()->id)->where('is_deleted',0)->count();
+        return view('frontend.vendor.dashboard.vendor_dashboard',compact('countproduct'));
     }
 }

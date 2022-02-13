@@ -115,6 +115,7 @@ Route::get('/vendor/product', [App\Http\Controllers\Frontend\ProductController::
 Route::post('/vendor/product', [App\Http\Controllers\Frontend\ProductController::class, 'store'])->name('vendor.product');
 Route::get('/vendor/get/shop/edit/{id}', [App\Http\Controllers\Frontend\ProductController::class, 'edit']);
 
+Route::post('/vendor/product/update', [App\Http\Controllers\Frontend\ProductController::class, 'update'])->name('update.vendor.product');
 // api controller
 Route::get('/get/subcategory/all/{cate_id}', [App\Http\Controllers\Api\ApiController::class, 'getSubcategory']);
 Route::get('/get/resubcategory/all/{subcate_id}', [App\Http\Controllers\Api\ApiController::class, 'getReSubcategory']);
