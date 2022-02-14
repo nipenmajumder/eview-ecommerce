@@ -23,6 +23,7 @@
             </div>
             @php
             $pendingcount=App\Models\Product::where('is_active',1)->where('is_deleted',0)->where('is_approve',0)->count();
+            $rejectcount=App\Models\Product::where('is_active',1)->where('is_deleted',0)->where('is_approve',2)->count();
             @endphp
             <div class="menu-item">
                 <a class="menu-link {{ request()->routeIs('admin.approve.product*') ? 'active' : '' }}"
@@ -33,6 +34,51 @@
                     <span class="menu-title">Product Approve <span class="badge bg-primary">{{ $pendingcount }}</span></span>
                 </a>
             </div>
+            <div class="menu-item">
+                <a class="menu-link {{ request()->routeIs('admin.reject.product*') ? 'active' : '' }}"
+                    href="{{route('admin.reject.product')}}">
+                    <span class="menu-icon">
+                        <i class="bi bi-house fs-3"></i>
+                    </span>
+                    <span class="menu-title">Product Rejected <span class="badge bg-primary">{{ $rejectcount }}</span></span>
+                </a>
+            </div>
+            <div class="menu-item">
+                <div class="menu-content pt-8 pb-2">
+                    <span class="menu-section text-muted text-uppercase fs-8 ls-1">Order Setup</span>
+                </div>
+            </div>
+            <div data-kt-menu-trigger="click"
+                class="menu-item menu-accordion  @if(request()->routeIs('admin.order*')) here show  @endif">
+                <span class="menu-link">
+                    <span class="menu-icon">
+                        <i class="bi bi-layers fs-3"></i>
+                    </span>
+                    <span class="menu-title">PRODUCT ORDER</span>
+                    <span class="menu-arrow"></span>
+                </span>
+                <div class="menu-sub menu-sub-accordion menu-active-bg">
+                    <div class="menu-item">
+                        <a class="menu-link" href="{{url('/admin/neworder/list')}}">
+                      
+                            <span class="menu-bullet">
+                                <span class="bullet bullet-dot"></span>
+                            </span>
+                            <span class="menu-title">New Order</span>
+                        </a>
+                    </div>
+                    <div class="menu-item">
+                        <a class="menu-link"
+                            href="">
+                            <span class="menu-bullet">
+                                <span class="bullet bullet-dot"></span>
+                            </span>
+                            <span class="menu-title">All Order</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
             <div class="menu-item">
                 <div class="menu-content pt-8 pb-2">
                     <span class="menu-section text-muted text-uppercase fs-8 ls-1">Website Setup</span>

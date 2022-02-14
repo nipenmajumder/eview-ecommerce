@@ -20,7 +20,7 @@ div.dataTables_wrapper div.dataTables_filter input {
             <!--begin::Page title-->
             <div data-kt-place="true" data-kt-place-mode="prepend" data-kt-place-parent="{default: '#kt_content_container', 'lg': '#kt_toolbar_container'}" class="page-title d-flex align-items-center me-3 flex-wrap mb-5 mb-lg-0 lh-1">
                 <!--begin::Title-->
-                <h1 class="d-flex align-items-center text-dark fw-bolder my-1 fs-3">Pending Product</h1>
+                <h1 class="d-flex align-items-center text-dark fw-bolder my-1 fs-3">All New Order</h1>
                 <!--end::Title-->
             </div>
 
@@ -57,7 +57,7 @@ div.dataTables_wrapper div.dataTables_filter input {
                     <!--end::Icon-->
                     <!--begin::Description-->
                     <div class="ms-6">
-                        <p class="list-unstyled text-gray-600 fw-bold fs-6 p-0 m-0">Pending Product Manage</p>
+                        <p class="list-unstyled text-gray-600 fw-bold fs-6 p-0 m-0">Order Manage</p>
                     </div>
                     <!--end::Description-->
                 </div>
@@ -68,7 +68,7 @@ div.dataTables_wrapper div.dataTables_filter input {
                         <!--begin::Header-->
                         <div class="card-header border-0 pt-5">
                             <h3 class="card-title align-items-start flex-column">
-                                <span class="card-label fw-bolder fs-3 mb-1">All Pending Product</span>
+                                <span class="card-label fw-bolder fs-3 mb-1">All Order Product</span>
                                 <!-- <span class="text-muted mt-1 fw-bold fs-7">Over 500 orders</span> -->
                             </h3>
                             <div class="card-toolbar">
@@ -85,47 +85,59 @@ div.dataTables_wrapper div.dataTables_filter input {
                                     <!--begin::Table head-->
                                     <thead class="text-center">
                                         <tr class="fw-bolder text-muted">
-                                            <!-- <th class="min-w-150px">#</th> -->
-                                            <th class="min-w-140px">Name</th>
-                                            <th class="min-w-140px">Price</th>
-                                            <th class="min-w-140px">Category Name</th>
-                                            <th class="min-w-140px">Vendor</th>
-                                            <th class="min-w-140px">Shop</th>
-                                            <th class="min-w-120px">Image</th>
+                                            <th class="min-w-150px">#</th>
+                                            <th class="min-w-150px">Date</th>
+                                            <th class="min-w-140px">Order ID</th>
+                                            <th class="min-w-140px">Total Item</th>
+                                            <th class="min-w-140px">Total Qty</th>
+                                            <th class="min-w-140px">Total Price</th>
+                                            <th class="min-w-140px">Customer</th>
+                                            <th class="min-w-140px">Status</th>
                                             <th class="min-w-100px text-end">Actions</th>
                                         </tr>
                                     </thead>
                                     <tbody class="text-center">
                                     @foreach($alldata as $key => $data)
                                         <tr>
-                                            <!-- <td class="text-dark fw-bolder text-hover-primary fs-6"> {{ ++$key }} </td> -->
+                                            
+                                            <td class="text-dark fw-bolder text-hover-primary fs-6"> {{ ++$key }} </td>
                                             <td>
-                                                <a href="#">{{ $data->product_name  }}</a>
+                                                <a href="#">{{ $data->created_at->format('d-m-Y')  }}</a>
                                             </td>
                                             <td>
-                                                <a href="#">{{ $data->product_price  }} ৳</a>
+                                                <!-- <a href="#"> ৳</a> -->
+                                                <a href="#">{{ $data->order_id  }}</a>
                                             </td>
                                             <td>
-                                                <a href="#" >{{ $data->Category->name  }}</a>
+                                                <a href="#" >{{ $data->total_item  }}</a>
                                             </td>
                                             <td>
-                                                <a href="#">{{ $data->Vendor->name }}</a><br>
-                                                <span>{{ $data->Vendor->email }}</span>
+                                                <a href="#" >{{ $data->total_qty  }}</a>
                                             </td>
                                             <td>
-                                            <a href="#">{{  $data->MainShop->shop_name }}</a>
+                                            <a href="#">{{  $data->total_amount }} ৳</a>
                                             </td>
                                             <td>
-                                                <img src="{{ asset('uploads/products/'.$data->image) }}" height="65px" alt="">
+                                                <a href="#">{{ $data->Customer->name }}</a><br>
+                                                <span>{{ $data->Customer->email }}</span>
+                                                <span>{{ $data->Customer->phone }}</span>
+                                            </td>
+                                            <td>
+                                               
+                                                <span class="btn-sm btn-primary">Pending</span>
                                             </td>
                                             <td class="text-end">
-                                                <a href="{{url('admin/product/approve/'.$data->id)}}"  class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1">
+                                                <a href="{{url('admin/invoice/order/'.$data->id)}}"  class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1" data-toggle="tooltip" data-placement="top" title="View Order">
+                                                    <i class="fas fa-eye blue"></i>
+                                                </a>
+                                                <a href="{{url('admin/product/approve/'.$data->id)}}"  class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1" data-toggle="tooltip" data-placement="top" title="Approve On Delever">
                                                     <i class="fas fa-thumbs-up blue"></i>
                                                 </a>
-                                                <a href="{{url('/admin/reject/product/'.$data->id)}}" class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm">
+                                                <a href="{{url('/admin/reject/product/'.$data->id)}}" class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm" data-toggle="tooltip" data-placement="top" title="Cancel Order">
                                                     <i class="fa fa-times validation"></i>
                                                 </a>
                                             </td>
+                                           
                                         </tr>
                                     @endforeach
                                     </tbody>

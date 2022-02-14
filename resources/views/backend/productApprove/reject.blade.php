@@ -20,7 +20,7 @@ div.dataTables_wrapper div.dataTables_filter input {
             <!--begin::Page title-->
             <div data-kt-place="true" data-kt-place-mode="prepend" data-kt-place-parent="{default: '#kt_content_container', 'lg': '#kt_toolbar_container'}" class="page-title d-flex align-items-center me-3 flex-wrap mb-5 mb-lg-0 lh-1">
                 <!--begin::Title-->
-                <h1 class="d-flex align-items-center text-dark fw-bolder my-1 fs-3">Pending Product</h1>
+                <h1 class="d-flex align-items-center text-dark fw-bolder my-1 fs-3">Rejected Product</h1>
                 <!--end::Title-->
             </div>
 
@@ -57,7 +57,7 @@ div.dataTables_wrapper div.dataTables_filter input {
                     <!--end::Icon-->
                     <!--begin::Description-->
                     <div class="ms-6">
-                        <p class="list-unstyled text-gray-600 fw-bold fs-6 p-0 m-0">Pending Product Manage</p>
+                        <p class="list-unstyled text-gray-600 fw-bold fs-6 p-0 m-0">Rejected Product Manage</p>
                     </div>
                     <!--end::Description-->
                 </div>
@@ -68,12 +68,12 @@ div.dataTables_wrapper div.dataTables_filter input {
                         <!--begin::Header-->
                         <div class="card-header border-0 pt-5">
                             <h3 class="card-title align-items-start flex-column">
-                                <span class="card-label fw-bolder fs-3 mb-1">All Pending Product</span>
+                                <span class="card-label fw-bolder fs-3 mb-1">All Rejected Product</span>
                                 <!-- <span class="text-muted mt-1 fw-bold fs-7">Over 500 orders</span> -->
                             </h3>
                             <div class="card-toolbar">
                                 
-                               
+                            
                             </div>
                         </div>
               
@@ -122,8 +122,8 @@ div.dataTables_wrapper div.dataTables_filter input {
                                                 <a href="{{url('admin/product/approve/'.$data->id)}}"  class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1">
                                                     <i class="fas fa-thumbs-up blue"></i>
                                                 </a>
-                                                <a href="{{url('/admin/reject/product/'.$data->id)}}" class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm">
-                                                    <i class="fa fa-times validation"></i>
+                                                <a id="delete" href="{{url('/admin/delete/product/'.$data->id)}}" class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm">
+                                                    <i class="fa fa-trash validation"></i>
                                                 </a>
                                             </td>
                                         </tr>

@@ -248,8 +248,11 @@ Route::get('/admin/blog/active/{id}', [App\Http\Controllers\Admin\BlogController
 Route::get('/admin/blog/deactive/{id}', [App\Http\Controllers\Admin\BlogController::class, 'deactive']);
 Route::get('/admin/blog/delete/{id}', [App\Http\Controllers\Admin\BlogController::class, 'delete']);
 // approve product
-
 Route::get('/admin/approve/product', [App\Http\Controllers\Admin\ApproveProductController::class, 'index'])->name('admin.approve.product');
-
+Route::get('/admin/allreject/product', [App\Http\Controllers\Admin\ApproveProductController::class, 'rejectproduct'])->name('admin.reject.product');
 Route::get('/admin/product/approve/{id}', [App\Http\Controllers\Admin\ApproveProductController::class, 'approve']);
 Route::get('/admin/reject/product/{id}', [App\Http\Controllers\Admin\ApproveProductController::class, 'reject']);
+Route::get('admin/delete/product/{id}', [App\Http\Controllers\Admin\ApproveProductController::class, 'delete']);
+// order by list
+Route::get('/admin/neworder/list', [App\Http\Controllers\Admin\OrderController::class, 'allneworder'])->name('admin.order.new');
+Route::get('admin/invoice/order/{id}', [App\Http\Controllers\Admin\OrderController::class, 'invoiceOrder']);
