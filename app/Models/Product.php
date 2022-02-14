@@ -63,5 +63,14 @@ class Product extends Model
     {
         return $this->belongsTo('App\Models\SubCategory', 'subcategory_id', 'id');
     }
+    public function Vendor()
+    {
+        return $this->belongsTo('App\Models\User', 'user_id', 'id');
+    }
+    public function MainShop()
+    {
+        return $this->belongsTo('App\Models\Shop', 'shop_id', 'id');
+    }
+
 
 }

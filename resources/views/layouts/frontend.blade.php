@@ -15,6 +15,7 @@
     <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,900" rel="stylesheet">
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Yellowtail&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{asset('frontend/assets')}}/css/izitost.css">
     <link rel="stylesheet" type="text/css" href="{{asset('frontend')}}/assets/css/vendors/fontawesome.css">
     <link rel="stylesheet" type="text/css" href="{{asset('frontend')}}/assets/css/vendors/slick.css">
     <link rel="stylesheet" type="text/css" href="{{asset('frontend')}}/assets/css/vendors/slick-theme.css">
@@ -79,9 +80,9 @@
 
 <body class="theme-color-5">
     {{-- @include('layouts.frontend.loader_skeleton') --}}
-    @include('layouts.frontend.header')
+    @include('frontend.include.header')
     @yield('content')
-    @include('layouts.frontend.footer')
+    @include('frontend.include.footer')
     {{-- @include('layouts.frontend.modal') --}}
 
     <!--=================== product quick view modal ===================-->

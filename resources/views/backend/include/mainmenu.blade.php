@@ -18,6 +18,23 @@
             </div>
             <div class="menu-item">
                 <div class="menu-content pt-8 pb-2">
+                    <span class="menu-section text-muted text-uppercase fs-8 ls-1">Ecommerce Setup</span>
+                </div>
+            </div>
+            @php
+            $pendingcount=App\Models\Product::where('is_active',1)->where('is_deleted',0)->where('is_approve',0)->count();
+            @endphp
+            <div class="menu-item">
+                <a class="menu-link {{ request()->routeIs('admin.approve.product*') ? 'active' : '' }}"
+                    href="{{route('admin.approve.product')}}">
+                    <span class="menu-icon">
+                        <i class="bi bi-house fs-3"></i>
+                    </span>
+                    <span class="menu-title">Product Approve <span class="badge bg-primary">{{ $pendingcount }}</span></span>
+                </a>
+            </div>
+            <div class="menu-item">
+                <div class="menu-content pt-8 pb-2">
                     <span class="menu-section text-muted text-uppercase fs-8 ls-1">Website Setup</span>
                 </div>
             </div>

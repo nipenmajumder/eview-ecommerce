@@ -64,6 +64,11 @@ Route::get('/main/checkout/page', [App\Http\Controllers\Frontend\CheckoutControl
 Route::post('/checkout/save', [App\Http\Controllers\Frontend\CheckoutController::class, 'save'])->name('checkout.save');
 Route::get('/checkout/payment/{order_id}', [App\Http\Controllers\Frontend\CheckoutController::class, 'paymentMethods']);
 Route::post('/pay', [App\Http\Controllers\Frontend\CheckoutController::class, 'pay'])->name('pay');
+// subscription store page
+Route::post('/subcription/store', [App\Http\Controllers\Frontend\SubcriptionController::class, 'store'])->name('subcription.store');
+
+
+
 
 // blog routes
 Route::get('/blogs', [App\Http\Controllers\Frontend\BlogController::class, 'index'])->name('blogs');
@@ -242,3 +247,9 @@ Route::post('/admin/blog/update/{id}', [App\Http\Controllers\Admin\BlogControlle
 Route::get('/admin/blog/active/{id}', [App\Http\Controllers\Admin\BlogController::class, 'active']);
 Route::get('/admin/blog/deactive/{id}', [App\Http\Controllers\Admin\BlogController::class, 'deactive']);
 Route::get('/admin/blog/delete/{id}', [App\Http\Controllers\Admin\BlogController::class, 'delete']);
+// approve product
+
+Route::get('/admin/approve/product', [App\Http\Controllers\Admin\ApproveProductController::class, 'index'])->name('admin.approve.product');
+
+Route::get('/admin/product/approve/{id}', [App\Http\Controllers\Admin\ApproveProductController::class, 'approve']);
+Route::get('/admin/reject/product/{id}', [App\Http\Controllers\Admin\ApproveProductController::class, 'reject']);
