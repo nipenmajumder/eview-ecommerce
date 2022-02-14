@@ -156,7 +156,6 @@
 
     <div class="scroll-setting-box">
         <div id="setting_box" class="setting-box" style="max-width: 280px;">
-
             <div class="cart-sidebar">
                 <div class="container">
                     <div class="d-flex justify-content-center row">
@@ -168,7 +167,6 @@
                             </div>
                         </div>
                         <div class="flying_cart">
-
                         </div>
                     </div>
                 </div>
