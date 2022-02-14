@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
 use App\Models\AboutUs;
+use App\Models\Brand;
 use App\Models\Category;
 use App\Models\Product;
 use App\Models\Slider;
@@ -20,23 +21,20 @@ class FrontendController extends Controller
         $allelevenproduct  = Product::haveDiscount()->offer11()->isDeleted()->isActive()->orderBy('id', 'DESC')->limit(10)->get();
         $allSpecialproduct = Product::haveDiscount()->specialOffer()->isDeleted()->isActive()->orderBy('id', 'DESC')->get();
         $alltweentyproduct = Product::haveDiscount()->offer22()->isDeleted()->isActive()->orderBy('id', 'DESC')->get();
-        // $topSaleCategory   = Category::isDeleted()->isActive()
-        //     ->with(['product' => function ($query) {
-        //         $query->isDeleted()->isActive()->orderBy('id', 'DESC');
-        //     }])->limit(5)->get();
-        $topSaleCategory = Category::isDeleted()->isActive()->with('product')->limit(5)->get()->map(function ($category) {
+        $topSaleCategory   = Category::isDeleted()->isActive()->with('product')->limit(5)->get()->map(function ($category) {
             $category->setRelation('product', $category->product->take(6));
             return $category;
         });
+        $activeBrands     = Brand::isActive()->isDeleted()->get();
         $mainfivecategory = Category::isDeleted()->isActive()->orderBy('id', 'DESC')->get();
-        return view('frontend.home.index', compact('mainfivecategory', 'allSlider', 'allProduct', 'allelevenproduct', 'allSpecialproduct', 'alltweentyproduct', 'topSaleCategory', 'newProducts'));
+        return view('frontend.home.index', compact('mainfivecategory', 'allSlider', 'allProduct', 'allelevenproduct', 'allSpecialproduct', 'alltweentyproduct', 'topSaleCategory', 'newProducts', 'activeBrands'));
     }
     // product details
     public function productDetails($slug, $id)
     {
         $data             = Product::isID($id)->with('Category', 'SubCategory_id')->isActive()->first();
         $related_products = Product::where('category_id', $data->category_id)->isActive()->notID($data->id)
-            ->select('product_name', 'product_price', 'image')
+            ->select('id', 'product_name', 'product_price', 'image')
             ->limit(6)->orderBy('id', 'DESC')->limit(6)->get();
         return view('frontend.product_details.details', compact('data', 'related_products'));
     }

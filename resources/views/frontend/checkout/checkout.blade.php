@@ -85,12 +85,12 @@
                                     <ul class="qty">
                                         @foreach (Cart::content() as $cartItem)
 
-                                        <li>{{ $cartItem->name }} × {{ $cartItem->qty }} <span>${{ $cartItem->subtotal
+                                        <li>{{ $cartItem->name }} × {{ $cartItem->qty }} <span>৳{{ $cartItem->subtotal
                                                 }}</span></li>
                                         @endforeach
                                     </ul>
                                     <ul class="sub-total">
-                                        <li>Subtotal <span class="count">${{ Cart::subtotal() }}</span></li>
+                                        <li>Subtotal <span class="count">৳{{ Cart::subtotal() }}</span></li>
                                         <li>Shipping
                                             <div class="shipping">
                                                 <div class="shopping-option">
@@ -105,7 +105,7 @@
                                         </li>
                                     </ul>
                                     <ul class="total">
-                                        <li>Total <span class="count">${{ Cart::total() }}</span></li>
+                                        <li>Total <span class="count">৳{{ Cart::total() }}</span></li>
                                     </ul>
                                 </div>
                                 <div class="payment-box">

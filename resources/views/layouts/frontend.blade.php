@@ -1,4 +1,3 @@
-{{-- {{ dd($companyInformation) }} --}}
 <!DOCTYPE html>
 <html lang="en">
 
@@ -262,7 +261,7 @@
         document.getElementById("setting-icon").classList.remove('open-icon');
         }
     </script>
-    <!--=================== add to cart from datalist  =============-->
+    <!--===================  add to cart from datalist  =============-->
     <script>
         function addtocart(el){
             var id = el.id;
@@ -344,7 +343,7 @@
 
         flyingcartupload();
     </script>
-    <!--========== get single add to cart data  ============= -->
+    <!--========== add single product to wishlist cart data  ============= -->
 
     <script>
         $(document).ready(function(){
@@ -377,6 +376,56 @@
                       cartupload();
                       flyingcartupload();
                       cartquantity();
+                      Swal.fire({
+                          toast: true,
+                          icon: 'error',
+                          title: 'Add to cart failed',
+                          position: 'top',
+                          showConfirmButton: false,
+                          timer: 3000,
+                          timerProgressBar: true,
+                          didOpen: (toast) => {
+                          toast.addEventListener('mouseenter', Swal.stopTimer)
+                          toast.addEventListener('mouseleave', Swal.resumeTimer)
+                          }
+                      })
+                     }
+                 
+                           
+                  }
+              })
+              // 
+          });
+    
+    });
+    </script>
+    <!--========== add single product to wishlist  ============= -->
+
+    <script>
+        $(document).ready(function(){
+          $(".wishlist").click(function(){
+              var str = $( "#cartsection" ).serialize();
+             console.log(str);
+              $.ajax({
+                  url : '{{url('/add-to-wishlist')}}',
+                  type : 'get',
+                  data : $( "#cartsection" ).serialize(),
+                  success: function(data) {
+                     if(data.success){
+                      Swal.fire({
+                          toast: true,
+                          icon: 'success',
+                          title: ''+ data.success +'',
+                          position: 'top',
+                          showConfirmButton: false,
+                          timer: 3000,
+                          timerProgressBar: true,
+                          didOpen: (toast) => {
+                          toast.addEventListener('mouseenter', Swal.stopTimer)
+                          toast.addEventListener('mouseleave', Swal.resumeTimer)
+                          }
+                      })
+                     }else{
                       Swal.fire({
                           toast: true,
                           icon: 'error',
@@ -433,6 +482,33 @@
             });
         mainuploadspro();
     }
+    </script>
+    <!--========== delete cart data data  ============= -->
+
+    <script>
+        function deletewishlistdata(el){
+            var rowId=el.id;
+            $.ajax({
+                    url: "{{  url('/delete-wishlist/item/') }}/" + rowId,
+                    type : 'get',
+                    success: function(data) {
+                        Swal.fire({
+                            toast: true,
+                            icon: 'success',
+                            title: ''+ data.success +'',
+                            position: 'top',
+                            showConfirmButton: false,
+                            timer: 3000,
+                            timerProgressBar: true,
+                            didOpen: (toast) => {
+                            toast.addEventListener('mouseenter', Swal.stopTimer)
+                            toast.addEventListener('mouseleave', Swal.resumeTimer)
+                            }
+                        });
+                        location.reload();
+                    }
+                });
+        }
     </script>
     <!--========== get  cart data  ============= -->
 
