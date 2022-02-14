@@ -35,6 +35,7 @@ class CreateOrdersTable extends Migration
             $table->integer('copon_used')->default(0);
             $table->double('delivery_charge')->nullable();
             $table->integer('order_status')->default(0);
+            $table->integer('payment_status')->default(1);
             $table->string('created_by')->nullable();
             $table->string('updated_by')->nullable();
             $table->integer('is_deleted')->default(0);

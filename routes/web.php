@@ -31,11 +31,11 @@ Route::get('/products/{slug}/{id}', [App\Http\Controllers\Frontend\FrontendContr
 // product shop routes
 Route::get('/product-search', [App\Http\Controllers\Frontend\ProductShopController::class, 'searchProduct']);
 Route::get('/shop', [App\Http\Controllers\Frontend\ProductShopController::class, 'index'])->name('shop');
-Route::get('/category/{id}', [App\Http\Controllers\Frontend\ProductShopController::class, 'categoryWishProduct']);
-Route::get('/sub-category/{id}', [App\Http\Controllers\Frontend\ProductShopController::class, 'subCategoryWishProduct']);
-Route::get('/re-sub-category/{id}', [App\Http\Controllers\Frontend\ProductShopController::class, 'reSubCategoryWishProduct']);
-Route::get('/re-re-sub-category/{id}', [App\Http\Controllers\Frontend\ProductShopController::class, 'reReSubCategoryWishProduct']);
-Route::get('/re-re-re-sub-category/{id}', [App\Http\Controllers\Frontend\ProductShopController::class, 'reReReSubCategoryWishProduct']);
+Route::get('/category/{slug}/{id}', [App\Http\Controllers\Frontend\ProductShopController::class, 'categoryWishProduct']);
+Route::get('/sub-category/{slug}/{id}', [App\Http\Controllers\Frontend\ProductShopController::class, 'subCategoryWishProduct']);
+Route::get('/re-sub-category/{slug}/{id}', [App\Http\Controllers\Frontend\ProductShopController::class, 'reSubCategoryWishProduct']);
+Route::get('/re-re-sub-category/{slug}/{id}', [App\Http\Controllers\Frontend\ProductShopController::class, 'reReSubCategoryWishProduct']);
+Route::get('/re-re-re-sub-category/{slug}/{id}', [App\Http\Controllers\Frontend\ProductShopController::class, 'reReReSubCategoryWishProduct']);
 //filter product
 Route::get('/filter-shop', [App\Http\Controllers\Frontend\FilterProductController::class, 'filterShop']);
 Route::get('/filter-category-shop', [App\Http\Controllers\Frontend\FilterProductController::class, 'filterCategoryShop']);
@@ -66,9 +66,6 @@ Route::get('/checkout/payment/{order_id}', [App\Http\Controllers\Frontend\Checko
 Route::post('/pay', [App\Http\Controllers\Frontend\CheckoutController::class, 'pay'])->name('pay');
 // subscription store page
 Route::post('/subcription/store', [App\Http\Controllers\Frontend\SubcriptionController::class, 'store'])->name('subcription.store');
-
-
-
 
 // blog routes
 Route::get('/blogs', [App\Http\Controllers\Frontend\BlogController::class, 'index'])->name('blogs');
