@@ -27,7 +27,8 @@ class FrontendController extends Controller
         });
         $activeBrands     = Brand::isActive()->isDeleted()->get();
         $mainfivecategory = Category::isDeleted()->isActive()->orderBy('id', 'DESC')->get();
-        return view('frontend.home.index', compact('mainfivecategory', 'allSlider', 'allProduct', 'allelevenproduct', 'allSpecialproduct', 'alltweentyproduct', 'topSaleCategory', 'newProducts', 'activeBrands'));
+        $topProducts      = Product::isDeleted()->isActive()->orderBy('id', 'DESC')->limit(12)->get();
+        return view('frontend.home.index', compact('mainfivecategory', 'allSlider', 'allProduct', 'allelevenproduct', 'allSpecialproduct', 'alltweentyproduct', 'topSaleCategory', 'newProducts', 'activeBrands', 'topProducts'));
     }
     // product details
     public function productDetails($slug, $id)

@@ -12,11 +12,13 @@
                         </div>
                     </div>
                     <div class="col-lg-6">
-                        <form action="{{ url('/subcription/store') }}" class="form-inline subscribe-form auth-form needs-validation" method="post"
+                        <form action="{{ url('/subcription/store') }}"
+                            class="form-inline subscribe-form auth-form needs-validation" method="post"
                             id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form">
                             @csrf
                             <div class="form-group mx-sm-3">
-                                <input type="text" class="form-control" name="email" id="mce-EMAIL" placeholder="Enter your email" required="required">
+                                <input type="text" class="form-control" name="email" id="mce-EMAIL"
+                                    placeholder="Enter your email" required="required">
                                 @error('email')
                                 <div style="style:color:red">{{ $message }}</div>
                                 @enderror
@@ -61,11 +63,19 @@
                         </div>
                         <div class="footer-contant">
                             <ul>
-                                <li><a href="#">mens</a></li>
-                                <li><a href="#">womens</a></li>
-                                <li><a href="#">clothing</a></li>
-                                <li><a href="#">accessories</a></li>
-                                <li><a href="#">featured</a></li>
+                                @if(Auth::user())
+                                @php
+                                $companycheck=App\Models\VendorCompany::where('user_id',Auth::user()->id)->first();
+                                @endphp
+                                @if($companycheck)
+                                <li><a href="{{ url('/vendor/dashboard') }}">Dashboard</a></li>
+                                @else
+                                <li><a href="{{ url('/dashboard') }}">Dashboard</a></li>
+                                @endif
+                                @else
+                                <li><a href="{{ route('login') }}">Login</a></li>
+                                <li><a href="{{ route('register') }}">register</a></li>
+                                @endif
                             </ul>
                         </div>
                     </div>
@@ -109,13 +119,14 @@
             <div class="row">
                 <div class="col-xl-6 col-md-6 col-sm-12">
                     <div class="footer-end">
-                        <p><i class="fa fa-copyright" aria-hidden="true"></i> 2017-18 themeforest powered by
-                            pixelstrap</p>
+                        <p>
+                            ©<span id="year"></span> all rights reserved to {{ $companyInformation->company_name }}
+                        </p>
                     </div>
                 </div>
                 <div class="col-xl-6 col-md-6 col-sm-12">
                     <div class="payment-card-bottom">
-                        <ul>
+                        {{-- <ul>
                             <li>
                                 <a href="#"><img src="{{asset('frontend')}}/assets/images/icon/visa.png" alt=""></a>
                             </li>
@@ -133,7 +144,7 @@
                             <li>
                                 <a href="#"><img src="{{asset('frontend')}}/assets/images/icon/discover.png" alt=""></a>
                             </li>
-                        </ul>
+                        </ul> --}}
                     </div>
                 </div>
             </div>
