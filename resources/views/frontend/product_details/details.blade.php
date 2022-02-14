@@ -153,6 +153,8 @@
                                 <input type="hidden" name="shop_id" value="{{$data->shop_id}}">
                                 <input type="hidden" name="product_sku" value="{{$data->product_sku}}">
                                 <input type="hidden" name="product_quantity" value="1">
+                                {{-- <button id="{{$product->id}}" type="button" onclick="addtocart(this)"
+                                    title="Add to cart"><i class="ti-shopping-cart"></i></button> --}}
                                 <a class="btn btn-solid hover-solid btn-animation cart">
                                     <i class="fa fa-shopping-cart me-1" aria-hidden="true"></i> add to cart</a>
                                 <a class="btn btn-solid"><i class="fa fa-bookmark fz-16 me-2"
@@ -341,39 +343,46 @@
         <div class="row search-product">
             @foreach($related_products as $key => $product)
             <div class="col-xl-2 col-md-4 col-6">
-                <div class="product-box">
-                    <div class="img-wrapper">
-                        <div class="front">
-                            <a href="#"><img src="{{ asset('uploads/products/'.$product->image) }}"
-                                    class="img-fluid blur-up lazyload bg-img" alt=""></a>
+                <form id="cartsection-{{ $product->id }}">
+                    <input type="hidden" name="id" value="{{$product->id}}">
+                    <input type="hidden" name="name" value="{{$product->product_name}}">
+                    <input type="hidden" name="product_sku" value="{{$product->product_sku}}">
+                    <input type="hidden" name="image" value="{{$product->image}}">
+                    <input type="hidden" name="price" value="{{$product->product_price}}">
+                    <input type="hidden" name="product_quantity" value="1">
+                    <div class="product-box">
+                        <div class="img-wrapper">
+                            <div class="front">
+                                <a href="#"><img src="{{ asset('uploads/products/'.$product->image) }}"
+                                        class="img-fluid blur-up lazyload bg-img" alt=""></a>
+                            </div>
+                            {{-- <div class="back">
+                                <a href="#"><img src="{{ asset('uploads/products/'.$product->image) }}"
+                                        class="img-fluid blur-up lazyload bg-img" alt=""></a>
+                            </div> --}}
+                            <div class="cart-info cart-wrap">
+                                <button id="{{$product->id}}" type="button" onclick="addtocart(this)"
+                                    title="Add to cart"><i class="ti-shopping-cart"></i></button>
+
+                                <a href="javascript:void(0)" title="Add to Wishlist"><i class="ti-heart"
+                                        aria-hidden="true"></i></a>
+                                <a class="productdetails" data-id="{{ $product->id }}" data-bs-toggle="modal"
+                                    data-bs-target="#quick-view" title="Quick View"><i class="ti-search"
+                                        aria-hidden="true"></i></a>
+                                <a href="" title="Compare"><i class="ti-reload" aria-hidden="true"></i></a>
+                            </div>
                         </div>
-                        {{-- <div class="back">
-                            <a href="#"><img src="{{ asset('uploads/products/'.$product->image) }}"
-                                    class="img-fluid blur-up lazyload bg-img" alt=""></a>
-                        </div> --}}
-                        <div class="cart-info cart-wrap">
-                            <button data-bs-toggle="modal" data-bs-target="#addtocart" title="Add to cart"><i
-                                    class="ti-shopping-cart"></i></button> <a href="javascript:void(0)"
-                                title="Add to Wishlist"><i class="ti-heart" aria-hidden="true"></i></a> <a href="#"
-                                data-bs-toggle="modal" data-bs-target="#quick-view" title="Quick View"><i
-                                    class="ti-search" aria-hidden="true"></i></a> <a href="compare.html"
-                                title="Compare"><i class="ti-reload" aria-hidden="true"></i></a>
+                        <div class="product-detail">
+
+                            <a href="{{url('/products/'.$product->product_slug.'/'.$product->id)}}">
+                                <h6>{{ $product->product_name }}</h6>
+                            </a>
+                            <h4>{{ $product->product_price }}</h4>
+
                         </div>
                     </div>
-                    <div class="product-detail">
-                        <div class="rating"><i class="fa fa-star"></i> <i class="fa fa-star"></i> <i
-                                class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i></div>
-                        <a href="product-page(no-sidebar).html">
-                            <h6>{{ $product->product_name }}</h6>
-                        </a>
-                        <h4>{{ $product->product_price }}</h4>
-                        {{-- <ul class="color-variant">
-                            <li class="bg-light0"></li>
-                            <li class="bg-light1"></li>
-                            <li class="bg-light2"></li>
-                        </ul> --}}
-                    </div>
-                </div>
+                </form>
+
             </div>
             @endforeach
         </div>
