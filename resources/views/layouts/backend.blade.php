@@ -5,13 +5,11 @@
     <base href="">
     <meta charset="utf-8" />
     <title> {{ $companyInformation->company_name }} | @yield('title')</title>
-    <meta name="description"
-        content="Metronic admin dashboard live demo. Check out all the features of the admin panel. A large number of settings, additional services and widgets." />
-    <meta name="keywords"
-        content="Metronic, bootstrap, bootstrap 5, Angular 11, VueJs, React, Laravel, admin themes, web design, figma, web development, ree admin themes, bootstrap admin, bootstrap dashboard" />
+    <meta name="description" content=""/>
+    <meta name="keywords" content=""/>
     <link rel="canonical" href="Https://preview.keenthemes.com/metronic8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="shortcut icon" href="{{asset('backend')}}/assets/media/logos/favicon.ico" />
+    <link rel="shortcut icon" href="{{asset('uploads/logo/'.$companyInformation->favicon)}}" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" />
     <link href="{{asset('backend')}}/assets/plugins/global/plugins.bundle.css" rel="stylesheet" type="text/css" />
     <link href="{{asset('backend')}}/assets/validation.css" rel="stylesheet" type="text/css" />
