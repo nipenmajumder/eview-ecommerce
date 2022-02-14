@@ -10,8 +10,8 @@
 							<!--end::Aside mobile toggle-->
 							<!--begin::Mobile logo-->
 							<div class="d-flex align-items-center flex-grow-1 flex-lg-grow-0">
-								<a href="index.html" class="d-lg-none">
-									<img alt="Logo" src="{{asset('backend')}}/assets/media/logos/logo-compact.svg" class="h-30px" />
+								<a href="{{ url('/') }}" class="d-lg-none">
+									<img alt="Logo" src="{{asset('uploads/logo/'.$companyInformation->logo)}}" class="h-30px" />
 								</a>
 							</div>
 							<!--end::Mobile logo-->
