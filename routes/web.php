@@ -41,6 +41,11 @@ Route::get('/filter-shop', [App\Http\Controllers\Frontend\FilterProductControlle
 Route::get('/filter-category-shop', [App\Http\Controllers\Frontend\FilterProductController::class, 'filterCategoryShop']);
 Route::get('/filter-sub-category-shop', [App\Http\Controllers\Frontend\FilterProductController::class, 'filterSubCategoryShop']);
 Route::get('/filter-re-sub-category-shop', [App\Http\Controllers\Frontend\FilterProductController::class, 'filterReSubCategoryShop']);
+//wishlist related routes
+Route::get('/add-to-wishlist', [App\Http\Controllers\Frontend\WishListController::class, 'store']);
+Route::get('/wishlist', [App\Http\Controllers\Frontend\WishListController::class, 'index']);
+Route::get('/delete-wishlist/item/{rowId}', [App\Http\Controllers\Frontend\WishListController::class, 'destroy']);
+
 //cart related routes
 Route::get('/addtocart', [App\Http\Controllers\Frontend\CartController::class, 'addToCart']);
 Route::get('/getcart', [App\Http\Controllers\Frontend\CartController::class, 'getCartItem']);

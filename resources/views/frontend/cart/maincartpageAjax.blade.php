@@ -33,7 +33,7 @@
             </td>
 
             <td>
-                <h2 class="td-color">${{ $cartItem->price }}</h2>
+                <h2 class="td-color">৳{{ $cartItem->price }}</h2>
             </td>
             <td>
                 <div class="qty-box">
@@ -44,7 +44,7 @@
                 </div>
             </td>
             <td>
-                <h2 class="td-color">${{ $cartItem->price * $cartItem->qty }}</h2>
+                <h2 class="td-color">৳{{ $cartItem->price * $cartItem->qty }}</h2>
             </td>
             <td><a onclick="deletedata(this)" id="{{$cartItem->rowId}}" class="icon"><i class="ti-close"></i></a></td>
         </tr>
@@ -57,7 +57,7 @@
             <tr>
                 <td>total price :</td>
                 <td>
-                    <h2>${{Cart::subtotal()}}</h2>
+                    <h2>৳{{Cart::subtotal()}}</h2>
                 </td>
             </tr>
         </tfoot>

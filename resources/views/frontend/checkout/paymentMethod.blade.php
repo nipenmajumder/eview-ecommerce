@@ -85,7 +85,7 @@
                         <div class="col-3 order_detail">
                             <div>
                                 <h4>price</h4>
-                                <h5>${{$obj->price}}</h5>
+                                <h5>৳{{$obj->price}}</h5>
                             </div>
                         </div>
                     </div>
@@ -97,13 +97,13 @@
                             @php
                             $deliveryCharge = 70;
                             @endphp
-                            <li>subtotal <span>${{ $data->total_amount }}</span></li>
-                            <li>shipping <span>${{ $deliveryCharge }}</span></li>
+                            <li>subtotal <span>৳{{ $data->total_amount }}</span></li>
+                            <li>shipping <span>৳{{ $deliveryCharge }}</span></li>
                             {{-- <li>tax(GST) <span>$ </span></li> --}}
                         </ul>
                     </div>
                     <div class="final-total">
-                        <h3>total <span>$@php echo str_replace(',', '', $data->total_amount) +
+                        <h3>total <span>৳@php echo str_replace(',', '', $data->total_amount) +
                                 $deliveryCharge;@endphp</span></h3>
                     </div>
                 </div>
@@ -116,7 +116,7 @@
                             <ul class="order-detail">
                                 <li>order ID: {{ $data->order_id }}</li>
                                 <li>Order Date: {{ $data->created_at->format('d/m/Y') }}</li>
-                                <li>Order Total: ${{ $data->total_amount }}</li>
+                                <li>Order Total: ৳{{ $data->total_amount }}</li>
                             </ul>
                         </div>
                         <div class="col-sm-6">

@@ -175,7 +175,7 @@
                                 <a href="{{url('/products/'.$product->product_slug.'/'.$product->id)}}">
                                     <h6>{{ $product->product_name }}</h6>
                                 </a>
-                                <h4>${{ $product->product_price }}</h4>
+                                <h4>৳{{ $product->product_price }}</h4>
 
                                 {{-- <ul class="color-variant">
                                     <li class="bg-light0"></li>
@@ -248,7 +248,7 @@
                                 <a href="{{url('/products/'.$product->product_slug.'/'.$product->id)}}">
                                     <h6>{{ $product->product_name }}</h6>
                                 </a>
-                                <h4>${{ $product->product_price }}</h4>
+                                <h4>৳{{ $product->product_price }}</h4>
                             </div>
                         </div>
                     </form>
@@ -272,7 +272,7 @@
 <section class="">
     <div class="container">
         <div class="row multiple-slider">
-            <div class="col-xl-9 col-lg-8 col-md-12">
+            <div class="col-xl-12 col-lg-12 col-md-12">
                 <div class="theme-tab">
                     <div class="tab-content-cls ratio_asos">
                         <div class="product_4 product-m no-arrow">
@@ -302,7 +302,7 @@
                                     <a href="product-page(no-sidebar).html">
                                         <h6>Slim Fit Cotton Shirt</h6>
                                     </a>
-                                    <h4>$500.00 <del>$600.00</del></h4>
+                                    <h4>৳500.00 <del>৳600.00</del></h4>
                                     <ul class="color-variant">
                                         <li class="bg-light0"></li>
                                         <li class="bg-light1"></li>
@@ -336,7 +336,7 @@
                                     <a href="product-page(no-sidebar).html">
                                         <h6>Slim Fit Cotton Shirt</h6>
                                     </a>
-                                    <h4>$500.00 <del>$600.00</del></h4>
+                                    <h4>৳500.00 <del>৳600.00</del></h4>
                                     <ul class="color-variant">
                                         <li class="bg-light0"></li>
                                         <li class="bg-light1"></li>
@@ -370,7 +370,7 @@
                                     <a href="product-page(no-sidebar).html">
                                         <h6>Slim Fit Cotton Shirt</h6>
                                     </a>
-                                    <h4>$500.00 <del>$600.00</del></h4>
+                                    <h4>৳500.00 <del>৳600.00</del></h4>
                                     <ul class="color-variant">
                                         <li class="bg-light0"></li>
                                         <li class="bg-light1"></li>
@@ -404,7 +404,7 @@
                                     <a href="product-page(no-sidebar).html">
                                         <h6>Slim Fit Cotton Shirt</h6>
                                     </a>
-                                    <h4>$500.00 <del>$600.00</del></h4>
+                                    <h4>৳500.00 <del>৳600.00</del></h4>
                                     <ul class="color-variant">
                                         <li class="bg-light0"></li>
                                         <li class="bg-light1"></li>
@@ -438,7 +438,7 @@
                                     <a href="product-page(no-sidebar).html">
                                         <h6>Slim Fit Cotton Shirt</h6>
                                     </a>
-                                    <h4>$500.00 <del>$600.00</del></h4>
+                                    <h4>৳500.00 <del>৳600.00</del></h4>
                                     <ul class="color-variant">
                                         <li class="bg-light0"></li>
                                         <li class="bg-light1"></li>
@@ -490,153 +490,6 @@
                     </div>
                 </div>
             </div>
-            <div class="col-xl-3 col-lg-4 col-md-12 mb-0">
-                <div class="theme-card">
-                    <h5 class="title-border">new products</h5>
-                    <div class="offer-slider slide-1">
-                        <div>
-                            <div class="media">
-                                <a href="product-page(no-sidebar).html"><img class="img-fluid blur-up lazyload"
-                                        src="{{asset('frontend')}}/assets/images/furniture/pro/1.jpg" alt=""></a>
-                                <div class="media-body align-self-center">
-                                    <div class="rating">
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                    </div>
-                                    <a href="product-page(no-sidebar).html">
-                                        <h6>Slim Fit Cotton Shirt</h6>
-                                    </a>
-                                    <h4>$500.00 <del>$600.00</del></h4>
-                                </div>
-                            </div>
-                            <div class="media">
-                                <a href="product-page(no-sidebar).html"><img class="img-fluid blur-up lazyload"
-                                        src="{{asset('frontend')}}/assets/images/furniture/pro/2.jpg" alt=""></a>
-                                <div class="media-body align-self-center">
-                                    <div class="rating">
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                    </div>
-                                    <a href="product-page(no-sidebar).html">
-                                        <h6>Slim Fit Cotton Shirt</h6>
-                                    </a>
-                                    <h4>$500.00</h4>
-                                </div>
-                            </div>
-                            <div class="media">
-                                <a href="product-page(no-sidebar).html"><img class="img-fluid blur-up lazyload"
-                                        src="{{asset('frontend')}}/assets/images/furniture/pro/3.jpg" alt=""></a>
-                                <div class="media-body align-self-center">
-                                    <div class="rating">
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                    </div>
-                                    <a href="product-page(no-sidebar).html">
-                                        <h6>Slim Fit Cotton Shirt</h6>
-                                    </a>
-                                    <h4>$500.00</h4>
-                                </div>
-                            </div>
-                            <div class="media">
-                                <a href="product-page(no-sidebar).html"><img class="img-fluid blur-up lazyload"
-                                        src="{{asset('frontend')}}/assets/images/furniture/pro/4.jpg" alt=""></a>
-                                <div class="media-body align-self-center">
-                                    <div class="rating">
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                    </div>
-                                    <a href="product-page(no-sidebar).html">
-                                        <h6>Slim Fit Cotton Shirt</h6>
-                                    </a>
-                                    <h4>$500.00</h4>
-                                </div>
-                            </div>
-                        </div>
-                        <div>
-                            <div class="media">
-                                <a href="product-page(no-sidebar).html"><img class="img-fluid blur-up lazyload"
-                                        src="{{asset('frontend')}}/assets/images/furniture/pro/1.jpg" alt=""></a>
-                                <div class="media-body align-self-center">
-                                    <div class="rating">
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                    </div>
-                                    <a href="product-page(no-sidebar).html">
-                                        <h6>Slim Fit Cotton Shirt</h6>
-                                    </a>
-                                    <h4>$500.00 <del>$600.00</del></h4>
-                                </div>
-                            </div>
-                            <div class="media">
-                                <a href="product-page(no-sidebar).html"><img class="img-fluid blur-up lazyload"
-                                        src="{{asset('frontend')}}/assets/images/furniture/pro/4.jpg" alt=""></a>
-                                <div class="media-body align-self-center">
-                                    <div class="rating">
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                    </div>
-                                    <a href="product-page(no-sidebar).html">
-                                        <h6>Slim Fit Cotton Shirt</h6>
-                                    </a>
-                                    <h4>$500.00</h4>
-                                </div>
-                            </div>
-                            <div class="media">
-                                <a href="product-page(no-sidebar).html"><img class="img-fluid blur-up lazyload"
-                                        src="{{asset('frontend')}}/assets/images/furniture/pro/2.jpg" alt=""></a>
-                                <div class="media-body align-self-center">
-                                    <div class="rating">
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                    </div>
-                                    <a href="product-page(no-sidebar).html">
-                                        <h6>Slim Fit Cotton Shirt</h6>
-                                    </a>
-                                    <h4>$500.00</h4>
-                                </div>
-                            </div>
-                            <div class="media">
-                                <a href="product-page(no-sidebar).html"><img class="img-fluid blur-up lazyload"
-                                        src="{{asset('frontend')}}/assets/images/furniture/pro/3.jpg" alt=""></a>
-                                <div class="media-body align-self-center">
-                                    <div class="rating">
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                    </div>
-                                    <a href="product-page(no-sidebar).html">
-                                        <h6>Slim Fit Cotton Shirt</h6>
-                                    </a>
-                                    <h4>$500.00</h4>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
         </div>
     </div>
 </section>
@@ -649,62 +502,17 @@
         <div class="row bg-light">
             <div class="col-md-12">
                 <div class="brand-6 no-arrow">
+                    @forelse ($activeBrands as $brand)
                     <div>
                         <div class="logo-block">
                             <a href="#">
-                                <img src="{{asset('frontend')}}/assets/images/logos/9.png" alt="">
+                                <img src="{{ asset('uploads/brand/'.$brand->image) }}" alt=""
+                                    style="height: 115px; width: 115px">
                             </a>
                         </div>
                     </div>
-                    <div>
-                        <div class="logo-block">
-                            <a href="#">
-                                <img src="{{asset('frontend')}}/assets/images/logos/10.png" alt="">
-                            </a>
-                        </div>
-                    </div>
-                    <div>
-                        <div class="logo-block">
-                            <a href="#">
-                                <img src="{{asset('frontend')}}/assets/images/logos/11.png" alt="">
-                            </a>
-                        </div>
-                    </div>
-                    <div>
-                        <div class="logo-block">
-                            <a href="#">
-                                <img src="{{asset('frontend')}}/assets/images/logos/12.png" alt="">
-                            </a>
-                        </div>
-                    </div>
-                    <div>
-                        <div class="logo-block">
-                            <a href="#">
-                                <img src="{{asset('frontend')}}/assets/images/logos/13.png" alt="">
-                            </a>
-                        </div>
-                    </div>
-                    <div>
-                        <div class="logo-block">
-                            <a href="#">
-                                <img src="{{asset('frontend')}}/assets/images/logos/14.png" alt="">
-                            </a>
-                        </div>
-                    </div>
-                    <div>
-                        <div class="logo-block">
-                            <a href="#">
-                                <img src="{{asset('frontend')}}/assets/images/logos/15.png" alt="">
-                            </a>
-                        </div>
-                    </div>
-                    <div>
-                        <div class="logo-block">
-                            <a href="#">
-                                <img src="{{asset('frontend')}}/assets/images/logos/16.png" alt="">
-                            </a>
-                        </div>
-                    </div>
+                    @empty
+                    @endforelse
                 </div>
             </div>
         </div>

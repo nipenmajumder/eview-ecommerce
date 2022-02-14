@@ -153,11 +153,10 @@
                                 <input type="hidden" name="shop_id" value="{{$data->shop_id}}">
                                 <input type="hidden" name="product_sku" value="{{$data->product_sku}}">
                                 <input type="hidden" name="product_quantity" value="1">
-                                {{-- <button id="{{$product->id}}" type="button" onclick="addtocart(this)"
-                                    title="Add to cart"><i class="ti-shopping-cart"></i></button> --}}
+                                <input type="hidden" name="user_id" value="{{ Request::ip() }}">
                                 <a class="btn btn-solid hover-solid btn-animation cart">
                                     <i class="fa fa-shopping-cart me-1" aria-hidden="true"></i> add to cart</a>
-                                <a class="btn btn-solid"><i class="fa fa-bookmark fz-16 me-2"
+                                <a class="btn btn-solid wishlist"><i class="fa fa-bookmark fz-16 me-2"
                                         aria-hidden="true"></i>wishlist</a>
                             </div>
                         </form>
@@ -178,6 +177,12 @@
                         </div> -->
                         <div class="border-product">
                             <h6 class="product-title">More info</h6>
+                            @foreach (Cart::instance('wishlist')->content() as $wishlist)
+                            {{ $wishlist->name }}
+                            {{-- @foreach ($wishlist->options as $row)
+                            {{ $row[2] }}
+                            @endforeach --}}
+                            @endforeach
                             <ul class="shipping-info">
 
                                 <li>Qty: {{ $data->product_qty }}</li>
@@ -353,13 +358,11 @@
                     <div class="product-box">
                         <div class="img-wrapper">
                             <div class="front">
-                                <a href="#"><img src="{{ asset('uploads/products/'.$product->image) }}"
-                                        class="img-fluid blur-up lazyload bg-img" alt=""></a>
+                                <a href="{{url('/products/'.$product->product_slug.'/'.$product->id)}}">
+                                    <img src="{{ asset('uploads/products/'.$product->image) }}"
+                                        class="img-fluid blur-up lazyload bg-img" alt="">
+                                </a>
                             </div>
-                            {{-- <div class="back">
-                                <a href="#"><img src="{{ asset('uploads/products/'.$product->image) }}"
-                                        class="img-fluid blur-up lazyload bg-img" alt=""></a>
-                            </div> --}}
                             <div class="cart-info cart-wrap">
                                 <button id="{{$product->id}}" type="button" onclick="addtocart(this)"
                                     title="Add to cart"><i class="ti-shopping-cart"></i></button>
@@ -373,12 +376,10 @@
                             </div>
                         </div>
                         <div class="product-detail">
-
                             <a href="{{url('/products/'.$product->product_slug.'/'.$product->id)}}">
                                 <h6>{{ $product->product_name }}</h6>
                             </a>
-                            <h4>{{ $product->product_price }}</h4>
-
+                            <h4>${{ $product->product_price }}</h4>
                         </div>
                     </div>
                 </form>

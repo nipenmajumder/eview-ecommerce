@@ -15,7 +15,7 @@
                 <a href="#">
                     <h4>{{Str::limit($cartItem->name,20)}}</h4>
                 </a>
-                <h4><span>{{$cartItem->qty}} x $ {{$cartItem->price}}</span></h4>
+                <h4><span>{{$cartItem->qty}} x ৳ {{$cartItem->price}}</span></h4>
             </div>
         </div>
         <div class="close-circle"><a onclick="deletedata(this)" id="{{$cartItem->rowId}}"><i class="fa fa-times"
@@ -24,7 +24,7 @@
     @endforeach
     <li>
         <div class="total">
-            <h5>subtotal : <span>${{Cart::subtotal()}}</span></h5>
+            <h5>subtotal : <span>৳{{Cart::subtotal()}}</span></h5>
         </div>
     </li>
     <li>

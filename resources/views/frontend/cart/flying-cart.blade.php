@@ -13,9 +13,9 @@
                 class="font-weight-bold">{{Str::limit($cartItem->name,20)}}</span>
             <div class=" flex-row product-desc">
                 <div class="size mr-1"><span class="text-grey">price:</span><span
-                        class="font-weight-bold">&nbsp;{{$cartItem->qty}} x $
+                        class="font-weight-bold">&nbsp;{{$cartItem->qty}} x ৳
                         {{$cartItem->price}}</span></div>
-                <div class="color"><span class="text-grey">total:</span><span class="font-weight-bold">&nbsp;{{
+                <div class="color"><span class="text-grey">total:</span><span class="font-weight-bold">&nbsp;৳{{
                         $cartItem->subtotal() }}</span></div>
 
             </div>
@@ -30,11 +30,11 @@
 </div>
 <div class="cart-sidebar-footer">
     <div class="cart-store-details">
-        <p class="text-center"> Total <strong class="float-right">${{Cart::subtotal()}}</strong></p>
+        <p class="text-center"> Total <strong class="float-right">৳{{Cart::subtotal()}}</strong></p>
     </div>
     <a href="/products/checkout"><button class="btn btn-secondary btn-lg btn-block text-left" type="button"
             onclick="checkout(this)"><span class="float-left"><i class="mdi mdi-cart-outline"></i> Proceed to
                 Checkout
-            </span><span class="float-right"><strong>${{Cart::subtotal()}}</strong><span
+            </span><span class="float-right"><strong>৳{{Cart::subtotal()}}</strong><span
                     class="mdi mdi-chevron-right"></span></span></button></a>
 </div>
