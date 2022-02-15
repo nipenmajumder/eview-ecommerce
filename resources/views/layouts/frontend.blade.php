@@ -151,14 +151,15 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <form action="">
+                <form action="{{ url('/track-order') }}" method="get">
                     <div class="modal-body ">
-                        <div class="col-md-12">
-                            <div class="field-label">Order Id</div>
-                            <input type="text" name="order_id" class="form-control" placeholder="">
+                        <h5 class="modal-title" id="exampleModalLabel"> Track your Order</h5>
+                        <div class="col-md-12 mt-1">
+                            <input type="text" id="order_id" name="order_id" class="form-control order_id"
+                                name="order_id" placeholder="Enter your Order Id" required>
                         </div>
                         <div class="col-md-12 mt-2">
-                            <button type="button" class="btn btn-primary btn-sm">Search</button>
+                            <button type="submit" class="btn btn-primary btn-sm " id="orderTrackBtn">Search</button>
                         </div>
                     </div>
                 </form>
@@ -211,6 +212,33 @@
 
     <script src="{{asset('frontend')}}/assets/js/jquery-3.3.1.min.js"></script>
     <script src="{{ asset('frontend/assets') }}/js/jquery-3.3.1.min.js"></script>
+    <script>
+        $('#order_track').on('shown.bs.modal', function () {
+  $('#order_track').trigger('focus')
+})
+    </script>
+    <!--=================== track customer order  =============-->
+    {{-- <script>
+        $(document).ready(function(){
+            $(".order_id").keyup(function(){
+                let orderId = $("#order_id").val();
+                if(orderId){
+                    orderTrackBtn.classList.remove("disabled");
+                }else{
+                    orderTrackBtn.classList.add("disabled");
+                }
+            });
+    
+            $("#orderTrackBtn").click(function(){
+                let orderId = $("#order_id").val();
+                $.ajax({
+                url : '{{url('/track-order')}}',
+                type : 'get',
+                data : {orderId:orderId},
+                })
+            });
+        });
+    </script> --}}
     <!--=================== product quick view  =============-->
     <script>
         $(document).ready(function(){
