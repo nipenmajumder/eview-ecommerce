@@ -15,7 +15,7 @@
                 </div>
                 <div class="col-lg-6 text-end">
                     <ul class="header-dropdown">
-                        <li class="mobile-wishlist"><a data-bs-toggle="modal" data-bs-target="#order_track" href="#">
+                        <li class="mobile-wishlist"><a data-bs-toggle="modal" data-bs-target="#order_track">
                                 <i class="fa fa-truck-fast"></i>
                                 Track Order</a>
                         </li>

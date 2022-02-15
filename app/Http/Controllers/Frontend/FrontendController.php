@@ -6,8 +6,10 @@ use App\Http\Controllers\Controller;
 use App\Models\AboutUs;
 use App\Models\Brand;
 use App\Models\Category;
+use App\Models\Order;
 use App\Models\Product;
 use App\Models\Slider;
+use Illuminate\Http\Request;
 
 class FrontendController extends Controller
 {
@@ -53,5 +55,24 @@ class FrontendController extends Controller
     {
         $data = AboutUs::select(['details', 'id'])->where('keyword', 'terms_condition')->first();
         return view('frontend.pages.terms_condition', compact('data'));
+    }
+
+    public function trackCustomerOrder(Request $request)
+    {
+        $validated = $request->validate([
+            'order_id' => 'required',
+        ]);
+        if ($validated) {
+
+            $data = Order::where('order_id', $request->order_id)->first();
+            return view("frontend.checkout.order_track", compact('data'));
+        } else {
+            $notification = [
+                'messege'    => 'Oops! Order Id is required!',
+                'alert-type' => 'error',
+            ];
+            return \redirect()->back()->with($notification);
+        }
+
     }
 }
