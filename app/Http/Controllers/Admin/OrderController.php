@@ -24,4 +24,9 @@ class OrderController extends Controller
         $data=Order::where('id',$id)->first();
         return view('backend.order.invoice',compact('data'));
     }
+    // 
+    public function updateOrder($id){
+        $data=Order::where('id',$id)->first();
+        return view('backend.order.orderupdate',compact('data'));
+    }
 }

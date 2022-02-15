@@ -127,6 +127,9 @@ div.dataTables_wrapper div.dataTables_filter input {
                                                 <span class="btn-sm btn-primary">Pending</span>
                                             </td>
                                             <td class="text-end">
+                                                <a href="{{url('admin/update/order/'.$data->id)}}"  class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1" data-toggle="tooltip" data-placement="top" title="Update Order">
+                                                    <i class="fas fa-pen-square blue"></i>
+                                                </a>
                                                 <a href="{{url('admin/invoice/order/'.$data->id)}}"  class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1" data-toggle="tooltip" data-placement="top" title="View Order">
                                                     <i class="fas fa-eye blue"></i>
                                                 </a>
