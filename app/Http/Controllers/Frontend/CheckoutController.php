@@ -4,8 +4,10 @@ namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
 use App\Models\Order;
+use App\Models\ShoppingCharge;
 use App\Models\User;
 use Carbon\Carbon;
+use Devfaysal\BangladeshGeocode\Models\Division;
 use Gloudemans\Shoppingcart\Facades\Cart;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -20,15 +22,16 @@ class CheckoutController extends Controller
 
     public function checkout()
     {
-        $user    = User::isUser()->isVerified()->first();
-        $country = DB::table('country')->where('id', auth()->user()->country)->first() ?? null;
-        return view("frontend.checkout.checkout", compact('user', 'country'));
+        $user      = User::isUser()->isVerified()->first();
+        $divisions = Division::all();
+        return view("frontend.checkout.checkout", compact('user', 'divisions'));
     }
 
     public function getCheckoutCartItem()
     {
-        $cartData = Cart::content();
-        return view('frontend.checkout.checkoutAjax', compact('cartData'));
+        $cartData       = Cart::content();
+        $shoppingCharge = ShoppingCharge::get();
+        return view('frontend.checkout.checkoutAjax', compact('cartData', 'shoppingCharge'));
     }
 
     public function save(Request $request)
@@ -37,39 +40,39 @@ class CheckoutController extends Controller
         if (Cart::content()->count() > 0) {
 
             $validated = $request->validate([
-                'shipping_name'    => 'required',
-                'shipping_phone'   => 'required',
-                'shipping_email'   => 'required',
-                'shipping_zip'     => 'required',
-                'country_name'     => 'required',
-                'city_name'        => 'required',
-                'shipping_address' => 'required',
-                'customer_id'      => 'required',
-                'total_item'       => 'required',
-                'total_qty'        => 'required',
-                'delivery_charge'  => 'required',
-                'total_amount'     => 'required',
-                'payment_status'   => 'required',
+                'shipping_name'     => 'required',
+                'shipping_phone'    => 'required',
+                'shipping_email'    => 'required',
+                'shipping_zip'      => 'required',
+                'shipping_division' => 'required',
+                'shipping_city'     => 'required',
+                'shipping_address'  => 'required',
+                'customer_id'       => 'required',
+                'total_item'        => 'required',
+                'total_qty'         => 'required',
+                'delivery_charge'   => 'required',
+                'total_amount'      => 'required',
+                'payment_status'    => 'required',
             ]);
             $orderId = Auth::user()->id . rand(5555, 99999);
             // dd($orderId);
             $insert = Order::insertGetId([
-                'shipping_name'    => $request->shipping_name,
-                'shipping_phone'   => $request->shipping_phone,
-                'shipping_email'   => $request->shipping_email,
-                'shipping_zip'     => $request->shipping_zip,
-                'country_name'     => $request->country_name,
-                'city_name'        => $request->city_name,
-                'shipping_address' => $request->shipping_address,
-                'customer_id'      => $request->customer_id,
-                'total_item'       => $request->total_item,
-                'total_qty'        => $request->total_qty,
-                'delivery_charge'  => $request->delivery_charge,
-                'total_amount'     => $request->total_amount,
-                'order_id'         => $orderId,
-                'payment_status'   => $request->payment_status,
-                'products'         => json_encode($request->products),
-                'created_at'       => Carbon::now()->toDateTimeString(),
+                'shipping_name'     => $request->shipping_name,
+                'shipping_phone'    => $request->shipping_phone,
+                'shipping_email'    => $request->shipping_email,
+                'shipping_zip'      => $request->shipping_zip,
+                'shipping_division' => $request->shipping_division,
+                'shipping_city'     => $request->shipping_city,
+                'shipping_address'  => $request->shipping_address,
+                'customer_id'       => $request->customer_id,
+                'total_item'        => $request->total_item,
+                'total_qty'         => $request->total_qty,
+                'delivery_charge'   => $request->delivery_charge,
+                'total_amount'      => $request->total_amount,
+                'order_id'          => $orderId,
+                'payment_status'    => $request->payment_status,
+                'products'          => json_encode($request->products),
+                'created_at'        => Carbon::now()->toDateTimeString(),
             ]);
             $update = Order::where('id', $insert)->update([
                 'invoice_id' => $insert . rand(111, 99999),

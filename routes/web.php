@@ -133,7 +133,7 @@ Route::get('/get/resubcategory/all/{subcate_id}', [App\Http\Controllers\Api\ApiC
 Route::get('/get/reresubcategory/all/{resubcate_id}', [App\Http\Controllers\Api\ApiController::class, 'getReReSubcategory']);
 
 Route::get('/get/rereresubcategory/all/{resubcate_id}', [App\Http\Controllers\Api\ApiController::class, 'getreReReSubcategory']);
-
+Route::get('/get/district/all/{division_id}', [App\Http\Controllers\Api\ApiController::class, 'getDistrict']);
 // api controller
 //============================      backend routes      ================================/
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
@@ -169,6 +169,10 @@ Route::get('/admin/slider/active/{id}', [App\Http\Controllers\Admin\SliderContro
 Route::get('/admin/slider/deactive/{id}', [App\Http\Controllers\Admin\SliderController::class, 'deactive']);
 Route::get('/admin/slider/edit/{id}', [App\Http\Controllers\Admin\SliderController::class, 'edit']);
 Route::get('/admin/slider/delete/{id}', [App\Http\Controllers\Admin\SliderController::class, 'delete']);
+//shopping charge
+Route::get('/admin/shopping-charge/index', [App\Http\Controllers\Admin\ShoppingChargeController::class, 'index'])->name('admin.shopping-charge.index');
+Route::get('/admin/shopping-charge/edit/{id}', [App\Http\Controllers\Admin\ShoppingChargeController::class, 'edit'])->name('admin.shopping-charge.edit');
+Route::put('/admin/shopping-charge/update/{id}', [App\Http\Controllers\Admin\ShoppingChargeController::class, 'update'])->name('admin.shopping-charge.update');
 
 // about us
 Route::get('/admin/about-us/update', [App\Http\Controllers\Admin\AboutUsController::class, 'update'])->name('admin.about-us.update');
