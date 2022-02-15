@@ -61,21 +61,42 @@
                                     <div class="text-danger">{{ $message }}</div>
                                     @enderror
                                 </div>
-                                <div class="form-group col-md-6 col-sm-6 col-xs-12">
-                                    <div class="field-label">Country</div>
-                                    <input type="text" name="country_name"
-                                        value="{{ $country!=null ? $country->name : ''}}" placeholder="">
-                                    @error('country_name')
+                                <div class="col-md-6">
+                                    <label for="division">division*</label>
+                                    <select name="shipping_division" id="division"
+                                        class="form-control border-form-control">
+                                        <option value="" disabled selected>Select Division</option>
+                                        @foreach($divisions as $division)
+                                        <option value="{{$division->id}}" @if(Auth::user()->division ==
+                                            $division->id) selected @endif>{{$division->name}}</option>
+                                        @endforeach
+                                    </select>
+                                    @error('shipping_division')
                                     <div class="text-danger">{{ $message }}</div>
                                     @enderror
                                 </div>
-                                <div class="form-group col-md-6 col-sm-6 col-xs-12">
-                                    <div class="field-label">City</div>
-                                    <input type="text" name="city_name" value="{{ $user->city??''}}" placeholder="">
-                                    @error('city_name')
+                                <br>
+
+                                <div class="col-md-6">
+                                    <label for="city">City*</label>
+                                    @php
+                                    $alldistrict=Devfaysal\BangladeshGeocode\Models\District::where('division_id',Auth::user()->division)->get();
+                                    @endphp
+                                    <select name="shipping_city" id="city" class="form-control border-form-control">
+                                        @if($alldistrict->count() >0)
+                                        @foreach ($alldistrict as $district)
+                                        <option value="{{$district->id}}" @if(Auth::user()->city ==
+                                            $district->id) selected @endif>{{$district->name}}</option>
+                                        @endforeach
+                                        @else
+                                        <option value="" disabled selected>Select District</option>
+                                        @endif
+                                    </select>
+                                    @error('shipping_city')
                                     <div class="text-danger">{{ $message }}</div>
                                     @enderror
                                 </div>
+                                <br>
                                 <div class="form-group col-md-6 col-sm-6 col-xs-12">
                                     <div class="field-label">Zip Code</div>
                                     <input type="text" name="shipping_zip" value="{{ $user->zip_code??''}}"
@@ -118,4 +139,56 @@
     </div>
 </section>
 <!-- section end -->
+@endsection
+@section('js')
+<script type="text/javascript">
+    $(document).ready(function() {        
+        $('select[name="shipping_division"]').on('change', function() {
+            var division_id = $(this).val();
+            if (division_id) {
+                $.ajax({
+                    url: "{{  url('/get/district/all/') }}/" + division_id,
+                    type: "GET",
+                    dataType: "json",
+                    success: function(data) {
+                        $('#city').empty();
+                        $('#city').append(' <option value="">--select--</option>');
+                        $.each(data, function(index, districtObj) {
+                            $('#city').append('<option value="' + districtObj.id + '">' + districtObj.name + '</option>');
+                        });
+
+                    }
+                });
+            } else {
+                //  alert('danger');
+            }
+        });
+    });
+</script>
+<script>
+    $(document).ready(function() {        
+        $('select[name="shipping_city"]').on('change', function() {
+            var city_id = $(this).val();
+            alert(city_id);
+            $('#shopping_amount').text(city_id);
+            // if (division_id) {
+            //     $.ajax({
+            //         url: "{{  url('/get/district/all/') }}/" + division_id,
+            //         type: "GET",
+            //         dataType: "json",
+            //         success: function(data) {
+            //             $('#city').empty();
+            //             $('#city').append(' <option value="">--select--</option>');
+            //             $.each(data, function(index, districtObj) {
+            //                 $('#city').append('<option value="' + districtObj.id + '">' + districtObj.name + '</option>');
+            //             });
+
+            //         }
+            //     });
+            // } else {
+            //     //  alert('danger');
+            // }
+        });
+    });
+</script>
 @endsection

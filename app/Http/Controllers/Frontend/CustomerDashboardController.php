@@ -7,9 +7,9 @@ use App\Models\Order;
 use App\Models\User;
 use App\Rules\MatchOldPassword;
 use Carbon\Carbon;
+use Devfaysal\BangladeshGeocode\Models\Division;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 
 class CustomerDashboardController extends Controller
@@ -42,6 +42,7 @@ class CustomerDashboardController extends Controller
     public function dashboard()
     {
         if (Auth::user()->is_shop == 0) {
+
             return view('frontend.customerDashboard.dashboard');
         } else {
             return redirect('/vendor/dashboard');
@@ -57,8 +58,8 @@ class CustomerDashboardController extends Controller
     // profile
     public function profile()
     {
-        $allcountry = DB::table('country')->get();
-        return view('frontend.customerDashboard.profile', compact('allcountry'));
+        $divisions = Division::all();
+        return view('frontend.customerDashboard.profile', \compact('divisions'));
     }
     // profile update
     public function profileUpdate(Request $request)
@@ -69,7 +70,7 @@ class CustomerDashboardController extends Controller
             'phone'        => 'required',
             'email'        => 'required',
             'main_address' => 'required',
-            'country'      => 'required',
+            'division'     => 'required',
             'city'         => 'required',
             'zip_code'     => 'required',
         ]);
@@ -78,7 +79,7 @@ class CustomerDashboardController extends Controller
             'phone'        => $request->phone,
             'email'        => $request->email,
             'main_address' => $request->main_address,
-            'country'      => $request->country,
+            'division'     => $request->division,
             'city'         => $request->city,
             'zip_code'     => $request->zip_code,
             'google_map'   => $request->google_map,
