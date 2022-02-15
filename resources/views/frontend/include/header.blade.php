@@ -15,7 +15,12 @@
                 </div>
                 <div class="col-lg-6 text-end">
                     <ul class="header-dropdown">
-                        <li class="mobile-wishlist"><a href="#"><i class="fa fa-heart" aria-hidden="true"></i></a>
+                        <li class="mobile-wishlist"><a data-bs-toggle="modal" data-bs-target="#order_track" href="#">
+                                <i class="fa fa-truck-fast"></i>
+                                Track Order</a>
+                        </li>
+                        <li class="mobile-wishlist"><a href="{{ url('/wishlist') }}"><i class="fa fa-heart"
+                                    aria-hidden="true"></i>Wishlist</a>
                         </li>
                         <li class="onhover-dropdown mobile-account"> <i class="fa fa-user" aria-hidden="true"></i>
                             My Account
@@ -97,25 +102,7 @@
                                             </div>
                                         </div>
                                     </li>
-                                    <li class="onhover-div mobile-setting">
-                                        <div><img src="{{asset('frontend')}}/assets/images/icon/setting.png"
-                                                class="img-fluid blur-up lazyload" alt=""> <i class="ti-settings"></i>
-                                        </div>
-                                        <div class="show-div setting">
-                                            <h6>language</h6>
-                                            <ul>
-                                                <li><a href="#">english</a></li>
-                                                <li><a href="#">french</a></li>
-                                            </ul>
-                                            <h6>currency</h6>
-                                            <ul class="list-inline">
-                                                <li><a href="#">euro</a></li>
-                                                <li><a href="#">rupees</a></li>
-                                                <li><a href="#">pound</a></li>
-                                                <li><a href="#">doller</a></li>
-                                            </ul>
-                                        </div>
-                                    </li>
+
                                     <li class="onhover-div mobile-cart" id="cart_section">
 
                                     </li>
@@ -146,21 +133,23 @@
                             <ul id="sub-menu" class="sm pixelstrap sm-vertical">
                                 <!-- first foreach -->
                                 @forelse ($maincate as $category)
-                                <li> <a href="{{ url('/category/'.$category->id) }}">{{
+                                <li> <a href="{{ url('/category/'.$category->slug.'/'.$category->id) }}">{{
                                         $category->name
                                         }}</a>
                                     <!-- 2nd foreach -->
                                     @if($category->subCategory->count() > 0)
                                     <ul>
                                         @forelse ($category->subCategory as $sub_category)
-                                        <li><a href="{{ url('/sub-category/'.$sub_category->id) }}">{{
+                                        <li><a
+                                                href="{{ url('/sub-category/'.$sub_category->slug.'/'.$sub_category->id) }}">{{
                                                 $sub_category->name }}</a>
                                             <!-- 3rd foreach -->
                                             @if($sub_category->reSubCategory->count() > 0)
                                             <ul>
                                                 @forelse ($sub_category->reSubCategory as
                                                 $sub_child_category)
-                                                <li><a href="{{ url('/re-sub-category/'.$sub_child_category->id) }}">{{
+                                                <li><a
+                                                        href="{{ url('/re-sub-category/'.$sub_child_category->slug.'/'.$sub_child_category->id) }}">{{
                                                         $sub_child_category->name }}</a>
 
                                                 </li>
@@ -191,23 +180,7 @@
                                 </li>
                                 <li><a href="{{ url('/') }}">Home</a></li>
                                 <li><a href="{{ url('/shop') }}">Shop</a></li>
-                                <li> <a href="#">snacks</a>
-                                    <ul>
-                                        <li> <a href="#">more..</a>
-                                            <ul>
-                                                <li> <a href="#">accessories</a>
-                                                    <ul>
-                                                        <li> <a href="#">more...</a>
-                                                            <ul>
-                                                                <li><a href="#">accessory gift sets</a></li>
-                                                            </ul>
-                                                        </li>
-                                                    </ul>
-                                                </li>
-                                            </ul>
-                                        </li>
-                                    </ul>
-                                </li>
+
                             </ul>
                         </nav>
                     </div>
