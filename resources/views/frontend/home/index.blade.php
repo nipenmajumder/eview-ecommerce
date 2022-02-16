@@ -29,7 +29,7 @@
 <section class="banner-padding absolute-banner pb-0 ratio2_1">
     <div class="container absolute-bg">
         <div class="row partition2">
-            <div class="col-md-4">
+            {{-- <div class="col-md-4">
                 <a href="#">
                     <div class="collection-banner p-right text-center">
                         <div>
@@ -44,39 +44,25 @@
                         </div>
                     </div>
                 </a>
-            </div>
+            </div> --}}
+            @foreach($allBanner as $banners)
             <div class="col-md-4">
-                <a href="#">
+                <a href="{{url($banners->url)}}">
                     <div class="collection-banner p-right text-center">
                         <div>
-                            <img src="{{asset('frontend')}}/assets/images/furniture/banner/3.jpg"
+                            <img src="{{ asset('uploads/banner/'.$banners->image) }}"
                                 class="img-fluid blur-up lazyload bg-img" alt="">
                         </div>
                         <div class="contain-banner banner-3">
                             <div>
-                                <h4 class="text-dark">save 60%</h4>
-                                <h2 class="text-dark">toys</h2>
+                                <h4 class="text-dark">{{$banners->title}}</h4>
+                                <h2 class="text-dark">{{$banners->discount}}</h2>
                             </div>
                         </div>
                     </div>
                 </a>
             </div>
-            <div class="col-md-4">
-                <a href="#">
-                    <div class="collection-banner p-right text-center">
-                        <div>
-                            <img src="{{asset('frontend')}}/assets/images/furniture/banner/4.jpg"
-                                class="img-fluid blur-up lazyload bg-img" alt="">
-                        </div>
-                        <div class="contain-banner banner-3">
-                            <div>
-                                <h4 class="text-dark">save 60%</h4>
-                                <h2 class="text-dark">toys</h2>
-                            </div>
-                        </div>
-                    </div>
-                </a>
-            </div>
+            @endforeach
         </div>
     </div>
 </section>

@@ -183,6 +183,17 @@ Route::get('/admin/slider/active/{id}', [App\Http\Controllers\Admin\SliderContro
 Route::get('/admin/slider/deactive/{id}', [App\Http\Controllers\Admin\SliderController::class, 'deactive']);
 Route::get('/admin/slider/edit/{id}', [App\Http\Controllers\Admin\SliderController::class, 'edit']);
 Route::get('/admin/slider/delete/{id}', [App\Http\Controllers\Admin\SliderController::class, 'delete']);
+// Banner Section
+Route::get('/admin/banner/create', [App\Http\Controllers\Admin\BannerController::class, 'create'])->name('admin.banner.create');
+Route::post('/admin/banner/store', [App\Http\Controllers\Admin\BannerController::class, 'store'])->name('admin.banner.create');
+Route::post('/admin/banner/update', [App\Http\Controllers\Admin\BannerController::class, 'update'])->name('admin.banner.update');
+Route::get('/admin/banner/index', [App\Http\Controllers\Admin\BannerController::class, 'index'])->name('admin.banner.index');
+
+Route::get('/admin/banner/active/{id}', [App\Http\Controllers\Admin\BannerController::class, 'active']);
+Route::get('/admin/banner/deactive/{id}', [App\Http\Controllers\Admin\BannerController::class, 'deactive']);
+Route::get('/admin/banner/edit/{id}', [App\Http\Controllers\Admin\BannerController::class, 'edit']);
+Route::get('/admin/banner/delete/{id}', [App\Http\Controllers\Admin\BannerController::class, 'delete']);
+
 //shopping charge
 Route::get('/admin/shopping-charge/index', [App\Http\Controllers\Admin\ShoppingChargeController::class, 'index'])->name('admin.shopping-charge.index');
 Route::get('/admin/shopping-charge/edit/{id}', [App\Http\Controllers\Admin\ShoppingChargeController::class, 'edit'])->name('admin.shopping-charge.edit');
@@ -277,4 +288,3 @@ Route::get('/admin/neworder/list', [App\Http\Controllers\Admin\OrderController::
 Route::get('admin/invoice/order/{id}', [App\Http\Controllers\Admin\OrderController::class, 'invoiceOrder']);
 
 Route::get('admin/update/order/{id}', [App\Http\Controllers\Admin\OrderController::class, 'updateOrder']);
-
