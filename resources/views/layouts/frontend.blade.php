@@ -24,10 +24,12 @@
     <link rel="stylesheet" type="text/css" href="{{asset('frontend')}}/assets/css/vendors/themify-icons.css">
     <link rel="stylesheet" type="text/css" href="{{asset('frontend')}}/assets/css/vendors/price-range.css">
     <link rel="stylesheet" type="text/css" href="{{asset('frontend')}}/assets/css/vendors/bootstrap.css">
+    <link rel="stylesheet" href="{{asset('backend')}}/assets/datatabels/dataTables.min.css">
     <link href="{{asset('backend')}}/assets/css/bootstrap-tagsinput.css" rel="stylesheet" type="text/css" />
     <link rel="stylesheet" type="text/css" href="{{asset('frontend')}}/assets/css/style.css">
     <link rel="stylesheet" href="{{ asset('frontend/assets/css/custom_style.css') }}">
     <!-- custom flying cart -->
+    
     <style>
         .product-cart-list {
             background: #fff none repeat scroll 0 0;
@@ -763,7 +765,8 @@
     {{-- <script src="{{ asset('frontend/assets') }}/js/theme-setting.js"></script> --}}
 
     {{-- <script src="{{ asset('frontend/assets') }}/js/color-setting.js"></script> --}}
-
+    <script src="{{asset('backend')}}/assets/datatabels/dataTables.min.js"></script>
+    <script src="{{asset('backend')}}/assets/datatabels/dataTables-active.js"></script>
     <script src="{{asset('frontend')}}/assets/js/izitost.js"></script>
     <script src="{{ asset('https://unpkg.com/sweetalert/dist/sweetalert.min.js')}}"></script>
     <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">

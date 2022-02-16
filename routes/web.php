@@ -109,6 +109,20 @@ Route::post('/password-change', [App\Http\Controllers\Frontend\CustomerDashboard
 
 Route::get('/vendor', [App\Http\Controllers\Frontend\VendorController::class, 'create'])->name('vendor.create');
 Route::post('/vendor', [App\Http\Controllers\Frontend\VendorController::class, 'store'])->name('vendor.create');
+// vendor update
+Route::get('/vendor/edit', [App\Http\Controllers\Frontend\VendorController::class, 'edit'])->name('vendor.edit');
+
+
+
+
+
+
+
+
+
+
+
+
 
 Route::get('/vendor/dashboard', [App\Http\Controllers\Frontend\VendorController::class, 'vendorDashboard'])->name('vendor.dashboard');
 Route::get('/vendor/order', [App\Http\Controllers\Frontend\VendorController::class, 'orderList'])->name('vendor.order');
