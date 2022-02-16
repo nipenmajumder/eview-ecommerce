@@ -86,6 +86,36 @@
                 </div>
             </div>
             <div data-kt-menu-trigger="click"
+            class="menu-item menu-accordion  @if(request()->routeIs('admin.banner*')) here show  @elseif(request()->routeIs('admin.seoInformation*')) here show  @elseif(request()->routeIs('admin.socialInformation*')) here show  @endif">
+            <span class="menu-link">
+                <span class="menu-icon">
+                    <i class="bi bi-layers fs-3"></i>
+                </span>
+                <span class="menu-title">OFFER BANNER</span>
+                <span class="menu-arrow"></span>
+            </span>
+            <div class="menu-sub menu-sub-accordion menu-active-bg">
+                <div class="menu-item">
+                    <a class="menu-link {{ request()->routeIs('admin.banner.create*') ? 'active' : '' }}"
+                        href="{{url('admin/banner/create')}}">
+                        <span class="menu-bullet">
+                            <span class="bullet bullet-dot"></span>
+                        </span>
+                        <span class="menu-title"> Banner Create</span>
+                    </a>
+                </div>
+                <div class="menu-item">
+                    <a class="menu-link {{ request()->routeIs('admin.banner.index*') ? 'active' : '' }}"
+                        href="{{ route('admin.banner.index') }}">
+                        <span class="menu-bullet">
+                            <span class="bullet bullet-dot"></span>
+                        </span>
+                        <span class="menu-title">All Banner</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+            <div data-kt-menu-trigger="click"
                 class="menu-item menu-accordion  @if(request()->routeIs('admin.slider*')) here show  @elseif(request()->routeIs('admin.seoInformation*')) here show  @elseif(request()->routeIs('admin.socialInformation*')) here show  @endif">
                 <span class="menu-link">
                     <span class="menu-icon">

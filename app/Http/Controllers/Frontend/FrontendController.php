@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
 use App\Models\AboutUs;
+use App\Models\Banner;
 use App\Models\Brand;
 use App\Models\Category;
 use App\Models\Order;
@@ -18,6 +19,7 @@ class FrontendController extends Controller
     {
 
         $allSlider         = Slider::select(['image'])->isActive()->get();
+        $allBanner         = Banner::isActive()->select(['title', 'discount', 'url', 'image'])->limit(3)->get();
         $allProduct        = Product::isDeleted()->isActive()->orderBy('id', 'DESC')->limit(10)->get();
         $newProducts       = Product::isDeleted()->isActive()->orderBy('id', 'DESC')->limit(12)->get();
         $allelevenproduct  = Product::haveDiscount()->offer11()->isDeleted()->isActive()->orderBy('id', 'DESC')->limit(10)->get();
@@ -30,7 +32,7 @@ class FrontendController extends Controller
         $activeBrands     = Brand::isActive()->isDeleted()->get();
         $mainfivecategory = Category::isDeleted()->isActive()->orderBy('id', 'DESC')->get();
         $topProducts      = Product::isDeleted()->isActive()->orderBy('id', 'DESC')->limit(12)->get();
-        return view('frontend.home.index', compact('mainfivecategory', 'allSlider', 'allProduct', 'allelevenproduct', 'allSpecialproduct', 'alltweentyproduct', 'topSaleCategory', 'newProducts', 'activeBrands', 'topProducts'));
+        return view('frontend.home.index', compact('mainfivecategory', 'allSlider', 'allBanner', 'allProduct', 'allelevenproduct', 'allSpecialproduct', 'alltweentyproduct', 'topSaleCategory', 'newProducts', 'activeBrands', 'topProducts'));
     }
     // product details
     public function productDetails($slug, $id)
@@ -74,6 +76,5 @@ class FrontendController extends Controller
             ];
             return \redirect()->back()->with($notification);
         }
-
     }
 }
