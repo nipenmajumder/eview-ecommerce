@@ -20,7 +20,9 @@ Route::get('auth/facebook/callback', [App\Http\Controllers\FacebookLoginControll
 // google Login
 Route::get('auth/google', [App\Http\Controllers\GoogleSocialiteController::class, 'redirectToGoogle']);
 Route::get('callback/google', [App\Http\Controllers\GoogleSocialiteController::class, 'handleCallback']);
-// Front Section routes
+
+//============================      frontend routes      ================================/
+
 Route::get('/', [App\Http\Controllers\Frontend\FrontendController::class, 'home'])->name('home.index');
 // basic pages
 Route::get('/about-us', [App\Http\Controllers\Frontend\FrontendController::class, 'aboutUs']);
@@ -28,6 +30,7 @@ Route::get('/privacy-policy', [App\Http\Controllers\Frontend\FrontendController:
 Route::get('/terms-conditions', [App\Http\Controllers\Frontend\FrontendController::class, 'termsCondition']);
 // product details
 Route::get('/products/{slug}/{id}', [App\Http\Controllers\Frontend\FrontendController::class, 'productDetails']);
+Route::get('/track-order', [App\Http\Controllers\Frontend\FrontendController::class, 'trackCustomerOrder']);
 // product shop routes
 Route::get('/product-search', [App\Http\Controllers\Frontend\ProductShopController::class, 'searchProduct']);
 Route::get('/shop', [App\Http\Controllers\Frontend\ProductShopController::class, 'index'])->name('shop');
@@ -130,9 +133,9 @@ Route::get('/get/resubcategory/all/{subcate_id}', [App\Http\Controllers\Api\ApiC
 Route::get('/get/reresubcategory/all/{resubcate_id}', [App\Http\Controllers\Api\ApiController::class, 'getReReSubcategory']);
 
 Route::get('/get/rereresubcategory/all/{resubcate_id}', [App\Http\Controllers\Api\ApiController::class, 'getreReReSubcategory']);
-
+Route::get('/get/district/all/{division_id}', [App\Http\Controllers\Api\ApiController::class, 'getDistrict']);
 // api controller
-
+//============================      backend routes      ================================/
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/admin', [App\Http\Controllers\Admin\DashboardController::class, 'index'])->name('admin.home');
 Route::get('/admin/profile', [App\Http\Controllers\Admin\DashboardController::class, 'adminProfile'])->name('admin.profile');
@@ -166,6 +169,10 @@ Route::get('/admin/slider/active/{id}', [App\Http\Controllers\Admin\SliderContro
 Route::get('/admin/slider/deactive/{id}', [App\Http\Controllers\Admin\SliderController::class, 'deactive']);
 Route::get('/admin/slider/edit/{id}', [App\Http\Controllers\Admin\SliderController::class, 'edit']);
 Route::get('/admin/slider/delete/{id}', [App\Http\Controllers\Admin\SliderController::class, 'delete']);
+//shopping charge
+Route::get('/admin/shopping-charge/index', [App\Http\Controllers\Admin\ShoppingChargeController::class, 'index'])->name('admin.shopping-charge.index');
+Route::get('/admin/shopping-charge/edit/{id}', [App\Http\Controllers\Admin\ShoppingChargeController::class, 'edit'])->name('admin.shopping-charge.edit');
+Route::put('/admin/shopping-charge/update/{id}', [App\Http\Controllers\Admin\ShoppingChargeController::class, 'update'])->name('admin.shopping-charge.update');
 
 // about us
 Route::get('/admin/about-us/update', [App\Http\Controllers\Admin\AboutUsController::class, 'update'])->name('admin.about-us.update');
@@ -254,4 +261,6 @@ Route::get('admin/delete/product/{id}', [App\Http\Controllers\Admin\ApproveProdu
 
 Route::get('/admin/neworder/list', [App\Http\Controllers\Admin\OrderController::class, 'allneworder'])->name('admin.order.new');
 Route::get('admin/invoice/order/{id}', [App\Http\Controllers\Admin\OrderController::class, 'invoiceOrder']);
+
 Route::get('admin/update/order/{id}', [App\Http\Controllers\Admin\OrderController::class, 'updateOrder']);
+

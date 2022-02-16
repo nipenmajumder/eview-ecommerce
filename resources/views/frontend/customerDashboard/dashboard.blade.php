@@ -1,8 +1,6 @@
 @extends('layouts.frontend')
 @section('title', 'Dashboard')
 @section('content')
-
-   
 <!-- breadcrumb start -->
 <div class="breadcrumb-section">
     <div class="container">
@@ -24,8 +22,6 @@
     </div>
 </div>
 <!-- breadcrumb End -->
-
-
 <!-- section start -->
 <section class="section-b-space">
     <div class="container">

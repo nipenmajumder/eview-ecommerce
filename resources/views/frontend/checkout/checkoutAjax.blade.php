@@ -16,9 +16,10 @@
         $deliveryCharge = 70;
         @endphp
         <li>Delevery Charge<span class="count">৳{{ $deliveryCharge }}</span></li>
+        <li>komol<span class="count" id="shopping_amount"></span></li>
     </ul>
     <ul class="total">
-        <li>Total <span class="count">৳{{ Cart::subtotal() + $deliveryCharge }}</span>
+        {{-- <li>Total <span class="count">৳{{ Cart::subtotal() + $deliveryCharge }}</span> --}}
         </li>
     </ul>
 </div>

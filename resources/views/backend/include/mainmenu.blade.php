@@ -31,7 +31,8 @@
                     <span class="menu-icon">
                         <i class="bi bi-house fs-3"></i>
                     </span>
-                    <span class="menu-title">Product Approve <span class="badge bg-primary">{{ $pendingcount }}</span></span>
+                    <span class="menu-title">Product Approve <span class="badge bg-primary">{{ $pendingcount
+                            }}</span></span>
                 </a>
             </div>
             <div class="menu-item">
@@ -40,7 +41,8 @@
                     <span class="menu-icon">
                         <i class="bi bi-house fs-3"></i>
                     </span>
-                    <span class="menu-title">Product Rejected <span class="badge bg-primary">{{ $rejectcount }}</span></span>
+                    <span class="menu-title">Product Rejected <span class="badge bg-primary">{{ $rejectcount
+                            }}</span></span>
                 </a>
             </div>
             <div class="menu-item">
@@ -60,7 +62,7 @@
                 <div class="menu-sub menu-sub-accordion menu-active-bg">
                     <div class="menu-item">
                         <a class="menu-link" href="{{url('/admin/neworder/list')}}">
-                      
+
                             <span class="menu-bullet">
                                 <span class="bullet bullet-dot"></span>
                             </span>
@@ -68,8 +70,7 @@
                         </a>
                     </div>
                     <div class="menu-item">
-                        <a class="menu-link"
-                            href="">
+                        <a class="menu-link" href="">
                             <span class="menu-bullet">
                                 <span class="bullet bullet-dot"></span>
                             </span>
@@ -78,7 +79,7 @@
                     </div>
                 </div>
             </div>
-            
+
             <div class="menu-item">
                 <div class="menu-content pt-8 pb-2">
                     <span class="menu-section text-muted text-uppercase fs-8 ls-1">Website Setup</span>
@@ -176,6 +177,27 @@
                                 <span class="bullet bullet-dot"></span>
                             </span>
                             <span class="menu-title">Terms & Conditions</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div data-kt-menu-trigger="click"
+                class="menu-item menu-accordion  @if(request()->routeIs('admin.shopping-charge*')) here show @endif">
+                <span class="menu-link">
+                    <span class="menu-icon">
+                        <i class="bi bi-layers fs-3"></i>
+                    </span>
+                    <span class="menu-title">Shopping Charge</span>
+                    <span class="menu-arrow"></span>
+                </span>
+                <div class="menu-sub menu-sub-accordion menu-active-bg">
+                    <div class="menu-item">
+                        <a class="menu-link {{ request()->routeIs('admin.shopping-charge') ? 'active' : '' }}"
+                            href="{{route('admin.shopping-charge.index')}}">
+                            <span class="menu-bullet">
+                                <span class="bullet bullet-dot"></span>
+                            </span>
+                            <span class="menu-title">List</span>
                         </a>
                     </div>
                 </div>
