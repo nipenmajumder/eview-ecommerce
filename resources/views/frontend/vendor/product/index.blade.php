@@ -29,6 +29,18 @@
         width: 100%;
         background: aliceblue;
     }
+    
+</style>
+<style>
+   div.dataTables_wrapper div.dataTables_length select {
+
+        height: 33px;
+    }
+
+    div.dataTables_wrapper div.dataTables_filter input {
+
+        height: 25px;
+    }
 </style>
     <!-- breadcrumb start -->
     <div class="breadcrumb-section">
@@ -71,7 +83,8 @@
                                                 <h3>All Product</h3>
                                                 <a class="btn btn-sm btn-solid"  data-bs-toggle="modal" data-bs-target="#kt_modal_create_app" href="#" >Add Product</a>
                                             </div>
-                                            <table class="table mb-0">
+                                            <table class="table table-row-bordered table-row-gray-100 align-middle gs-0 gy-3"
+                                    id="dataTableExample1" class="data-table" style="width:100%">
                                                 <thead>
                                                     <tr>
                                                         <th scope="col">#</th>

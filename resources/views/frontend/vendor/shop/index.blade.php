@@ -1,6 +1,18 @@
 @extends('layouts.frontend')
 @section('title', 'Vendor-Create')
 @section('content')
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<style>
+   div.dataTables_wrapper div.dataTables_length select {
+
+        height: 33px;
+    }
+
+    div.dataTables_wrapper div.dataTables_filter input {
+
+        height: 25px;
+    }
+</style>
     <!-- breadcrumb start -->
     <div class="breadcrumb-section">
         <div class="container">
@@ -22,8 +34,6 @@
         </div>
     </div>
     <!-- breadcrumb End -->
-
-
     <!--  dashboard section start -->
     <section class="dashboard-section section-b-space">
         <div class="container">
@@ -42,7 +52,8 @@
                                                 <h3>All Shop</h3>
                                                 <a href="#" class="btn btn-sm btn-solid" data-bs-toggle="modal" data-bs-target="#kt_modal_new_address">Add Shop</a>
                                             </div>
-                                            <table class="table mb-0">
+                                            <table class="table table-row-bordered table-row-gray-100 align-middle gs-0 gy-3"
+                                    id="dataTableExample1" class="data-table" style="width:100%">
                                                 <thead>
                                                     <tr>
                                                         <th scope="col">#</th>
