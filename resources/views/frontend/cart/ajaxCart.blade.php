@@ -20,6 +20,7 @@
         </div>
         <div class="close-circle"><a onclick="deletedata(this)" id="{{$cartItem->rowId}}"><i class="fa fa-times"
                     aria-hidden="true"></i></a></div>
+
     </li>
     @endforeach
     <li>

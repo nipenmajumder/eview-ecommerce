@@ -94,17 +94,13 @@
 
                     <div class="total-sec">
                         <ul>
-                            @php
-                            $deliveryCharge = 70;
-                            @endphp
-                            <li>subtotal <span>৳{{ $data->total_amount }}</span></li>
-                            <li>shipping <span>৳{{ $deliveryCharge }}</span></li>
-                            {{-- <li>tax(GST) <span>$ </span></li> --}}
+
+                            <li>subtotal <span>৳{{ $data->cart_total }}</span></li>
+                            <li>shipping <span>৳{{ $data->delivery_charge }}</span></li>
                         </ul>
                     </div>
                     <div class="final-total">
-                        <h3>total <span>৳@php echo str_replace(',', '', $data->total_amount) +
-                                $deliveryCharge;@endphp</span></h3>
+                        <h3>total <span>৳{{ $data->total_amount }}</span></h3>
                     </div>
                 </div>
             </div>

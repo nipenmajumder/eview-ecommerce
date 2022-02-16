@@ -6,8 +6,6 @@ use App\Http\Controllers\Controller;
 use App\Models\Brand;
 use App\Models\Category;
 use App\Models\Product;
-use App\Models\ReReReSubCategory;
-use App\Models\ReReSubCategory;
 use App\Models\ResubCategory;
 use App\Models\SubCategory;
 use Illuminate\Http\Request;
@@ -48,20 +46,6 @@ class ProductShopController extends Controller
         $brands        = Brand::orderBy('id', 'DESC')->isActive()->isDeleted()->get();
         $reSubCategory = ResubCategory::with('reReSubCategory')->orderBy('id', 'DESC')->isActive()->isDeleted()->where('id', $id)->first();
         return view('frontend.shop.re-sub-category-shop', \compact('products', 'brands', 'reSubCategory'));
-    }
-    public function reReSubCategoryWishProduct($slug, $id)
-    {
-        $products          = Product::query()->orderBy('id', 'DESC')->isActive()->isDeleted()->where("child_resubcategory", $id)->paginate(4);
-        $brands            = Brand::orderBy('id', 'DESC')->isActive()->isDeleted()->get();
-        $reReReSubCategory = ReReSubCategory::with('reReReSubCategory')->orderBy('id', 'DESC')->isActive()->isDeleted()->where('id', $id)->first();
-        return view('frontend.shop.re-re-sub-category-shop', \compact('products', 'brands', 'reReReSubCategory'));
-    }
-    public function reReReSubCategoryWishProduct($slug, $id)
-    {
-        $products            = Product::query()->orderBy('id', 'DESC')->isActive()->isDeleted()->where("grand_childresubcategory_id", $id)->paginate(4);
-        $brands              = Brand::orderBy('id', 'DESC')->isActive()->isDeleted()->get();
-        $reReReReSubCategory = ReReReSubCategory::orderBy('id', 'DESC')->isActive()->isDeleted()->where('id', $id)->first();
-        return view('frontend.shop.re-re-re-sub-category-shop', \compact('products', 'brands', 'reReReReSubCategory'));
     }
 
     public function searchProduct(Request $request)

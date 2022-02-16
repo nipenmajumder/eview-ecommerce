@@ -243,6 +243,8 @@
                                                     <input type="hidden" name="name" value="{{$product->product_name}}">
                                                     <input type="hidden" name="product_sku"
                                                         value="{{$product->product_sku}}">
+                                                    <input type="hidden" name="shop_id" value="{{$product->shop_id}}">
+
                                                     <input type="hidden" name="image" value="{{$product->image}}">
                                                     <input type="hidden" name="price"
                                                         value="{{$product->product_price}}">
@@ -260,9 +262,10 @@
                                                                 <button id="{{$product->id}}" type="button"
                                                                     onclick="addtocart(this)" title="Add to cart"><i
                                                                         class="ti-shopping-cart"></i></button>
-
-                                                                <a href="javascript:void(0)" title="Add to Wishlist"><i
-                                                                        class="ti-heart" aria-hidden="true"></i></a>
+                                                                <a id="{{$product->id}}" href="javascript:void(0)"
+                                                                    onclick="addtowishlist(this)"
+                                                                    title="Add to Wishlist"><i class="ti-heart"
+                                                                        aria-hidden="true"></i></a>
                                                                 <a class="productdetails" data-id="{{ $product->id }}"
                                                                     data-bs-toggle="modal" data-bs-target="#quick-view"
                                                                     title="Quick View"><i class="ti-search"
