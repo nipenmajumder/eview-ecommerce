@@ -25,7 +25,7 @@
             </li>
             <li class="nav-item"><a data-bs-toggle="tab" class="nav-link" href="#profile">profile</a>
             </li>
-            <li class="nav-item"><a data-bs-toggle="tab" class="nav-link" href="#settings">settings</a>
+            <li class="nav-item"><a data-bs-toggle="tab" class="nav-link" href="{{ route('vendor.edit') }}">Edit Company</a>
             </li>
             <li class="nav-item"><a class="nav-link" data-toggle="modal" data-bs-target="#logout"
                     href="{{ url('logout') }}">logout</a>

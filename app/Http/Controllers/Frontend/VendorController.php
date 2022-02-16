@@ -104,4 +104,16 @@ class VendorController extends Controller
         $countproduct=Product::where('user_id',Auth::user()->id)->where('is_deleted',0)->count();
         return view('frontend.vendor.dashboard.vendor_dashboard',compact('countproduct'));
     }
+    // 
+    public function edit(){
+        $id=Auth::user()->id;
+        $vendorcompany=VendorCompany::where('user_id', $id)->first();
+        if($vendorcompany){
+
+            return view('frontend.vendor.vendor_create.vendorupdate',compact('vendorcompany'));
+        }else{
+            return redirect('/');
+        }
+        
+    }
 }

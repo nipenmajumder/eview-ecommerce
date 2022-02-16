@@ -14,6 +14,7 @@ class CartController extends Controller
             $request->image,
             $request->product_sku,
             $request->shop_id,
+            $request->product_main_price,
         ]);
         return response()->json([
             'success' => $request->name . ' ' . 'Added to Cart',
