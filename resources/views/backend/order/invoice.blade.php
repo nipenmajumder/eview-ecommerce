@@ -131,6 +131,7 @@ color: #3d405c !important
                     </div>
                 </div>
             </div>
+            
             <div class="card-footer bg-white">
                 <p class="mb-0">{{ $companyInformation->company_name }}, {{ $companyInformation->email }}, {{ $companyInformation->telephone }}, {{ $companyInformation->mobile }}</p>
                 <button class="btn btn-info print" id="print" >Print</button>

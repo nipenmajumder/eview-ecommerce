@@ -261,3 +261,6 @@ Route::get('admin/delete/product/{id}', [App\Http\Controllers\Admin\ApproveProdu
 
 Route::get('/admin/neworder/list', [App\Http\Controllers\Admin\OrderController::class, 'allneworder'])->name('admin.order.new');
 Route::get('admin/invoice/order/{id}', [App\Http\Controllers\Admin\OrderController::class, 'invoiceOrder']);
+
+Route::get('admin/update/order/{id}', [App\Http\Controllers\Admin\OrderController::class, 'updateOrder']);
+
