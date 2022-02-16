@@ -214,31 +214,9 @@
     <script src="{{ asset('frontend/assets') }}/js/jquery-3.3.1.min.js"></script>
     <script>
         $('#order_track').on('shown.bs.modal', function () {
-  $('#order_track').trigger('focus')
-})
+        $('#order_track').trigger('focus')
+        })
     </script>
-    <!--=================== track customer order  =============-->
-    {{-- <script>
-        $(document).ready(function(){
-            $(".order_id").keyup(function(){
-                let orderId = $("#order_id").val();
-                if(orderId){
-                    orderTrackBtn.classList.remove("disabled");
-                }else{
-                    orderTrackBtn.classList.add("disabled");
-                }
-            });
-    
-            $("#orderTrackBtn").click(function(){
-                let orderId = $("#order_id").val();
-                $.ajax({
-                url : '{{url('/track-order')}}',
-                type : 'get',
-                data : {orderId:orderId},
-                })
-            });
-        });
-    </script> --}}
     <!--=================== product quick view  =============-->
     <script>
         $(document).ready(function(){
@@ -350,6 +328,50 @@
                     cartquantity();
                     flyingcartupload();
 
+                    Swal.fire({
+                        toast: true,
+                        icon: 'error',
+                        title: 'Add to cart failed',
+                        position: 'top',
+                        showConfirmButton: false,
+                        timer: 3000,
+                        timerProgressBar: true,
+                        didOpen: (toast) => {
+                        toast.addEventListener('mouseenter', Swal.stopTimer)
+                        toast.addEventListener('mouseleave', Swal.resumeTimer)
+                        }
+                    })
+                    }       
+                }
+            })
+        }
+    </script>
+    <!--===================  add to wishlist from datalist  =============-->
+    <script>
+        function addtowishlist(el){
+            var id = el.id;
+            var str = $( "#cartsection-"+id+"" ).serialize();
+            $.ajax({
+                url : '{{url('/add-to-wishlist')}}',
+                type : 'get',
+                data : $( "#cartsection-"+id+"" ).serialize(),
+                success: function(data) {
+                    if(data.success){
+                   
+                    Swal.fire({
+                        toast: true,
+                        icon: 'success',
+                        title: ''+ data.success +'',
+                        position: 'top',
+                        showConfirmButton: false,
+                        timer: 3000,
+                        timerProgressBar: true,
+                        didOpen: (toast) => {
+                        toast.addEventListener('mouseenter', Swal.stopTimer)
+                        toast.addEventListener('mouseleave', Swal.resumeTimer)
+                        }
+                    })
+                    }else{
                     Swal.fire({
                         toast: true,
                         icon: 'error',
@@ -624,7 +646,6 @@
                 url : '{{url('/main/checkout/page')}}',
                 type : 'get',
                 success: function(data) {
-                    // console.log(data);
                         $("#checout_cart").html(data);
                 }
             });

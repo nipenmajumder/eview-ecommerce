@@ -121,6 +121,7 @@
                         <input type="hidden" name="name" value="{{$product->product_name}}">
                         <input type="hidden" name="product_sku" value="{{$product->product_sku}}">
                         <input type="hidden" name="image" value="{{$product->image}}">
+                        <input type="hidden" name="shop_id" value="{{$product->shop_id}}">
                         <input type="hidden" name="price" value="{{$product->product_price}}">
                         <input type="hidden" name="product_quantity" value="1">
                         <div class="product-box">
@@ -135,8 +136,8 @@
                                     <button id="{{$product->id}}" type="button" onclick="addtocart(this)"
                                         title="Add to cart"><i class="ti-shopping-cart"></i></button>
 
-                                    <a href="javascript:void(0)" title="Add to Wishlist"><i class="ti-heart"
-                                            aria-hidden="true"></i></a>
+                                    <a id="{{$product->id}}" href="javascript:void(0)" onclick="addtowishlist(this)"
+                                        title="Add to Wishlist"><i class="ti-heart" aria-hidden="true"></i></a>
                                     <a class="productdetails" data-id="{{ $product->id }}" data-bs-toggle="modal"
                                         data-bs-target="#quick-view" title="Quick View"><i class="ti-search"
                                             aria-hidden="true"></i></a>
@@ -172,14 +173,7 @@
 <div class="title1 section-t-space">
     <h2 class="title-inner1">{{ $category->name }}</h2>
 </div>
-<div class="container">
-    <div class="row">
-        <div class="col-xl-6 offset-xl-3">
-            <div class="product-para">
-            </div>
-        </div>
-    </div>
-</div>
+
 <section class="section-b-space pt-0 ratio_asos">
     <div class="container">
         <div class="row">
@@ -191,6 +185,7 @@
                         <input type="hidden" name="name" value="{{$product->product_name}}">
                         <input type="hidden" name="product_sku" value="{{$product->product_sku}}">
                         <input type="hidden" name="image" value="{{$product->image}}">
+                        <input type="hidden" name="shop_id" value="{{$product->shop_id}}">
                         <input type="hidden" name="price" value="{{$product->product_price}}">
                         <input type="hidden" name="product_quantity" value="1">
                         <div class="product-box">
@@ -205,8 +200,8 @@
                                     <button id="{{$product->id}}" type="button" onclick="addtocart(this)"
                                         title="Add to cart"><i class="ti-shopping-cart"></i></button>
 
-                                    <a href="javascript:void(0)" title="Add to Wishlist"><i class="ti-heart"
-                                            aria-hidden="true"></i></a>
+                                    <a id="{{$product->id}}" href="javascript:void(0)" onclick="addtowishlist(this)"
+                                        title="Add to Wishlist"><i class="ti-heart" aria-hidden="true"></i></a>
                                     <a class="productdetails" data-id="{{ $product->id }}" data-bs-toggle="modal"
                                         data-bs-target="#quick-view" title="Quick View"><i class="ti-search"
                                             aria-hidden="true"></i></a>
@@ -244,6 +239,7 @@
                         <input type="hidden" name="name" value="{{$product->product_name}}">
                         <input type="hidden" name="product_sku" value="{{$product->product_sku}}">
                         <input type="hidden" name="image" value="{{$product->image}}">
+                        <input type="hidden" name="shop_id" value="{{$product->shop_id}}">
                         <input type="hidden" name="price" value="{{$product->product_price}}">
                         <input type="hidden" name="product_quantity" value="1">
                         <div class="product-box">
@@ -258,8 +254,9 @@
                                     <button id="{{$product->id}}" type="button" onclick="addtocart(this)"
                                         title="Add to cart"><i class="ti-shopping-cart"></i></button>
 
-                                    <a href="javascript:void(0)" title="Add to Wishlist"><i class="ti-heart"
-                                            aria-hidden="true"></i></a>
+                                    <a id="{{$product->id}}" href="javascript:void(0)" onclick="addtowishlist(this)"
+                                        title="Add to Wishlist"><i class="ti-heart" aria-hidden="true"></i></a>
+
                                     <a class="productdetails" data-id="{{ $product->id }}" data-bs-toggle="modal"
                                         data-bs-target="#quick-view" title="Quick View"><i class="ti-search"
                                             aria-hidden="true"></i></a>

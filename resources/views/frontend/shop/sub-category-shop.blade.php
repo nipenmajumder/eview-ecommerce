@@ -312,8 +312,10 @@
                                                                     onclick="addtocart(this)" title="Add to cart"><i
                                                                         class="ti-shopping-cart"></i></button>
 
-                                                                <a href="javascript:void(0)" title="Add to Wishlist"><i
-                                                                        class="ti-heart" aria-hidden="true"></i></a>
+                                                                <a id="{{$product->id}}" href="javascript:void(0)"
+                                                                    onclick="addtowishlist(this)"
+                                                                    title="Add to Wishlist"><i class="ti-heart"
+                                                                        aria-hidden="true"></i></a>
                                                                 <a class="productdetails" data-id="{{ $product->id }}"
                                                                     data-bs-toggle="modal" data-bs-target="#quick-view"
                                                                     title="Quick View"><i class="ti-search"

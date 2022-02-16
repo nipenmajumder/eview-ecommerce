@@ -115,8 +115,7 @@
                                     @enderror
                                 </div>
                                 <div class="form-group col-md-12 col-sm-12 col-xs-12">
-                                    {{-- <div class="field-label">Address</div> --}}
-                                    <input type="radio" name="payment_status" id="payment_status_1">
+                                    <input type="radio" name="payment_status" id="payment_status_1" value="1">
                                     <label for="payment_status_1">Cash On Delivery</label><br>
                                     <span class="text-info text-sm-end">Please fill a
                                         check to continue shopping</span></label>
@@ -138,6 +137,9 @@
         </div>
     </div>
 </section>
+<input type="hidden" value="{{ shoppingChargeDhaka() }}" id="dhaka_charge">
+<input type="hidden" value="{{ shoppingChargeOutOfDhaka() }}" id="out_of_dhaka_charge">
+<input type="hidden" value="{{ str_replace(',', '',Cart::subtotal()) }}" id="cart_total_amount">
 <!-- section end -->
 @endsection
 @section('js')
@@ -169,25 +171,21 @@
     $(document).ready(function() {        
         $('select[name="shipping_city"]').on('change', function() {
             var city_id = $(this).val();
-            alert(city_id);
-            $('#shopping_amount').text(city_id);
-            // if (division_id) {
-            //     $.ajax({
-            //         url: "{{  url('/get/district/all/') }}/" + division_id,
-            //         type: "GET",
-            //         dataType: "json",
-            //         success: function(data) {
-            //             $('#city').empty();
-            //             $('#city').append(' <option value="">--select--</option>');
-            //             $.each(data, function(index, districtObj) {
-            //                 $('#city').append('<option value="' + districtObj.id + '">' + districtObj.name + '</option>');
-            //             });
-
-            //         }
-            //     });
-            // } else {
-            //     //  alert('danger');
-            // }
+            var dhaka_charge = $('#dhaka_charge').val();
+            var out_of_dhaka_charge = $('#out_of_dhaka_charge').val();
+            var simbol = '৳';
+            var cart_total_amount = $('#cart_total_amount').val(); 
+            // alert(cart_total_amount);
+            if(city_id==47){
+                $('#shopping_amount').text(dhaka_charge);
+                var grand_total =parseFloat(dhaka_charge)  + parseFloat(cart_total_amount);
+                $('#delfult_grand_total_amount').text(grand_total);
+            }else{
+                $('#shopping_amount').text(out_of_dhaka_charge);
+                var grand_total =parseFloat(out_of_dhaka_charge)  + parseFloat(cart_total_amount);
+                $('#delfult_grand_total_amount').text(grand_total);
+                $('#delfult_grand_total_amount_2').value(grand_total);
+            }
         });
     });
 </script>

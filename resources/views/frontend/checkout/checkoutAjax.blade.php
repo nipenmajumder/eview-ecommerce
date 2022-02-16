@@ -12,22 +12,25 @@
     </ul>
     <ul class="sub-total">
         <li>Subtotal <span class="count">৳{{ Cart::subtotal() }}</span></li>
-        @php
-        $deliveryCharge = 70;
-        @endphp
-        <li>Delevery Charge<span class="count">৳{{ $deliveryCharge }}</span></li>
-        <li>komol<span class="count" id="shopping_amount"></span></li>
+
+        <li>Delevery Charge <span class="count" id="shopping_amount">৳<p style="margin-top: 4px;
+            color: var(--theme-deafult); display: inline;">{{shoppingChargeDefault() }}</p></span>
+        </li>
     </ul>
     <ul class="total">
-        {{-- <li>Total <span class="count">৳{{ Cart::subtotal() + $deliveryCharge }}</span> --}}
+        <li>Total <span class="count">৳<p style="margin-top: 4px;
+            color: var(--theme-deafult); display: inline;" id="delfult_grand_total_amount">{{ str_replace(',', '',
+                    Cart::subtotal()) +
+                    shoppingChargeDefault() }}</p></span>
         </li>
     </ul>
 </div>
+{{-- @php echo str_replace(',', '', Cart::subtotal()) + $deliveryCharge;@endphp --}}
 <div class="payment-box">
     <input type="hidden" name="products[]" value="{{Cart::content()}}">
-    <input type="hidden" id="delivery_charge" name="delivery_charge" value="{{ $deliveryCharge }}">
-    <input type="hidden" id="total_amount" name="total_amount"
-        value="@php echo  str_replace(',', '', Cart::subtotal()) + $deliveryCharge;@endphp">
+    <input type="hidden" id="shopping_amount" name="delivery_charge" value="{{shoppingChargeDefault() }}">
+    <input type="hidden" id="delfult_grand_total_amount_2" name="total_amount" value="{{ str_replace(',', '', Cart::subtotal()) +
+            shoppingChargeDefault() }}">
     <input type="hidden" name="total_item" id="total_item" value="{{Cart::count();}}">
     <input type="hidden" name="total_qty" id="total_qty" value="{{Cart::count();}}">
     <input type="hidden" name="customer_id" value="{{ auth()->user()->id }}">

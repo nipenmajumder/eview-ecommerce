@@ -29,11 +29,12 @@ class CreateOrdersTable extends Migration
             $table->longText('company_id')->nullable();
             $table->integer('total_qty')->nullable();
             $table->integer('total_item')->nullable();
-            $table->double('total_amount')->nullable();
             $table->double('total_tax')->nullable();
             $table->float('copon_price')->nullable();
             $table->integer('copon_used')->default(0);
+            $table->double('cart_total')->nullable();
             $table->double('delivery_charge')->nullable();
+            $table->double('total_amount')->nullable();
             $table->integer('order_status')->default(0);
             $table->integer('payment_status')->default(1);
             $table->string('created_by')->nullable();

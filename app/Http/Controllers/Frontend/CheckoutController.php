@@ -11,7 +11,6 @@ use Devfaysal\BangladeshGeocode\Models\Division;
 use Gloudemans\Shoppingcart\Facades\Cart;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\DB;
 
 class CheckoutController extends Controller
 {
@@ -36,7 +35,7 @@ class CheckoutController extends Controller
 
     public function save(Request $request)
     {
-
+        // dd($request->all());
         if (Cart::content()->count() > 0) {
 
             $validated = $request->validate([
@@ -54,8 +53,15 @@ class CheckoutController extends Controller
                 'total_amount'      => 'required',
                 'payment_status'    => 'required',
             ]);
+            // dd($request->all());
             $orderId = Auth::user()->id . rand(5555, 99999);
-            // dd($orderId);
+            if ($request->shipping_city == 47) {
+                $delivery_charge = shoppingChargeDhaka();
+                $total_amount    = str_replace(',', '', Cart::subtotal()) + $delivery_charge;
+            } else {
+                $delivery_charge = shoppingChargeOutOfDhaka();
+                $total_amount    = str_replace(',', '', Cart::subtotal()) + $delivery_charge;
+            }
             $insert = Order::insertGetId([
                 'shipping_name'     => $request->shipping_name,
                 'shipping_phone'    => $request->shipping_phone,
@@ -67,8 +73,9 @@ class CheckoutController extends Controller
                 'customer_id'       => $request->customer_id,
                 'total_item'        => $request->total_item,
                 'total_qty'         => $request->total_qty,
-                'delivery_charge'   => $request->delivery_charge,
-                'total_amount'      => $request->total_amount,
+                'cart_total'        => str_replace(',', '', Cart::subtotal()),
+                'delivery_charge'   => $delivery_charge,
+                'total_amount'      => $total_amount,
                 'order_id'          => $orderId,
                 'payment_status'    => $request->payment_status,
                 'products'          => json_encode($request->products),
@@ -113,12 +120,9 @@ class CheckoutController extends Controller
 
     public function paymentMethods($order_id)
     {
-        // return $order_id;
         $data    = Order::where('order_id', $order_id)->first();
         $product = json_decode($data->products);
-        $country = DB::table('country')->where('id', auth()->user()->country)->first();
-
-        return view("frontend.checkout.paymentMethod", compact('data', 'product', 'country'));
+        return view("frontend.checkout.paymentMethod", compact('data', 'product'));
     }
     public function pay(Request $request)
     {
