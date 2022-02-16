@@ -9,6 +9,7 @@ use App\Models\Category;
 use App\Models\Order;
 use App\Models\Product;
 use App\Models\Slider;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class FrontendController extends Controller
@@ -16,11 +17,11 @@ class FrontendController extends Controller
     // home section
     public function home()
     {
-
+        $today             = Carbon::now()->format('d');
         $allSlider         = Slider::select(['image'])->isActive()->get();
         $allProduct        = Product::isDeleted()->isActive()->orderBy('id', 'DESC')->limit(10)->get();
         $newProducts       = Product::isDeleted()->isActive()->orderBy('id', 'DESC')->limit(12)->get();
-        $allelevenproduct  = Product::haveDiscount()->offer11()->isDeleted()->isActive()->orderBy('id', 'DESC')->limit(10)->get();
+        $allelevenproduct  = Product::haveDiscount()->offer11()->isDeleted()->isActive()->orderBy('id', 'DESC')->limit(12)->get();
         $allSpecialproduct = Product::haveDiscount()->specialOffer()->isDeleted()->isActive()->orderBy('id', 'DESC')->get();
         $alltweentyproduct = Product::haveDiscount()->offer22()->isDeleted()->isActive()->orderBy('id', 'DESC')->get();
         $topSaleCategory   = Category::isDeleted()->isActive()->with('product')->limit(5)->get()->map(function ($category) {
@@ -30,7 +31,7 @@ class FrontendController extends Controller
         $activeBrands     = Brand::isActive()->isDeleted()->get();
         $mainfivecategory = Category::isDeleted()->isActive()->orderBy('id', 'DESC')->get();
         $topProducts      = Product::isDeleted()->isActive()->orderBy('id', 'DESC')->limit(12)->get();
-        return view('frontend.home.index', compact('mainfivecategory', 'allSlider', 'allProduct', 'allelevenproduct', 'allSpecialproduct', 'alltweentyproduct', 'topSaleCategory', 'newProducts', 'activeBrands', 'topProducts'));
+        return view('frontend.home.index', compact('today', 'mainfivecategory', 'allSlider', 'allProduct', 'allelevenproduct', 'allSpecialproduct', 'alltweentyproduct', 'topSaleCategory', 'newProducts', 'activeBrands', 'topProducts'));
     }
     // product details
     public function productDetails($slug, $id)
