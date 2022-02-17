@@ -8,14 +8,14 @@
         <div class="row">
             <div class="col-sm-6">
                 <div class="page-title">
-                    <h2>{{ $category->name }}</h2>
+                    <h2>22 offer</h2>
                 </div>
             </div>
             <div class="col-sm-6">
                 <nav aria-label="breadcrumb" class="theme-breadcrumb">
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="{{ url('/') }}">home</a></li>
-                        <li class="breadcrumb-item active" aria-current="page">{{ $category->name }}</li>
+                        <li class="breadcrumb-item active" aria-current="page">22 Offer</li>
                     </ol>
                 </nav>
             </div>
@@ -33,29 +33,25 @@
                 <div class="col-sm-3 collection-filter">
                     <!-- side-bar colleps block stat -->
                     <div class="collection-filter-block">
+                        <!-- brand filter start -->
                         <div class="collection-mobile-back"><span class="filter-back"><i class="fa fa-angle-left"
                                     aria-hidden="true"></i> back</span></div>
-                        <!--sub category filter start -->
-                        @if($category!=null)
                         <div class="collection-collapse-block open">
-                            <h3 class="collapse-block-title">Sub Category</h3>
+                            <h3 class="collapse-block-title">Category</h3>
                             <div class="collection-collapse-block-content">
                                 <div class="collection-brand-filter">
-                                    @foreach ($category->subCategory as $sub_category)
+                                    @foreach ($category_data ?? [] as $category)
                                     <div class="form-check collection-filter-checkbox">
-                                        <input type="checkbox" class="form-check-input subcategory common_selector"
-                                            name="subcategory" id="{{ $sub_category->id }}"
-                                            value="{{$sub_category->id}}" onclick="onClickCategory()">
-                                        <label class="form-check-label" for="{{$sub_category->id}}">{{
-                                            $sub_category->name }}</label>
-
+                                        <input type="checkbox" class="form-check-input category common_selector"
+                                            name="category" id="{{ $category->id }}" value="{{ $category->id }}">
+                                        <label class="form-check-label" for="{{ $category->id }}">{{ $category->name
+                                            }}</label>
                                     </div>
                                     @endforeach
                                 </div>
                             </div>
                         </div>
-                        @endif
-                        <input type="hidden" name="category" id="category" class="category" value="{{$category->id}}">
+
 
                         <!-- brand filter start -->
 
@@ -98,70 +94,10 @@
                                             name="price" id="p-4" value="4">
                                         <label class="custom-control-label" for="p-4">৳501 to ৳1000</label>
                                     </div>
-
                                 </div>
                             </div>
                         </div>
-                        {{--
-                        <!-- color filter start here -->
-                        <div class="collection-collapse-block open">
-                            <h3 class="collapse-block-title">colors</h3>
-                            <div class="collection-collapse-block-content">
-                                <div class="color-selector">
-                                    <ul>
-                                        <li class="color-1 active"></li>
-                                        <li class="color-2"></li>
-                                        <li class="color-3"></li>
-                                        <li class="color-4"></li>
-                                        <li class="color-5"></li>
-                                        <li class="color-6"></li>
-                                        <li class="color-7"></li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- size filter start here -->
-                        <div class="collection-collapse-block border-0 open">
-                            <h3 class="collapse-block-title">size</h3>
-                            <div class="collection-collapse-block-content">
-                                <div class="collection-brand-filter">
-                                    <div class="form-check collection-filter-checkbox">
-                                        <input type="checkbox" class="form-check-input" id="hundred">
-                                        <label class="form-check-label" for="hundred">s</label>
-                                    </div>
-                                    <div class="form-check collection-filter-checkbox">
-                                        <input type="checkbox" class="form-check-input" id="twohundred">
-                                        <label class="form-check-label" for="twohundred">m</label>
-                                    </div>
-                                    <div class="form-check collection-filter-checkbox">
-                                        <input type="checkbox" class="form-check-input" id="threehundred">
-                                        <label class="form-check-label" for="threehundred">l</label>
-                                    </div>
-                                    <div class="form-check collection-filter-checkbox">
-                                        <input type="checkbox" class="form-check-input" id="fourhundred">
-                                        <label class="form-check-label" for="fourhundred">xl</label>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- price filter start here -->
-
-                        <div class="collection-collapse-block border-0 open">
-                            <h3 class="collapse-block-title">price</h3>
-                            <div class="collection-collapse-block-content">
-                                <div class="price-range-slider">
-
-                                    <p class="range-value">
-                                        <input type="text" id="amount" readonly>
-                                    </p>
-                                    <div id="slider-range" class="range-bar"></div>
-
-                                </div>
-                            </div>
-                        </div> --}}
                     </div>
-                    <!-- silde-bar colleps block end here -->
-                    <!-- side-bar single product slider start -->
 
                 </div>
                 <div class="collection-content col">
@@ -181,7 +117,7 @@
                                             <div class="col-12">
                                                 <div class="product-filter-content">
                                                     <div class="search-count">
-                                                        <h5>Showing {{ $category->name }} Products </h5>
+                                                        <h5>Showing All Products </h5>
                                                     </div>
                                                     <div class="collection-view">
                                                         <ul>
@@ -341,38 +277,12 @@
                                         </div>
                                         <div class="product-pagination">
                                             <div class="theme-paggination-block">
-                                                <div class="row">
-                                                    {{ $products->links() }}
-                                                    {{-- <div class="col-xl-6 col-md-6 col-sm-12">
-                                                        <nav aria-label="Page navigation">
-                                                            <ul class="pagination">
-                                                                <li class="page-item"><a class="page-link" href="#"
-                                                                        aria-label="Previous"><span
-                                                                            aria-hidden="true"><i
-                                                                                class="fa fa-chevron-left"
-                                                                                aria-hidden="true"></i></span> <span
-                                                                            class="sr-only">Previous</span></a></li>
-                                                                <li class="page-item active"><a class="page-link"
-                                                                        href="#">1</a></li>
-                                                                <li class="page-item"><a class="page-link"
-                                                                        href="#">2</a>
-                                                                </li>
-                                                                <li class="page-item"><a class="page-link"
-                                                                        href="#">3</a>
-                                                                </li>
-                                                                <li class="page-item"><a class="page-link" href="#"
-                                                                        aria-label="Next"><span aria-hidden="true"><i
-                                                                                class="fa fa-chevron-right"
-                                                                                aria-hidden="true"></i></span> <span
-                                                                            class="sr-only">Next</span></a></li>
-                                                            </ul>
-                                                        </nav>
-                                                    </div>
-                                                    <div class="col-xl-6 col-md-6 col-sm-12">
-                                                        <div class="product-search-count-bottom">
-                                                            <h5>Showing Products 1-24 of 10 Result</h5>
+                                                <div class="container-fluid p-0">
+                                                    <div class="row">
+                                                        <div class="col-xl-12 col-md-12 col-sm-12">
+                                                            {{$products -> links('vendor.pagination.custom')}}
                                                         </div>
-                                                    </div> --}}
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
@@ -387,6 +297,7 @@
         </div>
     </div>
 </section>
+
 @endsection
 @section('js')
 <script>
@@ -398,15 +309,15 @@
     $(document).ready(function(){   
         function filter_data()
         {
-            var category = $('#category').val();
+            // var category = $('#category').val();
             var brand = get_filter('brand');
-            var subcategory = get_filter('subcategory');
+            var category = get_filter('category');
             var price = get_filter('price');
             var sortingval = get_sort();
            $.ajax({
-                url : '{{url('/filter-category-shop')}}',
+                url : '{{url('/filter-22-offer-shop')}}',
                 type : 'get',
-                data : {category:category,brand:brand,subcategory:subcategory,price:price,sortingval:sortingval},
+                data : {category:category,brand:brand,price:price,sortingval:sortingval},
                 success: function(products) {
                     if(products){
                         $('#defultData').hide();

@@ -34,13 +34,16 @@ Route::get('/track-order', [App\Http\Controllers\Frontend\FrontendController::cl
 // product shop routes
 Route::get('/product-search', [App\Http\Controllers\Frontend\ProductShopController::class, 'searchProduct']);
 Route::get('/shop', [App\Http\Controllers\Frontend\ProductShopController::class, 'index'])->name('shop');
+Route::get('/11-offer', [App\Http\Controllers\Frontend\ProductShopController::class, 'offer11Store'])->name('11-offer');
+Route::get('/22-offer', [App\Http\Controllers\Frontend\ProductShopController::class, 'offer22Store'])->name('22-offer');
 Route::get('/category/{slug}/{id}', [App\Http\Controllers\Frontend\ProductShopController::class, 'categoryWishProduct']);
 Route::get('/sub-category/{slug}/{id}', [App\Http\Controllers\Frontend\ProductShopController::class, 'subCategoryWishProduct']);
 Route::get('/re-sub-category/{slug}/{id}', [App\Http\Controllers\Frontend\ProductShopController::class, 'reSubCategoryWishProduct']);
-Route::get('/re-re-sub-category/{slug}/{id}', [App\Http\Controllers\Frontend\ProductShopController::class, 'reReSubCategoryWishProduct']);
-Route::get('/re-re-re-sub-category/{slug}/{id}', [App\Http\Controllers\Frontend\ProductShopController::class, 'reReReSubCategoryWishProduct']);
+
 //filter product
 Route::get('/filter-shop', [App\Http\Controllers\Frontend\FilterProductController::class, 'filterShop']);
+Route::get('/filter-11-offer-shop', [App\Http\Controllers\Frontend\FilterProductController::class, 'filter11OfferShop']);
+Route::get('/filter-22-offer-shop', [App\Http\Controllers\Frontend\FilterProductController::class, 'filter22OfferShop']);
 Route::get('/filter-category-shop', [App\Http\Controllers\Frontend\FilterProductController::class, 'filterCategoryShop']);
 Route::get('/filter-sub-category-shop', [App\Http\Controllers\Frontend\FilterProductController::class, 'filterSubCategoryShop']);
 Route::get('/filter-re-sub-category-shop', [App\Http\Controllers\Frontend\FilterProductController::class, 'filterReSubCategoryShop']);
@@ -111,18 +114,6 @@ Route::get('/vendor', [App\Http\Controllers\Frontend\VendorController::class, 'c
 Route::post('/vendor', [App\Http\Controllers\Frontend\VendorController::class, 'store'])->name('vendor.create');
 // vendor update
 Route::get('/vendor/edit', [App\Http\Controllers\Frontend\VendorController::class, 'edit'])->name('vendor.edit');
-
-
-
-
-
-
-
-
-
-
-
-
 
 Route::get('/vendor/dashboard', [App\Http\Controllers\Frontend\VendorController::class, 'vendorDashboard'])->name('vendor.dashboard');
 Route::get('/vendor/order', [App\Http\Controllers\Frontend\VendorController::class, 'orderList'])->name('vendor.order');

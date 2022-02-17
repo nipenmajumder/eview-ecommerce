@@ -93,9 +93,9 @@
                             @php
                             $discounted_price = ($data->product_price)-($data->product_price*(11/100));
                             @endphp
-                            <h4 class="badge badge-grey-color">{{ $data->offer }}</h4>
+                            <h4 class="badge badge-grey-color">11% off</h4>
                             <h3 class="price-detail">৳ {{ $discounted_price }}
-                                <del>৳ {{ $data->product_price }}</del><span>11% off</span>
+                                <del>৳ {{ $data->product_price }}</del>
                             </h3>
                             <input type="hidden" name="price" value="{{$discounted_price}}">
                             <input type="hidden" name="product_main_price" value="{{$data->product_price}}">
@@ -104,24 +104,20 @@
                             @php
                             $discounted_price = ($data->product_price)-($data->product_price*(22/100));
                             @endphp
-                            <h4 class="badge badge-grey-color">{{ $data->offer }}</h4>
+                            <h4 class="badge badge-grey-color">22% off</h4>
                             <h3 class="price-detail">৳ {{ $discounted_price }}
-                                <del>৳ {{ $data->product_price }}</del><span>22% off</span>
+                                <del>৳ {{ $data->product_price }}</del>
                             </h3>
                             <input type="hidden" name="price" value="{{$discounted_price}}">
                             <input type="hidden" name="product_main_price" value="{{$data->product_price}}">
                             <!-- (#special_offer) -->
                             @elseif($data->offer=='special_offer' && $data->have_a_discount=='1')
-                            <h4 class="badge badge-grey-color">{{ $data->offer }}</h4>
+                            <h4 class="badge badge-grey-color">special offer</h4>
                             <!-- (no offer) -->
                             @elseif($data->have_a_discount=='0')
                             <h3 class="price-detail">৳ {{ $data->product_price }}</h3>
                             <input type="hidden" name="price" value="{{$data->product_price}}">
                             @else
-                            <!-- (#is offer is comming soon) -->
-                            <h4 class="badge badge-grey-color">{{ $data->offer }} is comming soon</h4>
-                            <h3 class="price-detail">৳ {{ $data->product_price }}</h3>
-                            <input type="hidden" name="price" value="{{$data->product_price}}">
                             <!-- (#2) endif start -->
                             @endif
 
@@ -393,7 +389,23 @@
                     <input type="hidden" name="price" value="{{$product->product_price}}">
                     <input type="hidden" name="product_quantity" value="1">
                     <div class="product-box">
+
                         <div class="img-wrapper">
+                            <div class="lable-block">
+                                @if($today==$eleven && $product->offer=='11_offer' &&
+                                $product->have_a_discount=='1')
+                                <span class="lable3">11% off</span>
+                                @elseif($today==$twenty_two &&
+                                $product->offer=='22_offer' &&
+                                $product->have_a_discount=='1')
+                                <span class="lable3">22% off</span>
+                                @elseif($product->offer=='special_offer' &&
+                                $product->have_a_discount=='1')
+                                <span class="lable3">special offer</span>
+                                @else
+                                @endif
+                                <span class="lable4">on sale</span>
+                            </div>
                             <div class="front">
                                 <a href="{{url('/products/'.$product->product_slug.'/'.$product->id)}}">
                                     <img src="{{ asset('uploads/products/'.$product->image) }}"
@@ -409,14 +421,77 @@
                                 <a class="productdetails" data-id="{{ $product->id }}" data-bs-toggle="modal"
                                     data-bs-target="#quick-view" title="Quick View"><i class="ti-search"
                                         aria-hidden="true"></i></a>
-                                <a href="" title="Compare"><i class="ti-reload" aria-hidden="true"></i></a>
                             </div>
                         </div>
                         <div class="product-detail">
+                            {{-- <div class="rating"><i class="fa fa-star"></i> <i class="fa fa-star"></i> <i
+                                    class="fa fa-star"></i>
+                                <i class="fa fa-star"></i> <i class="fa fa-star"></i>
+                            </div> --}}
                             <a href="{{url('/products/'.$product->product_slug.'/'.$product->id)}}">
                                 <h6>{{ $product->product_name }}</h6>
                             </a>
-                            <h4>৳{{ $product->product_price }}</h4>
+
+                            <!--======================= offer related codes ================== -->
+
+                            <!-- (#11 offer )-->
+                            @if($today==$eleven && $product->offer=='11_offer' &&
+                            $product->have_a_discount=='1')
+                            @php
+                            $discounted_price =
+                            ($product->product_price)-($product->product_price*(11/100));
+                            @endphp
+                            <h6>৳ {{ $discounted_price }}
+                                <del>৳ {{ $product->product_price }}</del>
+                            </h6>
+
+                            <input type="hidden" name="price" value="{{$discounted_price}}">
+                            <input type="hidden" name="product_main_price" value="{{$product->product_price}}">
+                            <!-- (#22_offer)-->
+                            @elseif($today==$twenty_two && $product->offer=='22_offer'
+                            &&
+                            $product->have_a_discount=='1')
+                            @php
+                            $discounted_price =
+                            ($product->product_price)-($product->product_price*(22/100));
+                            @endphp
+                            <h6>৳ {{ $discounted_price }}
+                                <del>৳ {{ $product->product_price }}</del>
+                            </h6>
+                            <input type="hidden" name="price" value="{{$discounted_price}}">
+                            <input type="hidden" name="product_main_price" value="{{$product->product_price}}">
+                            <!-- (#special_offer) -->
+                            @elseif($product->offer=='special_offer' &&
+                            $product->have_a_discount=='1')
+                            <!-- (no offer) -->
+                            @elseif($product->have_a_discount=='0')
+                            <h6>৳ {{ $product->product_price }}</h6>
+                            <input type="hidden" name="price" value="{{$product->product_price}}">
+                            @else
+                            <!-- (#is offer is comming soon) -->
+                            <h6>৳ {{ $product->product_price }}</h6>
+                            <input type="hidden" name="price" value="{{$product->product_price}}">
+                            <!-- (#2) endif start -->
+                            @endif
+                            <!--======================= offer related codes end ================== -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+                            {{-- <ul class="color-variant">
+                                <li class="bg-light0"></li>
+                                <li class="bg-light1"></li>
+                                <li class="bg-light2"></li>
+                            </ul> --}}
                         </div>
                     </div>
                 </form>
