@@ -489,6 +489,7 @@
             <div class="col">
                 <div class="product-5 product-m no-arrow">
                     @foreach ($category->product as $product)
+                    @if($product->is_deleted=='0' && $product->is_active=='1'&& $product->is_approve=='1')
                     <form id="cartsection-{{ $product->id }}">
                         <input type="hidden" name="id" value="{{$product->id}}">
                         <input type="hidden" name="name" value="{{$product->product_name}}">
@@ -599,6 +600,7 @@
                             </div>
                         </div>
                     </form>
+                    @endif
                     @endforeach
                 </div>
             </div>

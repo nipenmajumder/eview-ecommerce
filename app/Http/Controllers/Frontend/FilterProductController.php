@@ -71,7 +71,7 @@ class FilterProductController extends Controller
                 $products = $products->whereIn('brand_id', $request->brand)->whereIn('category_id', $request->category)->orderBy('product_name', 'ASC');
             }
         }
-        $products = $products->paginate(4);
+        $products = $products->get();
         return view('frontend.shop.filter-product.filter-shop', compact('products'));
     }
     public function filterCategoryShop(Request $request)
@@ -132,7 +132,7 @@ class FilterProductController extends Controller
                 $products = $products->whereIn('subcategory_id', $request->subcategory)->whereIn('brand_id', $request->brand)->orderBy('product_name', 'ASC');
             }
         }
-        $products = $products->paginate(4);
+        $products = $products->get();
         return view('frontend.shop.filter-product.filter-category-shop', compact('products'));
     }
 
@@ -260,7 +260,141 @@ class FilterProductController extends Controller
                 $products = $products->whereIn('child_resubcategory', $request->re_re_sub_category)->whereIn('brand_id', $request->brand)->orderBy('product_name', 'ASC');
             }
         }
-        $products = $products->paginate(4);
+        $products = $products->get();
         return view('frontend.shop.filter-product.filter-re-sub-category-shop', compact('products'));
+    }
+
+    public function filter11OfferShop(Request $request)
+    {
+        // dd($request->all());
+        $products = Product::query()->isActive()->isDeleted()->haveDiscount()->offer11()->orderBy('id', 'DESC');
+        if ($request->category == null && $request->brand == null && $request->price == null && $request->sortingval == null) {
+            $products = $products;
+        }
+        if (isset($request["category"])) {
+            $products = $products->whereIn('category_id', $request->category);
+        }
+        if (isset($request["brand"])) {
+            $products = $products->whereIn('brand_id', $request->brand);
+        }
+        if (isset($request["brand"]) && isset($request["category"])) {
+            $products = $products->whereIn('category_id', $request->category)->whereIn('brand_id', $request->brand);
+        }
+
+        if (isset($request["price"])) {
+            $priceVal = implode(',', $request->price);
+
+            if ($priceVal == 1) {
+                $products = $products->where('product_price', '>', '1')->where('product_price', '<=', '100');
+            } elseif ($priceVal == 2) {
+                $products = $products->where('product_price', '>', '101')->where('product_price', '<=', '500');
+            } elseif ($priceVal == 3) {
+                $products = $products->where('product_price', '>', '501')->where('product_price', '<=', '1000');
+            } elseif ($priceVal == 4) {
+                $products = $products->where('product_price', '>', '1001')->where('product_price', '<=', '10000');
+            }
+        }
+        if (isset($request["sortingval"])) {
+            $sortVal = implode(',', $request->sortingval);
+            if ($sortVal == 1) {
+                $products = $products->orderBy('product_price', 'ASC');
+            } elseif ($sortVal == 2) {
+                $products = $products->orderBy('product_price', 'DESC');
+            } elseif ($sortVal == 3) {
+                $products = $products->orderBy('product_name', 'ASC');
+            }
+        }
+        if (isset($request["brand"]) && isset($request["category"])) {
+            $products = $products->whereIn('category_id', $request->category)->whereIn('brand_id', $request->brand);
+        }
+        if (isset($request["category"]) && isset($request["sortingval"])) {
+            $sortVal = implode(',', $request->sortingval);
+            if ($sortVal == 1) {
+                $products = $products->whereIn('category_id', $request->category)->orderBy('product_price', 'ASC');
+            } elseif ($sortVal == 2) {
+                $products = $products->whereIn('category_id', $request->category)->orderBy('product_price', 'DESC');
+            } elseif ($sortVal == 3) {
+                $products = $products->whereIn('category_id', $request->category)->orderBy('product_name', 'ASC');
+            }
+        }
+        if (isset($request["category"]) && isset($request["brand"]) && isset($request["sortingval"])) {
+            $sortVal = implode(',', $request->sortingval);
+            if ($sortVal == 1) {
+                $products = $products->whereIn('brand_id', $request->brand)->whereIn('category_id', $request->category)->orderBy('product_price', 'ASC');
+            } elseif ($sortVal == 2) {
+                $products = $products->whereIn('brand_id', $request->brand)->whereIn('category_id', $request->category)->orderBy('product_price', 'DESC');
+            } elseif ($sortVal == 3) {
+                $products = $products->whereIn('brand_id', $request->brand)->whereIn('category_id', $request->category)->orderBy('product_name', 'ASC');
+            }
+        }
+        $products = $products->get();
+        return view('frontend.shop.filter-product.filter-offer-11-shop', compact('products'));
+    }
+
+    public function filter22OfferShop(Request $request)
+    {
+        // dd($request->all());
+        $products = Product::query()->isActive()->isDeleted()->haveDiscount()->offer22()->orderBy('id', 'DESC');
+        if ($request->category == null && $request->brand == null && $request->price == null && $request->sortingval == null) {
+            $products = $products;
+        }
+        if (isset($request["category"])) {
+            $products = $products->whereIn('category_id', $request->category);
+        }
+        if (isset($request["brand"])) {
+            $products = $products->whereIn('brand_id', $request->brand);
+        }
+        if (isset($request["brand"]) && isset($request["category"])) {
+            $products = $products->whereIn('category_id', $request->category)->whereIn('brand_id', $request->brand);
+        }
+
+        if (isset($request["price"])) {
+            $priceVal = implode(',', $request->price);
+
+            if ($priceVal == 1) {
+                $products = $products->where('product_price', '>', '1')->where('product_price', '<=', '100');
+            } elseif ($priceVal == 2) {
+                $products = $products->where('product_price', '>', '101')->where('product_price', '<=', '500');
+            } elseif ($priceVal == 3) {
+                $products = $products->where('product_price', '>', '501')->where('product_price', '<=', '1000');
+            } elseif ($priceVal == 4) {
+                $products = $products->where('product_price', '>', '1001')->where('product_price', '<=', '10000');
+            }
+        }
+        if (isset($request["sortingval"])) {
+            $sortVal = implode(',', $request->sortingval);
+            if ($sortVal == 1) {
+                $products = $products->orderBy('product_price', 'ASC');
+            } elseif ($sortVal == 2) {
+                $products = $products->orderBy('product_price', 'DESC');
+            } elseif ($sortVal == 3) {
+                $products = $products->orderBy('product_name', 'ASC');
+            }
+        }
+        if (isset($request["brand"]) && isset($request["category"])) {
+            $products = $products->whereIn('category_id', $request->category)->whereIn('brand_id', $request->brand);
+        }
+        if (isset($request["category"]) && isset($request["sortingval"])) {
+            $sortVal = implode(',', $request->sortingval);
+            if ($sortVal == 1) {
+                $products = $products->whereIn('category_id', $request->category)->orderBy('product_price', 'ASC');
+            } elseif ($sortVal == 2) {
+                $products = $products->whereIn('category_id', $request->category)->orderBy('product_price', 'DESC');
+            } elseif ($sortVal == 3) {
+                $products = $products->whereIn('category_id', $request->category)->orderBy('product_name', 'ASC');
+            }
+        }
+        if (isset($request["category"]) && isset($request["brand"]) && isset($request["sortingval"])) {
+            $sortVal = implode(',', $request->sortingval);
+            if ($sortVal == 1) {
+                $products = $products->whereIn('brand_id', $request->brand)->whereIn('category_id', $request->category)->orderBy('product_price', 'ASC');
+            } elseif ($sortVal == 2) {
+                $products = $products->whereIn('brand_id', $request->brand)->whereIn('category_id', $request->category)->orderBy('product_price', 'DESC');
+            } elseif ($sortVal == 3) {
+                $products = $products->whereIn('brand_id', $request->brand)->whereIn('category_id', $request->category)->orderBy('product_name', 'ASC');
+            }
+        }
+        $products = $products->get();
+        return view('frontend.shop.filter-product.filter-offer-22-shop', compact('products'));
     }
 }

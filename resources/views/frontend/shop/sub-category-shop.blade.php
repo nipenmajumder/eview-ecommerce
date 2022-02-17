@@ -158,95 +158,7 @@
                         </div> --}}
                     </div>
                     <!-- silde-bar colleps block end here -->
-                    <!-- side-bar single product slider start -->
-                    <div class="theme-card">
-                        <h5 class="title-border">new product</h5>
-                        {{-- <div class="offer-slider slide-1">
-                            <div>
-                                <div class="media">
-                                    <a href=""><img class="img-fluid blur-up lazyload"
-                                            src="../assets/images/fashion/pro/1.jpg" alt=""></a>
-                                    <div class="media-body align-self-center">
-                                        <div class="rating"><i class="fa fa-star"></i> <i class="fa fa-star"></i> <i
-                                                class="fa fa-star"></i> <i class="fa fa-star"></i> <i
-                                                class="fa fa-star"></i></div><a href="product-page(no-sidebar).html">
-                                            <h6>Slim Fit Cotton Shirt</h6>
-                                        </a>
-                                        <h4>$500.00</h4>
-                                    </div>
-                                </div>
-                                <div class="media">
-                                    <a href=""><img class="img-fluid blur-up lazyload"
-                                            src="../assets/images/fashion/pro/011.jpg" alt=""></a>
-                                    <div class="media-body align-self-center">
-                                        <div class="rating"><i class="fa fa-star"></i> <i class="fa fa-star"></i> <i
-                                                class="fa fa-star"></i> <i class="fa fa-star"></i> <i
-                                                class="fa fa-star"></i></div><a href="product-page(no-sidebar).html">
-                                            <h6>Slim Fit Cotton Shirt</h6>
-                                        </a>
-                                        <h4>$500.00</h4>
-                                    </div>
-                                </div>
-                                <div class="media">
-                                    <a href=""><img class="img-fluid blur-up lazyload"
-                                            src="../assets/images/fashion/pro/16.jpg" alt=""></a>
-                                    <div class="media-body align-self-center">
-                                        <div class="rating"><i class="fa fa-star"></i> <i class="fa fa-star"></i> <i
-                                                class="fa fa-star"></i> <i class="fa fa-star"></i> <i
-                                                class="fa fa-star"></i></div><a href="product-page(no-sidebar).html">
-                                            <h6>Slim Fit Cotton Shirt</h6>
-                                        </a>
-                                        <h4>$500.00</h4>
-                                    </div>
-                                </div>
-                            </div>
-                            <div>
-                                <div class="media">
-                                    <a href=""><img class="img-fluid blur-up lazyload"
-                                            src="../assets/images/fashion/pro/001.jpg" alt=""></a>
-                                    <div class="media-body align-self-center">
-                                        <div class="rating"><i class="fa fa-star"></i> <i class="fa fa-star"></i> <i
-                                                class="fa fa-star"></i> <i class="fa fa-star"></i> <i
-                                                class="fa fa-star"></i></div><a href="product-page(no-sidebar).html">
-                                            <h6>Slim Fit Cotton Shirt</h6>
-                                        </a>
-                                        <h4>$500.00</h4>
-                                    </div>
-                                </div>
-                                <div class="media">
-                                    <a href=""><img class="img-fluid blur-up lazyload"
-                                            src="../assets/images/fashion/pro/4.jpg" alt=""></a>
-                                    <div class="media-body align-self-center">
-                                        <div class="rating"><i class="fa fa-star"></i> <i class="fa fa-star"></i> <i
-                                                class="fa fa-star"></i> <i class="fa fa-star"></i> <i
-                                                class="fa fa-star"></i></div><a href="product-page(no-sidebar).html">
-                                            <h6>Slim Fit Cotton Shirt</h6>
-                                        </a>
-                                        <h4>$500.00</h4>
-                                    </div>
-                                </div>
-                                <div class="media">
-                                    <a href=""><img class="img-fluid blur-up lazyload"
-                                            src="../assets/images/fashion/pro/19.jpg" alt=""></a>
-                                    <div class="media-body align-self-center">
-                                        <div class="rating"><i class="fa fa-star"></i> <i class="fa fa-star"></i> <i
-                                                class="fa fa-star"></i> <i class="fa fa-star"></i> <i
-                                                class="fa fa-star"></i></div><a href="product-page(no-sidebar).html">
-                                            <h6>Slim Fit Cotton Shirt</h6>
-                                        </a>
-                                        <h4>$500.00</h4>
-                                    </div>
-                                </div>
-                            </div>
-                        </div> --}}
-                    </div>
-                    <!-- side-bar single product slider end -->
-                    <!-- side-bar banner start here -->
-                    <div class="collection-sidebar-banner">
-                        <a href="#"><img src="../assets/images/side-banner.png" class="img-fluid blur-up lazyload"
-                                alt=""></a>
-                    </div>
-                    <!-- side-bar banner end here -->
+
                 </div>
                 <div class="collection-content col">
                     <div class="page-main-content">
@@ -295,19 +207,37 @@
                                                     <input type="hidden" name="product_sku"
                                                         value="{{$product->product_sku}}">
                                                     <input type="hidden" name="image" value="{{$product->image}}">
+                                                    <input type="hidden" name="shop_id" value="{{$product->shop_id}}">
                                                     <input type="hidden" name="price"
                                                         value="{{$product->product_price}}">
                                                     <input type="hidden" name="product_quantity" value="1">
                                                     <div class="product-box">
+
                                                         <div class="img-wrapper">
+                                                            <div class="lable-block">
+                                                                @if($today==$eleven && $product->offer=='11_offer' &&
+                                                                $product->have_a_discount=='1')
+                                                                <span class="lable3">11% off</span>
+                                                                @elseif($today==$twenty_two &&
+                                                                $product->offer=='22_offer' &&
+                                                                $product->have_a_discount=='1')
+                                                                <span class="lable3">22% off</span>
+                                                                @elseif($product->offer=='special_offer' &&
+                                                                $product->have_a_discount=='1')
+                                                                <span class="lable3">special offer</span>
+                                                                @else
+                                                                @endif
+                                                                <span class="lable4">on sale</span>
+                                                            </div>
                                                             <div class="front">
                                                                 <a
-                                                                    href="{{url('/products/'.$product->product_slug.'/'.$product->id)}}"><img
-                                                                        src="{{ asset('uploads/products/'.$product->image) }}"
+                                                                    href="{{url('/products/'.$product->product_slug.'/'.$product->id)}}">
+                                                                    <img src="{{ asset('uploads/products/'.$product->image) }}"
                                                                         class="img-fluid blur-up lazyload bg-img"
-                                                                        alt=""></a>
+                                                                        alt="">
+                                                                </a>
                                                             </div>
-                                                            <div class="cart-detail">
+                                                            <div class="cart-info cart-wrap">
                                                                 <button id="{{$product->id}}" type="button"
                                                                     onclick="addtocart(this)" title="Add to cart"><i
                                                                         class="ti-shopping-cart"></i></button>
@@ -320,24 +250,84 @@
                                                                     data-bs-toggle="modal" data-bs-target="#quick-view"
                                                                     title="Quick View"><i class="ti-search"
                                                                         aria-hidden="true"></i></a>
-                                                                <a href="compare.html" title="Compare"><i
-                                                                        class="ti-reload" aria-hidden="true"></i></a>
                                                             </div>
                                                         </div>
                                                         <div class="product-detail">
-                                                            <div>
-                                                                <div class="rating"><i class="fa fa-star"></i> <i
-                                                                        class="fa fa-star"></i> <i
-                                                                        class="fa fa-star"></i>
-                                                                    <i class="fa fa-star"></i> <i
-                                                                        class="fa fa-star"></i>
-                                                                </div>
-                                                                <a href="product-page(no-sidebar).html">
-                                                                    <h6>{{ $product->product_name }}</h6>
-                                                                </a>
-                                                                <h4>৳ {{ $product->product_price }}</h4>
+                                                            {{-- <div class="rating"><i class="fa fa-star"></i> <i
+                                                                    class="fa fa-star"></i> <i class="fa fa-star"></i>
+                                                                <i class="fa fa-star"></i> <i class="fa fa-star"></i>
+                                                            </div> --}}
+                                                            <a
+                                                                href="{{url('/products/'.$product->product_slug.'/'.$product->id)}}">
+                                                                <h6>{{ $product->product_name }}</h6>
+                                                            </a>
 
-                                                            </div>
+                                                            <!--======================= offer related codes ================== -->
+
+                                                            <!-- (#11 offer )-->
+                                                            @if($today==$eleven && $product->offer=='11_offer' &&
+                                                            $product->have_a_discount=='1')
+                                                            @php
+                                                            $discounted_price =
+                                                            ($product->product_price)-($product->product_price*(11/100));
+                                                            @endphp
+                                                            <h6>৳ {{ $discounted_price }}
+                                                                <del>৳ {{ $product->product_price }}</del>
+                                                            </h6>
+
+                                                            <input type="hidden" name="price"
+                                                                value="{{$discounted_price}}">
+                                                            <input type="hidden" name="product_main_price"
+                                                                value="{{$product->product_price}}">
+                                                            <!-- (#22_offer)-->
+                                                            @elseif($today==$twenty_two && $product->offer=='22_offer'
+                                                            &&
+                                                            $product->have_a_discount=='1')
+                                                            @php
+                                                            $discounted_price =
+                                                            ($product->product_price)-($product->product_price*(22/100));
+                                                            @endphp
+                                                            <h6>৳ {{ $discounted_price }}
+                                                                <del>৳ {{ $product->product_price }}</del>
+                                                            </h6>
+                                                            <input type="hidden" name="price"
+                                                                value="{{$discounted_price}}">
+                                                            <input type="hidden" name="product_main_price"
+                                                                value="{{$product->product_price}}">
+                                                            <!-- (#special_offer) -->
+                                                            @elseif($product->offer=='special_offer' &&
+                                                            $product->have_a_discount=='1')
+                                                            <!-- (no offer) -->
+                                                            @elseif($product->have_a_discount=='0')
+                                                            <h6>৳ {{ $product->product_price }}</h6>
+                                                            <input type="hidden" name="price"
+                                                                value="{{$product->product_price}}">
+                                                            @else
+                                                            <!-- (#is offer is comming soon) -->
+                                                            <h6>৳ {{ $product->product_price }}</h6>
+                                                            <input type="hidden" name="price"
+                                                                value="{{$product->product_price}}">
+                                                            <!-- (#2) endif start -->
+                                                            @endif
+                                                            <!--======================= offer related codes end ================== -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                                            {{-- <ul class="color-variant">
+                                                                <li class="bg-light0"></li>
+                                                                <li class="bg-light1"></li>
+                                                                <li class="bg-light2"></li>
+                                                            </ul> --}}
                                                         </div>
                                                     </div>
                                                 </form>
