@@ -78,6 +78,8 @@
                                                     <span class="badge badge-light-success">Rejected</span>
                                                     @elseif($order->delevery_status==3)
                                                     <span class="badge badge-success">Delivered</span>
+                                                    @elseif($order->delevery_status==4)
+                                                    <span class="badge badge-success">Returned</span>
                                                     @endif
                                                 </td>
                                                 <td><a title="view products"

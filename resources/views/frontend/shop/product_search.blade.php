@@ -97,8 +97,12 @@
                                     </div>
                                     <div class="product-pagination">
                                         <div class="theme-paggination-block">
-                                            <div class="row">
-                                                {{ $products->links() }}
+                                            <div class="container-fluid p-0">
+                                                <div class="row">
+                                                    <div class="col-xl-12 col-md-12 col-sm-12">
+                                                        {{$products -> links('vendor.pagination.custom')}}
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
