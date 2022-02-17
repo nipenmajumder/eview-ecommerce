@@ -272,10 +272,16 @@ Route::get('/admin/approve/product', [App\Http\Controllers\Admin\ApproveProductC
 Route::get('/admin/allreject/product', [App\Http\Controllers\Admin\ApproveProductController::class, 'rejectproduct'])->name('admin.reject.product');
 Route::get('/admin/product/approve/{id}', [App\Http\Controllers\Admin\ApproveProductController::class, 'approve']);
 Route::get('/admin/reject/product/{id}', [App\Http\Controllers\Admin\ApproveProductController::class, 'reject']);
-
+Route::get('/admin/product/edit/{id}', [App\Http\Controllers\Admin\ApproveProductController::class, 'edit']);
+Route::post('/admin/product/update', [App\Http\Controllers\Admin\ApproveProductController::class, 'update'])->name('admin.product.update');
 Route::get('admin/delete/product/{id}', [App\Http\Controllers\Admin\ApproveProductController::class, 'delete']);
 
 Route::get('/admin/neworder/list', [App\Http\Controllers\Admin\OrderController::class, 'allneworder'])->name('admin.order.new');
 Route::get('admin/invoice/order/{id}', [App\Http\Controllers\Admin\OrderController::class, 'invoiceOrder']);
 
 Route::get('admin/update/order/{id}', [App\Http\Controllers\Admin\OrderController::class, 'updateOrder']);
+//Report Routes
+Route::get('/admin/orderreport', [App\Http\Controllers\Admin\ReportController::class, 'orderReport'])->name('admin.orderreport');
+Route::post('/admin/orderreport', [App\Http\Controllers\Admin\ReportController::class, 'Report'])->name('admin.orderreport');
+Route::get('/admin/productreport', [App\Http\Controllers\Admin\ReportController::class, 'productReport'])->name('admin.productreport');
+Route::post('/admin/productreport', [App\Http\Controllers\Admin\ReportController::class, 'productWiseReport'])->name('admin.productreport');
