@@ -59,89 +59,122 @@
                 </div>
                 <div class="col-lg-6 rtl-text">
                     <div class="product-right">
-                        <div class="product-count">
-                            <ul>
-                                <li>
-                                    <img src="{{ asset('frontend') }}/assets/images/fire.gif" class="img-fluid"
-                                        alt="image">
-                                    <span class="p-counter">37</span>
-                                    <span class="lang">orders in last 24 hours</span>
-                                </li>
-                                <li>
-                                    <img src="{{ asset('frontend') }}/assets/images/person.gif"
-                                        class="img-fluid user_img" alt="image">
-                                    <span class="p-counter">44</span>
-                                    <span class="lang">active view this</span>
-                                </li>
-                            </ul>
-                        </div>
-                        <h2>{{ $data->product_name }}</h2>
-                        <div class="rating-section">
-                            <div class="rating"><i class="fa fa-star"></i> <i class="fa fa-star"></i> <i
-                                    class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i>
-                            </div>
-                            <h6>120 ratings</h6>
-                        </div>
-                        <div class="label-section">
-                            <span class="badge badge-grey-color">#1 Best seller</span>
-                            <span class="label-text">in {{ $data->Category->name}}</span>
-                        </div>
-                        <h3 class="price-detail">৳ {{ $data->product_price }}
-                            <!-- <del>$459.00</del>
-                            <span>55% off</span> -->
-                        </h3>
+                        <form id="cartsection">
 
-                        <!-- <ul class="color-variant">
+                            {{-- <div class="product-count">
+                                <ul>
+                                    <li>
+                                        <img src="{{ asset('frontend') }}/assets/images/fire.gif" class="img-fluid"
+                                            alt="image">
+                                        <span class="p-counter">37</span>
+                                        <span class="lang">orders in last 24 hours</span>
+                                    </li>
+                                    <li>
+                                        <img src="{{ asset('frontend') }}/assets/images/person.gif"
+                                            class="img-fluid user_img" alt="image">
+                                        <span class="p-counter">44</span>
+                                        <span class="lang">active view this</span>
+                                    </li>
+                                </ul>
+                            </div> --}}
+                            <h2>{{ $data->product_name }}</h2>
+                            {{-- <div class="rating-section">
+                                <div class="rating"><i class="fa fa-star"></i> <i class="fa fa-star"></i> <i
+                                        class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i>
+                                </div>
+                                <h6>120 ratings</h6>
+                            </div>
+                            <div class="label-section">
+                                <span class="badge badge-grey-color">#1 Best seller</span>
+                                <span class="label-text">in {{ $data->Category->name}}</span>
+                            </div> --}}
+                            <!-- (#11 offer )-->
+                            @if($today==$eleven && $data->offer=='11_offer' && $data->have_a_discount=='1')
+                            @php
+                            $discounted_price = ($data->product_price)-($data->product_price*(11/100));
+                            @endphp
+                            <h4 class="badge badge-grey-color">11% off</h4>
+                            <h3 class="price-detail">৳ {{ $discounted_price }}
+                                <del>৳ {{ $data->product_price }}</del>
+                            </h3>
+                            <input type="hidden" name="price" value="{{$discounted_price}}">
+                            <input type="hidden" name="product_main_price" value="{{$data->product_price}}">
+                            <!-- (#22_offer)-->
+                            @elseif($today==$twenty_two && $data->offer=='22_offer' && $data->have_a_discount=='1')
+                            @php
+                            $discounted_price = ($data->product_price)-($data->product_price*(22/100));
+                            @endphp
+                            <h4 class="badge badge-grey-color">22% off</h4>
+                            <h3 class="price-detail">৳ {{ $discounted_price }}
+                                <del>৳ {{ $data->product_price }}</del>
+                            </h3>
+                            <input type="hidden" name="price" value="{{$discounted_price}}">
+                            <input type="hidden" name="product_main_price" value="{{$data->product_price}}">
+                            <!-- (#special_offer) -->
+                            @elseif($data->offer=='special_offer' && $data->have_a_discount=='1')
+                            <h4 class="badge badge-grey-color">special offer</h4>
+                            <!-- (no offer) -->
+                            @elseif($data->have_a_discount=='0')
+                            <h3 class="price-detail">৳ {{ $data->product_price }}</h3>
+                            <input type="hidden" name="price" value="{{$data->product_price}}">
+                            @else
+                            <!-- (#2) endif start -->
+                            @endif
+
+
+
+
+
+                            <!-- <ul class="color-variant">
                             <li class="bg-light0 active"></li>
                             <li class="bg-light1"></li>
                             <li class="bg-light2"></li>
                         </ul> -->
 
-                        <div id="selectSize" class="addeffect-section product-description border-product">
-                            @if($data->product_size !=NULL)
-                            <h6 class="product-title size-text">select size <span><a href="" data-bs-toggle="modal"
-                                        data-bs-target="#sizemodal">size
-                                        chart</a></span></h6>
-                            <div class="modal fade" id="sizemodal" tabindex="-1" role="dialog"
-                                aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                <div class="modal-dialog modal-dialog-centered" role="document">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <h5 class="modal-title" id="exampleModalLabel">Sheer
-                                                Straight Kurta</h5>
-                                            <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                                aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                            <div id="selectSize" class="addeffect-section product-description border-product">
+                                @if($data->product_size !=NULL)
+                                <h6 class="product-title size-text">select size <span><a href="" data-bs-toggle="modal"
+                                            data-bs-target="#sizemodal">size
+                                            chart</a></span></h6>
+                                <div class="modal fade" id="sizemodal" tabindex="-1" role="dialog"
+                                    aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog modal-dialog-centered" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="exampleModalLabel">Sheer
+                                                    Straight Kurta</h5>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                    aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                            </div>
+                                            <div class="modal-body"><img
+                                                    src="{{ asset('frontend') }}/assets/images/size-chart.jpg" alt=""
+                                                    class="img-fluid blur-up lazyload"></div>
                                         </div>
-                                        <div class="modal-body"><img
-                                                src="{{ asset('frontend') }}/assets/images/size-chart.jpg" alt=""
-                                                class="img-fluid blur-up lazyload"></div>
+                                    </div>
+                                </div>
+
+                                <h6 class="error-message">please select size</h6>
+                                <div class="size-box" style="margin-left: ">
+                                    <ul>
+                                        @foreach(explode(',',$data->product_size) as $size)
+                                        <li><a href="javascript:void(0)">{{ $size }}</a></li>
+                                        @endforeach
+
+                                    </ul>
+                                </div>
+                                @endif
+                                <h6 class="product-title">quantity</h6>
+                                <div class="qty-box">
+                                    <div class="input-group"><span class="input-group-prepend"><button type="button"
+                                                class="btn quantity-left-minus" data-type="minus" data-field=""><i
+                                                    class="ti-angle-left"></i></button> </span>
+                                        <input type="text" name="quantity" class="form-control input-number" value="1">
+                                        <span class="input-group-prepend"><button type="button"
+                                                class="btn quantity-right-plus" data-type="plus" data-field=""><i
+                                                    class="ti-angle-right"></i></button></span>
                                     </div>
                                 </div>
                             </div>
-
-                            <h6 class="error-message">please select size</h6>
-                            <div class="size-box">
-                                <ul>
-                                    @foreach(explode(',',$data->product_size) as $size)
-                                    <li><a href="javascript:void(0)">{{ $size }}</a></li>
-                                    @endforeach
-
-                                </ul>
-                            </div>
-                            @endif
-                            <h6 class="product-title">quantity</h6>
-                            <div class="qty-box">
-                                <div class="input-group"><span class="input-group-prepend"><button type="button"
-                                            class="btn quantity-left-minus" data-type="minus" data-field=""><i
-                                                class="ti-angle-left"></i></button> </span>
-                                    <input type="text" name="quantity" class="form-control input-number" value="1">
-                                    <span class="input-group-prepend"><button type="button"
-                                            class="btn quantity-right-plus" data-type="plus" data-field=""><i
-                                                class="ti-angle-right"></i></button></span>
-                                </div>
-                            </div>
-                        </div>
-                        <form id="cartsection">
                             <div class="product-buttons">
                                 <input type="hidden" name="id" value="{{$data->id}}">
                                 <input type="hidden" name="name" value="{{$data->product_name}}">
@@ -149,7 +182,6 @@
                                 <input type="hidden" name="image" value="{{$data->image}}">
                                 <input type="hidden" name="discount_price" value="">
                                 <input type="hidden" name="discount_title" value="">
-                                <input type="hidden" name="price" value="{{$data->product_price}}">
                                 <input type="hidden" name="shop_id" value="{{$data->shop_id}}">
                                 <input type="hidden" name="product_sku" value="{{$data->product_sku}}">
                                 <input type="hidden" name="product_quantity" value="1">
@@ -357,7 +389,23 @@
                     <input type="hidden" name="price" value="{{$product->product_price}}">
                     <input type="hidden" name="product_quantity" value="1">
                     <div class="product-box">
+
                         <div class="img-wrapper">
+                            <div class="lable-block">
+                                @if($today==$eleven && $product->offer=='11_offer' &&
+                                $product->have_a_discount=='1')
+                                <span class="lable3">11% off</span>
+                                @elseif($today==$twenty_two &&
+                                $product->offer=='22_offer' &&
+                                $product->have_a_discount=='1')
+                                <span class="lable3">22% off</span>
+                                @elseif($product->offer=='special_offer' &&
+                                $product->have_a_discount=='1')
+                                <span class="lable3">special offer</span>
+                                @else
+                                @endif
+                                <span class="lable4">on sale</span>
+                            </div>
                             <div class="front">
                                 <a href="{{url('/products/'.$product->product_slug.'/'.$product->id)}}">
                                     <img src="{{ asset('uploads/products/'.$product->image) }}"
@@ -373,14 +421,77 @@
                                 <a class="productdetails" data-id="{{ $product->id }}" data-bs-toggle="modal"
                                     data-bs-target="#quick-view" title="Quick View"><i class="ti-search"
                                         aria-hidden="true"></i></a>
-                                <a href="" title="Compare"><i class="ti-reload" aria-hidden="true"></i></a>
                             </div>
                         </div>
                         <div class="product-detail">
+                            {{-- <div class="rating"><i class="fa fa-star"></i> <i class="fa fa-star"></i> <i
+                                    class="fa fa-star"></i>
+                                <i class="fa fa-star"></i> <i class="fa fa-star"></i>
+                            </div> --}}
                             <a href="{{url('/products/'.$product->product_slug.'/'.$product->id)}}">
                                 <h6>{{ $product->product_name }}</h6>
                             </a>
-                            <h4>৳{{ $product->product_price }}</h4>
+
+                            <!--======================= offer related codes ================== -->
+
+                            <!-- (#11 offer )-->
+                            @if($today==$eleven && $product->offer=='11_offer' &&
+                            $product->have_a_discount=='1')
+                            @php
+                            $discounted_price =
+                            ($product->product_price)-($product->product_price*(11/100));
+                            @endphp
+                            <h6>৳ {{ $discounted_price }}
+                                <del>৳ {{ $product->product_price }}</del>
+                            </h6>
+
+                            <input type="hidden" name="price" value="{{$discounted_price}}">
+                            <input type="hidden" name="product_main_price" value="{{$product->product_price}}">
+                            <!-- (#22_offer)-->
+                            @elseif($today==$twenty_two && $product->offer=='22_offer'
+                            &&
+                            $product->have_a_discount=='1')
+                            @php
+                            $discounted_price =
+                            ($product->product_price)-($product->product_price*(22/100));
+                            @endphp
+                            <h6>৳ {{ $discounted_price }}
+                                <del>৳ {{ $product->product_price }}</del>
+                            </h6>
+                            <input type="hidden" name="price" value="{{$discounted_price}}">
+                            <input type="hidden" name="product_main_price" value="{{$product->product_price}}">
+                            <!-- (#special_offer) -->
+                            @elseif($product->offer=='special_offer' &&
+                            $product->have_a_discount=='1')
+                            <!-- (no offer) -->
+                            @elseif($product->have_a_discount=='0')
+                            <h6>৳ {{ $product->product_price }}</h6>
+                            <input type="hidden" name="price" value="{{$product->product_price}}">
+                            @else
+                            <!-- (#is offer is comming soon) -->
+                            <h6>৳ {{ $product->product_price }}</h6>
+                            <input type="hidden" name="price" value="{{$product->product_price}}">
+                            <!-- (#2) endif start -->
+                            @endif
+                            <!--======================= offer related codes end ================== -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+                            {{-- <ul class="color-variant">
+                                <li class="bg-light0"></li>
+                                <li class="bg-light1"></li>
+                                <li class="bg-light2"></li>
+                            </ul> --}}
                         </div>
                     </div>
                 </form>

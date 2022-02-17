@@ -34,13 +34,16 @@ Route::get('/track-order', [App\Http\Controllers\Frontend\FrontendController::cl
 // product shop routes
 Route::get('/product-search', [App\Http\Controllers\Frontend\ProductShopController::class, 'searchProduct']);
 Route::get('/shop', [App\Http\Controllers\Frontend\ProductShopController::class, 'index'])->name('shop');
+Route::get('/11-offer', [App\Http\Controllers\Frontend\ProductShopController::class, 'offer11Store'])->name('11-offer');
+Route::get('/22-offer', [App\Http\Controllers\Frontend\ProductShopController::class, 'offer22Store'])->name('22-offer');
 Route::get('/category/{slug}/{id}', [App\Http\Controllers\Frontend\ProductShopController::class, 'categoryWishProduct']);
 Route::get('/sub-category/{slug}/{id}', [App\Http\Controllers\Frontend\ProductShopController::class, 'subCategoryWishProduct']);
 Route::get('/re-sub-category/{slug}/{id}', [App\Http\Controllers\Frontend\ProductShopController::class, 'reSubCategoryWishProduct']);
-Route::get('/re-re-sub-category/{slug}/{id}', [App\Http\Controllers\Frontend\ProductShopController::class, 'reReSubCategoryWishProduct']);
-Route::get('/re-re-re-sub-category/{slug}/{id}', [App\Http\Controllers\Frontend\ProductShopController::class, 'reReReSubCategoryWishProduct']);
+
 //filter product
 Route::get('/filter-shop', [App\Http\Controllers\Frontend\FilterProductController::class, 'filterShop']);
+Route::get('/filter-11-offer-shop', [App\Http\Controllers\Frontend\FilterProductController::class, 'filter11OfferShop']);
+Route::get('/filter-22-offer-shop', [App\Http\Controllers\Frontend\FilterProductController::class, 'filter22OfferShop']);
 Route::get('/filter-category-shop', [App\Http\Controllers\Frontend\FilterProductController::class, 'filterCategoryShop']);
 Route::get('/filter-sub-category-shop', [App\Http\Controllers\Frontend\FilterProductController::class, 'filterSubCategoryShop']);
 Route::get('/filter-re-sub-category-shop', [App\Http\Controllers\Frontend\FilterProductController::class, 'filterReSubCategoryShop']);
@@ -111,18 +114,6 @@ Route::get('/vendor', [App\Http\Controllers\Frontend\VendorController::class, 'c
 Route::post('/vendor', [App\Http\Controllers\Frontend\VendorController::class, 'store'])->name('vendor.create');
 // vendor update
 Route::get('/vendor/edit', [App\Http\Controllers\Frontend\VendorController::class, 'edit'])->name('vendor.edit');
-
-
-
-
-
-
-
-
-
-
-
-
 
 Route::get('/vendor/dashboard', [App\Http\Controllers\Frontend\VendorController::class, 'vendorDashboard'])->name('vendor.dashboard');
 Route::get('/vendor/order', [App\Http\Controllers\Frontend\VendorController::class, 'orderList'])->name('vendor.order');
@@ -282,11 +273,20 @@ Route::get('/admin/approve/product', [App\Http\Controllers\Admin\ApproveProductC
 Route::get('/admin/allreject/product', [App\Http\Controllers\Admin\ApproveProductController::class, 'rejectproduct'])->name('admin.reject.product');
 Route::get('/admin/product/approve/{id}', [App\Http\Controllers\Admin\ApproveProductController::class, 'approve']);
 Route::get('/admin/reject/product/{id}', [App\Http\Controllers\Admin\ApproveProductController::class, 'reject']);
-
+Route::get('/admin/product/edit/{id}', [App\Http\Controllers\Admin\ApproveProductController::class, 'edit']);
+Route::post('/admin/product/update', [App\Http\Controllers\Admin\ApproveProductController::class, 'update'])->name('admin.product.update');
 Route::get('admin/delete/product/{id}', [App\Http\Controllers\Admin\ApproveProductController::class, 'delete']);
 
 Route::get('/admin/neworder/list', [App\Http\Controllers\Admin\OrderController::class, 'allneworder'])->name('admin.order.new');
 Route::get('admin/invoice/order/{id}', [App\Http\Controllers\Admin\OrderController::class, 'invoiceOrder']);
 
 Route::get('admin/update/order/{id}', [App\Http\Controllers\Admin\OrderController::class, 'updateOrder']);
+
 Route::post('admin/update/order', [App\Http\Controllers\Admin\OrderController::class, 'updateOrderSubmit']);
+
+//Report Routes
+Route::get('/admin/orderreport', [App\Http\Controllers\Admin\ReportController::class, 'orderReport'])->name('admin.orderreport');
+Route::post('/admin/orderreport', [App\Http\Controllers\Admin\ReportController::class, 'Report'])->name('admin.orderreport');
+Route::get('/admin/productreport', [App\Http\Controllers\Admin\ReportController::class, 'productReport'])->name('admin.productreport');
+Route::post('/admin/productreport', [App\Http\Controllers\Admin\ReportController::class, 'productWiseReport'])->name('admin.productreport');
+

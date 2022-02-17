@@ -2,15 +2,15 @@
 
 namespace App\Http\Controllers\Frontend;
 
-use App\Http\Controllers\Controller;
-use App\Models\Brand;
-use App\Models\Category;
-use App\Models\Product;
-use App\Models\Shop;
-use Auth;
-use Carbon\Carbon;
-use Illuminate\Http\Request;
 use Image;
+use Carbon\Carbon;
+use App\Models\Shop;
+use App\Models\Brand;
+use App\Models\Product;
+use App\Models\Category;
+use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 
 class ProductController extends Controller
 {
@@ -84,7 +84,6 @@ class ProductController extends Controller
             Product::where('id', $insert)->update([
                 'image' => $ImageName,
             ]);
-
         }
 
         $photos = [];
@@ -96,12 +95,10 @@ class ProductController extends Controller
                 $resizedPhoto = Image::make($photo)->save('uploads/products/' . $photoName);
 
                 array_push($photos, $photoName);
-
             }
             Product::where('id', $insert)->update([
                 'gallary_image' => json_encode($photos),
             ]);
-
         }
 
         if ($insert) {
@@ -117,14 +114,12 @@ class ProductController extends Controller
             ];
             return redirect()->back()->with($notification);
         }
-
     }
 
     public function edit($id)
     {
 
         $edit = Product::where('id', $id)->first();
-
         $allCategory = Category::where('is_deleted', 0)->where('is_active', 1)->get();
         $allshop     = Shop::where('user_id', Auth::user()->id)->where('is_deleted', 0)->where('is_active', 1)->get();
         $allbrand    = Brand::where('is_deleted', 0)->where('is_active', 1)->get();
@@ -184,7 +179,6 @@ class ProductController extends Controller
             Product::where('id', $request->id)->update([
                 'image' => $ImageName,
             ]);
-
         }
 
         $photos = [];
@@ -194,12 +188,10 @@ class ProductController extends Controller
                 $photoName    = uniqid() . "." . $photo->getClientOriginalExtension();
                 $resizedPhoto = Image::make($photo)->save('uploads/products/' . $photoName);
                 array_push($photos, $photoName);
-
             }
             Product::where('id', $request->id)->update([
                 'gallary_image' => json_encode($photos),
             ]);
-
         }
 
         if ($insert) {
@@ -216,5 +208,4 @@ class ProductController extends Controller
             return redirect()->back()->with($notification);
         }
     }
-
 }

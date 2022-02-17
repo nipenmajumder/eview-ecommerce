@@ -126,7 +126,8 @@
                                                 <th scope="row">{{ $key }}</th>
                                                 <td>{{$mainpro->product_name}}</td>
                                                 <td>{{$mainpro->sku}}</td>
-                                                <td>@php
+                                                <td>
+                                                    @php
                                                         $product_details=App\Models\Product::where('id',$mainpro->id)->first();
                                                         $shop_name=App\Models\Shop::where('id',$product_details->shop_id)->first();
                                                         $vendor_name=App\Models\VendorCompany::where('user_id',$product_details->user_id)->first();

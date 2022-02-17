@@ -19,7 +19,10 @@ class Product extends Model
     {
         return $query->where('is_active', 1);
     }
-
+    public function scopeIsApprove($query)
+    {
+        return $query->where('is_approve', 1);
+    }
     public function scopeIsDeleted($query)
     {
         return $query->where('is_deleted', 0);
@@ -71,6 +74,5 @@ class Product extends Model
     {
         return $this->belongsTo('App\Models\Shop', 'shop_id', 'id');
     }
-
 
 }

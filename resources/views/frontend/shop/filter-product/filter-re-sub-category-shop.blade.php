@@ -10,66 +10,123 @@
             <input type="hidden" name="price" value="{{$product->product_price}}">
             <input type="hidden" name="product_quantity" value="1">
             <div class="product-box">
+
                 <div class="img-wrapper">
-                    <div class="front">
-                        <a href="{{url('/products/'.$product->product_slug.'/'.$product->id)}}"><img
-                                src="{{ asset('uploads/products/'.$product->image) }}"
-                                class="img-fluid blur-up lazyload bg-img" alt=""></a>
+                    <div class="lable-block">
+                        @if($today==$eleven && $product->offer=='11_offer' &&
+                        $product->have_a_discount=='1')
+                        <span class="lable3">11% off</span>
+                        @elseif($today==$twenty_two &&
+                        $product->offer=='22_offer' &&
+                        $product->have_a_discount=='1')
+                        <span class="lable3">22% off</span>
+                        @elseif($product->offer=='special_offer' &&
+                        $product->have_a_discount=='1')
+                        <span class="lable3">special offer</span>
+                        @else
+                        @endif
+                        <span class="lable4">on sale</span>
                     </div>
-                    <div class="cart-detail">
+                    <div class="front">
+                        <a href="{{url('/products/'.$product->product_slug.'/'.$product->id)}}">
+                            <img src="{{ asset('uploads/products/'.$product->image) }}"
+                                class="img-fluid blur-up lazyload bg-img" alt="">
+                        </a>
+                    </div>
+                    <div class="cart-info cart-wrap">
                         <button id="{{$product->id}}" type="button" onclick="addtocart(this)" title="Add to cart"><i
                                 class="ti-shopping-cart"></i></button>
-                        <a href="javascript:void(0)" title="Add to Wishlist"><i class="ti-heart"
-                                aria-hidden="true"></i></a>
+
+                        <a id="{{$product->id}}" href="javascript:void(0)" onclick="addtowishlist(this)"
+                            title="Add to Wishlist"><i class="ti-heart" aria-hidden="true"></i></a>
                         <a class="productdetails" data-id="{{ $product->id }}" data-bs-toggle="modal"
                             data-bs-target="#quick-view" title="Quick View"><i class="ti-search"
                                 aria-hidden="true"></i></a>
-                        <a href="compare.html" title="Compare"><i class="ti-reload" aria-hidden="true"></i></a>
                     </div>
                 </div>
                 <div class="product-detail">
-                    <div>
-                        <div class="rating"><i class="fa fa-star"></i> <i class="fa fa-star"></i> <i
-                                class="fa fa-star"></i>
-                            <i class="fa fa-star"></i> <i class="fa fa-star"></i>
-                        </div>
-                        <a href="product-page(no-sidebar).html">
-                            <h6>{{ $product->product_name }}</h6>
-                        </a>
-                        <h4>৳ {{ $product->product_price }}</h4>
-                    </div>
+                    {{-- <div class="rating"><i class="fa fa-star"></i> <i class="fa fa-star"></i> <i
+                            class="fa fa-star"></i>
+                        <i class="fa fa-star"></i> <i class="fa fa-star"></i>
+                    </div> --}}
+                    <a href="{{url('/products/'.$product->product_slug.'/'.$product->id)}}">
+                        <h6>{{ $product->product_name }}</h6>
+                    </a>
+
+                    <!--======================= offer related codes ================== -->
+
+                    <!-- (#11 offer )-->
+                    @if($today==$eleven && $product->offer=='11_offer' &&
+                    $product->have_a_discount=='1')
+                    @php
+                    $discounted_price =
+                    ($product->product_price)-($product->product_price*(11/100));
+                    @endphp
+                    <h6>৳ {{ $discounted_price }}
+                        <del>৳ {{ $product->product_price }}</del>
+                    </h6>
+
+                    <input type="hidden" name="price" value="{{$discounted_price}}">
+                    <input type="hidden" name="product_main_price" value="{{$product->product_price}}">
+                    <!-- (#22_offer)-->
+                    @elseif($today==$twenty_two && $product->offer=='22_offer'
+                    &&
+                    $product->have_a_discount=='1')
+                    @php
+                    $discounted_price =
+                    ($product->product_price)-($product->product_price*(22/100));
+                    @endphp
+                    <h6>৳ {{ $discounted_price }}
+                        <del>৳ {{ $product->product_price }}</del>
+                    </h6>
+                    <input type="hidden" name="price" value="{{$discounted_price}}">
+                    <input type="hidden" name="product_main_price" value="{{$product->product_price}}">
+                    <!-- (#special_offer) -->
+                    @elseif($product->offer=='special_offer' &&
+                    $product->have_a_discount=='1')
+                    <!-- (no offer) -->
+                    @elseif($product->have_a_discount=='0')
+                    <h6>৳ {{ $product->product_price }}</h6>
+                    <input type="hidden" name="price" value="{{$product->product_price}}">
+                    @else
+                    <!-- (#is offer is comming soon) -->
+                    <h6>৳ {{ $product->product_price }}</h6>
+                    <input type="hidden" name="price" value="{{$product->product_price}}">
+                    <!-- (#2) endif start -->
+                    @endif
+                    <!--======================= offer related codes end ================== -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+                    {{-- <ul class="color-variant">
+                        <li class="bg-light0"></li>
+                        <li class="bg-light1"></li>
+                        <li class="bg-light2"></li>
+                    </ul> --}}
                 </div>
             </div>
         </form>
     </div>
     @endforeach
 </div>
-<div class="product-pagination">
+{{-- <div class="product-pagination">
     <div class="theme-paggination-block">
-        <div class="row">
-            {{ $products->links() }}
-            {{-- <div class="col-xl-6 col-md-6 col-sm-12">
-                <nav aria-label="Page navigation">
-                    <ul class="pagination">
-                        <li class="page-item"><a class="page-link" href="#" aria-label="Previous"><span
-                                    aria-hidden="true"><i class="fa fa-chevron-left" aria-hidden="true"></i></span>
-                                <span class="sr-only">Previous</span></a></li>
-                        <li class="page-item active"><a class="page-link" href="#">1</a></li>
-                        <li class="page-item"><a class="page-link" href="#">2</a>
-                        </li>
-                        <li class="page-item"><a class="page-link" href="#">3</a>
-                        </li>
-                        <li class="page-item"><a class="page-link" href="#" aria-label="Next"><span
-                                    aria-hidden="true"><i class="fa fa-chevron-right" aria-hidden="true"></i></span>
-                                <span class="sr-only">Next</span></a></li>
-                    </ul>
-                </nav>
-            </div>
-            <div class="col-xl-6 col-md-6 col-sm-12">
-                <div class="product-search-count-bottom">
-                    <h5>Showing Products 1-24 of 10 Result</h5>
+        <div class="container-fluid p-0">
+            <div class="row">
+                <div class="col-xl-12 col-md-12 col-sm-12">
+                    {{$products -> links('vendor.pagination.custom')}}
                 </div>
-            </div> --}}
+            </div>
         </div>
     </div>
-</div>
+</div> --}}

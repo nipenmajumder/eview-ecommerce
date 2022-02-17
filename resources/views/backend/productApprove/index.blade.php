@@ -122,6 +122,9 @@ div.dataTables_wrapper div.dataTables_filter input {
                                                 <a href="{{url('admin/product/approve/'.$data->id)}}"  class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1">
                                                     <i class="fas fa-thumbs-up blue"></i>
                                                 </a>
+                                                <a href="{{url('admin/product/edit/'.$data->id)}}"  class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1">
+                                                    <i class="fas fa-edit"></i>
+                                                </a>
                                                 <a href="{{url('/admin/reject/product/'.$data->id)}}" class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm">
                                                     <i class="fa fa-times validation"></i>
                                                 </a>
