@@ -66,22 +66,21 @@
                                             <tr>
                                                 <td scope="row">{{ $key+1 }}</td>
                                                 <td>{{ $order->order_id }}</td>
-                                                <td>{{ $order->created_at }}</td>
-                                                <td>{{ $order->total_amount + 70 }}</td>
-                                                <td>
-                                                    {{-- <span class="badge badge-danger">Canceled</span> --}}
-                                                    @if($order->delevery_status==0)
-                                                    <span class="badge badge-light-success">Pending</span>
-                                                    @elseif($order->delevery_status==1)
-                                                    <span class="badge badge-light-success">Processing</span>
-                                                    @elseif($order->delevery_status==2)
-                                                    <span class="badge badge-light-success">Rejected</span>
-                                                    @elseif($order->delevery_status==3)
-                                                    <span class="badge badge-success">Delivered</span>
-                                                    @elseif($order->delevery_status==4)
-                                                    <span class="badge badge-success">Returned</span>
-                                                    @endif
-                                                </td>
+                                                <td>{{ $order->created_at->format('d/m/Y') }}</td>
+                                                <td>{{ $order->total_amount}}</td>
+
+                                                {{-- <span class="badge badge-danger">Canceled</span> --}}
+                                                @if($order->delevery_status==0)
+                                                <td>Pending</td>
+                                                @elseif($order->delevery_status==1)
+                                                <td>Processing</td>
+                                                @elseif($order->delevery_status==2)
+                                                <td>Rejected</td>
+                                                @elseif($order->delevery_status==3)
+                                                <td>Delivered</td>
+                                                @elseif($order->delevery_status==4)
+                                                <td>Returned</td>
+                                                @endif
                                                 <td><a title="view products"
                                                         href="{{url('/dashboard/order/view/'.$order->id)}}"
                                                         class="btn btn-primary btn-sm"><i class="ti-eye"></i></a></td>
