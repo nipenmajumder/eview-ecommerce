@@ -10,7 +10,6 @@ use App\Models\Category;
 use App\Models\Order;
 use App\Models\Product;
 use App\Models\Slider;
-use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class FrontendController extends Controller
@@ -18,31 +17,34 @@ class FrontendController extends Controller
     // home section
     public function home()
     {
-        $today             = Carbon::now()->format('d');
+        $products          = Product::isDeleted()->isActive()->isApprove();
         $allSlider         = Slider::select(['image'])->isActive()->get();
         $allBanner         = Banner::isActive()->select(['title', 'discount', 'url', 'image'])->limit(3)->get();
-        $allProduct        = Product::isDeleted()->isActive()->orderBy('id', 'DESC')->limit(10)->get();
-        $newProducts       = Product::isDeleted()->isActive()->orderBy('id', 'DESC')->limit(12)->get();
-        $allelevenproduct  = Product::haveDiscount()->offer11()->isDeleted()->isActive()->orderBy('id', 'DESC')->limit(12)->get();
-        $allSpecialproduct = Product::haveDiscount()->specialOffer()->isDeleted()->isActive()->orderBy('id', 'DESC')->get();
-        $alltweentyproduct = Product::haveDiscount()->offer22()->isDeleted()->isActive()->orderBy('id', 'DESC')->get();
-        $topSaleCategory   = Category::isDeleted()->isActive()->with('product')->limit(5)->get()->map(function ($category) {
+        $allProduct        = $products->orderBy('id', 'DESC')->limit(12)->get();
+        $newProducts       = $products->orderBy('id', 'DESC')->limit(12)->get();
+        $allelevenproduct  = $products->haveDiscount()->offer11()->orderBy('id', 'DESC')->limit(12)->get();
+        $allSpecialproduct = $products->haveDiscount()->specialOffer()->orderBy('id', 'DESC')->limit(12)->get();
+        $alltweentyproduct = $products->haveDiscount()->offer22()->orderBy('id', 'DESC')->limit(12)->get();
+        $topProducts       = $products->orderBy('id', 'DESC')->limit(12)->get();
+
+        $topSaleCategory = Category::isDeleted()->isActive()->with('product')->limit(5)->get()->map(function ($category) {
             $category->setRelation('product', $category->product->take(6));
             return $category;
         });
         $activeBrands     = Brand::isActive()->isDeleted()->get();
         $mainfivecategory = Category::isDeleted()->isActive()->orderBy('id', 'DESC')->get();
-        $topProducts      = Product::isDeleted()->isActive()->orderBy('id', 'DESC')->limit(12)->get();
+        dd($topProducts);
 
-        return view('frontend.home.index', compact('today', 'mainfivecategory', 'allSlider', 'allBanner','allProduct', 'allelevenproduct', 'allSpecialproduct', 'alltweentyproduct', 'topSaleCategory', 'newProducts', 'activeBrands', 'topProducts'));
+        return view('frontend.home.index', compact('mainfivecategory', 'allSlider', 'allBanner', 'allProduct', 'allelevenproduct', 'allSpecialproduct', 'alltweentyproduct', 'topSaleCategory', 'newProducts', 'activeBrands', 'topProducts'));
 
     }
     // product details
     public function productDetails($slug, $id)
     {
-        // dd($id);
-        $data             = Product::isID($id)->with('Category', 'SubCategory_id')->isActive()->first();
-        $related_products = Product::where('category_id', $data->category_id)->isActive()->notID($data->id)
+        $products = Product::isDeleted()->isActive()->isApprove();
+
+        $data             = $products->isID($id)->with('Category', 'SubCategory_id')->first();
+        $related_products = $products->where('category_id', $data->category_id)->notID($data->id)
             ->select('id', 'product_name', 'product_price', 'image', 'shop_id')
             ->limit(6)->orderBy('id', 'DESC')->limit(6)->get();
         return view('frontend.product_details.details', compact('data', 'related_products'));
