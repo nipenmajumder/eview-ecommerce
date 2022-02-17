@@ -23,9 +23,9 @@
             <li class="nav-item"><a class="nav-link" href="{{ url('/vendor/product') }}">All products</a></li>
             <li class="nav-item"><a class="nav-link" href="{{ route('vendor.order') }}">orders</a>
             </li>
-            <li class="nav-item"><a data-bs-toggle="tab" class="nav-link" href="#profile">profile</a>
+            <li class="nav-item"><a class="nav-link" href="{{ url('/vendor/edit') }}">profile</a>
             </li>
-            <li class="nav-item"><a data-bs-toggle="tab" class="nav-link" href="{{ route('vendor.edit') }}">Edit Company</a>
+            <li class="nav-item"><a  class="nav-link" href="{{ route('vendor.edit') }}">Edit Company</a>
             </li>
             <li class="nav-item"><a class="nav-link" data-toggle="modal" data-bs-target="#logout"
                     href="{{ url('logout') }}">logout</a>

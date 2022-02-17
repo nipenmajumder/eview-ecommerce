@@ -126,6 +126,7 @@ Route::get('/vendor/edit', [App\Http\Controllers\Frontend\VendorController::clas
 
 Route::get('/vendor/dashboard', [App\Http\Controllers\Frontend\VendorController::class, 'vendorDashboard'])->name('vendor.dashboard');
 Route::get('/vendor/order', [App\Http\Controllers\Frontend\VendorController::class, 'orderList'])->name('vendor.order');
+Route::get('/vendor/order/view/{id}', [App\Http\Controllers\Frontend\VendorController::class, 'invoicevendorOrder']);
 
 // shop
 Route::get('/vendor/shop', [App\Http\Controllers\Frontend\ShopController::class, 'index'])->name('vendor.shop');
@@ -288,3 +289,4 @@ Route::get('/admin/neworder/list', [App\Http\Controllers\Admin\OrderController::
 Route::get('admin/invoice/order/{id}', [App\Http\Controllers\Admin\OrderController::class, 'invoiceOrder']);
 
 Route::get('admin/update/order/{id}', [App\Http\Controllers\Admin\OrderController::class, 'updateOrder']);
+Route::post('admin/update/order', [App\Http\Controllers\Admin\OrderController::class, 'updateOrderSubmit']);

@@ -24,17 +24,13 @@ class VendorController extends Controller
     // vendor order list
     public function orderList()
     {
-        // dd(auth()->user());
-        $shop           = Shop::where('user_id', auth()->user()->id)->first();
+ 
+        $shop = VendorCompany::where('user_id', auth()->user()->id)->first();
         $shop_single_id = [$shop->id];
-        // dd($shop_single_id);
-        $collect_data = collect(Order::get());
-        $get          = $collect_data->contains('company_id', $shop->id);
-
-        dd($get);
-        // $orders = Order::where()get();
-
-        return view('frontend.vendor.dashboard.order', compact('orders'));
+        $shoplol=$shop->id;
+        $item = $shoplol;
+        $allorders=Order::where('company_id', 'like', "%{$item}%")->get();
+        return view('frontend.vendor.dashboard.order', compact('allorders'));
     }
     //
     public function create()
@@ -102,6 +98,7 @@ class VendorController extends Controller
     public function vendorDashboard()
     {
         $countproduct=Product::where('user_id',Auth::user()->id)->where('is_deleted',0)->count();
+    
         return view('frontend.vendor.dashboard.vendor_dashboard',compact('countproduct'));
     }
     // 
@@ -115,5 +112,12 @@ class VendorController extends Controller
             return redirect('/');
         }
         
+    }
+
+
+    // 
+    public function invoicevendorOrder($id){
+            $alldata=Order::where('id',$id)->first();
+            return view('frontend.vendor.dashboard.invoice',compact('alldata'));
     }
 }

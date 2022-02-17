@@ -63,7 +63,7 @@
                                 </div>
                            </div>
                         </div>
-                        <form class="form" method="POST" id="kt_layout_builder_form" action="{{ route('admin.slider.create') }}" enctype="multipart/form-data">
+                        <form class="form" method="POST" id="kt_layout_builder_form" action="{{ url('admin/update/order') }}" enctype="multipart/form-data">
                             @csrf
                             <div class="card-body" data-select2-id="select2-data-90-elj6">
                                 <div class="tab-content pt-3" data-select2-id="select2-data-89-mk7z">
@@ -98,6 +98,11 @@
                                     </div>
                                 </div>
                             </div>
+                        
+                            <input type="hidden" name="row_id" value="{{$data->id}}">
+                            <input type="hidden" name="order_id" value="{{$data->order_id}}">
+                            <input type="hidden" name="delivery_charge" value="{{$data->delivery_charge}}">
+
                             <div class="card-body" data-select2-id="select2-data-90-elj6">
                                 <div class="tab-content pt-3" data-select2-id="select2-data-89-mk7z">
                                     <p>Product Details</p>
@@ -110,7 +115,7 @@
                                             <th scope="col">Product Sku</th>
                                             <th scope="col">Vendor</th>
                                             <th scope="col">Quantity</th>
-                                            <th scope="col">Quantity</th>
+                                            <th scope="col">Price</th>
                                             <th scope="col">SubTotal</th>
                                             <th scope="col">Manage</th>
                                             </tr>
@@ -118,7 +123,7 @@
                                         <tbody>
                                             @foreach(json_decode($data->products) as $key => $mainpro)
                                             <tr>
-                                                <th scope="row">{{ ++$key }}</th>
+                                                <th scope="row">{{ $key }}</th>
                                                 <td>{{$mainpro->product_name}}</td>
                                                 <td>{{$mainpro->sku}}</td>
                                                 <td>@php
@@ -134,9 +139,24 @@
                                                     <br>
                                                     {{$shop_name->shop_name}}
                                                 </td>
-                                                <td><input type="text" name="qty[]" value="{{ $mainpro->qty }}"></td>
-                                                <td>{{ $mainpro->price }}</td>
-                                                <td>{{ $mainpro->subtotal }}</td>
+                                                <td>
+                                                    <input type="text" id="product_{{$key}}" name="qty[]" value="{{ $mainpro->qty }}" onchange="calculateSubTotal({{$key}})">
+                                                </td>
+                                                <td class="main_price_{{$key}}">{{ $mainpro->price }}</td>
+                                                <input type="hidden" name="id[]" value="{{ $mainpro->id }}">
+                                                @php
+                                                    $company_product=App\Models\Product::where('id',$mainpro->id)->select(['shop_id'])->first();
+                                                @endphp
+                                                <input type="hidden" name="company_id[]" value="{{ $company_product->shop_id }}">
+                                                <input type="hidden" name="product_name[]" value="{{ $mainpro->product_name }}">
+
+                                                <input type="hidden" name="image[]" value="{{ $mainpro->image }}">
+                                                <input type="hidden" name="sku[]" value="{{ $mainpro->sku }}">
+                                                <input type="hidden" name="shop_id[]" value="{{ $mainpro->shop_id }}">
+                                                <input type="hidden" name="price[]" class="product_main_price_{{$key}}" value="{{ $mainpro->price }}">
+                                                <input type="hidden" name="subtotal[]" class="product_subtotal_price_{{$key}}" value="{{ $mainpro->subtotal }}">
+                                                <td class="subtotal_price_{{$key}}">{{ $mainpro->subtotal }}</td>
+
                                                 <td>
                                                     <a onclick="deleterow(this)" href="#" class="btn-sm" style="color:red">
                                                         <i class="fa fa-times"></i>
@@ -159,16 +179,12 @@
                                             <span class="indicator-progress">Please wait...
                                                 <span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
                                         </button>
-                                        <!-- <button type="button" id="kt_layout_builder_reset" class="btn btn-active-light btn-color-muted">
-                                            <span class="indicator-label">Reset</span>
-                                            <span class="indicator-progress">Please wait...
-                                                <span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
-                                        </button> -->
                                     </div>
                                 </div>
                             </div>
-                            <!--end::Footer-->
                         </form>
+                            <!--end::Footer-->
+                       
                         <!--end::Form-->
                     </div>
                 </div>
@@ -186,7 +202,20 @@
     function loaddetails(){
         alert("ok");
     }
-    loaddetails();
+    // loaddetails();
+</script>
+
+<script>
+       function calculateSubTotal(i)
+        {
+             var qty = $("#product_"+i).val();
+             var price = $(".product_main_price_"+i).val();
+             var subtotal  = parseInt(qty)*parseInt(price);
+             $(".subtotal_price_"+i).text(subtotal);
+             $(".product_subtotal_price_"+i).val(subtotal);
+            
+        }
+        
 </script>
 
 @endsection

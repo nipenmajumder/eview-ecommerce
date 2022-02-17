@@ -24,14 +24,12 @@
     </div>
 </div>
 <!-- breadcrumb End -->
-
-
 <!-- section start -->
-<section class="section-b-space">
+<section class="dashboard-section section-b-space">
     <div class="container">
         <div class="row">
             <div class="col-lg-3">
-                @include('frontend.customerDashboard.include.sidebar')
+             @include('frontend.vendor.dashboard.include.sidebar')
             </div>
             <div class="col-lg-9">
                 <div class="dashboard-right">
@@ -56,33 +54,30 @@
                                                 <th scope="col">#</th>
                                                 <th scope="col">Order ID</th>
                                                 <th scope="col">Date Purchased</th>
-                                                <th scope="col">Total</th>
                                                 <th scope="col">Status</th>
                                                 <th scope="col">View</th>
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            @forelse ($orders as $key => $order)
+                                            @forelse ($allorders as $key => $order)
                                             <tr>
-                                                <th scope="row">{{ $key+1 }}</th>
+                                                <th scope="row">{{ ++$key }}</th>
                                                 <td>{{ $order->order_id }}</td>
-                                                <td>{{ $order->created_at }}</td>
-                                                <td>{{ $order->total_amount + 70 }}</td>
+                                                <td>{{ $order->created_at->format('d-M-F') }}</td>
                                                 <td>
-                                                    {{-- <span class="badge badge-danger">Canceled</span> --}}
                                                     @if($order->delevery_status==0)
-                                                    <span class="badge badge-light-success">Pending</span>
+                                                    <span class="btn btn-primary">Pending</span>
                                                     @elseif($order->delevery_status==1)
-                                                    <span class="badge badge-light-success">Processing</span>
+                                                    <span class="btn btn-primary">Processing</span>
                                                     @elseif($order->delevery_status==2)
-                                                    <span class="badge badge-light-success">Rejected</span>
+                                                    <span class="btn btn-danger">Rejected</span>
                                                     @elseif($order->delevery_status==3)
-                                                    <span class="badge badge-success">Delivered</span>
+                                                    <span class="btn btn-success">Delivered</span>
                                                     @endif
                                                 </td>
-                                                <td><a title="view products"
-                                                        href="{{url('/dashboard/order/view/'.$order->id)}}"
-                                                        class="btn btn-primary btn-sm"><i class="ti-eye"></i></a></td>
+                                                <td>
+                                                <a title="view products" href="{{url('/vendor/order/view/'.$order->id)}}"
+                                                    class="btn btn-primary btn-sm"><i class="ti-eye"></i></a></td>
                                             </tr>
                                             @empty
                                             <tr>
