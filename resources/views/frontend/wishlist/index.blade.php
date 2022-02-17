@@ -64,7 +64,7 @@
                             </td>
 
                             <td>
-                                <h2 class="td-color">${{ $row->price }}</h2>
+                                <h2 class="td-color">৳{{ $row->price }}</h2>
                             </td>
                             <td>
                                 <form id="cartsection">
@@ -93,7 +93,7 @@
                             <tr>
                                 <td>total price :</td>
                                 <td>
-                                    <h2>${{Cart::instance('wishlist')->subtotal()}}</h2>
+                                    <h2>৳{{Cart::instance('wishlist')->subtotal()}}</h2>
                                 </td>
                             </tr>
                         </tfoot>
