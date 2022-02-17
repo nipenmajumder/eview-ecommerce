@@ -25,4 +25,5 @@ class Order extends Model
     // {
     //     return $this->belongsTo('App\Models\Product', 'billing_id', 'id');
     // }
+
 }

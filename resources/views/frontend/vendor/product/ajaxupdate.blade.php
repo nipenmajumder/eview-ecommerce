@@ -261,7 +261,7 @@
                                         </label>
                                         <br>
                                     </div>
-                                     <div class="fv-row mb-10 discount_price" @if($edit->have_a_discount==NULL)  style="display:none" @endif>
+                                    <div class="fv-row mb-10 discount_price" @if($edit->have_a_discount==NULL)  style="display:none" @endif>
                                             <!-- fav end -->
                                         <label class="d-flex align-items-center fs-5 fw-bold mb-2">
                                             <span class="required">Offer</span>
@@ -326,7 +326,7 @@
                                                 <!--end:Label-->
                                                 <!--begin:Input-->
                                                 <span class="form-check form-check-custom form-check-solid">
-                                                    <input class="form-check-input Special" type="radio" name="offer" value="11_offer"  checked="checked">
+                                                    <input class="form-check-input Special" type="radio" name="offer" value="11_offer"  @if($edit->offer == "11_offer") checked @endif>
                                                 <div class="fv-plugins-message-container invalid-feedback"></div></span>
                                                 <!--end:Input-->
                                             </label>
@@ -357,7 +357,7 @@
                                                 <!--end:Label-->
                                                 <!--begin:Input-->
                                                 <span class="form-check form-check-custom form-check-solid">
-                                                    <input class="form-check-input Special" type="radio" name="offer" value="22_offer">
+                                                    <input class="form-check-input Special" type="radio" name="offer" value="22_offer"  @if($edit->offer == "22_offer") checked @endif>
                                                 <div class="fv-plugins-message-container invalid-feedback"></div></span>
                                                 <!--end:Input-->
                                             </label>
@@ -388,7 +388,7 @@
                                                 <!--end:Label-->
                                                 <!--begin:Input-->
                                                 <span class="form-check form-check-custom form-check-solid">
-                                                    <input class="form-check-input Special" type="radio" name="offer" value="special_offer">
+                                                    <input class="form-check-input Special" type="radio" name="offer" value="special_offer"  @if($edit->offer == "special_offer") checked @endif>
                                                 </span>
                                                 <!--end:Input-->
                                             </label>
@@ -457,7 +457,7 @@
                                             </div>
                                             <br>
                                         </div>
-                                    <!--begin::Input group-->
+                                  
                                     </div>
                                     <div class="fv-row">
                                         <!--begin::Label-->
