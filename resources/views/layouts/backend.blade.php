@@ -37,8 +37,8 @@
                 <!--begin::Brand-->
                 <div class="aside-logo flex-column-auto" id="kt_aside_logo">
                     <!--begin::Logo-->
-                    <a href="index.html">
-                        <img alt="Logo" src="{{asset('backend')}}/assets/media/logos/logo-default.svg"
+                    <a href="{{url('/admin')}}">
+                        <img alt="Logo" src="{{asset('uploads/logo/'.$companyInformation->logo)}}" 
                             class="h-15px logo" />
                     </a>
                     <!--end::Logo-->
