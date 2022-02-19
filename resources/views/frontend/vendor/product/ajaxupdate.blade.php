@@ -392,7 +392,7 @@
                                                 </span>
                                                 <!--end:Input-->
                                             </label>
-                                             <div class="row special_sec"  style="display:none;">
+                                             <div class="row special_sec" @if($edit->offer == "special_offer") @else style="display:none;" @endif>
                                                 <div class="col-md-8">
                                                 <input type="text" class="form-control form-control-solid" name="discount_price" placeholder="Enter Discount Price" value="" />
                                                 </div>
@@ -496,7 +496,7 @@
                                         </label>
                                         <div class="row mb-10">
                                             <div class="col-xl-12 col-lg-12 row">
-                                            <div class="input-images">
+                                                    <div class="input-images">
                                                         <div class="image-uploader has-files">
                                                             <input type="file" id="images" name="images[]" multiple="multiple">
                                                             <div class="uploaded">

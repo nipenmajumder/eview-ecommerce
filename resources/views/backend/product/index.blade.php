@@ -1,9 +1,12 @@
 @extends('layouts.backend')
 @section('title', 'Product Edit')
 @section('content')
+
+<link rel="stylesheet" type="text/css" href="{{ asset('frontend/assets') }}/css/asif.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <link type="text/css" rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 <link type="text/css" rel="stylesheet" href="{{asset('backend')}}/assets/css/image-uploader.min.css">
+
 <style>
     .fw-bold {
     font-weight: 400!important;
@@ -248,7 +251,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="row mb-10 discount_price">
+                                        <div class="row mb-10 discount_price" @if($edit->have_a_discount==1) @else style="display:none" @endif>
                                             <label class="col-lg-3 col-form-label text-lg-end Style_Optional">Offer:</label>
                                             
                                             <div class="col-lg-12 col-xl-6">
@@ -280,7 +283,7 @@
                                                             <!--end:Label-->
                                                             <!--begin:Input-->
                                                             <span class="form-check form-check-custom form-check-solid">
-                                                                <input class="form-check-input Special" type="radio" name="offer" value="none">
+                                                                <input class="form-check-input Special" type="radio" name="offer" @if($edit->offer == 'none' ) checked @endif value="none"  >
                                                             <div class="fv-plugins-message-container invalid-feedback"></div></span>
                                                             <!--end:Input-->
                                                         </label>
@@ -312,7 +315,7 @@
                                                             <!--end:Label-->
                                                             <!--begin:Input-->
                                                             <span class="form-check form-check-custom form-check-solid">
-                                                                <input class="form-check-input Special" type="radio" name="offer" value="11_offer"  checked="checked">
+                                                                <input class="form-check-input Special" type="radio" name="offer" value="11_offer" @if($edit->offer == '11_offer' ) checked @endif >
                                                             <div class="fv-plugins-message-container invalid-feedback"></div></span>
                                                             <!--end:Input-->
                                                         </label>
@@ -343,7 +346,7 @@
                                                             <!--end:Label-->
                                                             <!--begin:Input-->
                                                             <span class="form-check form-check-custom form-check-solid">
-                                                                <input class="form-check-input Special" type="radio" name="offer" value="22_offer">
+                                                                <input class="form-check-input Special" type="radio" name="offer" value="22_offer" @if($edit->offer == '22_offer' ) checked @endif>
                                                             <div class="fv-plugins-message-container invalid-feedback"></div></span>
                                                             <!--end:Input-->
                                                         </label>
@@ -374,17 +377,17 @@
                                                             <!--end:Label-->
                                                             <!--begin:Input-->
                                                             <span class="form-check form-check-custom form-check-solid">
-                                                                <input class="form-check-input Special" type="radio" name="offer" value="special_offer">
+                                                                <input class="form-check-input Special" type="radio" name="offer" value="special_offer" @if($edit->offer == 'special_offer' ) checked @endif>
                                                             </span>
                                                             <!--end:Input-->
                                                         </label>
-                                                         <div class="row special_sec"   id="special_sec" style="display:none;">
+                                                         <div class="row special_sec"   id="special_sec" @if($edit->offer == "special_offer") @else style="display:none;" @endif>
                                                             <div class="col-md-8">
-                                                            <input type="text" class="form-control form-control-solid" name="discount_price" placeholder="Enter Discount Price" value="" />
+                                                            <input type="text" class="form-control form-control-solid" name="discount_price" placeholder="Enter Discount Price" value="{{$edit->discount_price}}" />
                                                             </div>
                                                             <div class="col-md-4">
                                                                 <select name="discount_price_type" class="form-control form-control-solid" style="padding-top:1px;padding-bottom:1px">
-                                                                    <option value="percent">%</option>
+                                                                    <option value="percent" >%</option>
                                                                     <option value="taka">TK</option>
                                                                 </select>
                                                             </div>
@@ -454,11 +457,11 @@
                                                 <div id="editimage"  class="col-xl-12 col-md-12 col-sm-12 col-xs-12 spartan_item_wrapper" data-spartanindexrow="0" style="margin-bottom : 20px; ">
                                                     <div style="position: relative;">
                                                         <div class="spartan_item_loader" data-spartanindexloader="0" style="position: absolute; width: 100%; height: 450px; background: rgba(255,255,255, 0.7); z-index: 22; text-align: center; align-items: center; margin: auto; justify-content: center; flex-direction: column; display : none; font-size : 1.7em; color: #CECECE"><i class="fas fa-sync fa-spin"></i></div>
-                                                        <label class="file_upload" style="width: 100%; height: 336px; border: 2px dashed #ddd; border-radius: 3px; cursor: pointer; text-align: center; overflow: hidden; padding: 5px; margin-top: 5px; margin-bottom : 5px; position : relative; display: flex; align-items: center; margin: auto; justify-content: center; flex-direction: column;">
+                                                        <label class="file_upload" style="width: 100%; height: 450px; border: 2px dashed #ddd; border-radius: 3px; cursor: pointer; text-align: center; overflow: hidden; padding: 5px; margin-top: 5px; margin-bottom : 5px; position : relative; display: flex; align-items: center; margin: auto; justify-content: center; flex-direction: column;">
                                                             <a href="javascript:void(0)" data-spartanindexremove="0" style="right: 3px; top: 3px; background: rgb(237, 60, 32); border-radius: 3px; width: 30px; height: 30px; line-height: 30px; text-align: center; text-decoration: none; color: rgb(255, 255, 255); position: absolute !important;" class="spartan_remove_row">
-
-                                                                <i class="fas fa-times" onclick="editimageremove(this)"></i> </a>
-                                                            <img style="width: 100%; margin: 0px auto; vertical-align: middle; display: ;" data-spartanindexi="0" src="{{asset('uploads/products/'.$edit->image)}}">
+                                                                <i class="fas fa-times" onclick="editimageremove(this)"></i> 
+                                                            </a>
+                                                            <img style="width: 100%; margin: 0px auto; vertical-align: middle; display: ;" data-spartanindexi="0" src="{{asset('uploads/products/'.$edit->image)}}">    
                                                             <input class="form-control spartan_image_input" accept="image/*" data-spartanindexinput="0" style="display : none" name="thumbnail_img" type="file">
                                                         </label>
                                                     </div>
@@ -469,6 +472,7 @@
                                                 <!-- image end -->
 
                                                 <!--begin::Hint-->
+                                                <br>
                                                 <div class="form-text">Allowed file types: png, jpg, jpeg. size(1920px * 540px)</div>
                                                 <!--end::Hint-->
                                             </div>
@@ -492,10 +496,7 @@
                                                         @endif
                                                         
                                                         </div>
-                                                        <div class="upload-text">
-                                                            <i class="material-icons">cloud_upload</i>
-                                                            <span>Drag &amp; Drop files here or click to browse</span>
-                                                        </div>
+                                                      
                                                     </div>
                                                 </div>
 
@@ -716,10 +717,7 @@
 <script>
  document.querySelector("#kt_create_account_form > div.current > div > div.mb-10.fv-row.fv-plugins-icon-container.fv-plugins-bootstrap5-row-valid")
 </script>
-<script type="text/javascript" src="{{asset('backend')}}/assets/js/image-uploader.min.js"></script>
-<script>
-$('.input-images').imageUploader();
-</script>
+
 <script type="text/javascript">
  $(document).ready(function() {
      $('select[name="category"]').on('change', function() {
@@ -821,4 +819,5 @@ $('.input-images').imageUploader();
      });
  });
 </script>
+
 @endsection

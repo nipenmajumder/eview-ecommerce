@@ -44,7 +44,7 @@ class ApproveProductController extends Controller
     // admin produt update
     public function update(Request $request)
     {
-        // dd($request->all());
+        //dd($request->all());
 
         $proname = $request->product_name;
         $slug    = preg_replace('/[^A-Za-z0-9-]+/', '-', $proname);
@@ -84,9 +84,9 @@ class ApproveProductController extends Controller
             'updated_at'                  => Carbon::now()->toDateTimeString(),
         ]);
 
-        if ($request->hasFile('product_img')) {
+        if ($request->hasFile('thumbnail_img')) {
 
-            $image     = $request->file('product_img');
+            $image     = $request->file('thumbnail_img');
             $ImageName = 'th' . '_' . time() . '.' . $image->getClientOriginalExtension();
             Image::make($image)->save('uploads/products/' . $ImageName);
             Product::where('id', $request->id)->update([
