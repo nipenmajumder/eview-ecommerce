@@ -20,7 +20,7 @@ div.dataTables_wrapper div.dataTables_filter input {
             <!--begin::Page title-->
             <div data-kt-place="true" data-kt-place-mode="prepend" data-kt-place-parent="{default: '#kt_content_container', 'lg': '#kt_toolbar_container'}" class="page-title d-flex align-items-center me-3 flex-wrap mb-5 mb-lg-0 lh-1">
                 <!--begin::Title-->
-                <h1 class="d-flex align-items-center text-dark fw-bolder my-1 fs-3">All New Order</h1>
+                <h1 class="d-flex align-items-center text-dark fw-bolder my-1 fs-3">All Processing Order</h1>
                 <!--end::Title-->
             </div>
 
@@ -118,12 +118,12 @@ div.dataTables_wrapper div.dataTables_filter input {
                                             <a href="#">{{  $data->total_amount }} ৳</a>
                                             </td>
                                             <td>
-                                                <a href="#">{{ $data->Customer->name }}</a><br><br>
+                                                <a href="#">{{ $data->Customer->name }}</a><br>
                                                 <span>{{ $data->Customer->email }}</span><br>
                                                 <span>{{ $data->Customer->phone }}</span>
                                             </td>
                                             <td>
-                                                <span class="btn-sm btn-primary">Pending</span>
+                                                <span class="btn-sm btn-primary">Processing</span>
                                             </td>
                                             <td class="text-end">
                                                 <a href="{{url('admin/update/order/'.$data->id)}}"  class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1" data-toggle="tooltip" data-placement="top" title="Update Order">
@@ -132,7 +132,7 @@ div.dataTables_wrapper div.dataTables_filter input {
                                                 <a href="{{url('admin/invoice/order/'.$data->id)}}"  class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1" data-toggle="tooltip" data-placement="top" title="View Order">
                                                     <i class="fas fa-eye blue"></i>
                                                 </a>
-                                                <a href="{{url('/admin/processing/order/'.$data->id)}}"  class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1" data-toggle="tooltip" data-placement="top" title="Approve On Delever">
+                                                <a href="{{url('admin/order/deliver/'.$data->id)}}"  class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1" data-toggle="tooltip" data-placement="top" title="Approve On Delever">
                                                     <i class="fas fa-thumbs-up blue"></i>
                                                 </a>
                                                 <a href="{{url('/admin/reject/order/'.$data->id)}}" class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm" data-toggle="tooltip" data-placement="top" title="Cancel Order">

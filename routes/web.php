@@ -114,10 +114,13 @@ Route::get('/vendor', [App\Http\Controllers\Frontend\VendorController::class, 'c
 Route::post('/vendor', [App\Http\Controllers\Frontend\VendorController::class, 'store'])->name('vendor.create');
 // vendor update
 Route::get('/vendor/edit', [App\Http\Controllers\Frontend\VendorController::class, 'edit'])->name('vendor.edit');
+Route::post('/vendor/edit', [App\Http\Controllers\Frontend\VendorController::class, 'editUpdate'])->name('vendor.edit');
 
 Route::get('/vendor/dashboard', [App\Http\Controllers\Frontend\VendorController::class, 'vendorDashboard'])->name('vendor.dashboard');
 Route::get('/vendor/order', [App\Http\Controllers\Frontend\VendorController::class, 'orderList'])->name('vendor.order');
 Route::get('/vendor/order/view/{id}', [App\Http\Controllers\Frontend\VendorController::class, 'invoicevendorOrder']);
+
+Route::get('/vendor/myorder', [App\Http\Controllers\Frontend\VendorController::class, 'myorder']);
 
 // shop
 Route::get('/vendor/shop', [App\Http\Controllers\Frontend\ShopController::class, 'index'])->name('vendor.shop');
@@ -278,6 +281,13 @@ Route::post('/admin/product/update', [App\Http\Controllers\Admin\ApproveProductC
 Route::get('admin/delete/product/{id}', [App\Http\Controllers\Admin\ApproveProductController::class, 'delete']);
 
 Route::get('/admin/neworder/list', [App\Http\Controllers\Admin\OrderController::class, 'allneworder'])->name('admin.order.new');
+Route::get('/admin/processing/order/{id}', [App\Http\Controllers\Admin\OrderController::class, 'Processingstatus']);
+Route::get('admin/order/deliver/{id}', [App\Http\Controllers\Admin\OrderController::class, 'deleverorder']);
+Route::get('admin/order/reject/{id}', [App\Http\Controllers\Admin\OrderController::class, 'rehjectorder']);
+Route::get('admin/order/return/{id}', [App\Http\Controllers\Admin\OrderController::class, 'returnorder']);
+
+Route::get('/admin/processingorder/list', [App\Http\Controllers\Admin\OrderController::class, 'processingorder'])->name('admin.order.new');
+
 Route::get('admin/invoice/order/{id}', [App\Http\Controllers\Admin\OrderController::class, 'invoiceOrder']);
 
 Route::get('admin/update/order/{id}', [App\Http\Controllers\Admin\OrderController::class, 'updateOrder']);

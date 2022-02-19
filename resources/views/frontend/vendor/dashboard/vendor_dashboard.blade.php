@@ -42,7 +42,7 @@
                                             <div>
 
                                                 <h3>{{$countproduct}}</h3>
-                                                <h5>total products</h5>
+                                                <h5>Total Products</h5>
                                             </div>
                                         </div>
                                     </div>
@@ -50,8 +50,8 @@
                                         <div class="counter-box">
                                             <img src="{{ asset('frontend') }}/assets/images/icon/dashboard/sale.png" class="img-fluid">
                                             <div>
-                                                <h3>12500</h3>
-                                                <h5>total sales</h5>
+                                                <h3>{{$totalsellproduct}}</h3>
+                                                <h5>Total Sales</h5>
                                             </div>
                                         </div>
                                     </div>
@@ -59,8 +59,8 @@
                                         <div class="counter-box">
                                             <img src="{{ asset('frontend') }}/assets/images/icon/dashboard/homework.png" class="img-fluid">
                                             <div>
-                                                <h3>50</h3>
-                                                <h5>order pending</h5>
+                                                <h3>{{ $totalpendingOrder }}</h3>
+                                                <h5>Order Pending</h5>
                                             </div>
                                         </div>
                                     </div>
@@ -86,7 +86,7 @@
                                 <div class="col-lg-6">
                                     <div class="card dashboard-table">
                                         <div class="card-body">
-                                            <h3>trending products</h3>
+                                            <h3>Best Sell Products</h3>
                                             <table class="table mb-0">
                                                 <thead>
                                                     <tr>
@@ -97,29 +97,15 @@
                                                     </tr>
                                                 </thead>
                                                 <tbody>
+                                                @foreach($OrderBysellproduct as $product)
                                                     <tr>
-                                                        <th scope="row"><img
-                                                                src="{{ asset('frontend') }}/assets/images/dashboard/product/1.jpg"
-                                                                class="blur-up lazyloaded"></th>
-                                                        <td>neck velvet dress</td>
-                                                        <td>$205</td>
-                                                        <td>1000</td>
+                                                        <th scope="row">
+                                                        <img src="{{ asset('uploads/products/'.$product->image) }}" class="blur-up lazyloaded"></th>
+                                                        <td>{{ $product->product_name }}</td>
+                                                        <td>{{ $product->product_price }}</td>
+                                                        <td>{{$product->sell_qty}}</td>
                                                     </tr>
-                                                    <tr>
-                                                        <th scope="row"><img
-                                                                src="{{ asset('frontend') }}/assets/images/dashboard/product/9.jpg"
-                                                                class="blur-up lazyloaded"></th>
-                                                        <td>belted trench coat</td>
-                                                        <td>$350</td>
-                                                        <td>800</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <th scope="row"><img src="{{ asset('frontend') }}/assets/images/pro3/34.jpg"
-                                                                class="blur-up lazyloaded"></th>
-                                                        <td>man print tee</td>
-                                                        <td>$150</td>
-                                                        <td>750</td>
-                                                    </tr>
+                                                @endforeach
                                                 </tbody>
                                             </table>
                                         </div>
@@ -128,41 +114,24 @@
                                 <div class="col-lg-6">
                                     <div class="card dashboard-table">
                                         <div class="card-body">
-                                            <h3>recent orders</h3>
+                                            <h3>Recent Orders</h3>
                                             <table class="table mb-0">
                                                 <thead>
                                                     <tr>
-                                                        <th scope="col">order id</th>
-                                                        <th scope="col">product details</th>
+                                                        <th scope="col">Order id</th>
+                                                        <th scope="col">Date</th>
                                                         <th scope="col">status</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
+                                                    @foreach($allpendingOrder as $pendingorder)
                                                     <tr>
-                                                        <th scope="row">#21515</th>
-                                                        <td>neck velvet dress</td>
-                                                        <td>confrimed</td>
+                                                        <th scope="row">#{{$pendingorder->order_id}}</th>
+                                                        <td>{{ $pendingorder->created_at->format('d-M-Y') }}</td>
+                                                        <td>@if($pendingorder->order_status==0) Pending @elseif($pendingorder->order_status==1) Processing  @elseif($pendingorder->order_status==2) Rejet @elseif($pendingorder->order_status==3) Delevery @endif</td>
                                                     </tr>
-                                                    <tr>
-                                                        <th scope="row">#78153</th>
-                                                        <td>belted trench coat</td>
-                                                        <td>shipped</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <th scope="row">#51512</th>
-                                                        <td>man print tee</td>
-                                                        <td>pending</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <th scope="row">#78153</th>
-                                                        <td>belted trench coat</td>
-                                                        <td>shipped</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <th scope="row">#51512</th>
-                                                        <td>man print tee</td>
-                                                        <td>pending</td>
-                                                    </tr>
+                                                    @endforeach
+                                              
                                                 </tbody>
                                             </table>
                                         </div>
@@ -193,9 +162,10 @@
                                                     </tr>
                                                 </thead>
                                                 <tbody>
+                                              
                                                     <tr>
-                                                        <th scope="row"><img
-                                                                src="{{ asset('frontend') }}/assets/images/dashboard/product/1.jpg"
+                                                        <th scope="row">
+                                                        <img src=""
                                                                 class="blur-up lazyloaded"></th>
                                                         <td>neck velvet dress</td>
                                                         <td>women clothes</td>
@@ -206,67 +176,7 @@
                                                                 aria-hidden="true"></i><i class="fa fa-trash-o ms-1"
                                                                 aria-hidden="true"></i></td>
                                                     </tr>
-                                                    <tr>
-                                                        <th scope="row"><img
-                                                                src="{{ asset('frontend') }}/assets/images/dashboard/product/9.jpg"
-                                                                class="blur-up lazyloaded"></th>
-                                                        <td>belted trench coat</td>
-                                                        <td>women clothes</td>
-                                                        <td>$350</td>
-                                                        <td>800</td>
-                                                        <td>350</td>
-                                                        <td><i class="fa fa-pencil-square-o me-1"
-                                                                aria-hidden="true"></i><i class="fa fa-trash-o ms-1"
-                                                                aria-hidden="true"></i></td>
-                                                    </tr>
-                                                    <tr>
-                                                        <th scope="row"><img src="{{ asset('frontend') }}/assets/images/pro3/34.jpg"
-                                                                class="blur-up lazyloaded"></th>
-                                                        <td>men print tee</td>
-                                                        <td>men clothes</td>
-                                                        <td>$150</td>
-                                                        <td>750</td>
-                                                        <td>150</td>
-                                                        <td><i class="fa fa-pencil-square-o me-1"
-                                                                aria-hidden="true"></i><i class="fa fa-trash-o ms-1"
-                                                                aria-hidden="true"></i></td>
-                                                    </tr>
-                                                    <tr>
-                                                        <th scope="row"><img src="{{ asset('frontend') }}/assets/images/pro3/1.jpg"
-                                                                class="blur-up lazyloaded"></th>
-                                                        <td>woman print tee</td>
-                                                        <td>women clothes</td>
-                                                        <td>$150</td>
-                                                        <td>750</td>
-                                                        <td>150</td>
-                                                        <td><i class="fa fa-pencil-square-o me-1"
-                                                                aria-hidden="true"></i><i class="fa fa-trash-o ms-1"
-                                                                aria-hidden="true"></i></td>
-                                                    </tr>
-                                                    <tr>
-                                                        <th scope="row"><img src="{{ asset('frontend') }}/assets/images/pro3/27.jpg"
-                                                                class="blur-up lazyloaded"></th>
-                                                        <td>men print tee</td>
-                                                        <td>men clothes</td>
-                                                        <td>$150</td>
-                                                        <td>750</td>
-                                                        <td>150</td>
-                                                        <td><i class="fa fa-pencil-square-o me-1"
-                                                                aria-hidden="true"></i><i class="fa fa-trash-o ms-1"
-                                                                aria-hidden="true"></i></td>
-                                                    </tr>
-                                                    <tr>
-                                                        <th scope="row"><img src="{{ asset('frontend') }}/assets/images/pro3/36.jpg"
-                                                                class="blur-up lazyloaded"></th>
-                                                        <td>men print tee</td>
-                                                        <td>men clothes</td>
-                                                        <td>$150</td>
-                                                        <td>750</td>
-                                                        <td>150</td>
-                                                        <td><i class="fa fa-pencil-square-o me-1"
-                                                                aria-hidden="true"></i><i class="fa fa-trash-o ms-1"
-                                                                aria-hidden="true"></i></td>
-                                                    </tr>
+                                              
                                                 </tbody>
                                             </table>
                                         </div>

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Order;
+use App\Models\Product;
 use Carbon\Carbon;
 
 class OrderController extends Controller
@@ -78,7 +79,98 @@ class OrderController extends Controller
             return redirect()->back()->with($notification);
         }
        
-       
+    }
 
+
+    // 
+    public function Processingstatus($id){
+        $update=Order::where('id',$id)->update([
+            'order_status'=>1,
+        ]);
+        if($update){
+            $notification = array(
+                'messege' => 'Insert success!',
+                'alert-type' => 'success'
+              );
+            return redirect()->back()->with($notification);
+        }else{
+            $notification = array(
+                'messege' => 'insert Faild!',
+                'alert-type' => 'error'
+              );
+            return redirect()->back()->with($notification);
+        }
+    }
+    // 
+    public function deleverorder($id){
+        // $update=Order::where('id',$id)->update([
+        //     'order_status'=>3,
+        // ]);
+        $productsellqtyupdate=Order::where('id',$id)->first();
+    
+        foreach(json_decode($productsellqtyupdate->products) as $key => $nproduct){
+
+            $sell_qty=Product::where('id',$nproduct->id)->update([
+                'sell_qty'=>Product::where('id',$nproduct->id)->first()->sell_qty + $nproduct->qty,
+            ]);
+
+        }
+
+
+        // if($update){
+        //     $notification = array(
+        //         'messege' => 'Insert success!',
+        //         'alert-type' => 'success'
+        //       );
+        //     return redirect()->back()->with($notification);
+        // }else{
+        //     $notification = array(
+        //         'messege' => 'insert Faild!',
+        //         'alert-type' => 'error'
+        //       );
+        //     return redirect()->back()->with($notification);
+        // }
+    }
+        // 
+    public function rehjectorder($id){
+        $update=Order::where('id',$id)->update([
+            'order_status'=>2,
+        ]);
+        if($update){
+            $notification = array(
+                'messege' => 'Insert success!',
+                'alert-type' => 'success'
+                );
+            return redirect()->back()->with($notification);
+        }else{
+            $notification = array(
+                'messege' => 'insert Faild!',
+                'alert-type' => 'error'
+                );
+            return redirect()->back()->with($notification);
+        }
+    }
+    public function returnorder($id){
+        $update=Order::where('id',$id)->update([
+            'order_status'=>4,
+        ]);
+        if($update){
+            $notification = array(
+                'messege' => 'Insert success!',
+                'alert-type' => 'success'
+                );
+            return redirect()->back()->with($notification);
+        }else{
+            $notification = array(
+                'messege' => 'insert Faild!',
+                'alert-type' => 'error'
+                );
+            return redirect()->back()->with($notification);
+        }
+    }
+
+    public function processingorder(){
+        $alldata=Order::where('order_status',1)->orderBy('id','DESC')->get();
+        return view('backend.order.processingorder',compact('alldata'));
     }
 }
