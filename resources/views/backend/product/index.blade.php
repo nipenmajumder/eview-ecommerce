@@ -92,7 +92,7 @@
                                             <label class="col-lg-3 col-form-label text-lg-end">Product Title:</label>
                                             <div class="col-lg-12 col-xl-6">
                                                 <div class="form-check form-check-custom form-check-solid form-switch mb-2">
-                                                    <input class="form-control form-control-solid" type="text" name="product_name" placeholder="Enter Product Title" value="{{ $edit->product_name }}"/>
+                                                    <input class="form-control form-control-solid" type="text" name="product_name" placeholder="Enter Product Title" value="{{ $edit->product_name }}" required/>
                                                     <input type="hidden" class="shop_id_update_val" name="shop_id_update_val" value="{{ $edit->shop_id }}"/>
                                                     <input type="hidden" name="id" value="{{ $edit->id }}"/>
                                                 </div>
@@ -105,7 +105,7 @@
                                             <label class="col-lg-3 col-form-label text-lg-end">Product Sku:</label>
                                             <div class="col-lg-12 col-xl-6">
                                                 <div class="form-check form-check-custom form-check-solid form-switch mb-2">
-                                                    <input class="form-control form-control-solid" type="text" name="product_sku" placeholder="Enter Product Sku" value="{{ $edit->product_sku }}"/>
+                                                    <input class="form-control form-control-solid" type="text" name="product_sku" placeholder="Enter Product Sku" value="{{ $edit->product_sku }}" required/>
                                                   
                                                 </div>
                                                 @error('product_sku')
@@ -117,7 +117,7 @@
                                             <label class="col-lg-3 col-form-label text-lg-end">Product Qty:</label>
                                             <div class="col-lg-12 col-xl-6">
                                                 <div class="form-check form-check-custom form-check-solid form-switch mb-2">
-                                                    <input class="form-control form-control-solid" type="text" name="product_qty"  placeholder="Enter Product Stock Qty" value="{{ $edit->product_qty }}"/>
+                                                    <input class="form-control form-control-solid" type="text" name="product_qty"  placeholder="Enter Product Stock Qty" value="{{ $edit->product_qty }}" required/>
                                                 </div>
                                                 @error('product_qty')
                                                         <div class="validation">{{ $message }}</div>
@@ -180,7 +180,7 @@
                                             <label class="col-lg-3 col-form-label text-lg-end">Price:</label>
                                             <div class="col-lg-12 col-xl-6">
                                                 <div class="form-check form-check-custom form-check-solid form-switch mb-2">
-                                                    <input class="form-control form-control-solid" type="text" name="price" placeholder="Enter Price" value="{{ $edit->product_price }}" />
+                                                    <input class="form-control form-control-solid" type="text" name="price" placeholder="Enter Price" required value="{{ $edit->product_price }}" />
                                                 </div>
                                             </div>
                                         </div>

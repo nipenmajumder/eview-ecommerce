@@ -31,6 +31,14 @@ class ProductController extends Controller
     public function store(Request $request)
     {
 
+
+        $validated = $request->validate([
+            'product_name' => 'required',
+            'product_sku' => 'required',
+            'price' => 'required',
+            'category' => 'required',
+        ]);
+
         $proname = $request->product_name;
         $slug    = preg_replace('/[^A-Za-z0-9-]+/', '-', $proname);
 

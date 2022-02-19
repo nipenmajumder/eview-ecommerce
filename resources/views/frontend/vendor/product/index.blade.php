@@ -232,21 +232,28 @@
                                                 <span class="required">Product Title</span>
                                                 <i class="fas fa-exclamation-circle ms-2 fs-7" data-bs-toggle="tooltip" title="Specify your unique app name"></i>
                                             </label>
-                                            <input type="text" class="form-control form-control-solid product_title" name="product_name" placeholder="Enter Product Title"/>
+                                            <input type="text" required class="form-control form-control-solid product_title" name="product_name" placeholder="Enter Product Title"/>
+                                             
+                                            @error('product_name')
+                                                <div style="color:red">{{ $message }}</div>
+                                            @enderror
                                         </div>
                                         <div class="fv-row mb-10">
                                             <label class="d-flex align-items-center fs-5 fw-bold mb-2">
                                                 <span class="required">Product Sku</span>
                                                 <i class="fas fa-exclamation-circle ms-2 fs-7" data-bs-toggle="tooltip" title="Specify your unique app name"></i>
                                             </label>
-                                            <input type="text" class="form-control form-control-solid" name="product_sku" placeholder="Enter Product Sku"/>
+                                            <input type="text" required class="form-control form-control-solid" name="product_sku" placeholder="Enter Product Sku"/>
+                                            @error('product_name')
+                                                <div style="color:red">{{ $message }}</div>
+                                            @enderror
                                         </div>
                                         <div class="fv-row mb-10">
                                             <label class="d-flex align-items-center fs-5 fw-bold mb-2">
                                                 <span class="required">Product Qty</span>
                                                 <i class="fas fa-exclamation-circle ms-2 fs-7" data-bs-toggle="tooltip" title="Specify your unique app name"></i>
                                             </label>
-                                            <input type="number" class="form-control form-control-solid product_title" name="product_qty" placeholder="Enter Product Stock Qty"/>
+                                            <input type="number" required class="form-control form-control-solid product_title" name="product_qty" placeholder="Enter Product Stock Qty"/>
                                         </div>
                                         <div class="fv-row mb-10">
                                             <label class="d-flex align-items-center fs-5 fw-bold mb-2">
@@ -272,6 +279,9 @@
                                                 <option value="{{ $category->id }}">{{  $category->name  }}</option>
                                                 @endforeach
                                             </select>
+                                            @error('category')
+                                                <div style="color:red">{{ $message }}</div>
+                                            @enderror
                                         </div>
                                         <div class="fv-row mb-10">
                                             <label class="d-flex align-items-center fs-5 fw-bold mb-2">
@@ -303,7 +313,10 @@
                                                 <span class="required">Price</span>
                                                 <i class="fas fa-exclamation-circle ms-2 fs-7" data-bs-toggle="tooltip" title="Specify your unique app name"></i>
                                             </label>
-                                            <input type="text" class="form-control  form-control-solid" name="price" placeholder="Enter Price" value="" />
+                                            <input type="text" required class="form-control  form-control-solid" name="price" placeholder="Enter Price" value="" />
+                                            @error('price')
+                                                <div style="color:red">{{ $message }}</div>
+                                            @enderror
                                         </div>
                                     
                                         <div class="fv-row mb-10">

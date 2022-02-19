@@ -77,6 +77,23 @@
                             <span class="menu-title">Processing Order</span>
                         </a>
                     </div>
+                    <div class="menu-item">
+                        <a class="menu-link" href="{{route('admin.order.alldeleverorder')}}">
+                            <span class="menu-bullet">
+                                <span class="bullet bullet-dot"></span>
+                            </span>
+                            <span class="menu-title">Deliver Order</span>
+                        </a>
+                    </div>
+                    <div class="menu-item">
+                        <a class="menu-link" href="{{route('admin.order.reject')}}">
+                            <span class="menu-bullet">
+                                <span class="bullet bullet-dot"></span>
+                            </span>
+                            <span class="menu-title">Reject Order</span>
+                        </a>
+                    </div>
+                    
                 </div>
             </div>
 
