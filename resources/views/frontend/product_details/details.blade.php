@@ -31,11 +31,15 @@
                     <div class="product-slick">
 
                         @php
-                        $thunmbnailImg = array($data->image);
-                        $gal_img=json_decode($data->gallary_image);
-                        $img = array_merge($thunmbnailImg, $gal_img);
-
-                        @endphp
+                        $thunmbnailImg = array($data->image); 
+                        if($data->gallery_img == NULL ){
+                            $img = $thunmbnailImg;
+                           // dd($img);
+                        } else {
+                            $gal_img=json_decode($data->gallery_img);
+                            $img = array_merge($thunmbnailImg, $gal_img);
+                        }
+                   @endphp  
                         @foreach($img as $dimage)
                         <div>
                             <img src="{{ asset('uploads/products/'.$dimage) }}" alt=""

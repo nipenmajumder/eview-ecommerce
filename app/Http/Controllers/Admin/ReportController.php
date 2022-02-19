@@ -20,12 +20,10 @@ class ReportController extends Controller
     }
     public function Report(Request $request)
     {
-
         $from = $request->from;
         $to   = $request->to;
         $data = Order::whereBetween('created_at', [$from, $to])->with('Customer')->get();
 
-        //return $data;
         return view('backend.orderreport.index', compact('data'));
     }
 
@@ -38,19 +36,19 @@ class ReportController extends Controller
     }
     public function productWiseReport(Request $request)
     {
-        // $alldata = Product::where('is_deleted', 0)
-        //     ->select(['product_name', 'id'])
-        //     ->orderBy('id', 'DESC')->get();
+        $alldata = Product::where('is_deleted', 0)
+            ->select(['product_name', 'id'])
+            ->orderBy('id', 'DESC')->get();
 
-        // if ($request->product == 'all') {
+        if ($request->product == 'all') {
 
-        //     $data = Product::select(['id', 'product_name', 'product_sku', 'product_qty', 'sell_qty'])->orderBy('sell_qty', 'DESC')->get();
+            $data = Product::select(['id', 'product_name', 'product_sku', 'product_qty', 'sell_qty'])->orderBy('sell_qty', 'DESC')->get();
 
-        //     return view('backend.productreport.index', compact('alldata', 'data'));
-        // }
-        // if ($request->product != 'all') {
-        //     $data = Product::where('id', $request->product)->select(['id', 'product_name', 'product_qty', 'product_sku', 'sell_qty'])->get();
-        //     return view('backend.productreport.index', compact('alldata', 'data'));
-        // }
+            return view('backend.productreport.index', compact('alldata', 'data'));
+        }
+        if ($request->product != 'all') {
+            $data = Product::where('id', $request->product)->select(['id', 'product_name', 'product_qty', 'product_sku', 'sell_qty'])->get();
+            return view('backend.productreport.index', compact('alldata', 'data'));
+        }
     }
 }
