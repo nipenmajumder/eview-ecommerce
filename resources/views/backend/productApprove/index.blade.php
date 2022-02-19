@@ -113,7 +113,7 @@ div.dataTables_wrapper div.dataTables_filter input {
                                                 <span>{{ $data->Vendor->email }}</span>
                                             </td>
                                             <td>
-                                            <a href="#">{{  $data->MainShop->shop_name }}</a>
+                                            <a href="#">{{  $data->MainShop->shop_name ?? '' }}</a>
                                             </td>
                                             <td>
                                                 <img src="{{ asset('uploads/products/'.$data->image) }}" height="65px" alt="">
