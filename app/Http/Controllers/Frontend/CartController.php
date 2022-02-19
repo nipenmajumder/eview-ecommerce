@@ -10,6 +10,7 @@ class CartController extends Controller
 {
     public function addToCart(Request $request)
     {
+        // dd($request->all());
         Cart::add($request->id, $request->name, $request->product_quantity, $request->price, [
             $request->image,
             $request->product_sku,

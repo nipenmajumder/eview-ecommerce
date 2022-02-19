@@ -67,7 +67,7 @@
                                                 <td scope="row">{{ $key+1 }}</td>
                                                 <td>{{ $order->order_id }}</td>
                                                 <td>{{ $order->created_at->format('d/m/Y') }}</td>
-                                                <td>{{ $order->total_amount}}</td>
+                                                <td>৳{{ $order->total_amount}}</td>
 
                                                 {{-- <span class="badge badge-danger">Canceled</span> --}}
                                                 @if($order->delevery_status==0)

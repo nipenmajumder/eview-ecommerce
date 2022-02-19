@@ -115,7 +115,7 @@
                                     @enderror
                                 </div>
                                 <div class="form-group col-md-12 col-sm-12 col-xs-12">
-                                    <input type="radio" name="payment_status" id="payment_status_1" value="1">
+                                    <input type="radio" name="payment_status" id="payment_status_1" value="1" checked>
                                     <label for="payment_status_1">Cash On Delivery</label><br>
                                     <span class="text-info text-sm-end">Please fill a
                                         check to continue shopping</span></label>

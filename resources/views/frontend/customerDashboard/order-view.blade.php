@@ -76,7 +76,7 @@
                                                 <td>{{Str::limit($obj->product_name,20)}}</td>
                                                 <td>{{$product_image->product_sku}}</td>
                                                 <td>{{$obj->qty}}</td>
-                                                <td>${{$obj->price}}</td>
+                                                <td>৳{{$obj->price}}</td>
                                             </tr>
                                             @endforeach
                                             <tr>
@@ -85,7 +85,7 @@
                                                 <td></td>
                                                 <td></td>
                                                 <td></td>
-                                                <td>${{ $data->total_amount }}</td>
+                                                <td>৳{{ $data->total_amount }}</td>
                                             </tr>
                                             <tr>
                                                 <th scope="row"></th>
@@ -93,7 +93,7 @@
                                                 <td></td>
                                                 <td></td>
                                                 <td></td>
-                                                <td>${{ "70" }}</td>
+                                                <td>৳{{ "70" }}</td>
                                             </tr>
                                             <tr>
                                                 <th scope="row"></th>
@@ -101,7 +101,7 @@
                                                 <td></td>
                                                 <td></td>
                                                 <td></td>
-                                                <td>${{ $data->total_amount + 70 }}
+                                                <td>৳{{ $data->total_amount + 70 }}
                                                 </td>
                                             </tr>
                                         </tbody>
@@ -116,7 +116,7 @@
                                                 <ul class="order-detail">
                                                     <li>order ID: {{ $data->order_id }}</li>
                                                     <li>Order Date: {{ $data->created_at->format('d/m/Y') }}</li>
-                                                    <li>Order Total: ${{ $data->total_amount }}</li>
+                                                    <li>Order Total: ৳{{ $data->total_amount }}</li>
                                                 </ul>
                                             </div>
                                             <div class="col-sm-6">

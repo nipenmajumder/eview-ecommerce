@@ -29,7 +29,7 @@
     <link rel="stylesheet" type="text/css" href="{{asset('frontend')}}/assets/css/style.css">
     <link rel="stylesheet" href="{{ asset('frontend/assets/css/custom_style.css') }}">
     <!-- custom flying cart -->
-    
+
     <style>
         .product-cart-list {
             background: #fff none repeat scroll 0 0;
@@ -96,46 +96,8 @@
                 <div class="modal-body">
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"><span
                             aria-hidden="true">&times;</span></button>
-                    <div class="row">
-                        <div class="col-lg-6 col-xs-12">
-                            <div class="quick-view-img" id="product_image">
+                    <div class="row" id="modalview">
 
-                            </div>
-                        </div>
-                        <div class="col-lg-6 rtl-text">
-                            <div class="product-right">
-                                <h2 id="product_name"></h2>
-                                <h3 id="product_price"></h3>
-
-                                <div class="border-product">
-                                    <h6 class="product-title">Product Info</h6>
-                                    <p id="brand"></p>
-                                    <p id="product_weight"></p>
-                                    <p id="style"></p>
-                                    <p id="product_materials"></p>
-                                </div>
-                                <div class="product-description border-product">
-                                    <div class="size-box">
-
-                                    </div>
-                                    <h6 class="product-title">quantity</h6>
-                                    <div class="qty-box">
-                                        <div class="input-group"><span class="input-group-prepend"><button type="button"
-                                                    class="btn quantity-left-minus" data-type="minus" data-field=""><i
-                                                        class="ti-angle-left"></i></button> </span>
-                                            <input type="text" name="quantity" class="form-control input-number"
-                                                value="1"> <span class="input-group-prepend"><button type="button"
-                                                    class="btn quantity-right-plus" data-type="plus" data-field=""><i
-                                                        class="ti-angle-right"></i></button></span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="product-buttons" id="product_button">
-                                    <a href="#" class="btn btn-solid">add to cart</a>
-                                    <a href="#" class="btn btn-solid">view detail</a>
-                                </div>
-                            </div>
-                        </div>
                     </div>
                 </div>
             </div>
@@ -219,62 +181,70 @@
         $('#order_track').trigger('focus')
         })
     </script>
+
     <!--=================== product quick view  =============-->
     <script>
         $(document).ready(function(){
         $(".productdetails").click(function(){
-            
             $('#loaderIcon').show();
         var product_id=$(this).data("id");
-            $("#product_name").empty();
-            $("#product_price").empty();
-            $("#product_details").empty();
-            $("#product_id").empty();
-            $("#product_image").empty();
-            $("#product_button").empty();
-            $('#brand').empty();
-            $('#product_materials').empty();
-
             if (product_id) {
                 $.ajax({
                     url: "{{  url('/get/product/details/') }}/" + product_id,
                     type: "GET",
-                    dataType: "json",
-                    success: function(data) {
-
-                        $("#product_name").text(data.product_name);
-                        $("#product_price").text('৳'+data.product_price);
-                        $("#product_id").text(data.id);
-                        $("#product_image").append('<img src="{{ asset("uploads/products/") }}/'+data.image+'" alt="" class="img-fluid blur-up lazyload">');
-                        $("#product_button").append('<a href="#" class="btn btn-solid">add to cart</a><a href="{{ url("products/") }}/'+data.slug+'/'+data.id+'"" class="btn btn-solid">view detail</a>')
-                        
-                        $("#product_name").text(data.product_name);
-                        $("#product_price").text('৳'+data.product_price);
-
-                        if(data.product_brand==null){
-                            $('#brand').text("");
-                        }else{
-                            $('#brand').text('Brand: '+data.product_brand);
-                        }
-
-                        if(data.product_materials){
-                            $('#product_materials').text("");
-                        }else{
-                            $('#product_materials').text('Product Materials: '+data.product_materials);
-                        }
-
-
+                    //dataType: "json",
+                    success: function(product) {
+                        $("#modalview").html(product);
                     },complete: function(){
-
                             $('#loaderIcon').hide();
-
                         }
-       
                 });
             }
-
         });
     });
+    </script>
+    <!--=================== product quick view  add to cart =============-->
+    <script>
+        function quickviewcart(){
+            var str = $( "#quickviewcartsection" ).serialize();
+            // alert(str);
+              $.ajax({
+                  url : '{{url('/addtocart')}}',
+                  type : 'get',
+                  data : $( "#quickviewcartsection" ).serialize(),
+                  success: function(data) {
+                      if(data.success){
+                      Swal.fire({
+                          toast: true,
+                          icon: 'success',
+                          title: ''+ data.success +'',
+                          position: 'top',
+                          showConfirmButton: false,
+                          timer: 3000,
+                          timerProgressBar: true,
+                          didOpen: (toast) => {
+                          toast.addEventListener('mouseenter', Swal.stopTimer)
+                          toast.addEventListener('mouseleave', Swal.resumeTimer)
+                          }
+                      })
+                     }else{
+                      Swal.fire({
+                          toast: true,
+                          icon: 'error',
+                          title: 'Add to cart failed',
+                          position: 'top',
+                          showConfirmButton: false,
+                          timer: 3000,
+                          timerProgressBar: true,
+                          didOpen: (toast) => {
+                          toast.addEventListener('mouseenter', Swal.stopTimer)
+                          toast.addEventListener('mouseleave', Swal.resumeTimer)
+                          }
+                      })
+                     }
+                  }
+              })
+        }
     </script>
     <script src="{{asset('frontend')}}/assets/js/bootstrap.bundle.min.js"></script>
 
@@ -428,8 +398,8 @@
     <script>
         $(document).ready(function(){
           $(".cart").click(function(){
+              
               var str = $( "#cartsection" ).serialize();
-             console.log(str);
               $.ajax({
                   url : '{{url('/addtocart')}}',
                   type : 'get',
@@ -485,7 +455,6 @@
         $(document).ready(function(){
           $(".wishlist").click(function(){
               var str = $( "#cartsection" ).serialize();
-             console.log(str);
               $.ajax({
                   url : '{{url('/add-to-wishlist')}}',
                   type : 'get',
@@ -520,17 +489,12 @@
                           }
                       })
                      }
-                 
-                           
                   }
               })
-              // 
           });
-    
     });
     </script>
     <!--========== delete cart data data  ============= -->
-
     <script>
         function deletedata(el){
         var rowId=el.id;
@@ -556,8 +520,6 @@
                         toast.addEventListener('mouseleave', Swal.resumeTimer)
                         }
                     });
-                    
-                
                 }
             });
         mainuploadspro();
