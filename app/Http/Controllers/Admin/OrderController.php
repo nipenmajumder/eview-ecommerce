@@ -89,13 +89,13 @@ class OrderController extends Controller
         ]);
         if($update){
             $notification = array(
-                'messege' => 'Insert success!',
+                'messege' => ' success!',
                 'alert-type' => 'success'
               );
             return redirect()->back()->with($notification);
         }else{
             $notification = array(
-                'messege' => 'insert Faild!',
+                'messege' => ' Faild!',
                 'alert-type' => 'error'
               );
             return redirect()->back()->with($notification);
@@ -103,9 +103,9 @@ class OrderController extends Controller
     }
     // 
     public function deleverorder($id){
-        // $update=Order::where('id',$id)->update([
-        //     'order_status'=>3,
-        // ]);
+        $update=Order::where('id',$id)->update([
+            'order_status'=>3,
+        ]);
         $productsellqtyupdate=Order::where('id',$id)->first();
     
         foreach(json_decode($productsellqtyupdate->products) as $key => $nproduct){
@@ -116,20 +116,19 @@ class OrderController extends Controller
 
         }
 
-
-        // if($update){
-        //     $notification = array(
-        //         'messege' => 'Insert success!',
-        //         'alert-type' => 'success'
-        //       );
-        //     return redirect()->back()->with($notification);
-        // }else{
-        //     $notification = array(
-        //         'messege' => 'insert Faild!',
-        //         'alert-type' => 'error'
-        //       );
-        //     return redirect()->back()->with($notification);
-        // }
+        if($update){
+            $notification = array(
+                'messege' => ' success!',
+                'alert-type' => 'success'
+              );
+            return redirect()->back()->with($notification);
+        }else{
+            $notification = array(
+                'messege' => ' Faild!',
+                'alert-type' => 'error'
+              );
+            return redirect()->back()->with($notification);
+        }
     }
         // 
     public function rehjectorder($id){
@@ -138,13 +137,13 @@ class OrderController extends Controller
         ]);
         if($update){
             $notification = array(
-                'messege' => 'Insert success!',
+                'messege' => ' success!',
                 'alert-type' => 'success'
                 );
             return redirect()->back()->with($notification);
         }else{
             $notification = array(
-                'messege' => 'insert Faild!',
+                'messege' => ' Faild!',
                 'alert-type' => 'error'
                 );
             return redirect()->back()->with($notification);
@@ -156,13 +155,13 @@ class OrderController extends Controller
         ]);
         if($update){
             $notification = array(
-                'messege' => 'Insert success!',
+                'messege' => ' success!',
                 'alert-type' => 'success'
                 );
             return redirect()->back()->with($notification);
         }else{
             $notification = array(
-                'messege' => 'insert Faild!',
+                'messege' => ' Faild!',
                 'alert-type' => 'error'
                 );
             return redirect()->back()->with($notification);
@@ -172,5 +171,15 @@ class OrderController extends Controller
     public function processingorder(){
         $alldata=Order::where('order_status',1)->orderBy('id','DESC')->get();
         return view('backend.order.processingorder',compact('alldata'));
+    }
+
+
+    public function allrejectorder(){
+        $alldata=Order::where('order_status',2)->orderBy('id','DESC')->get();
+        return view('backend.order.rejectorder',compact('alldata'));
+    }
+    public function alldeleverorder(){
+        $alldata=Order::where('order_status',3)->orderBy('id','DESC')->get();
+        return view('backend.order.delivery',compact('alldata'));
     }
 }

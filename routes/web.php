@@ -283,8 +283,13 @@ Route::get('admin/delete/product/{id}', [App\Http\Controllers\Admin\ApproveProdu
 Route::get('/admin/neworder/list', [App\Http\Controllers\Admin\OrderController::class, 'allneworder'])->name('admin.order.new');
 Route::get('/admin/processing/order/{id}', [App\Http\Controllers\Admin\OrderController::class, 'Processingstatus']);
 Route::get('admin/order/deliver/{id}', [App\Http\Controllers\Admin\OrderController::class, 'deleverorder']);
-Route::get('admin/order/reject/{id}', [App\Http\Controllers\Admin\OrderController::class, 'rehjectorder']);
+Route::get('/admin/reject/order/{id}', [App\Http\Controllers\Admin\OrderController::class, 'rehjectorder']);
 Route::get('admin/order/return/{id}', [App\Http\Controllers\Admin\OrderController::class, 'returnorder']);
+
+Route::get('/admin/rejectorder/list', [App\Http\Controllers\Admin\OrderController::class, 'allrejectorder'])->name('admin.order.reject');
+Route::get('/admin/alldeleverorder/list', [App\Http\Controllers\Admin\OrderController::class, 'alldeleverorder'])->name('admin.order.alldeleverorder');
+
+
 
 Route::get('/admin/processingorder/list', [App\Http\Controllers\Admin\OrderController::class, 'processingorder'])->name('admin.order.new');
 
