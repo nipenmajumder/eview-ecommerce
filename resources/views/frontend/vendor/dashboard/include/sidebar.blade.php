@@ -1,11 +1,14 @@
 <div class="dashboard-sidebar">
     <div class="profile-top">
-        <div class="profile-image">
-            <img src="{{ asset('frontend') }}/assets/images/logos/17.png" alt="" class="img-fluid">
-        </div>
-        @php
+         @php
         $main_company=App\Models\VendorCompany::where('user_id',Auth::user()->id)->first();
         @endphp
+        <div class="profile-image">
+        @if($main_company)
+            <img src="{{ asset('uploads/vendorcompany/'.$main_company->image) }}" alt="" class="img-fluid">
+        @endif
+        </div>
+      
         <div class="profile-detail">
             @if($main_company)
             <h5>{{$main_company->company_name }}</h5>
@@ -26,6 +29,8 @@
             <li class="nav-item"><a class="nav-link" href="{{ url('/vendor/edit') }}">profile</a>
             </li>
             <li class="nav-item"><a  class="nav-link" href="{{ route('vendor.edit') }}">Edit Company</a>
+            </li>
+            <li class="nav-item"><a  class="nav-link" href="{{ url('/vendor/myorder') }}">My Order</a>
             </li>
             <li class="nav-item"><a class="nav-link" data-toggle="modal" data-bs-target="#logout"
                     href="{{ url('logout') }}">logout</a>

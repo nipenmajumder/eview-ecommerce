@@ -78,29 +78,29 @@
                         <div class="row">
                             <div class="col-sm-12">
                                 <h3>COMPANY DETAIL</h3>
-                                <form class="theme-form" action="{{ url('/profile') }}" method="post">
+                                <form class="theme-form" action="{{ url('/vendor/edit') }}" method="post" enctype="multipart/form-data">
                                     @csrf
                                     <div class="form-row row">
                                         <div class="col-md-6">
                                             <label for="name">Name</label>
-                                            <input type="text" class="form-control" id="name" name="name"
-                                                placeholder="Enter Your name" value="{{ $vendorcompany->name }}">
+                                            <input type="text" class="form-control" id="name" name="name"placeholder="Enter Your name" value="{{ $vendorcompany->name }}">
+                                            <input type="hidden" class="form-control" name="id" value="{{ $vendorcompany->id }}">
                                             @error('name')
                                             <div class="text-danger">{{ $message }}</div>
                                             @enderror
                                         </div>
                                         <div class="col-md-6">
                                             <label for="name">Phone</label>
-                                            <input type="text" class="form-control" id="name" name="name"
-                                                placeholder="Enter Your name" value="{{ $vendorcompany->phone }}">
+                                            <input type="text" class="form-control" id="phone" name="phone"
+                                                placeholder="Enter Your phone" value="{{ $vendorcompany->phone }}">
                                             @error('name')
                                             <div class="text-danger">{{ $message }}</div>
                                             @enderror
                                         </div>
                                         <div class="col-md-6">
                                             <label for="name">Company Name</label>
-                                            <input type="text" class="form-control" id="name" name="name"
-                                                placeholder="Enter Your name" value="{{ $vendorcompany->company_name }}">
+                                            <input type="text" class="form-control" id="company_name" name="company_name"
+                                                placeholder="Enter Your Company Name" value="{{ $vendorcompany->company_name }}">
                                             @error('name')
                                             <div class="text-danger">{{ $message }}</div>
                                             @enderror
@@ -138,9 +138,19 @@
                                     <br>
                                     <div class="col-md-6">
                                         <label for="google_map">Company Google Map</label>
-                                        <textarea name="google_map" class="form-control" id="" cols="30" rows="10"
+                                        <textarea name="company_google_map" class="form-control" id="" cols="30" rows="10"
                                             placeholder="Google Map">{{ $vendorcompany->company_google_map  }}</textarea>
                                         @error('google_map')
+                                        <div class="text-danger">{{ $message }}</div>
+                                        @enderror
+                                    </div>
+                                    <br>
+
+                                    <div class="col-md-6">
+                                        <label for="city">City*</label>
+                                        <input type="text" class="form-control" name="city" id="city"
+                                            placeholder="City" value="{{ $vendorcompany->city }}">
+                                        @error('zip_code')
                                         <div class="text-danger">{{ $message }}</div>
                                         @enderror
                                     </div>
@@ -153,13 +163,26 @@
                                         <div class="text-danger">{{ $message }}</div>
                                         @enderror
                                     </div>
-                                    <br>
-                                    <br>
-                                    <div class="col-md-12 mt-5">
-                                        <button class="btn btn-sm btn-solid" type="submit">Update</button>
+                                    <div class="col-md-6">
+                                        <label for="Zip_Code">Sale Area</label>
+                                        <input type="text" class="form-control" name="sale_area" id="sale_area"
+                                            placeholder="Sale Area" required="" value="{{ $vendorcompany->sale_area }}">
+                                       
                                     </div>
+                                    <br>
+                                    <div class="col-md-6">
+                                        <label for="Zip_Code">Delevery Possible Area</label>
+                                        <input type="text" class="form-control" name="delevery_possible_area" id="delevery_possible_area"
+                                            placeholder="Delevery Possible Area" required="" value="{{ $vendorcompany->delevery_possible_area }}">
+                                       
+                                    </div>
+                                    <br>
+                                    <div class="col-md-6">
+                                        <label for="Zip_Code">Image*</label>
+                                        <input type="file" class="form-control" name="image">
+                                    </div>
+                                    <br>
                                 </div>
-                                
                             </div>
                         </div>
                         <div class="row">
@@ -170,30 +193,72 @@
                                     <br>
                                     <div class="col-md-6">
                                         <label for="main_address">Bank Name</label>
-                                        <textarea name="bank_name" class="form-control" id="" cols="30" rows="10"
+                                        <input type="text" name="bank_name" class="form-control"
                                             placeholder="Address Details"
-                                            required>{{  $vendorcompany->bank_name }}</textarea>
+                                            required value="{{  $vendorcompany->bank_name }}"/>
                                         @error('company_address')
                                         <div class="text-danger">{{ $message }}</div>
                                         @enderror
                                     </div>
                                     <br>
+                                    <br>
                                     <div class="col-md-6">
-                                        <label for="google_map">Company Google Map</label>
-                                        <textarea name="google_map" class="form-control" id="" cols="30" rows="10"
-                                            placeholder="Google Map">{{ $vendorcompany->company_google_map  }}</textarea>
-                                        @error('google_map')
+                                        <label for="main_address">Bank Account Number</label>
+                                        <input type="text" name="bank_account_number" class="form-control"
+                                            placeholder="Address Details"
+                                            required value="{{  $vendorcompany->bank_account_number }}"/>
+                                        @error('bank_account_number')
                                         <div class="text-danger">{{ $message }}</div>
                                         @enderror
                                     </div>
                                     <br>
+                                    <br>
                                     <div class="col-md-6">
-                                        <label for="Zip_Code">Zip Code*</label>
-                                        <input type="text" class="form-control" name="zip_code" id="Zip_Code"
-                                            placeholder="Zip Code" required="" value="{{ $vendorcompany->zip_code }}">
-                                        @error('zip_code')
+                                        <label for="main_address">Name Of Bank</label>
+                                        <input type="text" name="name_of_bank" class="form-control"
+                                            placeholder="Address Details"
+                                            required value="{{  $vendorcompany->name_of_bank }}"/>
+                                        @error('name_of_bank')
                                         <div class="text-danger">{{ $message }}</div>
                                         @enderror
+                                    </div>
+                                    <br>	
+                                    <br>
+                                   <div class="col-md-6">
+                                       <label for="main_address">Bank Address</label>
+                                       <input type="text" name="bank_address" class="form-control"
+                                           placeholder="Address Details"
+                                           required value="{{  $vendorcompany->bank_address }}"/>
+                                       @error('name_of_bank')
+                                       <div class="text-danger">{{ $message }}</div>
+                                       @enderror
+                                   </div>
+                                   <br>
+                                   <br>
+                                   <div class="col-md-6">
+                                       <label for="main_address">Routing Number</label>
+                                       <input type="text" name="routing_number" class="form-control"
+                                           placeholder="Routing Number"
+                                           required value="{{  $vendorcompany->routing_number }}"/>
+                                       @error('name_of_bank')
+                                       <div class="text-danger">{{ $message }}</div>
+                                       @enderror
+                                   </div>
+                                   <br>
+                                   <br>
+                                    <div class="col-md-6">
+                                        <label for="Zip_Code">i-Ban</label>
+                                        <input type="text" class="form-control" name="i_ban" id="Zip_Code"
+                                            placeholder="i-Ban" value="{{ $vendorcompany->i_ban }}">
+                                       
+                                    </div>
+                                    <br>
+                                    <br>
+                                    <div class="col-md-6">
+                                        <label for="Zip_Code">Swift Code</label>
+                                        <input type="text" class="form-control" name="swift_code" id="Zip_Code"
+                                            placeholder="Swift Code" value="{{ $vendorcompany->swift_code }}">
+                                       
                                     </div>
                                     <br>
                                     <br>

@@ -70,11 +70,11 @@
                         </a>
                     </div>
                     <div class="menu-item">
-                        <a class="menu-link" href="">
+                        <a class="menu-link" href="{{url('/admin/processingorder/list')}}">
                             <span class="menu-bullet">
                                 <span class="bullet bullet-dot"></span>
                             </span>
-                            <span class="menu-title">All Order</span>
+                            <span class="menu-title">Processing Order</span>
                         </a>
                     </div>
                 </div>
