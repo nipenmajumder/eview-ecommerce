@@ -92,7 +92,7 @@
                                     <div class="custom-control custom-radio mt-2">
                                         <input type="radio" class="custom-control-input common_selector price"
                                             name="price" id="p-4" value="4">
-                                        <label class="custom-control-label" for="p-4">৳501 to ৳1000</label>
+                                        <label class="custom-control-label" for="p-4">৳1001 to 10000</label>
                                     </div>
                                 </div>
                             </div>

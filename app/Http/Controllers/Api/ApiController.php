@@ -55,7 +55,8 @@ class ApiController extends Controller
     public function getProductdetails($product_id)
     {
         $product = Product::where('id', $product_id)->first();
-        return response()->json($product);
+        // dd($product);
+        return view('frontend.cart.ajaxmodal', \compact('product'));
     }
 
     public function getDistrict($division_id)

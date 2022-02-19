@@ -1,4 +1,4 @@
-<div style="max-height: 600px;overflow-y: auto;">
+<div style="height: 500px;overflow-y: auto;">
     @foreach(Cart::content() as $cartItem)
     <div class="d-flex flex-row justify-content-between align-items-center p-2 bg-white px-3 rounded">
         <div class="mr-1">

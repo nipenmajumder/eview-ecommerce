@@ -114,7 +114,7 @@
                             @elseif($data->offer=='special_offer' && $data->have_a_discount=='1')
                             <h4 class="badge badge-grey-color">special offer</h4>
                             <!-- (no offer) -->
-                            @elseif($data->have_a_discount=='0')
+                            @elseif($data->have_a_discount==null)
                             <h3 class="price-detail">৳ {{ $data->product_price }}</h3>
                             <input type="hidden" name="price" value="{{$data->product_price}}">
                             @else
@@ -184,7 +184,7 @@
                                 <input type="hidden" name="discount_title" value="">
                                 <input type="hidden" name="shop_id" value="{{$data->shop_id}}">
                                 <input type="hidden" name="product_sku" value="{{$data->product_sku}}">
-                                <input type="hidden" name="product_quantity" value="1">
+                                <input type="hidden" name="product_quantity">
                                 <input type="hidden" name="user_id" value="{{ Request::ip() }}">
                                 <a class="btn btn-solid hover-solid btn-animation cart">
                                     <i class="fa fa-shopping-cart me-1" aria-hidden="true"></i> add to cart</a>
@@ -209,14 +209,7 @@
                         </div> -->
                         <div class="border-product">
                             <h6 class="product-title">More info</h6>
-                            @foreach (Cart::instance('wishlist')->content() as $wishlist)
-                            {{ $wishlist->name }}
-                            {{-- @foreach ($wishlist->options as $row)
-                            {{ $row[2] }}
-                            @endforeach --}}
-                            @endforeach
                             <ul class="shipping-info">
-
                                 <li>Qty: {{ $data->product_qty }}</li>
                                 <li>Brand: {{ $data->product_brand }}</li>
                                 @if($data->product_weight !=NULL) <li>Weight: {{ $data->product_weight }}</li>@endif

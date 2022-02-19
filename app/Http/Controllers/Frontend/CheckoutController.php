@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
 use App\Models\Order;
+use App\Models\Shop;
 use App\Models\ShoppingCharge;
 use App\Models\User;
 use Carbon\Carbon;
@@ -98,8 +99,8 @@ class CheckoutController extends Controller
                     'subtotal'     => $item->subtotal,
                 ];
 
-                $company_id = $item->options[2];
-                array_push($company_data, $company_id);
+                $shop = Shop::where('id', $item->options[2])->first();
+                array_push($company_data, $shop->company_id);
             }
 
             $update = Order::where('id', $insert)->update([

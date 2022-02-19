@@ -1,5 +1,5 @@
 @extends('layouts.frontend')
-@section('title', 'Shop')
+@section('title', '11 Offer ')
 @section('content')
 
 <!-- breadcrumb start -->
@@ -92,7 +92,7 @@
                                     <div class="custom-control custom-radio mt-2">
                                         <input type="radio" class="custom-control-input common_selector price"
                                             name="price" id="p-4" value="4">
-                                        <label class="custom-control-label" for="p-4">৳501 to ৳1000</label>
+                                        <label class="custom-control-label" for="p-4">৳1001 to 10000</label>
                                     </div>
                                 </div>
                             </div>
@@ -104,6 +104,21 @@
                     <div class="page-main-content">
                         <div class="row">
                             <div class="col-sm-12">
+                                <div class="top-banner-wrapper">
+                                    <a href="#"><img src="{{asset('frontend')}}/assets/images/mega-menu/2.jpg"
+                                            class="img-fluid blur-up lazyloaded" alt=""></a>
+                                    <div class="top-banner-content small-section">
+                                        <h4>BIGGEST DEALS ON TOP BRANDS</h4>
+                                        <p>The trick to choosing the best wear for yourself is to keep in mind your
+                                            body type, individual style, occasion and also the time of day or
+                                            weather.
+                                            In addition to eye-catching products from top brands, we also offer an
+                                            easy 30-day return and exchange policy, free and fast shipping across
+                                            all pin codes, cash or card on delivery option, deals and discounts,
+                                            among other perks. So, sign up now and shop for westarn wear to your
+                                            heart’s content on Multikart. </p>
+                                    </div>
+                                </div>
                                 <div class="collection-product-wrapper">
                                     <div class="product-top-filter">
                                         <div class="row">
