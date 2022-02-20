@@ -74,7 +74,7 @@ class FrontendController extends Controller
             return view("frontend.checkout.order_track", compact('data'));
         } else {
             $notification = [
-                'messege'    => 'Oops! Order Id is required!',
+                'message'    => 'Oops! Order Id is required!',
                 'alert-type' => 'error',
             ];
             return \redirect()->back()->with($notification);

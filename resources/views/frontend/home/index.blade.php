@@ -30,22 +30,6 @@
 <section class="banner-padding absolute-banner pb-0 ratio2_1">
     <div class="container absolute-bg">
         <div class="row partition2">
-            {{-- <div class="col-md-4">
-                <a href="#">
-                    <div class="collection-banner p-right text-center">
-                        <div>
-                            <img src="{{asset('frontend')}}/assets/images/furniture/banner/2.jpg"
-                                class="img-fluid blur-up lazyload bg-img" alt="">
-                        </div>
-                        <div class="contain-banner banner-3">
-                            <div>
-                                <h4>save 30%</h4>
-                                <h2>outfits</h2>
-                            </div>
-                        </div>
-                    </div>
-                </a>
-            </div> --}}
             @foreach($allBanner as $banners)
             <div class="col-md-4">
                 <a href="{{url($banners->url)}}">
@@ -79,7 +63,8 @@
                     <div class="category-block">
                         <a href="{{ url('/category/'.$fivecat->slug.'/'.$fivecat->id) }}">
                             <div class="category-image">
-                                <img src="{{asset('uploads/category/'.$fivecat->image)}}" class="img-fluid" alt="">
+                                <img src="{{asset('uploads/category/'.$fivecat->image)}}" class="img-fluid" alt=""
+                                    style="height: 230px">
                             </div>
                         </a>
                         <div class="category-details">
@@ -111,7 +96,6 @@
                         <input type="hidden" name="product_sku" value="{{$product->product_sku}}">
                         <input type="hidden" name="image" value="{{$product->image}}">
                         <input type="hidden" name="shop_id" value="{{$product->shop_id}}">
-                        <input type="hidden" name="price" value="{{$product->product_price}}">
                         <input type="hidden" name="product_quantity" value="1">
                         <div class="product-box">
 
@@ -237,7 +221,6 @@
                         <input type="hidden" name="product_sku" value="{{$product->product_sku}}">
                         <input type="hidden" name="image" value="{{$product->image}}">
                         <input type="hidden" name="shop_id" value="{{$product->shop_id}}">
-                        <input type="hidden" name="price" value="{{$product->product_price}}">
                         <input type="hidden" name="product_quantity" value="1">
                         <div class="product-box">
 
@@ -253,8 +236,6 @@
                                     $product->have_a_discount=='1')
                                     <span class="lable3">special offer</span>
                                     @else
-                                    {{-- <span class="lable3">{{ $product->offer }} comming</span> --}}
-
                                     @endif
                                     <span class="lable4">on sale</span>
                                 </div>
@@ -366,7 +347,6 @@
                         <input type="hidden" name="product_sku" value="{{$product->product_sku}}">
                         <input type="hidden" name="image" value="{{$product->image}}">
                         <input type="hidden" name="shop_id" value="{{$product->shop_id}}">
-                        <input type="hidden" name="price" value="{{$product->product_price}}">
                         <input type="hidden" name="product_quantity" value="1">
                         <div class="product-box">
 
@@ -382,8 +362,6 @@
                                     $product->have_a_discount=='1')
                                     <span class="lable3">special offer</span>
                                     @else
-                                    {{-- <span class="lable3">{{ $product->offer }} comming</span> --}}
-
                                     @endif
                                     <span class="lable4">on sale</span>
                                 </div>
@@ -496,7 +474,6 @@
                         <input type="hidden" name="product_sku" value="{{$product->product_sku}}">
                         <input type="hidden" name="image" value="{{$product->image}}">
                         <input type="hidden" name="shop_id" value="{{$product->shop_id}}">
-                        <input type="hidden" name="price" value="{{$product->product_price}}">
                         <input type="hidden" name="product_quantity" value="1">
                         <div class="product-box">
 
@@ -512,8 +489,6 @@
                                     $product->have_a_discount=='1')
                                     <span class="lable3">special offer</span>
                                     @else
-                                    {{-- <span class="lable3">{{ $product->offer }} comming</span> --}}
-
                                     @endif
                                     <span class="lable4">on sale</span>
                                 </div>
@@ -625,7 +600,6 @@
                         <input type="hidden" name="product_sku" value="{{$product->product_sku}}">
                         <input type="hidden" name="image" value="{{$product->image}}">
                         <input type="hidden" name="shop_id" value="{{$product->shop_id}}">
-                        <input type="hidden" name="price" value="{{$product->product_price}}">
                         <input type="hidden" name="product_quantity" value="1">
                         <div class="product-box">
 
@@ -641,8 +615,6 @@
                                     $product->have_a_discount=='1')
                                     <span class="lable3">special offer</span>
                                     @else
-                                    {{-- <span class="lable3">{{ $product->offer }} comming</span> --}}
-
                                     @endif
                                     <span class="lable4">on sale</span>
                                 </div>

@@ -51,6 +51,8 @@
                     <h3 class="price-detail">৳ {{ $product->product_price }}</h3>
                     <input type="hidden" name="price" value="{{$product->product_price}}">
                     @else
+                    <h3 class="price-detail">৳ {{ $product->product_price }}</h3>
+                    <input type="hidden" name="price" value="{{$product->product_price}}">
                     <!-- (#2) endif start -->
                     @endif
                     @if($product->product_brand !=NULL)<p id="brand">brand:{{ $product->product_brand }}</p>@endif
@@ -77,7 +79,8 @@
                 </div>
                 <div class="product-buttons" id="product_button">
                     <a class="addquickcart btn btn-solid" onclick="quickviewcart()">add to cart</a>
-                    <a href="#" class="btn btn-solid">view detail</a>
+                    <a href="{{url('/products/'.$product->product_slug.'/'.$product->id)}}" class="btn btn-solid">view
+                        detail</a>
                 </div>
             </div>
         </div>

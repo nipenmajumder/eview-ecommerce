@@ -104,7 +104,7 @@
                     <div class="page-main-content">
                         <div class="row">
                             <div class="col-sm-12">
-                                <div class="top-banner-wrapper">
+                                {{-- <div class="top-banner-wrapper">
                                     <a href="#"><img src="{{asset('frontend')}}/assets/images/mega-menu/2.jpg"
                                             class="img-fluid blur-up lazyloaded" alt=""></a>
                                     <div class="top-banner-content small-section">
@@ -118,7 +118,7 @@
                                             among other perks. So, sign up now and shop for westarn wear to your
                                             heart’s content on Multikart. </p>
                                     </div>
-                                </div>
+                                </div> --}}
                                 <div class="collection-product-wrapper">
                                     <div class="product-top-filter">
                                         <div class="row">
@@ -163,8 +163,6 @@
                                                         value="{{$product->product_sku}}">
                                                     <input type="hidden" name="image" value="{{$product->image}}">
                                                     <input type="hidden" name="shop_id" value="{{$product->shop_id}}">
-                                                    <input type="hidden" name="price"
-                                                        value="{{$product->product_price}}">
                                                     <input type="hidden" name="product_quantity" value="1">
                                                     <div class="product-box">
 

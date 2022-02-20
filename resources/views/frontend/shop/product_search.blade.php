@@ -43,8 +43,6 @@
                                                         value="{{$product->product_sku}}">
                                                     <input type="hidden" name="image" value="{{$product->image}}">
                                                     <input type="hidden" name="shop_id" value="{{$product->shop_id}}">
-                                                    <input type="hidden" name="price"
-                                                        value="{{$product->product_price}}">
                                                     <input type="hidden" name="product_quantity" value="1">
                                                     <div class="product-box">
 
