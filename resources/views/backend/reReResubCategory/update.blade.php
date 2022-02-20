@@ -1,5 +1,5 @@
 @extends('layouts.backend')
-@section('title', 'Update ReSubCategory')
+@section('title', 'Edit ReReSubCategory')
 @section('content')
 <style>
     .form-control.form-control-solid {

@@ -1,4 +1,5 @@
 @extends('layouts.backend')
+@section('title','Processed Order')
 @section('content')
 <style>
     <style>
@@ -85,7 +86,7 @@ div.dataTables_wrapper div.dataTables_filter input {
                                     <!--begin::Table head-->
                                     <thead class="text-center">
                                         <tr class="fw-bolder text-muted">
-                                            <th class="min-w-150px">#</th>
+                                            <th>#</th>
                                             <th class="min-w-150px">Date</th>
                                             <th class="min-w-140px">Order ID</th>
                                             <th class="min-w-140px">Total Item</th>

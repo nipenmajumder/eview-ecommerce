@@ -44,7 +44,7 @@
                         </div>
                         <div class="welcome-msg">
                             <p>Hello, {{ Auth::user()->name }} !</p>
-                            <p>Here you can oreder all products</p>
+                            <p>Here you can view your all orders</p>
                         </div>
                         <div class="box-account box-info">
                             <div class="box-head mb-2">

@@ -84,8 +84,8 @@ div.dataTables_wrapper div.dataTables_filter input {
                                     <thead class="text-center">
                                         <tr class="fw-bolder text-muted">
                                             <th>#</th>
-                                            <th class="min-w-140px"> Name</th>
-                                            <th class="min-w-140px"> Sku</th>
+                                            <th class="min-w-140px">Name</th>
+                                            <th class="min-w-140px">Sku</th>
                                             <th class="min-w-140px">Sale Qty</th>
                                             <th class="min-w-120px">Stock Qty</th>
                                         </tr>

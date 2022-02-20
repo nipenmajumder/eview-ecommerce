@@ -1,4 +1,5 @@
 @extends('layouts.backend')
+@section('title', 'Deliverd Order')
 @section('content')
 <style>
     <style>
@@ -20,7 +21,7 @@ div.dataTables_wrapper div.dataTables_filter input {
             <!--begin::Page title-->
             <div data-kt-place="true" data-kt-place-mode="prepend" data-kt-place-parent="{default: '#kt_content_container', 'lg': '#kt_toolbar_container'}" class="page-title d-flex align-items-center me-3 flex-wrap mb-5 mb-lg-0 lh-1">
                 <!--begin::Title-->
-                <h1 class="d-flex align-items-center text-dark fw-bolder my-1 fs-3">All Delever Order</h1>
+                <h1 class="d-flex align-items-center text-dark fw-bolder my-1 fs-3">All Deleverd Order</h1>
                 <!--end::Title-->
             </div>
 
@@ -85,7 +86,7 @@ div.dataTables_wrapper div.dataTables_filter input {
                                     <!--begin::Table head-->
                                     <thead class="text-center">
                                         <tr class="fw-bolder text-muted">
-                                            <th class="min-w-150px">#</th>
+                                            <th >#</th>
                                             <th class="min-w-150px">Date</th>
                                             <th class="min-w-140px">Order ID</th>
                                             <th class="min-w-140px">Total Item</th>

@@ -63,7 +63,7 @@
                                             <tr>
                                                 <th scope="row">{{ ++$key }}</th>
                                                 <td>{{ $order->order_id }}</td>
-                                                <td>{{ $order->created_at->format('d-M-F') }}</td>
+                                                <td>{{ $order->created_at->format('d-F-Y') }}</td>
                                                 <td>
                                                     @if($order->delevery_status==0)
                                                     <span class="btn btn-primary">Pending</span>

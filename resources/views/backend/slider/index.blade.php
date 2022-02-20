@@ -1,4 +1,5 @@
 @extends('layouts.backend')
+@section('title','Slider')
 @section('content')
 <style>
     <style>

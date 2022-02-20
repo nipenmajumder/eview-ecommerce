@@ -56,8 +56,8 @@
                         </div>
                         <div class="contain-banner banner-3">
                             <div>
-                                <h4 class="text-dark">{{$banners->title}}</h4>
-                                <h2 class="text-dark">{{$banners->discount}}</h2>
+                                <h4>{{$banners->title}}</h4>
+                                <h2>{{$banners->discount}}</h2>
                             </div>
                         </div>
                     </div>

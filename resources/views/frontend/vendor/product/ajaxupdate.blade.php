@@ -473,9 +473,9 @@
                                                     <div style="position: relative;">
                                                         <div class="spartan_item_loader" data-spartanindexloader="0" style="position: absolute; width: 100%; height: 450px; background: rgba(255,255,255, 0.7); z-index: 22; text-align: center; align-items: center; margin: auto; justify-content: center; flex-direction: column; display : none; font-size : 1.7em; color: #CECECE"><i class="fas fa-sync fa-spin"></i></div>
                                                         <label class="file_upload" style="width: 100%; height: 450px; border: 2px dashed #ddd; border-radius: 3px; cursor: pointer; text-align: center; overflow: hidden; padding: 5px; margin-top: 5px; margin-bottom : 5px; position : relative; display: flex; align-items: center; margin: auto; justify-content: center; flex-direction: column;">
-                                                            <a href="javascript:void(0)" data-spartanindexremove="0" style="right: 3px; top: 3px; background: rgb(237, 60, 32); border-radius: 3px; width: 30px; height: 30px; line-height: 30px; text-align: center; text-decoration: none; color: rgb(255, 255, 255); position: absolute !important;" class="spartan_remove_row">
+                                                            <a href="javascript:void(0)" onclick="editimageremove(this)" data-spartanindexremove="0" style="right: 3px; top: 3px; background: rgb(237, 60, 32); border-radius: 3px; width: 30px; height: 30px; line-height: 30px; text-align: center; text-decoration: none; color: rgb(255, 255, 255); position: absolute !important;" class="spartan_remove_row">
 
-                                                                <i class="fas fa-times" onclick="editimageremove(this)"></i> </a>
+                                                                <i class="fas fa-times" ></i> </a>
                                                             <img style="width: 100%; margin: 0px auto; vertical-align: middle; display: ;" data-spartanindexi="0" src="{{asset('uploads/products/'.$edit->image)}}">
                                                             <input class="form-control spartan_image_input" accept="image/*" data-spartanindexinput="0" style="display : none" name="thumbnail_img" type="file">
                                                         </label>
@@ -564,7 +564,7 @@
 
 <script>
     function editimageremove(em) {
-      
+    //   alert('ok');
         $("#editimage").hide();
         $("#thumbnail_img").show();
     }

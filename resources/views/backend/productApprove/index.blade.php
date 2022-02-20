@@ -1,4 +1,5 @@
 @extends('layouts.backend')
+@section('title','Approve Product')
 @section('content')
 <style>
     <style>

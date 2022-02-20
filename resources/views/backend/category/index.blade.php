@@ -1,7 +1,8 @@
 @extends('layouts.backend')
+@section('title', 'Category')
 @section('content')
 <style>
-    <style>
+
 div.dataTables_wrapper div.dataTables_length select {
 
   height: 33px;
