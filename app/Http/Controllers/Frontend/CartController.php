@@ -91,7 +91,7 @@ class CartController extends Controller
         $mainqty = $request->qty + 1;
         Cart::update($rowId, $mainqty);
         return response()->json([
-            'success' => 'Successfully Increased Quantity',
+            'success' => 'Successfully Quantity Changed',
         ]);
     }
     public function qtyDecreaseByOne(Request $request, $rowId)
@@ -99,7 +99,7 @@ class CartController extends Controller
         $mainqty = $request->qty - 1;
         Cart::update($rowId, $mainqty);
         return response()->json([
-            'success' => 'Successfully Decreased Quantity',
+            'success' => 'Successfully Quantity Changed',
         ]);
     }
 }

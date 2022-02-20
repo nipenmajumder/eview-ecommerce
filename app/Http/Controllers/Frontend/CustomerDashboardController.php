@@ -32,12 +32,7 @@ class CustomerDashboardController extends Controller
         // dd($product);
         return view('frontend.customerDashboard.order-view', compact('data', 'product'));
     }
-    public function printInvoice($id)
-    {
-        $data    = Order::where('customer_id', Auth::user()->id)->where('id', $id)->first();
-        $product = json_decode($data->products);
-        return view('frontend.customerDashboard.order-invoice', compact('data', 'product'));
-    }
+
     // customer-dashboard
     public function dashboard()
     {

@@ -10854,11 +10854,11 @@ header.stickycls {
         right: unset; }
     .product-box .img-wrapper .lable-block .lable3,
     .product-wrap .img-wrapper .lable-block .lable3 {
-      border-radius: 0%;
+      border-radius: 50%;
       background-color: var(--theme-deafult);
       text-align: center;
-      font-size: 14px;
-      font-weight: 700;
+      font-size: 10px;
+      font-weight: 500;
       position: absolute;
       padding: 12px 6px;
       text-transform: uppercase;
