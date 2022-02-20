@@ -1,4 +1,5 @@
 @extends('layouts.backend')
+@section('title','Rejected Product')
 @section('content')
 <style>
     <style>

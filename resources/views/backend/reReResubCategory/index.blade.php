@@ -1,4 +1,5 @@
 @extends('layouts.backend')
+@section('title', 'ReReSubCategory')
 @section('content')
 <style>
     <style>

@@ -1,5 +1,5 @@
 @extends('layouts.backend')
-@section('title', 'Product Report')
+@section('title', 'Order Report')
 @section('content')
 <style>
     <style>

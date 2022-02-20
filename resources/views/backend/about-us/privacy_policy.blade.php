@@ -1,5 +1,5 @@
 @extends('layouts.backend')
-@section('title', 'Create Slider')
+@section('title', 'Privacy Policy')
 @section('content')
 <div class="content d-flex flex-column flex-column-fluid" id="kt_content">
     <!--begin::Toolbar-->

@@ -1,4 +1,5 @@
 @extends('layouts.backend')
+@section('title', 'Blogss')
 @section('content')
 <style>
     <style>div.dataTables_wrapper div.dataTables_length select {

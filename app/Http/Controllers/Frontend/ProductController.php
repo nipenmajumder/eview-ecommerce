@@ -179,9 +179,9 @@ class ProductController extends Controller
             'updated_at'                  => Carbon::now()->toDateTimeString(),
         ]);
 
-        if ($request->hasFile('product_img')) {
+        if ($request->hasFile('thumbnail_img')) {
 
-            $image     = $request->file('product_img');
+            $image     = $request->file('thumbnail_img');
             $ImageName = 'th' . '_' . time() . '.' . $image->getClientOriginalExtension();
             Image::make($image)->save('uploads/products/' . $ImageName);
             Product::where('id', $request->id)->update([
