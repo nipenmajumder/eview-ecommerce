@@ -18,7 +18,7 @@ class FrontendController extends Controller
     // home section
     public function home()
     {
-        $allSlider         = Slider::select(['image'])->isActive()->get();
+        $allSlider         = Slider::select(['image', 'title'])->isActive()->get();
         $allBanner         = Banner::isActive()->select(['title', 'discount', 'url', 'image'])->limit(3)->get();
         $allProduct        = Product::isDeleted()->isActive()->isApprove()->orderBy('id', 'DESC')->select(['id', 'product_name', 'product_slug', 'product_sku', 'product_price', 'shop_id', 'offer', 'have_a_discount', 'image'])->limit(12)->get();
         $newProducts       = Product::isDeleted()->isActive()->isApprove()->orderBy('id', 'DESC')->select(['id', 'product_name', 'product_slug', 'product_sku', 'product_price', 'shop_id', 'offer', 'have_a_discount', 'image'])->limit(12)->get();
@@ -32,8 +32,16 @@ class FrontendController extends Controller
         });
         $activeBrands     = Brand::isActive()->isDeleted()->get();
         $mainfivecategory = Category::isDeleted()->isActive()->orderBy('id', 'DESC')->get();
+        $bestsellproduct  = Product::isDeleted()->isActive()->isApprove()->orderBy('sell_qty', 'DESC')->limit(6)->get();
 
-        return view('frontend.home.index', compact('mainfivecategory', 'allSlider', 'allBanner', 'allProduct', 'allelevenproduct', 'allSpecialproduct', 'alltweentyproduct', 'topSaleCategory', 'newProducts', 'activeBrands', 'topProducts'));
+        $trandingproduct = Product::isDeleted()->isActive()->isApprove()->orderBy('id', 'ASC')->limit(6)->get();
+
+        $newproduct           = Product::isDeleted()->isActive()->isApprove()->orderBy('id', 'DESC')->limit(3)->get();
+        $featureproduct       = Product::isDeleted()->isActive()->isApprove()->orderBy('id', 'ASC')->limit(3)->get();
+        $onlythreeBestproduct = Product::isDeleted()->isActive()->isApprove()->orderBy('sell_qty', 'DESC')->limit(3)->get();
+        $latestproduct        = Product::isDeleted()->isActive()->isApprove()->orderBy('updated_at', 'DESC')->limit(3)->get();
+
+        return view('frontend.home.index', compact('bestsellproduct', 'trandingproduct', 'mainfivecategory', 'allSlider', 'allBanner', 'allProduct', 'allelevenproduct', 'allSpecialproduct', 'alltweentyproduct', 'topSaleCategory', 'newProducts', 'activeBrands', 'topProducts', 'newproduct', 'featureproduct', 'onlythreeBestproduct', 'latestproduct'));
     }
     // product details
     public function productDetails($slug, $id)
