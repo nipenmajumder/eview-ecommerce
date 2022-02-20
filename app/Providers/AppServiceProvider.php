@@ -30,8 +30,8 @@ class AppServiceProvider extends ServiceProvider
         $companyInformation = CompanyInformation::first();
         $icon               = Social::select(['facebook', 'twitter', 'linkend', 'youtube', 'skype', 'google_plus', 'feed'])->first();
         $today              = Carbon::now()->format('d');
-        $eleven             = '19';
-        $twenty_two         = '17';
+        $eleven             = '20';
+        $twenty_two         = '20';
 
         view()->share('companyInformation', $companyInformation);
         view()->share('maincate', $maincate);

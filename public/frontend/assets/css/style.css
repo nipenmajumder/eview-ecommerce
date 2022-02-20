@@ -3739,7 +3739,7 @@ button.btn.btn-solid:active, button.btn.btn-outline:active {
 
 .category-style-1 .category-block .category-image {
   width: 85%;
-  height: auto;
+  height: 230px;
   border: none;
   border-radius: 0;
   position: relative;

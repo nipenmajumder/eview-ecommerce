@@ -1,13 +1,14 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.2
+-- version 4.9.7
 -- https://www.phpmyadmin.net/
 --
--- Host: localhost
--- Generation Time: Feb 17, 2022 at 10:01 AM
--- Server version: 10.4.13-MariaDB
--- PHP Version: 7.4.7
+-- Host: localhost:3306
+-- Generation Time: Feb 20, 2022 at 01:43 AM
+-- Server version: 10.3.32-MariaDB-cll-lve
+-- PHP Version: 7.3.32
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -18,7 +19,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `eviewecommerce`
+-- Database: `eviezxgy_asif`
 --
 
 -- --------------------------------------------------------
@@ -98,6 +99,15 @@ CREATE TABLE `banners` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+--
+-- Dumping data for table `banners`
+--
+
+INSERT INTO `banners` (`id`, `title`, `discount`, `image`, `url`, `short_desc`, `updated_by`, `deleted_by`, `is_active`, `is_deleted`, `created_at`, `updated_at`) VALUES
+(1, '11 offer', '11% off', 'Banner_1645328722.png', 'https://eview.com.bd/11-offer', NULL, NULL, NULL, 1, 0, '2022-02-20 08:39:53', '2022-02-20 08:45:23'),
+(2, '22 offer', '22% off', 'Banner_1645328685.png', 'https://eview.com.bd/22-offer', NULL, NULL, NULL, 1, 0, '2022-02-20 08:41:09', '2022-02-20 08:44:45'),
+(3, 'Special Offer', 'up to 75% off', 'Banner_1645328646.png', 'https://eview.com.bd/special-offer', NULL, NULL, NULL, 1, 0, '2022-02-20 08:44:06', '2022-02-20 08:44:06');
+
 -- --------------------------------------------------------
 
 --
@@ -130,7 +140,7 @@ INSERT INTO `blogs` (`id`, `category_id`, `title`, `slug`, `image`, `short_des`,
 (1, NULL, 'Deserunt vel dolor q', 'deserunt-vel-dolor-q', 'blog_1643711517_c5qUhMe1pw.webp', NULL, 'Rerum mollit volupta.gfgg', 'Praesentium eius off,fgfgggs,vcvczxvxvcx', 0, 1, 1, 1, 1, '2022-02-01 04:31:57', '2022-02-01 05:29:54'),
 (2, NULL, 'Similique qui omnis', 'similique-qui-omnis-1', 'blog_1643774982_VwFcPtvSgR.webp', 'Consequences that are extremely painful. Nor again is there anyone who loves or pursues or desires to obtain pain of itself, because it is pain, but because occasionally circumstances occur in which toil and pain can procure him some great pleasure.', 'Voluptatem. Qui est .fggbvbfdf fdf', 'Possimus deleniti v,ghty,vbvb', 1, 1, 1, 1, 0, '2022-02-01 04:54:25', '2022-02-01 22:55:23'),
 (3, NULL, 'Similique qui omnis', 'similique-qui-omnis-2', 'blog_1643775428_Lsbc0JT9mE.webp', 'dfdfdfdfdf', '<p>fddfdfdfc fdf</p>', 'fddfdf', 2, 1, 1, 1, 0, '2022-02-01 22:17:08', '2022-02-01 23:28:18'),
-(4, NULL, 'In similique odio fu', 'in-similique-odio-fu', 'blog_1643776292_N9hk5QWevu.webp', 'At aut vitae tempor', 'Dolor deserunt qui e.fgg', 'Consequatur eveniet', 2, 1, 1, 1, 0, '2022-02-01 22:31:32', '2022-02-01 23:15:40'),
+(4, NULL, 'In similique odio fu', 'in-similique-odio-fu', 'blog_1643776292_N9hk5QWevu.webp', 'At aut vitae tempor', 'Dolor deserunt qui e.fgg', 'Consequatur eveniet', 3, 1, 1, 1, 0, '2022-02-01 22:31:32', '2022-02-16 21:25:18'),
 (5, NULL, 'Ipsa odit et quia n', 'ipsa-odit-et-quia-n', 'blog_1643776305_XABWU7LJO0.webp', 'Deserunt magna adipi', 'Omnis quo suscipit o.fdfd', 'Aspernatur exercitat', 4, 1, 1, 1, 0, '2022-02-01 22:31:45', '2022-02-01 22:55:36');
 
 -- --------------------------------------------------------
@@ -175,7 +185,14 @@ CREATE TABLE `brands` (
 --
 
 INSERT INTO `brands` (`id`, `name`, `slug`, `image`, `updated_by`, `deleted_by`, `is_active`, `is_deleted`, `created_at`, `updated_at`) VALUES
-(1, 'Lotto', 'Lotto', 'Cate_1641372610.png', '1', NULL, 1, 0, '2022-01-05 02:48:17', '2022-02-01 05:30:10');
+(1, 'Lotto', 'Lotto', 'Cate_1641372610.png', '1', NULL, 1, 0, '2022-01-05 02:48:17', '2022-02-01 05:30:10'),
+(2, 'Blue Ray', 'Blue-Ray', 'Slider_1645338760.png', '1', NULL, 1, 0, '2022-02-20 11:32:40', '2022-02-20 11:32:47'),
+(3, 'Walton', 'Walton', 'Slider_1645338828.png', '1', NULL, 1, 0, '2022-02-20 11:33:48', '2022-02-20 11:33:48'),
+(4, 'One Food', 'One-Food', 'Slider_1645338861.png', '1', NULL, 1, 0, '2022-02-20 11:34:21', '2022-02-20 11:34:22'),
+(5, 'Blue Angel', 'Blue-Angel', 'Slider_1645338897.jpg', '1', NULL, 1, 0, '2022-02-20 11:34:57', '2022-02-20 11:34:57'),
+(6, 'Bata', 'Bata', 'Slider_1645338936.png', '1', NULL, 1, 0, '2022-02-20 11:35:36', '2022-02-20 11:35:37'),
+(7, 'Realme', 'Realme', 'Slider_1645338977.png', '1', NULL, 1, 0, '2022-02-20 11:36:17', '2022-02-20 11:36:18'),
+(8, 'ViEW', 'ViEW', 'Slider_1645338997.jpg', '1', NULL, 1, 0, '2022-02-20 11:36:37', '2022-02-20 11:36:37');
 
 -- --------------------------------------------------------
 
@@ -202,9 +219,14 @@ CREATE TABLE `categories` (
 
 INSERT INTO `categories` (`id`, `name`, `slug`, `image`, `updated_by`, `deleted_by`, `is_active`, `is_deleted`, `created_at`, `updated_at`) VALUES
 (1, 'Main Category', 'Main-Category', '', '1', NULL, 0, 1, '2022-01-03 04:09:56', '2022-01-03 04:22:20'),
-(2, 'Main Category s', 'Main-Category-s', 'Cate_1641206593.jpg', '1', NULL, 1, 0, '2022-01-03 04:10:48', '2022-01-03 04:43:13'),
-(3, 'Main Category 3', 'Main-Category-3', 'Slider_1641276899.jpg', '1', NULL, 1, 0, '2022-01-04 00:14:59', '2022-01-04 00:14:59'),
-(4, 'Main Category 4', 'Main-Category-4', 'Slider_1641276910.jpg', '1', NULL, 1, 0, '2022-01-04 00:15:10', '2022-01-04 00:15:10');
+(2, 'Electronics', 'Electronics', 'Cate_1641206593.jpg', '1', NULL, 1, 0, '2022-01-03 04:10:48', '2022-02-20 09:30:41'),
+(3, 'Fashion', 'Fashion', 'Cate_1645331424.jpg', '1', NULL, 1, 0, '2022-01-04 00:14:59', '2022-02-20 09:30:24'),
+(4, 'Furniture', 'Furniture', 'Slider_1641276910.jpg', '1', NULL, 1, 0, '2022-01-04 00:15:10', '2022-02-20 09:29:33'),
+(5, 'Footwear', 'Footwear', 'Slider_1645331474.jpg', '1', NULL, 1, 0, '2022-02-20 09:31:14', '2022-02-20 09:31:17'),
+(6, 'Leather', 'Leather', 'Slider_1645331514.jpg', '1', NULL, 1, 0, '2022-02-20 09:31:54', '2022-02-20 09:31:57'),
+(7, 'Grocery', 'Grocery', 'Slider_1645331530.png', '1', NULL, 1, 0, '2022-02-20 09:32:10', '2022-02-20 09:32:11'),
+(8, 'Baby & Mom', 'Baby-Mom', 'Slider_1645331790.png', '1', NULL, 1, 0, '2022-02-20 09:36:30', '2022-02-20 09:36:31'),
+(9, 'eViEW Store', 'eViEW-Store', 'Slider_1645331813.png', '1', NULL, 1, 0, '2022-02-20 09:36:53', '2022-02-20 09:36:53');
 
 -- --------------------------------------------------------
 
@@ -704,7 +726,7 @@ CREATE TABLE `orders` (
   `total_tax` double DEFAULT NULL,
   `copon_price` double(8,2) DEFAULT NULL,
   `copon_used` int(11) NOT NULL DEFAULT 0,
-  `order_status` int(11) NOT NULL DEFAULT 0 COMMENT '0=Pending,1=Processing,2=Rejected,3=Delivered,4=Returned',
+  `order_status` int(11) NOT NULL DEFAULT 0,
   `payment_status` int(11) NOT NULL DEFAULT 1,
   `company_id` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_by` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
@@ -720,7 +742,13 @@ CREATE TABLE `orders` (
 --
 
 INSERT INTO `orders` (`id`, `invoice_id`, `order_id`, `customer_id`, `shipping_name`, `shipping_phone`, `shipping_email`, `country_name`, `shipping_division`, `shipping_city`, `shipping_zip`, `shipping_address`, `products`, `total_qty`, `total_item`, `cart_total`, `delivery_charge`, `total_amount`, `total_tax`, `copon_price`, `copon_used`, `order_status`, `payment_status`, `company_id`, `created_by`, `updated_by`, `is_deleted`, `deleted_by`, `created_at`, `updated_at`) VALUES
-(20, '2064741', '3362562', 33, 'Komol Chandra Devnath', '8143008177', 'user@admin.com', NULL, 6, 47, '99705', '71 ST. NICHOLAS DRIVE', '[{\"id\":\"23\",\"product_name\":\"Danielle Griffith\",\"image\":\"12296-Ex ea dolores sint i\",\"sku\":\"12296-Ex ea dolores sint i\",\"shop_id\":\"12\",\"qty\":3,\"price\":76,\"subtotal\":\"228.00\"},{\"id\":\"22\",\"product_name\":\"Ignacia Dunlap\",\"image\":\"12741-Omnis aspernatur qua\",\"sku\":\"12741-Omnis aspernatur qua\",\"shop_id\":\"12\",\"qty\":\"1\",\"price\":354,\"subtotal\":\"354.00\"},{\"id\":\"21\",\"product_name\":\"Abra Owens\",\"image\":\"12509-Et corrupti corpori\",\"sku\":\"12509-Et corrupti corpori\",\"shop_id\":\"12\",\"qty\":2,\"price\":694,\"subtotal\":\"1388.00\"}]', 6, 6, 1970, 50, 2020, NULL, NULL, 0, 0, 1, '[\"12\",\"12\",\"12\"]', NULL, NULL, 0, NULL, '2022-02-16 03:32:49', '2022-02-16 03:32:49');
+(24, '2478913', '3380125', 33, 'Komol Chandra Devnath', '8143008177', 'user@admin.com', NULL, 6, 47, '99705', '71 ST. NICHOLAS DRIVE', '[{\"id\":\"30\",\"product_name\":\"New Pr\",\"image\":\"13412-345345\",\"sku\":\"13412-345345\",\"shop_id\":\"15\",\"qty\":6,\"price\":1500,\"subtotal\":\"3000.00\"},{\"id\":\"29\",\"product_name\":\"asif new\",\"image\":\"13547-345345\",\"sku\":\"13547-345345\",\"shop_id\":\"14\",\"qty\":7,\"price\":1500,\"subtotal\":\"3000.00\"},{\"id\":\"28\",\"product_name\":\"Lorem Ipsum22\",\"image\":\"13163-345345\",\"sku\":\"13163-345345\",\"shop_id\":\"14\",\"qty\":8,\"price\":1500,\"subtotal\":\"3000.00\"}]', 2, 2, 3000, 50, 3050, NULL, NULL, 0, 3, 1, '[\"11\"]', NULL, NULL, 0, NULL, '2022-02-17 04:19:54', '2022-02-19 04:30:59'),
+(25, '259746', '3367155', 33, 'Komol Chandra Devnath', '8143008177', 'user@admin.com', NULL, 6, 47, '99705', '71 ST. NICHOLAS DRIVE', '[{\"id\":\"30\",\"product_name\":\"New Pr\",\"image\":\"13412-345345\",\"sku\":\"13412-345345\",\"shop_id\":\"15\",\"qty\":2,\"price\":1500,\"subtotal\":\"3000.00\"},{\"id\":\"29\",\"product_name\":\"asif new\",\"image\":\"13547-345345\",\"sku\":\"13547-345345\",\"shop_id\":\"14\",\"qty\":2,\"price\":1500,\"subtotal\":\"3000.00\"},{\"id\":\"28\",\"product_name\":\"Lorem Ipsum22\",\"image\":\"13163-345345\",\"sku\":\"13163-345345\",\"shop_id\":\"14\",\"qty\":2,\"price\":1500,\"subtotal\":\"3000.00\"}]', 1, 1, 1500, 50, 1550, NULL, NULL, 0, 2, 1, '[\"11\"]', NULL, NULL, 0, NULL, '2022-02-17 04:21:23', '2022-02-19 04:29:06'),
+(26, '2641167', '3336772', 33, 'Komol Chandra Devnath', '8143008177', 'user@admin.com', NULL, 6, 47, '99705', '71 ST. NICHOLAS DRIVE', '[{\"id\":\"30\",\"product_name\":\"New Pr\",\"image\":\"13412-345345\",\"sku\":\"13412-345345\",\"shop_id\":\"15\",\"qty\":2,\"price\":1500,\"subtotal\":\"3000.00\"},{\"id\":\"29\",\"product_name\":\"asif new\",\"image\":\"13547-345345\",\"sku\":\"13547-345345\",\"shop_id\":\"14\",\"qty\":2,\"price\":1500,\"subtotal\":\"3000.00\"},{\"id\":\"28\",\"product_name\":\"Lorem Ipsum22\",\"image\":\"13163-345345\",\"sku\":\"13163-345345\",\"shop_id\":\"14\",\"qty\":2,\"price\":1500,\"subtotal\":\"3000.00\"}]', 6, 6, 9000, 50, 9050, NULL, NULL, 0, 3, 1, '[\"11\",\"11\",\"11\"]', NULL, NULL, 0, NULL, '2022-02-17 05:27:16', '2022-02-19 04:30:15'),
+(27, '275860', '3659867', 36, 'amitmojumder356@gmail.com', '01630448459', 'amitmojumder356@gmail.com', NULL, 1, 2, '3920', 'Mirpur-1,Dhaka', '[{\"id\":\"26\",\"product_name\":\"Lorem Ipsum22\",\"image\":\"13689-345345\",\"sku\":\"13689-345345\",\"shop_id\":\"14\",\"qty\":\"1\",\"price\":500,\"subtotal\":\"500.00\"},{\"id\":\"34\",\"product_name\":\"Samyang 3x Spicy Ramen Noodles\",\"image\":\"16411-SKU 8801073114548\",\"sku\":\"16411-SKU 8801073114548\",\"shop_id\":\"16\",\"qty\":\"1\",\"price\":150,\"subtotal\":\"150.00\"}]', 2, 2, 650, 150, 800, NULL, NULL, 0, 3, 1, '[\"11\",\"12\"]', NULL, NULL, 0, NULL, '2022-02-20 10:05:06', '2022-02-20 10:05:46'),
+(28, '2890549', '3874980', 38, 'earth bd', 'adadadad', 'earthbd20@gmail.com', NULL, 1, 6, 'dadad', 'dadadad', '[{\"id\":\"34\",\"product_name\":\"Samyang 3x Spicy Ramen Noodles\",\"image\":\"16411-SKU 8801073114548\",\"sku\":\"16411-SKU 8801073114548\",\"shop_id\":\"16\",\"qty\":\"1\",\"price\":150,\"subtotal\":\"150.00\"}]', 1, 1, 150, 150, 300, NULL, NULL, 0, 3, 1, '[\"12\"]', NULL, NULL, 0, NULL, '2022-02-20 10:07:49', '2022-02-20 10:10:25'),
+(29, '2997063', '3629733', 36, 'amitmojumder356@gmail.com', '01630448459', 'amitmojumder356@gmail.com', NULL, 1, 2, '3920', 'Mirpur-1,Dhaka', '[{\"id\":\"26\",\"product_name\":\"Lorem Ipsum22\",\"image\":\"13689-345345\",\"sku\":\"13689-345345\",\"shop_id\":\"14\",\"qty\":\"14\",\"price\":500,\"subtotal\":\"7000.00\"}]', 14, 14, 7000, 150, 7150, NULL, NULL, 0, 0, 1, '[\"11\"]', NULL, NULL, 0, NULL, '2022-02-20 10:12:08', '2022-02-20 10:12:08'),
+(30, '3081805', '3782255', 37, 'viewsoft', '01783038818', 'ashiffoysal0@gmail.com', NULL, 1, 1, '44555', 'Pana', '[{\"id\":\"21\",\"product_name\":\"Abra Owens\",\"image\":\"12509-Et corrupti corpori\",\"sku\":\"12509-Et corrupti corpori\",\"shop_id\":\"12\",\"qty\":\"1\",\"price\":694,\"subtotal\":\"694.00\"},{\"id\":\"34\",\"product_name\":\"Samyang 3x Spicy Ramen Noodles\",\"image\":\"16411-SKU 8801073114548\",\"sku\":\"16411-SKU 8801073114548\",\"shop_id\":\"16\",\"qty\":9,\"price\":150,\"subtotal\":\"1350.00\"}]', 10, 10, 2044, 150, 2194, NULL, NULL, 0, 0, 1, '[\"10\",\"12\"]', NULL, NULL, 0, NULL, '2022-02-20 11:31:31', '2022-02-20 11:31:31');
 
 -- --------------------------------------------------------
 
@@ -767,6 +795,7 @@ CREATE TABLE `products` (
   `product_slug` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `product_qty` int(11) DEFAULT NULL,
   `product_sku` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `sell_qty` int(11) NOT NULL DEFAULT 0,
   `product_size` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `product_details` longtext COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `is_approve` int(11) NOT NULL DEFAULT 0,
@@ -807,19 +836,23 @@ CREATE TABLE `products` (
 -- Dumping data for table `products`
 --
 
-INSERT INTO `products` (`id`, `user_id`, `shop_id`, `brand_id`, `product_name`, `product_slug`, `product_qty`, `product_sku`, `product_size`, `product_details`, `is_approve`, `category_id`, `subcategory_id`, `resubcategory_id`, `child_resubcategory`, `grand_childresubcategory_id`, `product_brand`, `product_price`, `product_weight`, `style`, `age_group`, `product_gender`, `product_materials`, `product_condition`, `product_tags`, `have_a_discount`, `offer`, `discount_price`, `discount_price_type`, `discount_condition`, `from_date`, `to_date`, `offer_stock_type`, `offer_qty`, `image`, `gallary_image`, `updated_by`, `deleted_by`, `is_active`, `is_deleted`, `created_at`, `updated_at`) VALUES
-(12, 32, 9, 1, 'Modhu Raj', 'Modhu-Raj', 500, '8856-s-09kk', NULL, '<p>Lorem Ipsum</p>', 1, 2, 1, 3, NULL, NULL, NULL, 580.00, '100 gm', NULL, 'all_age', 'male', 'Sundarbon Modhu', 'New', 'Modhu', 1, '11_offer', NULL, 'percent', NULL, NULL, NULL, NULL, NULL, 'th_1642583883.png', '[\"61e7d74c2bead.png\",\"61e7d74c740a6.png\"]', NULL, NULL, 1, 0, '2022-01-19 03:18:03', '2022-01-19 03:18:04'),
-(13, 32, 9, 1, 'Honey Sundarbon', 'Honey-Sundarbon', 100, '8325-s-09kk3', NULL, '<p><strong>Lorem Ipsum</strong>&nbsp;is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry&#39;s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum</p>', 1, 2, 1, 3, NULL, NULL, NULL, 500.00, '500gm', NULL, 'all_age', 'male', 'Sundarbon Modhu', 'New', 'Modhu,Honey,SundorBon', NULL, '11_offer', NULL, 'percent', NULL, NULL, NULL, NULL, NULL, 'th_1642583992.png', '[\"61e7d7b8d24fe.png\",\"61e7d7b913787.png\"]', NULL, NULL, 1, 0, '2022-01-19 03:19:52', '2022-01-19 03:19:53'),
-(14, 32, 9, 1, 'Holuder Gura', 'Holuder-Gura', 800, '8286-s-09kk', NULL, '<p><strong>Lorem Ipsum</strong>&nbsp;is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry&#39;s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum</p>', 1, 2, 1, 3, 3, 1, 'Pran', 150.00, '250gm', NULL, 'all_age', 'male', 'Holud', 'New', 'Holud,Gura', NULL, '11_offer', NULL, 'percent', NULL, NULL, NULL, NULL, NULL, 'th_1642584432.png', '[\"61e7d97095e29.png\"]', NULL, NULL, 1, 0, '2022-01-19 03:27:12', '2022-01-19 03:27:12'),
-(15, 32, 9, 1, 'Moris Gura', 'Moris-Gura', 120, '8822-s-09kk-mo', NULL, '<p><strong>Lorem Ipsum</strong>&nbsp;is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry&#39;s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum</p>', 1, 2, 1, 3, NULL, NULL, 'Pran', 70.00, '500gm', NULL, 'all_age', 'male', 'Moris Gura', 'New', 'Morich', 1, '11_offer', NULL, 'percent', NULL, NULL, NULL, NULL, NULL, 'th_1642584551.png', '[\"61e7d9e7c654c.png\"]', NULL, NULL, 1, 0, '2022-01-19 03:29:11', '2022-01-19 03:29:12'),
-(16, 32, 10, 1, 'Mans Shirt', 'Mans-Shirt', 500, '10364-s-09kk', 'l,m,xxl', '<p>Lorem Ipsum</p>', 1, 2, 1, 3, NULL, NULL, 'Adidas', 1500.00, NULL, 'Colar System', 'all_age', 'male', 'Cotton', 'New', 'Cotton,Sirt', 1, '11_offer', NULL, 'percent', NULL, NULL, NULL, NULL, NULL, 'th_1642592365.jpg', '[\"61e7f86de2047.jpg\"]', NULL, NULL, 1, 0, '2022-01-19 05:39:25', '2022-01-19 05:39:26'),
-(17, 32, 10, 1, 'Pant New', 'Pant-New', 105, '10518-s-09kk', 'L,XL,M', '<p>Lorem Ipsum</p>', 1, 2, 1, 3, 3, NULL, 'Adidas', 1200.00, NULL, 'Colar System', 'all_age', 'male', 'Febricks', 'New', 'Shirt', 1, '22_offer', NULL, 'percent', NULL, NULL, NULL, NULL, NULL, 'th_1642592442.jpg', '[\"61e7f8ba7f2bf.jpg\"]', NULL, NULL, 1, 0, '2022-01-19 05:40:42', '2022-01-19 05:40:42'),
-(18, 32, 12, 1, 'Blake Emerson', 'Blake-Emerson', 141, '12813-Et reiciendis offici', '22', '<p>fgfdgfgfg</p>', 1, 4, 4, NULL, NULL, NULL, 'Quas nihil architect', 467.00, NULL, '33', 'all_age', 'male', '445455', 'Used', 'rtrtrt,uiyuiuiui,iuyiuiuyi', NULL, '11_offer', NULL, 'percent', NULL, NULL, NULL, NULL, NULL, 'th_1644143253.jpg', '[\"61ffa2951e21b.jpg\",\"61ffa2951f53f.jpg\"]', NULL, NULL, 1, 0, '2022-02-06 04:27:33', '2022-02-06 04:27:33'),
-(19, 32, 12, 1, 'Renee Cooper', 'Renee-Cooper', 785, '1249-Commodi iste sit to', 'Aut vitae et vel ex', '<p>hghj</p>', 1, 3, NULL, NULL, NULL, NULL, 'Et recusandae Inven', 688.00, NULL, 'Explicabo Assumenda', 'Upto_18', 'female', 'Praesentium ratione', 'Used', 'Sed eveniet culpa', 1, '22_offer', NULL, 'percent', NULL, NULL, NULL, NULL, NULL, 'th_1644143300.jpg', '[\"61ffa2c4238f2.png\"]', NULL, NULL, 1, 0, '2022-02-06 04:28:20', '2022-02-06 04:28:20'),
-(21, 32, 12, 1, 'Abra Owens', 'Abra-Owens', 707, '12509-Et corrupti corpori', 'Veniam eos dolore', '<p>lhkjhklhk</p>', 1, 4, NULL, NULL, NULL, NULL, 'Aliquid eveniet vol', 694.00, NULL, 'Dignissimos quis dol', 'Under_18', 'male', 'Reprehenderit offici', 'Used', 'Et maiores suscipit', NULL, '11_offer', NULL, 'percent', NULL, NULL, NULL, NULL, NULL, 'th_1644143353.png', '[\"61ffa2f9215cc.jpg\"]', NULL, NULL, 1, 0, '2022-02-06 04:29:13', '2022-02-15 00:42:05'),
-(22, 32, 12, 1, 'Ignacia Dunlap', 'Ignacia-Dunlap', 576, '12741-Omnis aspernatur qua', 'Voluptate suscipit m', '<p>ghfgjgjhg</p>', 1, 2, NULL, NULL, NULL, NULL, 'Temporibus molestiae', 354.00, NULL, 'Fugit iste amet ad', 'Upto_18', 'male', 'Dolorum ipsa volupt', 'Used Like New', 'Aperiam quis non tem', NULL, '11_offer', NULL, 'percent', NULL, NULL, NULL, NULL, NULL, 'th_1644143436.jpg', '[\"61ffa34c39757.jpg\"]', NULL, NULL, 1, 0, '2022-02-06 04:30:36', '2022-02-06 04:30:36'),
-(23, 32, 12, 1, 'Danielle Griffith', 'Danielle-Griffith', 858, '12296-Ex ea dolores sint i', NULL, '<p>vfdgdfdg</p>', 1, 4, 4, NULL, NULL, NULL, 'Eos in ut dolores re', 76.00, NULL, 'gfggf', 'Under_18', 'male', 'gfgfgfg', 'Used', 'gfg', 1, '11_offer', NULL, 'percent', NULL, NULL, NULL, NULL, NULL, 'th_1644466682.png', '[\"620491fa3b931.png\",\"620491fa5e1f7.png\"]', NULL, NULL, 1, 0, '2022-02-09 22:18:02', '2022-02-09 22:18:02'),
-(24, 32, 12, NULL, 'Justina French', 'Justina-French', 859, '12585-Aut dolor sed in neq', 'Consectetur ex blan', 'Sint voluptas aperia', 1, 2, 1, 3, NULL, NULL, 'Amet molestiae fugi', 547.00, NULL, 'Ut omnis ad eiusmod', NULL, NULL, 'Repellendus Commodo', 'New', 'Temporibus praesenti', 1, '11_offer', NULL, 'percent', NULL, NULL, NULL, NULL, NULL, 'th_1644839406.jpg', '[\"620a41ef5ce70.png\",\"620a41ef62245.jpg\",\"620a41ef64d5f.jpg\",\"620a41ef703d7.png\",\"620a41ef7260f.png\",\"620a41ef74aba.png\"]', NULL, NULL, 1, 0, '2022-02-14 05:50:06', '2022-02-14 05:50:07');
+INSERT INTO `products` (`id`, `user_id`, `shop_id`, `brand_id`, `product_name`, `product_slug`, `product_qty`, `product_sku`, `sell_qty`, `product_size`, `product_details`, `is_approve`, `category_id`, `subcategory_id`, `resubcategory_id`, `child_resubcategory`, `grand_childresubcategory_id`, `product_brand`, `product_price`, `product_weight`, `style`, `age_group`, `product_gender`, `product_materials`, `product_condition`, `product_tags`, `have_a_discount`, `offer`, `discount_price`, `discount_price_type`, `discount_condition`, `from_date`, `to_date`, `offer_stock_type`, `offer_qty`, `image`, `gallary_image`, `updated_by`, `deleted_by`, `is_active`, `is_deleted`, `created_at`, `updated_at`) VALUES
+(15, 32, 9, 1, 'Moris Gura', 'Moris-Gura', 120, '8822-s-09kk-mo', 0, NULL, '<p><strong>Lorem Ipsum</strong>&nbsp;is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry&#39;s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum</p>', 1, 2, 1, 3, NULL, NULL, 'Pran', 70.00, '500gm', NULL, 'all_age', 'male', 'Moris Gura', 'New', 'Morich', 1, '11_offer', NULL, 'percent', NULL, NULL, NULL, NULL, NULL, 'th_1642584551.png', '[\"61e7d9e7c654c.png\"]', NULL, NULL, 1, 0, '2022-01-19 03:29:11', '2022-02-20 10:18:08'),
+(16, 32, 10, 1, 'Mans Shirt', 'Mans-Shirt', 500, '10364-s-09kk', 0, 'l,m,xxl', '<p>Lorem Ipsum</p>', 0, 2, 1, 3, NULL, NULL, 'Adidas', 1500.00, NULL, 'Colar System', 'all_age', 'male', 'Cotton', 'New', 'Cotton,Sirt', 1, '11_offer', NULL, 'percent', NULL, NULL, NULL, NULL, NULL, 'th_1642592365.jpg', '[\"61e7f86de2047.jpg\"]', NULL, NULL, 1, 0, '2022-01-19 05:39:25', '2022-01-19 05:39:26'),
+(17, 32, 10, 1, 'Pant New', 'Pant-New', 105, '10518-s-09kk', 0, 'L,XL,M', '<p>Lorem Ipsum</p>', 1, 2, 1, 3, 3, NULL, 'Adidas', 1200.00, NULL, 'Colar System', 'all_age', 'male', 'Febricks', 'New', 'Shirt', 1, '22_offer', NULL, 'percent', NULL, NULL, NULL, NULL, NULL, 'th_1642592442.jpg', '[\"61e7f8ba7f2bf.jpg\"]', NULL, NULL, 1, 0, '2022-01-19 05:40:42', '2022-02-20 10:23:10'),
+(18, 32, 12, 1, 'Blake Emerson', 'Blake-Emerson', 141, '12813-Et reiciendis offici', 0, '22', '<p>fgfdgfgfg</p>', 0, 4, 4, NULL, NULL, NULL, 'Quas nihil architect', 467.00, NULL, '33', 'all_age', 'male', '445455', 'Used', 'rtrtrt,uiyuiuiui,iuyiuiuyi', NULL, '11_offer', NULL, 'percent', NULL, NULL, NULL, NULL, NULL, 'th_1644143253.jpg', '[\"61ffa2951e21b.jpg\",\"61ffa2951f53f.jpg\"]', NULL, NULL, 1, 0, '2022-02-06 04:27:33', '2022-02-06 04:27:33'),
+(19, 32, 12, 1, 'Renee Cooper', 'Renee-Cooper', 785, '1249-Commodi iste sit to', 0, 'Aut vitae et vel ex', '<p>hghj</p>', 0, 3, NULL, NULL, NULL, NULL, 'Et recusandae Inven', 688.00, NULL, 'Explicabo Assumenda', 'Upto_18', 'female', 'Praesentium ratione', 'Used', 'Sed eveniet culpa', NULL, '11_offer', NULL, 'percent', NULL, NULL, NULL, NULL, NULL, 'th_1644143300.jpg', '[\"61ffa2c4238f2.png\"]', NULL, NULL, 1, 0, '2022-02-06 04:28:20', '2022-02-06 04:28:20'),
+(21, 32, 12, 1, 'Abra Owens', 'Abra-Owens', 707, '12509-Et corrupti corpori', 0, 'Veniam eos dolore', '<p>lhkjhklhk</p>', 1, 4, NULL, NULL, NULL, NULL, 'Aliquid eveniet vol', 694.00, NULL, 'Dignissimos quis dol', 'Under_18', 'male', 'Reprehenderit offici', 'Used', 'Et maiores suscipit', NULL, '11_offer', NULL, 'percent', NULL, NULL, NULL, NULL, NULL, 'th_1644143353.png', '[\"61ffa2f9215cc.jpg\"]', NULL, NULL, 1, 0, '2022-02-06 04:29:13', '2022-02-15 00:42:05'),
+(22, 32, 12, 1, 'Ignacia Dunlap', 'Ignacia-Dunlap', 576, '12741-Omnis aspernatur qua', 0, 'Voluptate suscipit m', '<p>ghfgjgjhg</p>', 0, 2, NULL, NULL, NULL, NULL, 'Temporibus molestiae', 354.00, NULL, 'Fugit iste amet ad', 'Upto_18', 'male', 'Dolorum ipsa volupt', 'Used Like New', 'Aperiam quis non tem', NULL, '11_offer', NULL, 'percent', NULL, NULL, NULL, NULL, NULL, 'th_1644143436.jpg', '[\"61ffa34c39757.jpg\"]', NULL, NULL, 1, 0, '2022-02-06 04:30:36', '2022-02-06 04:30:36'),
+(23, 32, 12, 1, 'Danielle Griffith', 'Danielle-Griffith', 858, '12296-Ex ea dolores sint i', 0, NULL, '<p>vfdgdfdg</p>', 1, 4, 4, NULL, NULL, NULL, 'Eos in ut dolores re', 76.00, NULL, 'gfggf', 'Under_18', 'male', 'gfgfgfg', 'Used', 'gfg', 1, '11_offer', NULL, 'percent', NULL, NULL, NULL, NULL, NULL, 'th_1644466682.png', '[\"620491fa3b931.png\",\"620491fa5e1f7.png\"]', NULL, NULL, 1, 0, '2022-02-09 22:18:02', '2022-02-17 02:55:30'),
+(24, 32, 12, NULL, 'Justina French', 'Justina-French', 859, '12585-Aut dolor sed in neq', 0, 'Consectetur ex blan', 'Sint voluptas aperia', 0, 2, 1, 3, NULL, NULL, 'Amet molestiae fugi', 547.00, NULL, 'Ut omnis ad eiusmod', NULL, NULL, 'Repellendus Commodo', 'New', 'Temporibus praesenti', 1, 'none', NULL, 'percent', NULL, NULL, NULL, NULL, NULL, 'th_1644839406.jpg', '[\"620a41ef5ce70.png\",\"620a41ef62245.jpg\",\"620a41ef64d5f.jpg\",\"620a41ef703d7.png\",\"620a41ef7260f.png\",\"620a41ef74aba.png\"]', NULL, NULL, 1, 0, '2022-02-14 05:50:06', '2022-02-14 05:50:07'),
+(25, 34, 14, NULL, NULL, '', NULL, '13412-', 0, 'asif', 'lorem', 0, 2, 1, 3, NULL, NULL, 'My Brand', 1500.00, '25', '123456', NULL, NULL, 'matirals', 'Used', 'lorem', 1, '11_offer', NULL, 'percent', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, 0, '2022-02-16 04:30:58', NULL),
+(26, 34, 14, NULL, 'Lorem Ipsum22', 'Lorem-Ipsum22', 50, '13689-345345', 1, 'a', 'lorem', 1, 3, 3, 1, NULL, NULL, 'My Brand', 500.00, NULL, 'aa', NULL, NULL, 'matirals', 'Used', 'lorem', NULL, '11_offer', NULL, 'percent', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, 0, '2022-02-16 04:42:58', '2022-02-20 10:05:46'),
+(27, 34, 15, NULL, 'asif new', 'asif-new', 50, '13110-345345', 0, NULL, 'lorem', 0, 3, 3, 1, NULL, NULL, 'My Brand', 1500.00, '25', NULL, NULL, NULL, 'matirals', 'Used', 'lorme', NULL, '11_offer', NULL, 'percent', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, 0, '2022-02-16 04:44:21', NULL),
+(28, 34, 14, NULL, 'Lorem Ipsum22', 'Lorem-Ipsum22', 50, '13163-345345', 18, 'l,j,ddd,d', 'lorem', 1, 2, 1, 6, NULL, NULL, 'My Brand', 1500.00, NULL, '123456', NULL, NULL, 'matirals', 'Used', 'lorem', NULL, '11_offer', NULL, 'percent', NULL, NULL, NULL, NULL, NULL, 'th_1645008617.jpg', '[\"620cd6ea31c25.png\"]', NULL, NULL, 1, 0, '2022-02-16 04:50:17', '2022-02-20 10:21:20'),
+(29, 34, 14, NULL, 'asif new', 'asif-new', 50, '13547-345345', 16, 's,d', 'lorem', 1, 2, 1, NULL, NULL, NULL, 'My Brand', 1500.00, NULL, NULL, NULL, NULL, NULL, 'Used', 'lorem', 1, '11_offer', NULL, 'percent', NULL, NULL, NULL, NULL, NULL, 'th_1645097099.jpg', NULL, NULL, NULL, 1, 0, '2022-02-17 05:24:59', '2022-02-20 10:23:18'),
+(30, 34, 15, NULL, 'New Pr', 'New-Pr', 69, '13412-345345', 14, NULL, 'lorem', 0, 2, 1, 3, NULL, NULL, 'My Brand', 1500.00, '60kg', NULL, NULL, NULL, 'matirals', 'Used', 'd', NULL, '11_offer', NULL, 'percent', NULL, NULL, NULL, NULL, NULL, 'th_1645097138.jpg', NULL, NULL, NULL, 1, 0, '2022-02-17 05:25:38', '2022-02-19 04:30:59'),
+(34, 36, 16, NULL, 'Samyang 3x Spicy Ramen Noodles', 'Samyang-3x-Spicy-Ramen-Noodles', 10, '16411-SKU 8801073114548', 2, NULL, 'Brand: Samyang\r\nWeight: 70gm', 1, 2, 1, 3, NULL, NULL, 'Samyang', 150.00, '70 gm', NULL, NULL, NULL, NULL, 'New', 'Samyang ,3x Spicy Ramen', NULL, '11_offer', NULL, 'percent', NULL, NULL, NULL, NULL, NULL, 'th_1645329316.jpg', '[\"6211bba4d8414.jpg\"]', NULL, NULL, 1, 0, '2022-02-20 08:55:16', '2022-02-20 10:10:25');
 
 -- --------------------------------------------------------
 
@@ -964,8 +997,8 @@ CREATE TABLE `shopping_charges` (
 --
 
 INSERT INTO `shopping_charges` (`id`, `area`, `charge`, `created_at`, `updated_at`) VALUES
-(1, 'Dhaka', '50', NULL, '2022-02-15 04:01:22'),
-(2, 'Out Of Dhaka', '150', NULL, '2022-02-15 04:01:31');
+(1, 'Dhaka', 50, NULL, '2022-02-15 04:01:22'),
+(2, 'Out Of Dhaka', 150, NULL, '2022-02-15 04:01:31');
 
 -- --------------------------------------------------------
 
@@ -996,11 +1029,14 @@ CREATE TABLE `shops` (
 --
 
 INSERT INTO `shops` (`id`, `shop_name`, `user_id`, `shopcategory_id`, `company_id`, `phone`, `email`, `image`, `address`, `updated_by`, `deleted_by`, `is_active`, `is_deleted`, `created_at`, `updated_at`) VALUES
-(8, 'BlueFashion', 30, 2, 5, NULL, NULL, NULL, 'Mirpur-1', NULL, NULL, 1, 0, '2022-01-19 00:38:13', '2022-01-19 03:14:05'),
-(9, 'Grocery Shop', 30, 4, 5, NULL, NULL, NULL, 'Mirpur-10', NULL, NULL, 1, 0, '2022-01-19 00:38:32', '2022-01-19 03:13:51'),
 (10, 'BlueFashion', 29, 2, 7, NULL, NULL, NULL, 'Mirpur-1', NULL, NULL, 1, 0, '2022-01-19 05:36:00', NULL),
 (11, 'Grocery Shop', 29, 4, 7, NULL, NULL, NULL, 'Mirpur-10', NULL, NULL, 1, 0, '2022-01-19 05:36:14', NULL),
-(12, 'Komol Chandra Devnath', 32, 2, 10, NULL, NULL, NULL, 'fgfggfg', NULL, NULL, 1, 0, '2022-02-06 04:25:11', NULL);
+(12, 'Komol Chandra Devnath', 32, 2, 10, NULL, NULL, NULL, 'fgfggfg', NULL, NULL, 1, 0, '2022-02-06 04:25:11', NULL),
+(13, 'Fashion', 34, 4, 11, NULL, NULL, NULL, 'Mirpur-1', NULL, NULL, 1, 0, '2022-02-16 04:26:21', '2022-02-16 04:29:50'),
+(14, 'Grocery', 34, 2, 11, NULL, NULL, NULL, 'Mirpur-12', NULL, NULL, 1, 0, '2022-02-16 04:26:40', NULL),
+(15, 'Dress Shop', 34, 4, 11, NULL, NULL, NULL, 'Mirpur-12', NULL, NULL, 1, 0, '2022-02-16 04:27:09', NULL),
+(16, 'Grocery Shopper', 36, 4, 12, NULL, NULL, NULL, 'Mirpur-1,Dhaka', NULL, NULL, 1, 0, '2022-02-20 08:49:17', NULL),
+(17, 'Girly Shop', 36, 2, 12, NULL, NULL, NULL, 'Mirpur -1, Dhaka', NULL, NULL, 1, 0, '2022-02-20 11:36:11', NULL);
 
 -- --------------------------------------------------------
 
@@ -1073,7 +1109,7 @@ CREATE TABLE `socials` (
 --
 
 INSERT INTO `socials` (`id`, `facebook`, `twitter`, `linkend`, `youtube`, `skype`, `google_plus`, `feed`, `created_at`, `updated_at`) VALUES
-(1, 'https://www.facebook.com/kiri2ka', 'https://www.twitter.com/kiri2ka', 'https://www.linkdin.com/kiri2ka', 'https://www.youtube.com/kiri2ka', 'https://www.Skype.com/kiri2ka', 'https://www.google.com/kiri2ka', 'https://www.feed.com/kiri2ka', NULL, '2022-02-02 00:09:30');
+(1, 'https://www.facebook.com/eview.com.bd', 'https://www.twitter.com/kiri2ka', 'https://www.linkdin.com/kiri2ka', 'https://www.youtube.com/kiri2ka', 'https://www.Skype.com/kiri2ka', 'https://www.google.com/kiri2ka', 'https://www.feed.com/kiri2ka', NULL, '2022-02-20 11:37:42');
 
 -- --------------------------------------------------------
 
@@ -6251,7 +6287,12 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `remember_token`, `created_at`, `updated_at`, `social_id`, `social_type`, `is_shop`, `is_deleted`, `is_active`, `is_verified`, `main_address`, `phone`, `verification_code`, `google_map`, `country`, `division`, `city`, `zip_code`) VALUES
 (32, 'Komol Chandra Devnath', 'vendor@admin.com', '2022-02-06 10:21:41', '$2y$10$W5H7Pkvdo5YSXBGcHhx2XeSUETnSxreUNWe2HBHsPbSGFKg4icJKu', NULL, '2022-02-06 04:20:38', '2022-02-06 04:23:57', NULL, NULL, 1, 0, 1, 1, NULL, NULL, '73663', NULL, NULL, NULL, NULL, NULL),
-(33, 'Komol Chandra Devnath', 'user@admin.com', '2022-02-06 10:32:23', '$2y$10$nxLzMB5dol00YP6Seb9bv.JI9af4niofvJqk2FABgjEyhT6ihKkt.', NULL, '2022-02-06 04:32:00', '2022-02-15 04:55:07', NULL, NULL, 0, 0, 1, 1, '71 ST. NICHOLAS DRIVE', '8143008177', '26422', 'kjhkjhkj', '18', 6, '47', '99705');
+(33, 'Komol Chandra Devnath', 'user@admin.com', '2022-02-06 10:32:23', '$2y$10$nxLzMB5dol00YP6Seb9bv.JI9af4niofvJqk2FABgjEyhT6ihKkt.', NULL, '2022-02-06 04:32:00', '2022-02-15 04:55:07', NULL, NULL, 0, 0, 1, 1, '71 ST. NICHOLAS DRIVE', '8143008177', '26422', 'kjhkjhkj', '18', 6, '47', '99705'),
+(34, 'ASIF FOYSAL', 'ashiffoysal8818@gmail.com', NULL, 'eyJpdiI6IlJpaHl2dHA3MUNJcUQ3eDUrKzJ4R0E9PSIsInZhbHVlIjoieEI4cHl0R2xUOC9jOFF3d2RHQUZMVTRkU0hYRkJEdWxQS2ppRVRMZk5Vbz0iLCJtYWMiOiI0NGFiNjE1NDEwYzAyY2E2MzkyMzg5OTZiMWNjMjVmODU1NDRiOGM5NmNkODY4NGIzM2ExNDZmNzU3MzZhZjIzIiwidGFnIjoiIn0=', NULL, '2022-02-16 04:14:52', '2022-02-16 04:25:35', '102142038804139658389', 'google', 1, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(35, 'amimojumder356@gmail.com', 'amimojumder356@gmail.com', NULL, '$2y$10$aDFprUdsePQV6.sryIAwcuLHqpGeCAWWEkJ7INBjXullxY3Wg.YaK', NULL, '2022-02-20 08:28:13', '2022-02-20 08:28:13', NULL, NULL, 0, 0, 0, 0, NULL, NULL, '43790', NULL, NULL, NULL, NULL, NULL),
+(36, 'amitmojumder356@gmail.com', 'amitmojumder356@gmail.com', NULL, '$2y$10$Ygp6e.i769cxZk7qig8F9u5yYVIhF3.OmRoZzZQowKCqJyly3idMe', NULL, '2022-02-20 08:30:15', '2022-02-20 08:36:15', NULL, NULL, 1, 0, 0, 1, 'Mirpur-1,Dhaka', '01630448459', '77371', NULL, NULL, 1, '2', '3920'),
+(37, 'viewsoft', 'ashiffoysal0@gmail.com', NULL, '$2y$10$FGjMYkFOrF5zu5QkYuVq6O/DlUVF.Qy7gqwzIu6xPmr3lerDFZhaS', NULL, '2022-02-20 08:33:54', '2022-02-20 08:37:58', NULL, NULL, 1, 0, 0, 1, NULL, NULL, '58264', NULL, NULL, NULL, NULL, NULL),
+(38, 'earth bd', 'earthbd20@gmail.com', NULL, 'eyJpdiI6InN0VUgvOUdyMUpOVnpjMXBUYllKVmc9PSIsInZhbHVlIjoiMHVEd1UyU1MvaVhsNkE5b3lzVjlsSXRQNEtaZ0t1Mjd6UldnZHUvQ0lpbz0iLCJtYWMiOiJhNDI1ZjljMjg2NmFhMjYxNjA2NGRiMjVjNzRmNWNhNmVjZGQwOTA4MmZiOTk5ZTg5NTFlMmYxNTczMGUyZmEyIiwidGFnIjoiIn0=', NULL, '2022-02-20 10:07:15', '2022-02-20 10:07:15', '117204745139078798295', 'google', 0, 0, 0, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -6298,7 +6339,10 @@ INSERT INTO `vendor_companies` (`id`, `user_id`, `name`, `phone`, `email`, `comp
 (7, '29', 'user', '01783038818', 'user@gmail.com', 'Isoft', 'Mirpur,Dhaka', '#', '18', 'Dhaka', '12536', 'Dhaka', 'Dhaka', 'Asif', '123456789', 'DBBL', 'MIRPUR-1', '123456', '25', '36', NULL, 1, 0, 0, NULL, '2022-01-09 22:14:46', NULL),
 (8, '28', 'View Soft', '01783038818', 'viewsoft98@gmail.com', 'Earth BD', 'Rajshahi', 'google map', '18', 'Dhaka', '12345', 'sale', 'dele', 'ban', '343345', 'bangladesh na', 'bangladesh aaa', 'bangladesh r', 'bangladesh i', 'bangladesh', NULL, 1, 0, 0, NULL, '2022-01-14 23:04:26', NULL),
 (9, '27', 'Asif Foysal', '8143008177', 'komol@gmail.com', 'Roman Fitzpatrick Traders', '71 ST. NICHOLAS DRIVE', 'dftgfgfg', '4', 'NORTH POLE', '99705', 'fggfgfg', 'fgfdgfg', 'komol-bank', 'dffdf', 'fdfdff', 'fdfdfd', 'fdfddfd', 'dfdfdf', 'fdffdfdf', NULL, 1, 0, 0, NULL, '2022-02-03 03:07:05', NULL),
-(10, '32', 'Komol Chandra Devnath', '01874303467', 'vendor@admin.com', 'Smith Blair Plc', '71 ST. NICHOLAS DRIVE', 'n/a', '18', 'NORTH POLE', '99705', 'fggfgfg', 'fgfdgfg', 'komol-bank', 'dffdf', 'Komol Chandra Devnath', '71 ST. NICHOLAS DRIVE', '233423', '343434', '3232323', NULL, 1, 0, 0, NULL, '2022-02-06 04:23:57', NULL);
+(10, '32', 'Komol Chandra Devnath', '01874303467', 'vendor@admin.com', 'Smith Blair Plc', '71 ST. NICHOLAS DRIVE', 'n/a', '18', 'NORTH POLE', '99705', 'fggfgfg', 'fgfdgfg', 'komol-bank', 'dffdf', 'Komol Chandra Devnath', '71 ST. NICHOLAS DRIVE', '233423', '343434', '3232323', NULL, 1, 0, 0, NULL, '2022-02-06 04:23:57', NULL),
+(11, '34', 'asif Foysal', '01783038818', 'ashiffoysal8818@gmail.com', 'isoft', 'Pana s', 'google map s', NULL, 'Dhaka s', '4455566', 'sale s', 'Dhaka s', 'ban s', '343345 s', 'bangladesh na s', 'Pana', 'bangladesh r s', 'bangladesh i s', 'bangladesh s', 'Cate_1645247038.jpg', 1, 0, 0, NULL, '2022-02-16 04:25:35', '2022-02-18 23:03:58'),
+(12, '36', 'amitmojumder356@gmail.com', '01630448459', 'amitmojumder356@gmail.com', 'Majumder Store', 'Dhaka', 'Dhaka', NULL, 'Dhaka', '3930', 'Dhaka', 'Dhaka', 'Nipen Majumder', '1234567890', 'Sonali Bank', 'Sonali Bank', '2234', '3456', '13467', NULL, 1, 0, 0, NULL, '2022-02-20 08:36:15', '2022-02-20 08:48:27'),
+(13, '37', 'viewsoft', '01783038818', 'ashiffoysal0@gmail.com', 'DIT Bangladesh Ltd', 'Pana', 'google map', '12', 'Dhaka', '44555', 'sale', 'dele', 'ban', '343345', 'bangladesh na', 'Pana', 'bangladesh r', 'bangladesh i', 'bangladesh', NULL, 1, 0, 0, NULL, '2022-02-20 08:37:58', NULL);
 
 --
 -- Indexes for dumped tables
@@ -6526,7 +6570,7 @@ ALTER TABLE `admins`
 -- AUTO_INCREMENT for table `banners`
 --
 ALTER TABLE `banners`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `blogs`
@@ -6544,13 +6588,13 @@ ALTER TABLE `blog_categories`
 -- AUTO_INCREMENT for table `brands`
 --
 ALTER TABLE `brands`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `categories`
 --
 ALTER TABLE `categories`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `company_information`
@@ -6592,7 +6636,7 @@ ALTER TABLE `migrations`
 -- AUTO_INCREMENT for table `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
 
 --
 -- AUTO_INCREMENT for table `personal_access_tokens`
@@ -6604,7 +6648,7 @@ ALTER TABLE `personal_access_tokens`
 -- AUTO_INCREMENT for table `products`
 --
 ALTER TABLE `products`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
 
 --
 -- AUTO_INCREMENT for table `resub_categories`
@@ -6640,7 +6684,7 @@ ALTER TABLE `shopping_charges`
 -- AUTO_INCREMENT for table `shops`
 --
 ALTER TABLE `shops`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT for table `shop_categories`
@@ -6688,13 +6732,13 @@ ALTER TABLE `upazilas`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
 
 --
 -- AUTO_INCREMENT for table `vendor_companies`
 --
 ALTER TABLE `vendor_companies`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- Constraints for dumped tables

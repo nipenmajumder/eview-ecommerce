@@ -106,15 +106,14 @@
     <!--=================== order track modal ===================-->
 
     <div class="modal fade" id="order_track" tabindex="-1" aria-hidden="true">
-
         <div class="modal-dialog" role="document">
             <div class="modal-content">
-                <div class="modal-header">
+                {{-- <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLabel"> Track your Order</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
-                </div>
+                </div> --}}
                 <form action="{{ url('/track-order') }}" method="get">
                     <div class="modal-body ">
                         <h5 class="modal-title" id="exampleModalLabel"> Track your Order</h5>
@@ -214,6 +213,9 @@
                   data : $( "#quickviewcartsection" ).serialize(),
                   success: function(data) {
                       if(data.success){
+                        cartupload();
+                    cartquantity();
+                    flyingcartupload();
                       Swal.fire({
                           toast: true,
                           icon: 'success',

@@ -212,8 +212,6 @@
                                                         value="{{$product->product_sku}}">
                                                     <input type="hidden" name="image" value="{{$product->image}}">
                                                     <input type="hidden" name="shop_id" value="{{$product->shop_id}}">
-                                                    <input type="hidden" name="price"
-                                                        value="{{$product->product_price}}">
                                                     <input type="hidden" name="product_quantity" value="1">
                                                     <div class="product-box">
 
@@ -335,44 +333,14 @@
                                                         </div>
                                                     </div>
                                                 </form>
-
                                             </div>
                                             @endforeach
                                         </div>
                                         <div class="product-pagination">
                                             <div class="theme-paggination-block">
                                                 <div class="row">
-                                                    {{ $products->links() }}
-                                                    {{-- <div class="col-xl-6 col-md-6 col-sm-12">
-                                                        <nav aria-label="Page navigation">
-                                                            <ul class="pagination">
-                                                                <li class="page-item"><a class="page-link" href="#"
-                                                                        aria-label="Previous"><span
-                                                                            aria-hidden="true"><i
-                                                                                class="fa fa-chevron-left"
-                                                                                aria-hidden="true"></i></span> <span
-                                                                            class="sr-only">Previous</span></a></li>
-                                                                <li class="page-item active"><a class="page-link"
-                                                                        href="#">1</a></li>
-                                                                <li class="page-item"><a class="page-link"
-                                                                        href="#">2</a>
-                                                                </li>
-                                                                <li class="page-item"><a class="page-link"
-                                                                        href="#">3</a>
-                                                                </li>
-                                                                <li class="page-item"><a class="page-link" href="#"
-                                                                        aria-label="Next"><span aria-hidden="true"><i
-                                                                                class="fa fa-chevron-right"
-                                                                                aria-hidden="true"></i></span> <span
-                                                                            class="sr-only">Next</span></a></li>
-                                                            </ul>
-                                                        </nav>
-                                                    </div>
-                                                    <div class="col-xl-6 col-md-6 col-sm-12">
-                                                        <div class="product-search-count-bottom">
-                                                            <h5>Showing Products 1-24 of 10 Result</h5>
-                                                        </div>
-                                                    </div> --}}
+                                                    {{ $products->links('vendor.pagination.custom') }}
+
                                                 </div>
                                             </div>
                                         </div>
