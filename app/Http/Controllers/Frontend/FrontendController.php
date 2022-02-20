@@ -18,18 +18,15 @@ class FrontendController extends Controller
     // home section
     public function home()
     {
-        // $products          = Product::isDeleted()->isActive()->isApprove();
         $allSlider         = Slider::select(['image'])->isActive()->get();
         $allBanner         = Banner::isActive()->select(['title', 'discount', 'url', 'image'])->limit(3)->get();
-        $allProduct        = Product::isDeleted()->isActive()->isApprove()->orderBy('id', 'DESC')->limit(12)->get();
-        $newProducts       = Product::isDeleted()->isActive()->isApprove()->orderBy('id', 'DESC')->limit(12)->get();
-        $allelevenproduct  = Product::isDeleted()->isActive()->isApprove()->haveDiscount()->offer11()->orderBy('id', 'DESC')->limit(12)->get();
-        $allSpecialproduct = Product::isDeleted()->isActive()->isApprove()->haveDiscount()->specialOffer()->orderBy('id', 'DESC')->limit(12)->get();
-        $alltweentyproduct = Product::isDeleted()->isActive()->isApprove()->haveDiscount()->offer22()->orderBy('id', 'DESC')->limit(12)->get();
-        $topProducts       = Product::isDeleted()->isActive()->isApprove()->orderBy('id', 'DESC')->limit(12)->get();
-        // $topProducts = $products->orderBy('id', 'DESC')->limit(12)->get();
-        // dd($topProducts);
-        $topSaleCategory = Category::isDeleted()->isActive()->with('product')->limit(5)->get()->map(function ($category) {
+        $allProduct        = Product::isDeleted()->isActive()->isApprove()->orderBy('id', 'DESC')->select(['id', 'product_name', 'product_slug', 'product_sku', 'product_price', 'shop_id', 'offer', 'have_a_discount', 'image'])->limit(12)->get();
+        $newProducts       = Product::isDeleted()->isActive()->isApprove()->orderBy('id', 'DESC')->select(['id', 'product_name', 'product_slug', 'product_sku', 'product_price', 'shop_id', 'offer', 'have_a_discount', 'image'])->limit(12)->get();
+        $allelevenproduct  = Product::isDeleted()->isActive()->isApprove()->haveDiscount()->offer11()->select(['id', 'product_name', 'product_slug', 'product_sku', 'product_price', 'shop_id', 'offer', 'have_a_discount', 'image'])->orderBy('id', 'DESC')->limit(12)->get();
+        $allSpecialproduct = Product::isDeleted()->isActive()->isApprove()->haveDiscount()->specialOffer()->orderBy('id', 'DESC')->select(['id', 'product_name', 'product_slug', 'product_sku', 'product_price', 'shop_id', 'offer', 'have_a_discount', 'image'])->limit(12)->get();
+        $alltweentyproduct = Product::isDeleted()->isActive()->isApprove()->haveDiscount()->offer22()->orderBy('id', 'DESC')->select(['id', 'product_name', 'product_slug', 'product_sku', 'product_price', 'shop_id', 'offer', 'have_a_discount', 'image'])->limit(12)->get();
+        $topProducts       = Product::isDeleted()->isActive()->isApprove()->orderBy('id', 'DESC')->select(['id', 'product_name', 'product_slug', 'product_sku', 'product_price', 'shop_id', 'offer', 'have_a_discount', 'image'])->limit(12)->get();
+        $topSaleCategory   = Category::isDeleted()->isActive()->with('product')->limit(5)->get()->map(function ($category) {
             $category->setRelation('product', $category->product->take(6));
             return $category;
         });
@@ -41,7 +38,6 @@ class FrontendController extends Controller
     // product details
     public function productDetails($slug, $id)
     {
-        $products         = Product::isDeleted()->isActive()->isApprove();
         $data             = Product::isDeleted()->isActive()->isApprove()->isID($id)->with('Category', 'SubCategory_id')->first();
         $related_products = Product::isDeleted()->isActive()->isApprove()->where('category_id', $data->category_id)->notID($data->id)
             ->limit(6)->orderBy('id', 'DESC')->limit(6)->get();

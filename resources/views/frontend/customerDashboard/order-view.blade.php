@@ -85,7 +85,7 @@
                                                 <td></td>
                                                 <td></td>
                                                 <td></td>
-                                                <td>৳{{ $data->total_amount }}</td>
+                                                <td>৳{{ $data->cart_total }}</td>
                                             </tr>
                                             <tr>
                                                 <th scope="row"></th>
@@ -93,7 +93,7 @@
                                                 <td></td>
                                                 <td></td>
                                                 <td></td>
-                                                <td>৳{{ "70" }}</td>
+                                                <td>৳{{ $data->delivery_charge }}</td>
                                             </tr>
                                             <tr>
                                                 <th scope="row"></th>
@@ -101,7 +101,7 @@
                                                 <td></td>
                                                 <td></td>
                                                 <td></td>
-                                                <td>৳{{ $data->total_amount + 70 }}
+                                                <td>৳{{ $data->total_amount }}
                                                 </td>
                                             </tr>
                                         </tbody>

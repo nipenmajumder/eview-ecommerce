@@ -11,7 +11,7 @@ class FilterProductController extends Controller
     public function filterShop(Request $request)
     {
         // dd($request->all());
-        $products = Product::query()->isActive()->isDeleted();
+        $products = Product::query()->isActive()->isDeleted()->isApprove();
         if ($request->category == null && $request->brand == null && $request->price == null && $request->sortingval == null) {
             $products = $products;
         }
@@ -76,7 +76,7 @@ class FilterProductController extends Controller
     }
     public function filterCategoryShop(Request $request)
     {
-        $products = Product::query()->isActive()->isDeleted()->where('category_id', $request->category);
+        $products = Product::query()->isActive()->isDeleted()->isApprove()->where('category_id', $request->category);
         if ($request->subcategory == null && $request->brand == null && $request->price == null && $request->sortingval == null) {
             $products = $products;
         }
@@ -138,7 +138,7 @@ class FilterProductController extends Controller
 
     public function filterSubCategoryShop(Request $request)
     {
-        $products = Product::query()->isActive()->isDeleted()->where('subcategory_id', $request->sub_category);
+        $products = Product::query()->isActive()->isDeleted()->isApprove()->where('subcategory_id', $request->sub_category);
         if ($request->sub_category == null && $request->brand == null && $request->price == null && $request->sortingval == null) {
             $products = $products;
         }
@@ -202,7 +202,7 @@ class FilterProductController extends Controller
 
     public function filterReSubCategoryShop(Request $request)
     {
-        $products = Product::query()->isActive()->isDeleted()->where('resubcategory_id', $request->re_sub_category);
+        $products = Product::query()->isActive()->isDeleted()->isApprove()->where('resubcategory_id', $request->re_sub_category);
         if ($request->re_re_sub_category == null && $request->brand == null && $request->price == null && $request->sortingval == null) {
             $products = $products;
         }
@@ -267,7 +267,7 @@ class FilterProductController extends Controller
     public function filter11OfferShop(Request $request)
     {
         // dd($request->all());
-        $products = Product::query()->isActive()->isDeleted()->haveDiscount()->offer11()->orderBy('id', 'DESC');
+        $products = Product::query()->isActive()->isDeleted()->isApprove()->haveDiscount()->offer11()->orderBy('id', 'DESC');
         if ($request->category == null && $request->brand == null && $request->price == null && $request->sortingval == null) {
             $products = $products;
         }
@@ -334,7 +334,7 @@ class FilterProductController extends Controller
     public function filter22OfferShop(Request $request)
     {
         // dd($request->all());
-        $products = Product::query()->isActive()->isDeleted()->haveDiscount()->offer22()->orderBy('id', 'DESC');
+        $products = Product::query()->isActive()->isDeleted()->isApprove()->haveDiscount()->offer22()->orderBy('id', 'DESC');
         if ($request->category == null && $request->brand == null && $request->price == null && $request->sortingval == null) {
             $products = $products;
         }

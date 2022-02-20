@@ -59,7 +59,7 @@
                 <div class="product-pagination">
                     <div class="theme-paggination-block">
                         <div class="row">
-                            {{ $blogs->links() }}
+                            {{ $blogs->links('vendor.pagination.custom') }}
                             {{-- <div class="col-xl-6 col-md-6 col-sm-12">
                                 <nav aria-label="Page navigation">
                                     <ul class="pagination">

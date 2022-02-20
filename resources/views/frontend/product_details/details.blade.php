@@ -31,15 +31,15 @@
                     <div class="product-slick">
 
                         @php
-                        $thunmbnailImg = array($data->image); 
+                        $thunmbnailImg = array($data->image);
                         if($data->gallery_img == NULL ){
-                            $img = $thunmbnailImg;
-                           // dd($img);
+                        $img = $thunmbnailImg;
+                        // dd($img);
                         } else {
-                            $gal_img=json_decode($data->gallery_img);
-                            $img = array_merge($thunmbnailImg, $gal_img);
+                        $gal_img=json_decode($data->gallery_img);
+                        $img = array_merge($thunmbnailImg, $gal_img);
                         }
-                   @endphp  
+                        @endphp
                         @foreach($img as $dimage)
                         <div>
                             <img src="{{ asset('uploads/products/'.$dimage) }}" alt=""
@@ -172,7 +172,11 @@
                                     <div class="input-group"><span class="input-group-prepend"><button type="button"
                                                 class="btn quantity-left-minus" data-type="minus" data-field=""><i
                                                     class="ti-angle-left"></i></button> </span>
-                                        <input type="text" name="quantity" class="form-control input-number" value="1">
+                                        <input class="form-control input-number" type="number" name="product_quantity"
+                                            value="1">
+
+                                        {{-- <input type="text" name="quantity" class="form-control input-number"
+                                            value="1"> --}}
                                         <span class="input-group-prepend"><button type="button"
                                                 class="btn quantity-right-plus" data-type="plus" data-field=""><i
                                                     class="ti-angle-right"></i></button></span>
@@ -188,7 +192,6 @@
                                 <input type="hidden" name="discount_title" value="">
                                 <input type="hidden" name="shop_id" value="{{$data->shop_id}}">
                                 <input type="hidden" name="product_sku" value="{{$data->product_sku}}">
-                                <input type="hidden" name="product_quantity">
                                 <input type="hidden" name="user_id" value="{{ Request::ip() }}">
                                 <a class="btn btn-solid hover-solid btn-animation cart">
                                     <i class="fa fa-shopping-cart me-1" aria-hidden="true"></i> add to cart</a>
@@ -262,7 +265,7 @@
                                 class="icofont icofont-man-in-glasses"></i>Specification</a>
                         <div class="material-border"></div>
                     </li>
-                    <li class="nav-item"><a class="nav-link" id="contact-top-tab" data-bs-toggle="tab"
+                    {{-- <li class="nav-item"><a class="nav-link" id="contact-top-tab" data-bs-toggle="tab"
                             href="#top-contact" role="tab" aria-selected="false"><i
                                 class="icofont icofont-contacts"></i>Video</a>
                         <div class="material-border"></div>
@@ -270,7 +273,7 @@
                     <li class="nav-item"><a class="nav-link" id="review-top-tab" data-bs-toggle="tab" href="#top-review"
                             role="tab" aria-selected="false"><i class="icofont icofont-contacts"></i>Write Review</a>
                         <div class="material-border"></div>
-                    </li>
+                    </li> --}}
                 </ul>
                 <div class="tab-content nav-material" id="top-tabContent">
                     <div class="tab-pane fade show active" id="top-home" role="tabpanel" aria-labelledby="top-home-tab">
@@ -286,78 +289,79 @@
                             <table>
                                 <tbody>
                                     <tr>
-                                        <td>Sleeve Length</td>
-                                        <td>Sleevless</td>
+                                        <td>Qty</td>
+                                        <td>{{ $data->product_qty }}</td>
                                     </tr>
                                     <tr>
-                                        <td>Neck</td>
-                                        <td>Round Neck</td>
+                                        <td>Brand</td>
+                                        <td>{{ $data->product_brand }}</td>
                                     </tr>
                                     <tr>
-                                        <td>Occasion</td>
-                                        <td>Sports</td>
+                                        <td>Tags</td>
+                                        <td>
+                                            @if($data->product_tags !=NULL){{ $data->product_tags }}
+                                            @else Null
+                                            @endif
+                                        </td>
                                     </tr>
+                                    <tr>
+                                        <td>Type</td>
+                                        <td>
+                                            @if($data->product_condition !=NULL){{ $data->product_condition }}
+                                            @else Null
+                                            @endif
+                                        </td>
+                                    </tr>
+
                                 </tbody>
                             </table>
                             <table>
                                 <tbody>
+                                    @if($data->style !=NULL)
                                     <tr>
-                                        <td>Fabric</td>
-                                        <td>Polyester</td>
+                                        <td>Style</td>
+                                        <td>
+                                            {{ $data->style }}
+                                        </td>
                                     </tr>
+                                    @endif
+                                    @if($data->product_materials !=NULL)
                                     <tr>
-                                        <td>Fit</td>
-                                        <td>Regular Fit</td>
+                                        <td>Materials</td>
+                                        <td>
+                                            {{ $data->product_materials }}
+                                        </td>
                                     </tr>
+                                    @endif
+                                    @if($data->product_gender !=NULL)
+                                    <tr>
+                                        <td>Gender Type</td>
+                                        <td>
+                                            {{ $data->product_gender }}
+                                        </td>
+                                    </tr>
+                                    @endif
+                                    @if($data->age_group !=NULL)
+                                    <tr>
+                                        <td>Age Group </td>
+                                        <td>
+                                            {{ $data->age_group }}
+                                        </td>
+                                    </tr>
+                                    @endif
+                                    @if($data->product_weight !=NULL)
+                                    <tr>
+                                        <td>Weight</td>
+                                        <td>
+                                            {{ $data->product_weight }}
+                                        </td>
+                                    </tr>
+                                    @endif
                                 </tbody>
                             </table>
                         </div>
                     </div>
-                    <div class="tab-pane fade" id="top-contact" role="tabpanel" aria-labelledby="contact-top-tab">
-                        <div class="">
-                            <iframe width="560" height="315" src="https://www.youtube.com/embed/BUWzX78Ye_8"
-                                allow="autoplay; encrypted-media" allowfullscreen></iframe>
-                        </div>
-                    </div>
-                    <div class="tab-pane fade" id="top-review" role="tabpanel" aria-labelledby="review-top-tab">
-                        <form class="theme-form">
-                            <div class="form-row row">
-                                <div class="col-md-12">
-                                    <div class="media">
-                                        <label>Rating</label>
-                                        <div class="media-body ms-3">
-                                            <div class="rating three-star"><i class="fa fa-star"></i> <i
-                                                    class="fa fa-star"></i> <i class="fa fa-star"></i> <i
-                                                    class="fa fa-star"></i> <i class="fa fa-star"></i></div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <label for="name">Name</label>
-                                    <input type="text" class="form-control" id="name" placeholder="Enter Your name"
-                                        required>
-                                </div>
-                                <div class="col-md-6">
-                                    <label for="email">Email</label>
-                                    <input type="text" class="form-control" id="email" placeholder="Email" required>
-                                </div>
-                                <div class="col-md-12">
-                                    <label for="review">Review Title</label>
-                                    <input type="text" class="form-control" id="review"
-                                        placeholder="Enter your Review Subjects" required>
-                                </div>
-                                <div class="col-md-12">
-                                    <label for="review">Review Title</label>
-                                    <textarea class="form-control" placeholder="Wrire Your Testimonial Here"
-                                        id="exampleFormControlTextarea1" rows="6"></textarea>
-                                </div>
-                                <div class="col-md-12">
-                                    <button class="btn btn-solid" type="submit">Submit YOur
-                                        Review</button>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
+
                 </div>
             </div>
         </div>
@@ -383,7 +387,6 @@
                     <input type="hidden" name="product_sku" value="{{$product->product_sku}}">
                     <input type="hidden" name="image" value="{{$product->image}}">
                     <input type="hidden" name="shop_id" value="{{$product->shop_id}}">
-                    <input type="hidden" name="price" value="{{$product->product_price}}">
                     <input type="hidden" name="product_quantity" value="1">
                     <div class="product-box">
 
@@ -392,8 +395,7 @@
                                 @if($today==$eleven && $product->offer=='11_offer' &&
                                 $product->have_a_discount=='1')
                                 <span class="lable3">11% off</span>
-                                @elseif($today==$twenty_two &&
-                                $product->offer=='22_offer' &&
+                                @elseif($today==$twenty_two && $product->offer=='22_offer' &&
                                 $product->have_a_discount=='1')
                                 <span class="lable3">22% off</span>
                                 @elseif($product->offer=='special_offer' &&
@@ -422,8 +424,7 @@
                         </div>
                         <div class="product-detail">
                             {{-- <div class="rating"><i class="fa fa-star"></i> <i class="fa fa-star"></i> <i
-                                    class="fa fa-star"></i>
-                                <i class="fa fa-star"></i> <i class="fa fa-star"></i>
+                                    class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i>
                             </div> --}}
                             <a href="{{url('/products/'.$product->product_slug.'/'.$product->id)}}">
                                 <h6>{{ $product->product_name }}</h6>
@@ -432,11 +433,9 @@
                             <!--======================= offer related codes ================== -->
 
                             <!-- (#11 offer )-->
-                            @if($today==$eleven && $product->offer=='11_offer' &&
-                            $product->have_a_discount=='1')
+                            @if($today==$eleven && $product->offer=='11_offer' && $product->have_a_discount=='1')
                             @php
-                            $discounted_price =
-                            ($product->product_price)-($product->product_price*(11/100));
+                            $discounted_price = ($product->product_price)-($product->product_price*(11/100));
                             @endphp
                             <h6>৳ {{ $discounted_price }}
                                 <del>৳ {{ $product->product_price }}</del>
@@ -445,12 +444,10 @@
                             <input type="hidden" name="price" value="{{$discounted_price}}">
                             <input type="hidden" name="product_main_price" value="{{$product->product_price}}">
                             <!-- (#22_offer)-->
-                            @elseif($today==$twenty_two && $product->offer=='22_offer'
-                            &&
+                            @elseif($today==$twenty_two && $product->offer=='22_offer' &&
                             $product->have_a_discount=='1')
                             @php
-                            $discounted_price =
-                            ($product->product_price)-($product->product_price*(22/100));
+                            $discounted_price = ($product->product_price)-($product->product_price*(22/100));
                             @endphp
                             <h6>৳ {{ $discounted_price }}
                                 <del>৳ {{ $product->product_price }}</del>
@@ -458,13 +455,13 @@
                             <input type="hidden" name="price" value="{{$discounted_price}}">
                             <input type="hidden" name="product_main_price" value="{{$product->product_price}}">
                             <!-- (#special_offer) -->
-                            @elseif($product->offer=='special_offer' &&
-                            $product->have_a_discount=='1')
+                            @elseif($product->offer=='special_offer' && $product->have_a_discount=='1')
                             <!-- (no offer) -->
-                            @elseif($product->have_a_discount=='0')
+                            @elseif($product->have_a_discount==null)
                             <h6>৳ {{ $product->product_price }}</h6>
                             <input type="hidden" name="price" value="{{$product->product_price}}">
                             @else
+
                             <!-- (#is offer is comming soon) -->
                             <h6>৳ {{ $product->product_price }}</h6>
                             <input type="hidden" name="price" value="{{$product->product_price}}">

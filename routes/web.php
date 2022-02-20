@@ -156,7 +156,7 @@ Route::post('/admin/admin-update-password', [App\Http\Controllers\Admin\Dashboar
 Route::post('/admin/email-update', [App\Http\Controllers\Admin\DashboardController::class, 'adminEmailUpdate'])->name('admin.email.update');
 
 Route::get('/admin/logout', [App\Http\Controllers\Admin\DashboardController::class, 'logout'])->name('admin.logout');
-// login controler
+// login controller
 Route::get('/admin/login', [App\Http\Controllers\Admin\LoginController::class, 'login'])->name('admin.login');
 Route::post('/admin/login', [App\Http\Controllers\Admin\LoginController::class, 'loginSubmit'])->name('admin.login');
 // settings controller
@@ -289,8 +289,6 @@ Route::get('admin/order/return/{id}', [App\Http\Controllers\Admin\OrderControlle
 Route::get('/admin/rejectorder/list', [App\Http\Controllers\Admin\OrderController::class, 'allrejectorder'])->name('admin.order.reject');
 Route::get('/admin/alldeleverorder/list', [App\Http\Controllers\Admin\OrderController::class, 'alldeleverorder'])->name('admin.order.alldeleverorder');
 
-
-
 Route::get('/admin/processingorder/list', [App\Http\Controllers\Admin\OrderController::class, 'processingorder'])->name('admin.order.new');
 
 Route::get('admin/invoice/order/{id}', [App\Http\Controllers\Admin\OrderController::class, 'invoiceOrder']);
@@ -304,4 +302,3 @@ Route::get('/admin/orderreport', [App\Http\Controllers\Admin\ReportController::c
 Route::post('/admin/orderreport', [App\Http\Controllers\Admin\ReportController::class, 'Report'])->name('admin.orderreport');
 Route::get('/admin/productreport', [App\Http\Controllers\Admin\ReportController::class, 'productReport'])->name('admin.productreport');
 Route::post('/admin/productreport', [App\Http\Controllers\Admin\ReportController::class, 'productWiseReport'])->name('admin.productreport');
-
